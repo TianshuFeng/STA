@@ -13,6 +13,7 @@ Imports:
     dplyr,
     MASS,
     RColorBrewer,
+    rARPACK,
     survival,
     TDAmapper,
     visNetwork

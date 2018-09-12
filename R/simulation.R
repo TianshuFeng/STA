@@ -53,7 +53,10 @@ color_map_Spectral = function(x){
 #' @export
 #'
 #' @examples
-#'
+#' library(TDAmapper)
+#' tp_data = chicken_generator(1)
+
+
 simple_visNet = function(obj_mapper, filter=NULL, folder, color_fun = color_map_Spectral,
                          network_name = "network.html", color_filter = TRUE,
                          groups_ind = NULL, color_code = NULL){

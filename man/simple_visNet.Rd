@@ -53,5 +53,6 @@ the color method should be specified by the users by providing the function
 with necessary arguments.
 }
 \examples{
-
+library(TDAmapper)
+tp_data = chicken_generator(1)
 }
