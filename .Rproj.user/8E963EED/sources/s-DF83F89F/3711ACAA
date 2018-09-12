@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1536787053077.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3711ACAA",
+    "lastKnownWriteTime" : 1536792897,
+    "last_content_update" : 1536792897939,
+    "path" : "H:/Projects/Mapper_Visualization/Package/SemiMapper/R/mapper.kmeans.R",
+    "project_path" : "R/mapper.kmeans.R",
+    "properties" : {
+        "cursorPosition" : "90,13",
+        "scrollLine" : "84",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

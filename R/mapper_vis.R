@@ -134,16 +134,6 @@ color_map = function(samples_group, color_code) {
 }
 
 
-savepdf <- function(file, folder = "", width=10, height=10)
-{
-  dir.create(file.path(folder, "figures"), showWarnings = FALSE)
-  fname <- paste(folder, "/figures/",file,".png",sep="")
-  png(fname)
-  par(mgp=c(0,0,0), tcl=-0.4, mar=c(0,0,0,0), oma = c(0,0,0,0), bg=NA)
-
-}
-
-
 most_freq = function(vec){
   return(names(table(vec))[as.vector(table(vec))==max(table(vec))][1])
 }
@@ -397,6 +387,8 @@ network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = ""
   } else if(!check_color_code(color_code)){
     stop("Invalid color code.")
   }
+
+  obj_mapper = null_remover(obj_mapper)
 
   MapperNodes <- mapperVertices(obj_mapper, 1)
   MapperLinks <- mapperEdges(obj_mapper)

@@ -55,4 +55,5 @@ with necessary arguments.
 \examples{
 library(TDAmapper)
 tp_data = chicken_generator(1)
+
 }
