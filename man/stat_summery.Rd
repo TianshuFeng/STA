@@ -19,13 +19,13 @@ diagnosis and time to death at the time of observation.}
 
 \item{folder}{The name of the folder to save the generated networks.}
 
-\item{add_surv_analysis}{A logic object. \code{TRUE} if median time at diagnosis
+\item{add_surv_analysis}{A logical object. \code{TRUE} if median time at diagnosis
 and median time to death should be included.}
 
 \item{add_analysis_java}{A vector of Javascript codes summerizing customized
 statistics.}
 
-\item{color_code}{A color code dataframe}
+\item{color_code}{A color code dataframe.}
 }
 \value{
 A list includes the statistics and pie plots in folder

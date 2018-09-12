@@ -35,7 +35,7 @@ An HTML file and a set of pie plots will be saved under the location
   summerise of nodes.
 }
 \description{
-\code{network_visualization} generates an interactive graph based on the
+\code{network_visualization} generates an interactive graph from the
 provided Mapper object.
 }
 \details{
@@ -49,6 +49,9 @@ passing Javascript codes with additional summerise of nodes to the argument
 Nodes are colored with the colors associated with the dominated groups within
 each of the nodes. The colors of groups can either be defined by users or by
 function \code{\link{auto_set_colorcode}}. Self defined color codes should
-follow the format shown in \code{\link{read_color_code}}, and we recommend
+follow the format introduced in \code{\link{check_color_code}}, and we recommend
 reading color code files with \code{\link{read_color_code}}.
+}
+\examples{
+
 }

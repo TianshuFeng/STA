@@ -17,8 +17,8 @@ A valid color code dataframe contains two columns: \code{Study.Abbreviation}
 and \code{Hex.Colors}. The column \code{Study.Abbreviation} contains names of
 groups that should match the names of groups in the data. The column
 \code{Hex.Colors} contains self defined colors of groups where colors should
-be defined as Hex color codes. A tool for picking up colors can be found in
-https://htmlcolorcodes.com/.
+be defined as Hex color codes. A tool for picking up colors can be found
+\href{https://htmlcolorcodes.com/}{here}.
 }
 \examples{
 temp = auto_set_colorcode(c('a','b','c'))
