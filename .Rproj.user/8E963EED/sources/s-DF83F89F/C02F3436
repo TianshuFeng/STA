@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1536697687299.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "58|63|132|0|\n153|40|198|0|\n",
+    "hash" : "0",
+    "id" : "C02F3436",
+    "lastKnownWriteTime" : 1536701321,
+    "last_content_update" : 1536701353857,
+    "path" : "H:/Projects/Mapper_Visualization/Package/SemiMapper/R/simulation.R",
+    "project_path" : "R/simulation.R",
+    "properties" : {
+        "cursorPosition" : "141,4",
+        "scrollLine" : "58",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

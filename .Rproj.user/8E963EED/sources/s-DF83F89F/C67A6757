@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1536610920925.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C67A6757",
+    "lastKnownWriteTime" : 1536700553,
+    "last_content_update" : 1536700553126,
+    "path" : "H:/Projects/Mapper_Visualization/Package/SemiMapper/R/mapper_vis.R",
+    "project_path" : "R/mapper_vis.R",
+    "properties" : {
+        "cursorPosition" : "136,0",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
