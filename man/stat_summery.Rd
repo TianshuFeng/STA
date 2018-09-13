@@ -53,5 +53,6 @@ each of the nodes and passed to \code{add_analysis_java} following the same
 order of nodes as in \code{obj_mapper}.
 }
 \examples{
+# See ?network_visualization
 
 }

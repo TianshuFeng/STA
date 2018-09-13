@@ -1,0 +1,180 @@
+* using log directory 'H:/Projects/Mapper_Visualization/Package/SemiMapper.Rcheck'
+* using R version 3.5.1 (2018-07-02)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: ISO8859-1
+* checking for file 'SemiMapper/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'SemiMapper' version '0.1.2'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for .dll and .exe files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .Rhistory
+  .Rproj.user
+  .git
+These were most likely included in error. See section 'Package
+structure' in the 'Writing R Extensions' manual.
+* checking for portable file names ... OK
+* checking whether package 'SemiMapper' can be installed ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Checking should be performed on sources prepared by 'R CMD build'.
+* checking top-level files ... NOTE
+File
+  LICENSE
+is not mentioned in the DESCRIPTION file.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+'::' or ':::' import not declared from: 'sparkline'
+'library' or 'require' calls not declared from:
+  'MASS' 'NbClust' 'RColorBrewer' 'TDAmapper' 'entropy' 'igraph'
+  'rARPACK' 'rPref' 'survival' 'visNetwork'
+'library' or 'require' calls in package code:
+  'MASS' 'NbClust' 'RColorBrewer' 'TDAmapper' 'entropy' 'igraph'
+  'rARPACK' 'rPref' 'survival' 'visNetwork'
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Namespaces in Imports field not imported from:
+  'MASS' 'NbClust' 'RColorBrewer' 'TDAmapper' 'dplyr' 'entropy'
+  'igraph' 'rARPACK' 'rPref' 'survival' 'visNetwork'
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+auto_set_colorcode: no visible global function definition for
+  'brewer.pal'
+auto_set_colorcode: no visible global function definition for
+  'colorRampPalette'
+chicken_generator: no visible global function definition for 'mvrnorm'
+color_map_Spectral: no visible global function definition for
+  'colorRamp'
+color_map_Spectral: no visible global function definition for
+  'brewer.pal'
+color_map_Spectral: no visible global function definition for 'rgb'
+filter_pca: no visible global function definition for 'cov'
+filter_pca: no visible global function definition for 'eigs_sym'
+filter_ref: no visible binding for global variable 'median'
+mapper.kmeans: no visible global function definition for 'pdf'
+mapper.kmeans: no visible global function definition for
+  'capture.output'
+mapper.kmeans: no visible global function definition for 'NbClust'
+mapper.kmeans: no visible global function definition for 'dev.off'
+mapper.kmeans: no visible global function definition for 'kmeans'
+mapper_shannon_index: no visible global function definition for
+  'entropy.empirical'
+network_visualization: no visible global function definition for
+  'mapperVertices'
+network_visualization: no visible global function definition for
+  'mapperEdges'
+network_visualization: no visible global function definition for '%>%'
+network_visualization: no visible global function definition for
+  'visNetwork'
+network_visualization: no visible global function definition for
+  'visInteraction'
+network_visualization: no visible global function definition for
+  'visOptions'
+network_visualization: no visible global function definition for
+  'visLegend'
+network_visualization: no visible global function definition for
+  'visSave'
+pareto_opt: no visible global function definition for 'low_'
+pareto_opt: no visible global function definition for 'psel'
+read_color_code: no visible global function definition for 'read.table'
+savepdf: no visible global function definition for 'png'
+savepdf: no visible global function definition for 'par'
+simple_visNet: no visible global function definition for
+  'mapperVertices'
+simple_visNet: no visible global function definition for 'mapperEdges'
+simple_visNet: no visible global function definition for '%>%'
+simple_visNet: no visible global function definition for 'visNetwork'
+simple_visNet: no visible global function definition for
+  'visInteraction'
+simple_visNet: no visible global function definition for 'visOptions'
+simple_visNet: no visible global function definition for 'visSave'
+spread_measure: no visible global function definition for
+  'graph_from_adjacency_matrix'
+spread_measure: no visible global function definition for 'components'
+spread_measure: no visible global function definition for 'distances'
+stat_summery: no visible global function definition for 'pie'
+stat_summery: no visible global function definition for 'dev.off'
+stat_summery: no visible global function definition for 'median'
+Undefined global functions or variables:
+  %>% NbClust brewer.pal capture.output colorRamp colorRampPalette
+  components cov dev.off distances eigs_sym entropy.empirical
+  graph_from_adjacency_matrix kmeans low_ mapperEdges mapperVertices
+  median mvrnorm par pdf pie png psel read.table rgb visInteraction
+  visLegend visNetwork visOptions visSave
+Consider adding
+  importFrom("grDevices", "colorRamp", "colorRampPalette", "dev.off",
+             "pdf", "png", "rgb")
+  importFrom("graphics", "par", "pie")
+  importFrom("stats", "cov", "kmeans", "median")
+  importFrom("utils", "capture.output", "read.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking examples ... ERROR
+Running examples in 'SemiMapper-Ex.R' failed
+The error most likely occurred in:
+
+> ### Name: color_map
+> ### Title: Assign color codes to samples
+> ### Aliases: color_map
+> 
+> ### ** Examples
+> 
+> temp_code = auto_set_colorcode(c('a','b','c'))
+Loading required package: RColorBrewer
+> temp_groups = c('a','a','b','c')
+> color_map(temp_groups, temp_code)
+Error in color_map(temp_groups, temp_code) : 
+  could not find function "color_map"
+Execution halted
+* checking PDF version of manual ... WARNING
+LaTeX errors when creating PDF version.
+This typically indicates Rd problems.
+LaTeX errors found:
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+! Undefined control sequence.
+<argument> f(x_i;y,g) = 1−\text 
+                                  {median}_{y_j=g} d(x_i,x_j)
+l.505 1−\text{median}_{y_j=g} d(x_i,x_j)}{}
+                                             , where
+* checking PDF version of manual without hyperrefs or index ... ERROR
+* DONE
+Status: 2 ERRORs, 2 WARNINGs, 4 NOTEs

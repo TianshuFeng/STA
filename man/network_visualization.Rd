@@ -53,5 +53,21 @@ follow the format introduced in \code{\link{check_color_code}}, and we recommend
 reading color code files with \code{\link{read_color_code}}.
 }
 \examples{
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network")
+
+# Add additional analysis to nodes
+
+add_analysis_java = paste0('Node Index:<b>',
+                           1:length(tp_data_mapper$points_in_vertex),
+                           '</b><br>')
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network", add_analysis_java = add_analysis_java)
 
 }

@@ -21,11 +21,12 @@
 #' library(TDAmapper)
 #' tp_data = chicken_generator(1)
 #' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
-#'                                filter_values = tp_data$Z,
+#'                                filter_values = tp_data$Y,
 #'                                num_intervals = 10,
 #'                                percent_overlap = 70)
 #' tp_shannon = mapper_shannon_index(tp_data_mapper, tp_data$Group)
 #' tp_shannon
+#'
 mapper_shannon_index = function(obj_mapper, group_ind) {
 
   if(class(obj_mapper) != "TDAmapper") {
@@ -66,7 +67,7 @@ mapper_shannon_index = function(obj_mapper, group_ind) {
 #' library(TDAmapper)
 #' tp_data = chicken_generator(1)
 #' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
-#'                                filter_values = tp_data$Z,
+#'                                filter_values = tp_data$Y,
 #'                                num_intervals = 10,
 #'                                percent_overlap = 70)
 #' tp_spread = spread_measure(tp_data_mapper, tp_data$Group)

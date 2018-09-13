@@ -36,6 +36,7 @@ null_remover = function(obj_mapper) {
 #' color_map_Spectral((1:5)/5)
 #'
 color_map_Spectral = function(x){
+  require(RColorBrewer)
   color_temp = colorRamp(brewer.pal(11,"Spectral"))(x)
   color_hex = rgb(color_temp[,1], color_temp[,2], color_temp[,3], maxColorValue = 255)
   return(color_hex)

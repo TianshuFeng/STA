@@ -73,6 +73,15 @@ number of clusters, distance measures, and clustering methods. Details of the
 distance measures, clustering methods and cluster indices can be found in
 \code{\link[NbClust]{NbClust}}.
 }
+\examples{
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+
+}
 \references{
 Malika Charrad, Nadia Ghazzali, Veronique Boiteau, Azam Niknafs
   (2014). NbClust: An R Package for Determining the Relevant Number of

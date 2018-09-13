@@ -3,7 +3,6 @@
 export(auto_set_colorcode)
 export(check_color_code)
 export(chicken_generator)
-export(color_map)
 export(color_map_Spectral)
 export(filter_Linf)
 export(filter_coordinate)

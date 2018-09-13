@@ -1,0 +1,1106 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8]{inputenc} % @SET ENCODING@
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `SemiMapper'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\inputencoding{utf8}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Semi-supervised Mapper and Visualization}
+\item[Version]\AsIs{0.1.2}
+\item[Author]\AsIs{Tianshu Feng, Chen Wang}
+\item[Maintainer]\AsIs{The package maintainer }\email{yourself@somewhere.net}\AsIs{}
+\item[Description]\AsIs{More about what it does (maybe more than one line)
+Use four spaces when indenting paragraphs within the Description.}
+\item[License]\AsIs{GPL-3}
+\item[Encoding]\AsIs{UTF-8}
+\item[LazyData]\AsIs{true}
+\item[Imports]\AsIs{dplyr, entropy, igraph, MASS, NbClust, RColorBrewer, rARPACK,
+rPref, survival, TDAmapper, visNetwork}
+\item[RoxygenNote]\AsIs{6.1.0}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{auto\_set\_colorcode}{Create color codes for groups.}{auto.Rul.set.Rul.colorcode}
+%
+\begin{Description}\relax
+\code{auto\_set\_colorcode} returns a dataframe with group names and color
+codes.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+auto_set_colorcode(groups, palette = "Set1")
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{groups}] A vector giving the names of groups. Duplicate group names
+will be disregarded.
+
+\item[\code{palette}] A string giving the name of palette provided in
+\code{\LinkA{RColorBrewer}{RColorBrewer}}.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A dataframe that contains color codes for samples from different
+groups. The first column consists of names of the groups and the second
+column contains the coresponding color codes.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+auto_set_colorcode(c('a','b','c'))
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{check\_color\_code}{Check the validation of a color code dataframe}{check.Rul.color.Rul.code}
+%
+\begin{Description}\relax
+\code{check\_color\_code} check the validation of a color code dataframe
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+check_color_code(color_code)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{color\_code}] The color code dataframe
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+A valid color code dataframe contains two columns: \code{Study.Abbreviation}
+and \code{Hex.Colors}. The column \code{Study.Abbreviation} contains names of
+groups that should match the names of groups in the data. The column
+\code{Hex.Colors} contains self defined colors of groups where colors should
+be defined as Hex color codes. A tool for picking up colors can be found
+\Rhref{https://htmlcolorcodes.com/}{here}.
+\end{Details}
+%
+\begin{Examples}
+\begin{ExampleCode}
+temp = auto_set_colorcode(c('a','b','c'))
+check_color_code(temp)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{chicken\_generator}{Chicken foot simulation data generator}{chicken.Rul.generator}
+%
+\begin{Description}\relax
+\code{chicken\_generator} generates chicken foot simulation data.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+chicken_generator(seed = 1)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{seed}] A scaler determining the seed to be used.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+\code{chicken\_generator} generates chicken foot simulation data with 450 data
+points in total. It consists of three toes and one shank. Each of the toes
+contains 105 data points and the shank contains 135 data points.
+\end{Details}
+%
+\begin{Value}
+A dataframe of the simulated data. The first three columns are the
+coordinates of data points, and the forth column denote the groups of the
+points.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+chicken_generator(1)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{color\_map}{Assign color codes to samples}{color.Rul.map}
+%
+\begin{Description}\relax
+\code{color\_map} assigns color codes to samples based on the given color code.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+color_map(samples_group, color_code)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{samples\_group}] A vector of group names of samples
+
+\item[\code{color\_code}] A color code dataframe
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A vector of color codes matching the group names
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+temp_code = auto_set_colorcode(c('a','b','c'))
+temp_groups = c('a','a','b','c')
+color_map(temp_groups, temp_code)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{color\_map\_Spectral}{Spectral color map function}{color.Rul.map.Rul.Spectral}
+%
+\begin{Description}\relax
+\code{color\_map\_Spectral} maps numeric values between 0 and 1 to hex codes
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+color_map_Spectral(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] A numeric vector whose entries are between 0 and 1.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A vector of hex codes.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+color_map_Spectral((1:5)/5)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{filter\_coordinate}{Coordinate projection filter}{filter.Rul.coordinate}
+%
+\begin{Description}\relax
+\code{filter\_coordinate} computes the Coordinate projection filter.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_coordinate(dat, k, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dat}] A numeric dataset matrix, rach row represents a data point and
+each column represents a predictive variable.
+
+\item[\code{k}] A scalar or vector deciding to which coordinate(s) the data matrix is
+projected.
+
+\item[\code{...}] Further arguments.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+Coordinate projection filter is defined as \eqn{f(x_i;k) = x_{ik}}{}.
+\end{Details}
+%
+\begin{Value}
+A matrix object of filter values.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+tp_data = chicken_generator(1)
+filter_coordinate(tp_data[,-1],1)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{filter\_dtm}{Distance to measure filter}{filter.Rul.dtm}
+%
+\begin{Description}\relax
+\code{filter\_dtm} computes the Distance to measure filter.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_dtm(dist, k, p = 2, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dist}] The distance matrix.
+
+\item[\code{k}] A numeric scalar deciding the number of neighbors to be considered
+
+\item[\code{p}] An optional numeric scalar denoting the exponent.
+
+\item[\code{...}] Further arguments.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+Distance to measure filter function is defined as \eqn{f(x_i;k) =
+\frac{1}{k}\sum_{j=2}^{k+1} d^p(x_i,x_{(j)})^{1/p}}{}.
+\end{Details}
+%
+\begin{Value}
+A matrix object of filter values.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_dtm(dist = tp_dist, k=3)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{filter\_eccen}{Eccentricity filter}{filter.Rul.eccen}
+%
+\begin{Description}\relax
+\code{filter\_eccen} computes the Eccentricity filter.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_eccen(dist, p, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dist}] The distance matrix.
+
+\item[\code{p}] A numeric scalar denoting the exponent.
+
+\item[\code{...}] Further arguments.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+Eccentricity filter function is defined as \eqn{f(x_i;p) =
+(\frac{1}{n}\sum_{j=1}^n d^p(x_i,x_j))^{1/p}}{}.
+\end{Details}
+%
+\begin{Value}
+A matrix object of filter values.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_eccen(dist = tp_dist, p = 2)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{filter\_gaussian}{Gaussian density filter}{filter.Rul.gaussian}
+%
+\begin{Description}\relax
+\code{filter\_gaussian} computes the Gaussian density filter.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_gaussian(dist, sigma = 1, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dist}] The distance matrix.
+
+\item[\code{sigma}] A scalar controling the sensitivity of the gaussian kernel.
+
+\item[\code{...}] Further arguments.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The Gaussian density filter is defined as \eqn{f(x_i;\sigma) = C\sum_{j=1}^n
+exp(−\frac{\|x_i−x_j\|^2}{2\sigma^2})}{}, where \eqn{C}{} is the normalizing
+constant and \eqn{\sigma}{} is the scalar controling the sensitivity of the
+gaussian kernel.
+\end{Details}
+%
+\begin{Value}
+A matrix object of filter values.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_gaussian(dist=tp_dist, sigma=1)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{filter\_Linf}{L-infinity filter}{filter.Rul.Linf}
+%
+\begin{Description}\relax
+\code{filter\_Linf} computes the L-infinity filter.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_Linf(dist, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dist}] The distance matrix.
+
+\item[\code{...}] Optional arguments to \code{\LinkA{max}{max}}.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The L-infinity filter function is defined as \eqn{f(x_i) = max_{j} d(x_i,x_j)}{} where
+\eqn{x_i,x_j}{} are some data points.
+\end{Details}
+%
+\begin{Value}
+A matrix object of filter values.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_Linf(dist=tp_dist)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{filter\_name}{Which filter function produces the filter?}{filter.Rul.name}
+%
+\begin{Description}\relax
+\code{filter\_name} returns the name of the filter function that produces the
+provided filter.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_name(filter_vec)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{filter\_vec}] The filter vector.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+The name of the filter.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+res = filter_eccen(dist = tp_dist, p = 2)
+filter_name(res)
+## "Eccentricity"
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{filter\_pca}{PCA filter}{filter.Rul.pca}
+%
+\begin{Description}\relax
+\code{filter\_pca} returns the first k principle components as filter values.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_pca(dat, k = 1, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dat}] A numeric dataset matrix, rach row represents a data point and
+each column represents a predictive variable.
+
+\item[\code{k}] A scaler deciding the number of principle components to be returned
+
+\item[\code{...}] Optional arguments to \code{\LinkA{cov}{cov}}.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The PCA filter function is defined as \eqn{f(x_i) = x_i^T\phi_{(1:k)}}{}, where
+\eqn{\phi_{(1:k)}}{} is the matrix of \eqn{k}{} eigenvectors associated with the
+\eqn{k}{} largest eigenvalues of \eqn{cov(X)}{}, \eqn{x_i}{} is some data point and
+\eqn{X}{} is the data matrix.
+\end{Details}
+%
+\begin{Value}
+A matrix object of filter values.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+tp_data = chicken_generator(1)
+filter_pca(dat=tp_data[,-1])
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{filter\_ref}{Reference distance filter}{filter.Rul.ref}
+%
+\begin{Description}\relax
+\code{filter\_ref} computes the reference distance filter.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_ref(dist, groups_ind, ref, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dist}] The distance matrix.
+
+\item[\code{groups\_ind}] A vector of group names each of the samples belongs to.
+
+\item[\code{ref}] A string object specifying the name of the reference group.
+
+\item[\code{...}] Additional arguments.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+Reference distance filter function is defined as \eqn{f(x_i;y,g) =
+1−\text{median}_{y_j=g} d(x_i,x_j)}{}, where
+\end{Details}
+%
+\begin{Value}
+A matrix object of filter values.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref=4)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{hello}{Hello, World!}{hello}
+%
+\begin{Description}\relax
+Prints 'Hello, world!'.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+hello()
+\end{verbatim}
+\end{Usage}
+%
+\begin{Examples}
+\begin{ExampleCode}
+hello()
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{legend\_node}{Add legends to the generated graph}{legend.Rul.node}
+%
+\begin{Description}\relax
+Add legends to the generated graph
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+legend_node(stats_sum = NULL, color_code)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{stats\_sum}] Results from stat\_summery
+
+\item[\code{color\_code}] Color code dataframe
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Dataframe of legends for the generated graph
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{mapper.kmeans}{Mapper function with multiple cluster methods}{mapper.kmeans}
+%
+\begin{Description}\relax
+This function is adopted from \code{mapper} function of \code{TDAmapper} with
+different clustering methods (mainly k-means).
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+mapper.kmeans(dat, dist_method = "euclidean", filter_values,
+  num_intervals, percent_overlap, cluster_method = "kmeans",
+  cluster_index = "all", n_class = 0, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dat}] Matrix or dataset where rows are data points and columns are
+predictive variables.
+
+\item[\code{dist\_method}] The distance measure to be used to compute the
+dissimilarity matrix. By default, distance="euclidean". It must be one of
+This must be one of: "euclidean", "maximum", "manhattan", "canberra",
+"binary", "minkowski" or "NULL". Details can be found in
+\code{\LinkA{NbClust}{NbClust}}.
+
+\item[\code{filter\_values}] A n x m data frame of real numbers.
+
+\item[\code{num\_intervals}] A length m vector of positive integers.
+
+\item[\code{percent\_overlap}] A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.
+
+\item[\code{cluster\_method}] The cluster analysis method to be used. This should be
+one of: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty",
+"median", "centroid", "kmeans".Details can be found in
+\code{\LinkA{NbClust}{NbClust}}.
+
+\item[\code{cluster\_index}] The index to be calculated. This should be one of :
+"kl", "ch", "hartigan", "ccc", "scott", "marriot", "trcovw", "tracew",
+"friedman", "rubin", "cindex", "db", "silhouette", "duda", "pseudot2",
+"beale", "ratkowsky", "ball", "ptbiserial", "gap", "frey", "mcclain",
+"gamma", "gplus", "tau", "dunn", "hubert", "sdindex", "dindex", "sdbw",
+"all" (all indices except GAP, Gamma, Gplus and Tau), "alllong" (all
+indices with Gap, Gamma, Gplus and Tau included). Details can be found in
+\code{\LinkA{NbClust}{NbClust}}.
+
+\item[\code{n\_class}] number of clusters. By default, n\_class=0. If n\_class>0, this
+function will instead call \code{\LinkA{kmeans}{kmeans}} and pass
+\code{n\_class} to argument \code{centers} of \code{\LinkA{kmeans}{kmeans}}.
+
+\item[\code{...}] Further arguments for either \code{\LinkA{NbClust}{NbClust}} or
+\code{\LinkA{kmeans}{kmeans}}.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+This function is adopted from \code{mapper} function of \code{TDAmapper} by
+replacing its cluster method with the cluster function
+\code{\LinkA{NbClust}{NbClust}} from R package \code{NbClust}.
+
+The advantage of \code{NbClust} is that it provides users with 8 different
+cluster methods, 6 different distance measures and 30 indices for determining
+the number of clusters. This allows users to select the best clustering
+scheme from the different results obtained by varying all combinations of
+number of clusters, distance measures, and clustering methods. Details of the
+distance measures, clustering methods and cluster indices can be found in
+\code{\LinkA{NbClust}{NbClust}}.
+\end{Details}
+%
+\begin{Value}
+An object of class \code{TDAmapper} which is a list of items named
+\code{adjacency} (adjacency matrix for the edges), \code{num\_vertices}
+(integer number of vertices), \code{level\_of\_vertex} (vector with
+\code{level\_of\_vertex[i]} = index of the level set for vertex i),
+\code{points\_in\_vertex} (list with \code{points\_in\_vertex[[i]]} = vector of
+indices of points in vertex i), \code{points\_in\_level} (list with
+\code{points\_in\_level[[i]]} = vector of indices of points in level set i,
+and \code{vertices\_in\_level} (list with \code{vertices\_in\_level[[i]]} =
+vector of indices of vertices in level set i.
+\end{Value}
+%
+\begin{References}\relax
+Malika Charrad, Nadia Ghazzali, Veronique Boiteau, Azam Niknafs
+(2014). NbClust: An R Package for Determining the Relevant Number of
+Clusters in a Data Set. Journal of Statistical Software, 61(6), 1-36. URL
+http://www.jstatsoft.org/v61/i06/.
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{mapper\_shannon\_index}{Shannon index for Mapper}{mapper.Rul.shannon.Rul.index}
+%
+\begin{Description}\relax
+\code{mapper\_shannon\_index} computes Shannon indices for nodes of a given
+graph from Mapper.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+mapper_shannon_index(obj_mapper, group_ind)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{obj\_mapper}] An object of class \code{TDAmapper}.
+
+\item[\code{group\_ind}] A vector of group names each of the samples belongs to.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+how it is computed
+\end{Details}
+%
+\begin{Value}
+A list object with two objects. The first object is the weighted
+average Shannon index for the whole graph. The second object is the matrix
+of Shannon indices for each of the nodes in the graph, where the first
+column is the vector of indices and the second column is the vector of node
+sizes.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+tp_shannon = mapper_shannon_index(tp_data_mapper, tp_data$Group)
+tp_shannon
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{network\_visualization}{Generate graphs from results of Mapper}{network.Rul.visualization}
+%
+\begin{Description}\relax
+\code{network\_visualization} generates an interactive graph from the
+provided Mapper object.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+network_visualization(obj_mapper, groups_ind, dat = NULL, folder = "",
+  add_surv_analysis = FALSE, add_analysis_java = NULL,
+  palette = "Set1", legend_ncol = 2, color_code = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{obj\_mapper}] An object of class \code{TDAmapper}.
+
+\item[\code{groups\_ind}] A vector of group names each of the samples belongs to.
+
+\item[\code{dat, add\_surv\_analysis, add\_analysis\_java}] Arguments passed to
+\code{\LinkA{stat\_summery}{stat.Rul.summery}} for customizing statistics summary of nodes.
+
+\item[\code{folder}] The name of the folder to save the generated networks.
+
+\item[\code{palette}] A string giving the name of palette provided in
+\code{\LinkA{RColorBrewer}{RColorBrewer}} to automatically assign
+colors to nodes.
+
+\item[\code{legend\_ncol}] Number of columns of legends.
+
+\item[\code{color\_code}] The dataframe of color codes for groups of samples. If not
+provided, the function will automatically assign colors to different
+groups.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+\code{network\_visualization} generates an interactive graph based on the
+provided Mapper object with Javascript tools from \code{visNetwork}. It
+accepts statistics summary from the \code{\LinkA{stat\_summery}{stat.Rul.summery}} function and
+display them as tooltips. The tooltips can also be customized by the users by
+passing Javascript codes with additional summerise of nodes to the argument
+\code{add\_analysis\_java}.
+
+Nodes are colored with the colors associated with the dominated groups within
+each of the nodes. The colors of groups can either be defined by users or by
+function \code{\LinkA{auto\_set\_colorcode}{auto.Rul.set.Rul.colorcode}}. Self defined color codes should
+follow the format introduced in \code{\LinkA{check\_color\_code}{check.Rul.color.Rul.code}}, and we recommend
+reading color code files with \code{\LinkA{read\_color\_code}{read.Rul.color.Rul.code}}.
+\end{Details}
+%
+\begin{Value}
+An HTML file and a set of pie plots will be saved under the location
+given in \code{folder}. The HTML file contains the interactive graph
+generated based on the Mapper object, and the pie plots are for the
+summerise of nodes.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network")
+
+# Add additional analysis to nodes
+
+add_analysis_java = paste0('Node Index:<b>',
+                           1:length(tp_data_mapper$points_in_vertex),
+                           '</b><br>')
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network", add_analysis_java = add_analysis_java)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{null\_remover}{Remove NULL nodes in the graph}{null.Rul.remover}
+%
+\begin{Description}\relax
+Remove NULL nodes in the graph
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+null_remover(obj_mapper)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{obj\_mapper}] The Mapper object
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A Mapper object
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{pareto\_opt}{Find the pareto frontier}{pareto.Rul.opt}
+%
+\begin{Description}\relax
+\code{pareto\_opt} finds the pareto frontier of filter functions based on
+Shannon indices and spread measures with function \code{\LinkA{psel}{psel}}
+from R package `rPref`.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pareto_opt(res_filter, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{res\_filter}] The data.frame of Shannon indices and spread measures under
+different filter functions. The first column must be names of filter
+functions, and the second and third columns should be the shannon indices
+and spread measures.
+
+\item[\code{...}] Additional arguments for \code{\LinkA{psel}{psel}}.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A data.frame of the names of filter functions in the pareto frontier,
+as well as their Shannon indices and spread measures.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+filter_names = c("ref","Linf","gaussian","coordinate","dtm","eccen","pca")
+res_filter = data.frame(Filter = filter_names,
+                        weighted_shannon = c(1.708074, 1.753691, 1.788572, 1.783137, 1.798342, 1.729896, 1.645932),
+                        spread_index = c(3.675639, 4.459636, 3.194998, 3.355519, 3.583395, 3.868635, 5.459008))
+pareto_opt(res_filter)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{read\_color\_code}{Read color codes from a given file}{read.Rul.color.Rul.code}
+%
+\begin{Description}\relax
+\code{read\_color\_code} reads a file with given group names and color codes
+and returns a dataframe with group names and color codes that can be
+accepted by visualization functions.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+read_color_code(file, header = FALSE, sep = "\t")
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{file}] the name of the file which the data are to be read from.
+Each row of the table appears as one line of the file.  If it does
+not contain an \emph{absolute} path, the file name is
+\emph{relative} to the current working directory,
+\code{\LinkA{getwd}{getwd}()}. Tilde-expansion is performed where supported.
+This can be a compressed file (see \code{\LinkA{file}{file}}).
+
+Alternatively, \code{file} can be a readable text-mode
+\LinkA{connection}{connection} (which will be opened for reading if
+necessary, and if so \code{\LinkA{close}{close}}d (and hence destroyed) at
+the end of the function call).  (If \code{\LinkA{stdin}{stdin}()} is used,
+the prompts for lines may be somewhat confusing.  Terminate input
+with a blank line or an EOF signal, \code{Ctrl-D} on Unix and
+\code{Ctrl-Z} on Windows.  Any pushback on \code{stdin()} will be
+cleared before return.)
+
+\code{file} can also be a complete URL.  (For the supported URL
+schemes, see the `URLs' section of the help for
+\code{\LinkA{url}{url}}.)
+
+
+\item[\code{header}] a logical value indicating whether the file contains the
+names of the variables as its first line.  If missing, the value is
+determined from the file format: \code{header} is set to \code{TRUE}
+if and only if the first row contains one fewer field than the
+number of columns.
+
+\item[\code{sep}] the field separator character.  Values on each line of the
+file are separated by this character.  If \code{sep = ""} (the
+default for \code{read.table}) the separator is `white space',
+that is one or more spaces, tabs, newlines or carriage returns.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The given files should contain two columns. The first column should consist
+of the names of the labels, and the second column should contain standard
+Hex color codes.
+\end{Details}
+%
+\begin{Value}
+A dataframe that contains color codes for samples from different
+groups. The first column consists of names of the groups and the second
+column contains the coresponding color codes.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+test1 <- data.frame(c('a','b','c'), c("#f97f6c", "#6dcff6", "#fdbc4b"))
+tf <- tempfile()
+writeLines(test1, tf)
+
+check_color_code(read_color_code(tf))
+unlink(tf)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{simple\_visNet}{Simple graphs generation}{simple.Rul.visNet}
+%
+\begin{Description}\relax
+\code{simple\_visNet} generates graphs from the provided Mapper object without
+tooltips.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+simple_visNet(obj_mapper, filter = NULL, folder,
+  color_fun = color_map_Spectral, network_name = "network.html",
+  color_filter = TRUE, groups_ind = NULL, color_code = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{obj\_mapper}] An object of class \code{TDAmapper}.
+
+\item[\code{filter}] A vector of filter values from filter functions
+
+\item[\code{folder}] The name of the folder to save the generated networks.
+
+\item[\code{color\_fun}] The color function that transforms numbers to hex codes.
+
+\item[\code{network\_name}] File name of the html network file.
+
+\item[\code{color\_filter}] A logical object. \code{TRUE} if colors of nodes are to
+be determined by the average filter values of samples.
+
+\item[\code{groups\_ind}] A vector of group names each of the samples belongs to.
+
+\item[\code{color\_code}] A color code dataframe.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+\code{simple\_visNet} generates graphs from the provided Mapper object without
+tooltips. The colors of nodes can be more flexibly defined than in
+\code{\LinkA{network\_visualization}{network.Rul.visualization}} which is suitable for simulation and
+tests.
+
+Users can assign colors to nodes with three different approaches.If
+\code{color\_filter=TRUE}, the colors of nodes are determined by the average
+filter values of samples, and \code{color\_fun} will map numeric values to hex
+color codes. If \code{color\_filter=FALSE} and \code{color\_code=NULL}, the
+colors of nodes are determined by the dominated group of samples, and colors
+are automatically generated by \code{color\_fun}. If \code{color\_filter=FALSE}
+and \code{color\_code!=NULL}, the colors of nodes are determined by the
+dominated group of samples, and colors are from \code{color\_code}. Note than
+the color method should be specified by the users by providing the function
+with necessary arguments.
+\end{Details}
+%
+\begin{Value}
+An HTML file saved under the location
+given in \code{folder}. The HTML file contains the interactive graph
+generated based on the Mapper object.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+library(TDAmapper)
+tp_data = chicken_generator(1)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{spread\_measure}{Spread measure function}{spread.Rul.measure}
+%
+\begin{Description}\relax
+\code{spread\_measure} measures how data points from the same groups
+concentrate in the network.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+spread_measure(obj_mapper, group_ind)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{obj\_mapper}] An object of class \code{TDAmapper}.
+
+\item[\code{group\_ind}] A vector of group names each of the samples belongs to.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+How it is computed
+\end{Details}
+%
+\begin{Value}
+A scalar which is the spread measure of the graph.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+tp_spread = spread_measure(tp_data_mapper, tp_data$Group)
+tp_spread
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{stat\_summery}{Create statistics summary of nodes}{stat.Rul.summery}
+%
+\begin{Description}\relax
+\code{stat\_summery} returns statistics summaries of nodes as well as a vector
+of Javascript codes describing the summaries.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+stat_summery(obj_mapper, groups_ind, dat = NULL, folder = "",
+  add_surv_analysis = FALSE, add_analysis_java = NULL, color_code)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{obj\_mapper}] An object of class \code{TDAmapper}.
+
+\item[\code{groups\_ind}] A vector of group names each of the samples belongs to.
+
+\item[\code{dat}] Optional. A dataframe contains additional information of samples.
+If \code{add\_surv\_analysis==TRUE}, \code{dat} must be provided with columns
+\code{age\_at\_diagnosis} and \code{days\_to\_death} describing the time at
+diagnosis and time to death at the time of observation.
+
+\item[\code{folder}] The name of the folder to save the generated networks.
+
+\item[\code{add\_surv\_analysis}] A logical object. \code{TRUE} if median time at diagnosis
+and median time to death should be included.
+
+\item[\code{add\_analysis\_java}] A vector of Javascript codes summerizing customized
+statistics.
+
+\item[\code{color\_code}] A color code dataframe.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+This function summarizes the nodes returned by
+\code{\LinkA{mapper}{mapper}}. Basic statistics included in this function
+are the number of samples \code{N}, the percentage of samples from different
+groups \code{groups\_per\_node}, the groups dominate the nodes
+\code{dominant\_group}, the percentage of samples from the dominated group
+\code{dominant\_percent}. It also generates pie plots for nodes which are
+saved in \code{/figures}.
+
+If additional information is provided, the function can provide further
+statistics including median time at diagnosis and median time to death.
+
+The users can also define and add customized statistics to this function. The
+customized statistics should be wraped into a vector of Javascript codes for
+each of the nodes and passed to \code{add\_analysis\_java} following the same
+order of nodes as in \code{obj\_mapper}.
+\end{Details}
+%
+\begin{Value}
+A list includes the statistics and pie plots in folder
+\code{/figures}. Details of elements in the list can be found in Detail.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+# See ?network_visualization
+
+\end{ExampleCode}
+\end{Examples}
+\printindex{}
+\end{document}

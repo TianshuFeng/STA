@@ -60,7 +60,7 @@ read_color_code = function(file, header = FALSE, sep = "\t") {
   #' @examples
   #' test1 <- data.frame(c('a','b','c'), c("#f97f6c", "#6dcff6", "#fdbc4b"))
   #' tf <- tempfile()
-  #' writeLines(test1, tf)
+  #' write.table(test1, tf, row.names = FALSE, col.names = FALSE, sep = "\t")
   #'
   #' check_color_code(read_color_code(tf))
   #' unlink(tf)
@@ -116,7 +116,7 @@ check_color_code = function(color_code) {
 #' @param color_code A color code dataframe
 #'
 #' @return A vector of color codes matching the group names
-#'
+#' @export
 #' @examples
 #' temp_code = auto_set_colorcode(c('a','b','c'))
 #' temp_groups = c('a','a','b','c')
@@ -179,6 +179,7 @@ most_freq = function(vec){
 #' @export
 #'
 #' @examples
+#' # See ?network_visualization
 #'
 stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
                         add_surv_analysis = FALSE, add_analysis_java = NULL,
@@ -367,6 +368,22 @@ legend_node = function(stats_sum=NULL, color_code){
 #' @export
 #'
 #' @examples
+#' library(TDAmapper)
+#' tp_data = chicken_generator(1)
+#' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+#'                                filter_values = tp_data$Y,
+#'                                num_intervals = 10,
+#'                                percent_overlap = 70)
+#' network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+#'                       folder = "Exp_network")
+#'
+#' # Add additional analysis to nodes
+#'
+#' add_analysis_java = paste0('Node Index:<b>',
+#'                            1:length(tp_data_mapper$points_in_vertex),
+#'                            '</b><br>')
+#' network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+#'                       folder = "Exp_network", add_analysis_java = add_analysis_java)
 #'
 network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = "",
                                  add_surv_analysis = FALSE, add_analysis_java = NULL,

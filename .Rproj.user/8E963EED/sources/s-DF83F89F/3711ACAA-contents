@@ -88,6 +88,13 @@ lsfi_from_lsmi <- function( lsmi, num_intervals ) {
 #'   http://www.jstatsoft.org/v61/i06/.
 #'
 #' @examples
+#' library(TDAmapper)
+#' tp_data = chicken_generator(1)
+#' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+#'                                filter_values = tp_data$Y,
+#'                                num_intervals = 10,
+#'                                percent_overlap = 70)
+#'
 mapper.kmeans <- function(dat, dist_method = "euclidean", filter_values, num_intervals, percent_overlap,
                           cluster_method = "kmeans", cluster_index = "all",
                           n_class = 0, ...) {

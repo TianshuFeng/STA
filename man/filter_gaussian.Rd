@@ -21,7 +21,7 @@ A matrix object of filter values.
 }
 \details{
 The Gaussian density filter is defined as \eqn{f(x_i;\sigma) = C\sum_{j=1}^n
-exp(−\frac{\|x_i−x_j\|^2}{2\sigma^2})}, where \eqn{C} is the normalizing
+exp(-\frac{\|x_i-x_j\|^2}{2\sigma^2})}, where \eqn{C} is the normalizing
 constant and \eqn{\sigma} is the scalar controling the sensitivity of the
 gaussian kernel.
 }

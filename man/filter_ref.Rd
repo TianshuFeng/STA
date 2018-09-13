@@ -23,7 +23,7 @@ A matrix object of filter values.
 }
 \details{
 Reference distance filter function is defined as \eqn{f(x_i;y,g) =
-1−\text{median}_{y_j=g} d(x_i,x_j)}, where
+1-\textrm{median}_{y_j=g} d(x_i,x_j)}, where
 }
 \examples{
 tp_data = chicken_generator(1)

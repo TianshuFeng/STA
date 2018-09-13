@@ -1,0 +1,453 @@
+pkgname <- "SemiMapper"
+source(file.path(R.home("share"), "R", "examples-header.R"))
+options(warn = 1)
+options(pager = "console")
+library('SemiMapper')
+
+base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+cleanEx()
+nameEx("auto_set_colorcode")
+### * auto_set_colorcode
+
+flush(stderr()); flush(stdout())
+
+### Name: auto_set_colorcode
+### Title: Create color codes for groups.
+### Aliases: auto_set_colorcode
+
+### ** Examples
+
+auto_set_colorcode(c('a','b','c'))
+
+
+
+
+cleanEx()
+nameEx("check_color_code")
+### * check_color_code
+
+flush(stderr()); flush(stdout())
+
+### Name: check_color_code
+### Title: Check the validation of a color code dataframe
+### Aliases: check_color_code
+
+### ** Examples
+
+temp = auto_set_colorcode(c('a','b','c'))
+check_color_code(temp)
+
+
+
+
+cleanEx()
+nameEx("chicken_generator")
+### * chicken_generator
+
+flush(stderr()); flush(stdout())
+
+### Name: chicken_generator
+### Title: Chicken foot simulation data generator
+### Aliases: chicken_generator
+
+### ** Examples
+
+chicken_generator(1)
+
+
+
+
+cleanEx()
+nameEx("color_map")
+### * color_map
+
+flush(stderr()); flush(stdout())
+
+### Name: color_map
+### Title: Assign color codes to samples
+### Aliases: color_map
+
+### ** Examples
+
+temp_code = auto_set_colorcode(c('a','b','c'))
+temp_groups = c('a','a','b','c')
+color_map(temp_groups, temp_code)
+
+
+
+
+cleanEx()
+nameEx("color_map_Spectral")
+### * color_map_Spectral
+
+flush(stderr()); flush(stdout())
+
+### Name: color_map_Spectral
+### Title: Spectral color map function
+### Aliases: color_map_Spectral
+
+### ** Examples
+
+color_map_Spectral((1:5)/5)
+
+
+
+
+cleanEx()
+nameEx("filter_Linf")
+### * filter_Linf
+
+flush(stderr()); flush(stdout())
+
+### Name: filter_Linf
+### Title: L-infinity filter
+### Aliases: filter_Linf
+
+### ** Examples
+
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_Linf(dist=tp_dist)
+
+
+
+
+cleanEx()
+nameEx("filter_coordinate")
+### * filter_coordinate
+
+flush(stderr()); flush(stdout())
+
+### Name: filter_coordinate
+### Title: Coordinate projection filter
+### Aliases: filter_coordinate
+
+### ** Examples
+
+tp_data = chicken_generator(1)
+filter_coordinate(tp_data[,-1],1)
+
+
+
+
+cleanEx()
+nameEx("filter_dtm")
+### * filter_dtm
+
+flush(stderr()); flush(stdout())
+
+### Name: filter_dtm
+### Title: Distance to measure filter
+### Aliases: filter_dtm
+
+### ** Examples
+
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_dtm(dist = tp_dist, k=3)
+
+
+
+cleanEx()
+nameEx("filter_eccen")
+### * filter_eccen
+
+flush(stderr()); flush(stdout())
+
+### Name: filter_eccen
+### Title: Eccentricity filter
+### Aliases: filter_eccen
+
+### ** Examples
+
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_eccen(dist = tp_dist, p = 2)
+
+
+
+
+cleanEx()
+nameEx("filter_gaussian")
+### * filter_gaussian
+
+flush(stderr()); flush(stdout())
+
+### Name: filter_gaussian
+### Title: Gaussian density filter
+### Aliases: filter_gaussian
+
+### ** Examples
+
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_gaussian(dist=tp_dist, sigma=1)
+
+
+
+
+cleanEx()
+nameEx("filter_name")
+### * filter_name
+
+flush(stderr()); flush(stdout())
+
+### Name: filter_name
+### Title: Which filter function produces the filter?
+### Aliases: filter_name
+
+### ** Examples
+
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+res = filter_eccen(dist = tp_dist, p = 2)
+filter_name(res)
+## "Eccentricity"
+
+
+
+cleanEx()
+nameEx("filter_pca")
+### * filter_pca
+
+flush(stderr()); flush(stdout())
+
+### Name: filter_pca
+### Title: PCA filter
+### Aliases: filter_pca
+
+### ** Examples
+
+tp_data = chicken_generator(1)
+filter_pca(dat=tp_data[,-1])
+
+
+
+
+cleanEx()
+nameEx("filter_ref")
+### * filter_ref
+
+flush(stderr()); flush(stdout())
+
+### Name: filter_ref
+### Title: Reference distance filter
+### Aliases: filter_ref
+
+### ** Examples
+
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref=4)
+
+
+
+
+cleanEx()
+nameEx("hello")
+### * hello
+
+flush(stderr()); flush(stdout())
+
+### Name: hello
+### Title: Hello, World!
+### Aliases: hello
+
+### ** Examples
+
+hello()
+
+
+
+cleanEx()
+nameEx("mapper.kmeans")
+### * mapper.kmeans
+
+flush(stderr()); flush(stdout())
+
+### Name: mapper.kmeans
+### Title: Mapper function with multiple cluster methods
+### Aliases: mapper.kmeans
+
+### ** Examples
+
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+
+
+
+
+cleanEx()
+nameEx("mapper_shannon_index")
+### * mapper_shannon_index
+
+flush(stderr()); flush(stdout())
+
+### Name: mapper_shannon_index
+### Title: Shannon index for Mapper
+### Aliases: mapper_shannon_index
+
+### ** Examples
+
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+tp_shannon = mapper_shannon_index(tp_data_mapper, tp_data$Group)
+tp_shannon
+
+
+
+
+cleanEx()
+nameEx("network_visualization")
+### * network_visualization
+
+flush(stderr()); flush(stdout())
+
+### Name: network_visualization
+### Title: Generate graphs from results of Mapper
+### Aliases: network_visualization
+
+### ** Examples
+
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network")
+
+# Add additional analysis to nodes
+
+add_analysis_java = paste0('Node Index:<b>',
+                           1:length(tp_data_mapper$points_in_vertex),
+                           '</b><br>')
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network", add_analysis_java = add_analysis_java)
+
+
+
+
+cleanEx()
+nameEx("pareto_opt")
+### * pareto_opt
+
+flush(stderr()); flush(stdout())
+
+### Name: pareto_opt
+### Title: Find the pareto frontier
+### Aliases: pareto_opt
+
+### ** Examples
+
+filter_names = c("ref","Linf","gaussian","coordinate","dtm","eccen","pca")
+res_filter = data.frame(Filter = filter_names,
+                        weighted_shannon = c(1.708074, 1.753691, 1.788572, 1.783137, 1.798342, 1.729896, 1.645932),
+                        spread_index = c(3.675639, 4.459636, 3.194998, 3.355519, 3.583395, 3.868635, 5.459008))
+pareto_opt(res_filter)
+
+
+
+
+cleanEx()
+nameEx("read_color_code")
+### * read_color_code
+
+flush(stderr()); flush(stdout())
+
+### Name: read_color_code
+### Title: Read color codes from a given file
+### Aliases: read_color_code
+
+### ** Examples
+
+test1 <- data.frame(c('a','b','c'), c("#f97f6c", "#6dcff6", "#fdbc4b"))
+tf <- tempfile()
+writeLines(test1, tf)
+
+check_color_code(read_color_code(tf))
+unlink(tf)
+
+
+
+cleanEx()
+nameEx("simple_visNet")
+### * simple_visNet
+
+flush(stderr()); flush(stdout())
+
+### Name: simple_visNet
+### Title: Simple graphs generation
+### Aliases: simple_visNet
+
+### ** Examples
+
+library(TDAmapper)
+tp_data = chicken_generator(1)
+
+
+
+
+cleanEx()
+nameEx("spread_measure")
+### * spread_measure
+
+flush(stderr()); flush(stdout())
+
+### Name: spread_measure
+### Title: Spread measure function
+### Aliases: spread_measure
+
+### ** Examples
+
+library(TDAmapper)
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+tp_spread = spread_measure(tp_data_mapper, tp_data$Group)
+tp_spread
+
+
+
+
+cleanEx()
+nameEx("stat_summery")
+### * stat_summery
+
+flush(stderr()); flush(stdout())
+
+### Name: stat_summery
+### Title: Create statistics summary of nodes
+### Aliases: stat_summery
+
+### ** Examples
+
+# See ?network_visualization
+
+
+
+
+### * <FOOTER>
+###
+cleanEx()
+options(digits = 7L)
+base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+grDevices::dev.off()
+###
+### Local variables: ***
+### mode: outline-minor ***
+### outline-regexp: "\\(> \\)?### [*]+" ***
+### End: ***
+quit('no')

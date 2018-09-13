@@ -27,6 +27,7 @@ filter_pca = function(dat, k = 1, ...) {
 
   res = as.matrix(dat) %*% eigen_vector
   attr(res, "filter") = "PCA"
+  class(res) = "filter"
   return(res)
 }
 
@@ -54,6 +55,7 @@ filter_Linf = function(dist, ...) {
 
   res = apply(as.matrix(dist), 1, max, ...)
   attr(res, "filter") = "Linf"
+  class(res) = "filter"
   return(res)
 }
 
@@ -63,7 +65,7 @@ filter_Linf = function(dist, ...) {
 #' \code{filter_ref} computes the reference distance filter.
 #'
 #' Reference distance filter function is defined as \eqn{f(x_i;y,g) =
-#' 1−\text{median}_{y_j=g} d(x_i,x_j)}, where
+#' 1-\textrm{median}_{y_j=g} d(x_i,x_j)}, where
 #'
 #' @param dist The distance matrix.
 #' @param groups_ind A vector of group names each of the samples belongs to.
@@ -97,6 +99,7 @@ filter_ref = function(dist, groups_ind,
   # find the average distance
   res = apply(dist_center, 1, median, na.rm = TRUE)
   attr(res, "filter") = "Reference"
+  class(res) = "filter"
   return(res)
 
 }
@@ -107,7 +110,7 @@ filter_ref = function(dist, groups_ind,
 #' \code{filter_gaussian} computes the Gaussian density filter.
 #'
 #' The Gaussian density filter is defined as \eqn{f(x_i;\sigma) = C\sum_{j=1}^n
-#' exp(−\frac{\|x_i−x_j\|^2}{2\sigma^2})}, where \eqn{C} is the normalizing
+#' exp(-\frac{\|x_i-x_j\|^2}{2\sigma^2})}, where \eqn{C} is the normalizing
 #' constant and \eqn{\sigma} is the scalar controling the sensitivity of the
 #' gaussian kernel.
 #'
@@ -131,6 +134,7 @@ filter_gaussian = function(dist, sigma = 1,...) {
   ff = ff/sum(ff)
 
   attr(ff, "filter") = "Gaussian"
+  class(ff) = "filter"
   return(ff)
 }
 
@@ -159,6 +163,7 @@ filter_coordinate = function(dat, k, ...) {
 
   res = dat[,k,drop=FALSE]
   attr(res, "filter") = "Coordinate"
+  class(res) = "filter"
   return(res)
 }
 
@@ -191,6 +196,7 @@ filter_dtm = function(dist, k, p=2, ...) {
   dist_sort = rowMeans(dist_sort)
 
   res = (dist_sort)^(1/p)
+  class(res) = "filter"
   attr(res, "filter") = "DTM"
   return(res)
 }
@@ -220,5 +226,31 @@ filter_eccen = function(dist, p, ...) {
   dist = as.matrix(dist)
   res = rowMeans(dist^p)^(1/p)
   attr(res, "filter") = "Eccentricity"
+  class(res) = "filter"
   return(res)
+}
+
+
+#' Which filter function produces the filter?
+#'
+#' \code{filter_name} returns the name of the filter function that produces the
+#' provided filter.
+#'
+#' @param filter_vec The filter vector.
+#'
+#' @return The name of the filter.
+#' @export
+#'
+#' @examples
+#' tp_data = chicken_generator(1)
+#' tp_dist = dist(tp_data[,-1])
+#' res = filter_eccen(dist = tp_dist, p = 2)
+#' filter_name(res)
+#' ## "Eccentricity"
+filter_name = function(filter_vec) {
+  if(!("filter" %in% names(attributes(filter_vec)))) {
+    stop("Filter vector not from standard filter functions.")
+  }
+
+  return(attr(filter_vec, "filter"))
 }

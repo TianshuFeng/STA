@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "3711ACAA",
-    "lastKnownWriteTime" : 1536792897,
-    "last_content_update" : 1536792897939,
+    "lastKnownWriteTime" : 1536857398,
+    "last_content_update" : 1536857398056,
     "path" : "H:/Projects/Mapper_Visualization/Package/SemiMapper/R/mapper.kmeans.R",
     "project_path" : "R/mapper.kmeans.R",
     "properties" : {
-        "cursorPosition" : "135,15",
-        "scrollLine" : "124",
+        "cursorPosition" : "364,0",
+        "scrollLine" : "347",
         "tempName" : "Untitled1"
     },
     "relative_order" : 7,

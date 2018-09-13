@@ -1,0 +1,322 @@
+Hmm ... looks like a package
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit)
+entering extended mode
+(Rd2.tex
+LaTeX2e <2018-04-01> patch level 5
+
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\book.cls"
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\bk10.clo"))
+ (C:/PROGRA~1/R/R-35~1.1/share/texmf/tex/latex\Rd.sty
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+)
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\longtable.
+sty")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\bm.sty")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\alltt.sty")
+
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\verbatim.s
+ty") ("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\url\url.sty
+")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\textcomp.st
+y"
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1enc.def"
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1enc.dfu"
+)))
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\fontenc.sty
+" ("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.def
+"))
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\times.sty
+"))
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\inputenc.st
+y")
+No file Rd2.aux.
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1cmr.fd")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
+) ("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1pcr.f
+d")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd"
+)
+No file Rd2.toc.
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ts1pcr.fd
+") [1{C:/Users/m195238/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Overfull \hbox (0.89821pt too wide) in paragraph at lines 86--92
+[]\T1/ptm/m/n/10 A valid color code dataframe con-tains two columns: \T1/pcr/m/
+n/10 Study.Abbreviation \T1/ptm/m/n/10 and \T1/pcr/m/n/10 Hex.Colors\T1/ptm/m/n
+/10 .
+[2] [3] [4] [5]
+
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.346 exp(−\frac{\|x_i−x_j\|^2}{2\sigma^2})}{}
+                                                  , where \eqn{C}{} is the n...
+
+
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.346 exp(−\frac{\|x_i−x_j\|^2}{2\sigma^2})}{}
+                                                  , where \eqn{C}{} is the n...
+
+[6] [7] [8]
+
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.503 1−\text{median}_{y_j=g} d(x_i,x_j)}{}
+                                             , where
+! Undefined control sequence.
+<argument> f(x_i;y,g) = 1−\text 
+                                  {median}_{y_j=g} d(x_i,x_j)
+l.503 1−\text{median}_{y_j=g} d(x_i,x_j)}{}
+                                             , where
+[9] [10] [11]
+Overfull \hbox (26.94904pt too wide) in paragraph at lines 631--640
+\T1/ptm/m/n/10 with \T1/pcr/m/n/10 points_in_level[[i]] \T1/ptm/m/n/10 = vec-to
+r of in-dices of points in level set i, and \T1/pcr/m/n/10 vertices_in_level
+[12]
+Overfull \hbox (24.78088pt too wide) in paragraph at lines 717--717
+ []\T1/pcr/m/n/10 network_visualization(obj_mapper, groups_ind, dat = NULL, fol
+der = "",[] 
+[13]
+Overfull \hbox (69.18036pt too wide) in paragraph at lines 776--776
+ []\T1/pcr/m/n/9 network_visualization(tp_data_mapper, groups_ind = tp_data$Gro
+up, dat = tp_data[,2:4],[] 
+
+Overfull \hbox (69.18036pt too wide) in paragraph at lines 784--784
+ []\T1/pcr/m/n/9 network_visualization(tp_data_mapper, groups_ind = tp_data$Gro
+up, dat = tp_data[,2:4],[] 
+
+Overfull \hbox (58.38037pt too wide) in paragraph at lines 785--785
+ []                      \T1/pcr/m/n/9 folder = "Exp_network", add_analysis_jav
+a = add_analysis_java)[] 
+[14]
+Overfull \hbox (4.38043pt too wide) in paragraph at lines 844--844
+ []\T1/pcr/m/n/9 filter_names = c("ref","Linf","gaussian","coordinate","dtm","e
+ccen","pca")[] 
+
+Overfull \hbox (225.78018pt too wide) in paragraph at lines 846--846
+ []                        \T1/pcr/m/n/9 weighted_shannon = c(1.708074, 1.75369
+1, 1.788572, 1.783137, 1.798342, 1.729896, 1.645932),[] 
+
+Overfull \hbox (204.1802pt too wide) in paragraph at lines 847--847
+ []                        \T1/pcr/m/n/9 spread_index = c(3.675639, 4.459636, 3
+.194998, 3.355519, 3.583395, 3.868635, 5.459008))[] 
+[15] [16] [17]
+Overfull \hbox (0.78088pt too wide) in paragraph at lines 1047--1047
+ []  \T1/pcr/m/n/10 add_surv_analysis = FALSE, add_analysis_java = NULL, color_
+code)[] 
+
+Overfull \hbox (96.60721pt too wide) in paragraph at lines 1057--1061
+[]\T1/ptm/m/n/10 Optional. A dataframe con-tains ad-di-tional in-for-ma-tion of
+ sam-ples. If \T1/pcr/m/n/10 add_surv_analysis==TRUE\T1/ptm/m/n/10 ,
+
+Overfull \hbox (19.64989pt too wide) in paragraph at lines 1057--1061
+\T1/pcr/m/n/10 dat \T1/ptm/m/n/10 must be pro-vided with columns \T1/pcr/m/n/10
+ age_at_diagnosis \T1/ptm/m/n/10 and \T1/pcr/m/n/10 days_to_death
+
+Overfull \hbox (2.92805pt too wide) in paragraph at lines 1075--1082
+\T1/ptm/m/n/10 are the num-ber of sam-ples \T1/pcr/m/n/10 N\T1/ptm/m/n/10 , the
+ per-cent-age of sam-ples from dif-fer-ent groups \T1/pcr/m/n/10 groups_per_nod
+e\T1/ptm/m/n/10 ,
+[18]
+Overfull \hbox (42.83838pt too wide) in paragraph at lines 1086--1090
+\T1/ptm/m/n/10 should be wraped into a vec-tor of Javascript codes for each of 
+the nodes and passed to \T1/pcr/m/n/10 add_analysis_java
+[19] (Rd2.aux) )
+(see the transcript file for additional information){C:/Users/m195238/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/m195238/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/m
+195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.
+pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmmi5.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi7.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/m195238/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/m195238/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Use
+rs/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y7.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/cour
+ier/ucrr8a.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+urw/helvetic/uhvr8a.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/urw/times/utmb8a.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/m195238/AppData/Local/Programs/Mi
+KTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/m195238/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (19 pages, 184206 bytes).
+Transcript written on Rd2.log.
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  unable to run 'pdflatex' on 'Rd2.tex'
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit)
+entering extended mode
+(Rd2.tex
+LaTeX2e <2018-04-01> patch level 5
+
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\book.cls"
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\bk10.clo"))
+ (C:/PROGRA~1/R/R-35~1.1/share/texmf/tex/latex\Rd.sty
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+)
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\longtable.
+sty")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\bm.sty")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\alltt.sty")
+
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\verbatim.s
+ty") ("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\url\url.sty
+")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\textcomp.st
+y"
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1enc.def"
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1enc.dfu"
+)))
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\fontenc.sty
+" ("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.def
+"))
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\times.sty
+"))
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\inputenc.st
+y") (Rd2.aux)
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1cmr.fd")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
+) ("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1pcr.f
+d")
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd"
+) (Rd2.toc [1{C:/Users/m195238/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.ma
+p}])
+("C:\Users\m195238\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ts1pcr.fd
+")
+Overfull \hbox (0.89821pt too wide) in paragraph at lines 86--92
+[]\T1/ptm/m/n/10 A valid color code dataframe con-tains two columns: \T1/pcr/m/
+n/10 Study.Abbreviation \T1/ptm/m/n/10 and \T1/pcr/m/n/10 Hex.Colors\T1/ptm/m/n
+/10 .
+[2] [3] [4] [5] [6]
+
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.346 exp(−\frac{\|x_i−x_j\|^2}{2\sigma^2})}{}
+                                                  , where \eqn{C}{} is the n...
+
+
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.346 exp(−\frac{\|x_i−x_j\|^2}{2\sigma^2})}{}
+                                                  , where \eqn{C}{} is the n...
+
+[7] [8]
+
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.503 1−\text{median}_{y_j=g} d(x_i,x_j)}{}
+                                             , where
+! Undefined control sequence.
+<argument> f(x_i;y,g) = 1−\text 
+                                  {median}_{y_j=g} d(x_i,x_j)
+l.503 1−\text{median}_{y_j=g} d(x_i,x_j)}{}
+                                             , where
+[9] [10] [11]
+Overfull \hbox (26.94904pt too wide) in paragraph at lines 631--640
+\T1/ptm/m/n/10 with \T1/pcr/m/n/10 points_in_level[[i]] \T1/ptm/m/n/10 = vec-to
+r of in-dices of points in level set i, and \T1/pcr/m/n/10 vertices_in_level
+[12]
+Overfull \hbox (24.78088pt too wide) in paragraph at lines 717--717
+ []\T1/pcr/m/n/10 network_visualization(obj_mapper, groups_ind, dat = NULL, fol
+der = "",[] 
+[13]
+Overfull \hbox (69.18036pt too wide) in paragraph at lines 776--776
+ []\T1/pcr/m/n/9 network_visualization(tp_data_mapper, groups_ind = tp_data$Gro
+up, dat = tp_data[,2:4],[] 
+
+Overfull \hbox (69.18036pt too wide) in paragraph at lines 784--784
+ []\T1/pcr/m/n/9 network_visualization(tp_data_mapper, groups_ind = tp_data$Gro
+up, dat = tp_data[,2:4],[] 
+
+Overfull \hbox (58.38037pt too wide) in paragraph at lines 785--785
+ []                      \T1/pcr/m/n/9 folder = "Exp_network", add_analysis_jav
+a = add_analysis_java)[] 
+[14]
+Overfull \hbox (4.38043pt too wide) in paragraph at lines 844--844
+ []\T1/pcr/m/n/9 filter_names = c("ref","Linf","gaussian","coordinate","dtm","e
+ccen","pca")[] 
+
+Overfull \hbox (225.78018pt too wide) in paragraph at lines 846--846
+ []                        \T1/pcr/m/n/9 weighted_shannon = c(1.708074, 1.75369
+1, 1.788572, 1.783137, 1.798342, 1.729896, 1.645932),[] 
+
+Overfull \hbox (204.1802pt too wide) in paragraph at lines 847--847
+ []                        \T1/pcr/m/n/9 spread_index = c(3.675639, 4.459636, 3
+.194998, 3.355519, 3.583395, 3.868635, 5.459008))[] 
+[15] [16] [17]
+Overfull \hbox (0.78088pt too wide) in paragraph at lines 1047--1047
+ []  \T1/pcr/m/n/10 add_surv_analysis = FALSE, add_analysis_java = NULL, color_
+code)[] 
+
+Overfull \hbox (96.60721pt too wide) in paragraph at lines 1057--1061
+[]\T1/ptm/m/n/10 Optional. A dataframe con-tains ad-di-tional in-for-ma-tion of
+ sam-ples. If \T1/pcr/m/n/10 add_surv_analysis==TRUE\T1/ptm/m/n/10 ,
+
+Overfull \hbox (19.64989pt too wide) in paragraph at lines 1057--1061
+\T1/pcr/m/n/10 dat \T1/ptm/m/n/10 must be pro-vided with columns \T1/pcr/m/n/10
+ age_at_diagnosis \T1/ptm/m/n/10 and \T1/pcr/m/n/10 days_to_death
+
+Overfull \hbox (2.92805pt too wide) in paragraph at lines 1075--1082
+\T1/ptm/m/n/10 are the num-ber of sam-ples \T1/pcr/m/n/10 N\T1/ptm/m/n/10 , the
+ per-cent-age of sam-ples from dif-fer-ent groups \T1/pcr/m/n/10 groups_per_nod
+e\T1/ptm/m/n/10 ,
+[18]
+Overfull \hbox (42.83838pt too wide) in paragraph at lines 1086--1090
+\T1/ptm/m/n/10 should be wraped into a vec-tor of Javascript codes for each of 
+the nodes and passed to \T1/pcr/m/n/10 add_analysis_java
+[19] (Rd2.aux) )
+(see the transcript file for additional information){C:/Users/m195238/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/m195238/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/m
+195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.
+pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmmi5.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi7.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/m195238/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/m195238/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Use
+rs/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y7.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/cour
+ier/ucrr8a.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+urw/helvetic/uhvr8a.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/urw/times/utmb8a.pfb><C:/Users/m195238/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/m195238/AppData/Local/Programs/Mi
+KTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/m195238/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (19 pages, 184630 bytes).
+Transcript written on Rd2.log.
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  unable to run 'pdflatex' on 'Rd2.tex'
+Error in running tools::texi2pdf()
+You may want to clean up by 'rm -Rf C:/Users/m195238/AppData/Local/Temp/RtmpADrt3w/Rd2pdfefc456650eb'
