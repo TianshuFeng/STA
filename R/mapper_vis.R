@@ -380,6 +380,9 @@ network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = ""
   require(visNetwork)
   require(RColorBrewer)
 
+  if(class(obj_mapper) != "TDAmapper") {
+    stop("Invalid obj_mapper.")
+  }
 
   if(is.null(color_code)){
     color_code = auto_set_colorcode(groups = groups_ind,
@@ -387,6 +390,8 @@ network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = ""
   } else if(!check_color_code(color_code)){
     stop("Invalid color code.")
   }
+
+  dir.create(file.path(folder), showWarnings = FALSE)
 
   obj_mapper = null_remover(obj_mapper)
 

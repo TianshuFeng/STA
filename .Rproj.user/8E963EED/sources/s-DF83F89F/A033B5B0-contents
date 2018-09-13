@@ -17,6 +17,7 @@ Imports:
     NbClust,
     RColorBrewer,
     rARPACK,
+    rPref,
     survival,
     TDAmapper,
     visNetwork

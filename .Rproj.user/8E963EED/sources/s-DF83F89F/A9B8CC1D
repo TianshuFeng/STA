@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "A9B8CC1D",
-    "lastKnownWriteTime" : 1536790840,
-    "last_content_update" : 1536790840260,
+    "lastKnownWriteTime" : 1536803671,
+    "last_content_update" : 1536803671619,
     "path" : "H:/Projects/Mapper_Visualization/Package/SemiMapper/R/evaluation.R",
     "project_path" : "R/evaluation.R",
     "properties" : {
-        "cursorPosition" : "6,21",
-        "scrollLine" : "0",
+        "cursorPosition" : "145,25",
+        "scrollLine" : "129",
         "tempName" : "Untitled1"
     },
     "relative_order" : 6,
