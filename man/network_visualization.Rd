@@ -55,7 +55,7 @@ reading color code files with \code{\link{read_color_code}}.
 \examples{
 tp_data = chicken_generator(1)
 tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
-                               filter_values = tp_data$Y,
+                               filter_values = filter_coordinate(tp_data[,-1], 2),
                                num_intervals = 10,
                                percent_overlap = 70)
 network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
