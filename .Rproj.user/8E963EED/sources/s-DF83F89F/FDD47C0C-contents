@@ -26,6 +26,8 @@ filter_pca = function(dat, k = 1, ...) {
   eigen_vector = eigs_sym(cov_temp ,k)$vectors
 
   res = as.matrix(dat) %*% eigen_vector
+  res = as.matrix(res)
+
   attr(res, "filter") = "PCA"
   class(res) = "filter"
   return(res)
@@ -54,6 +56,8 @@ filter_Linf = function(dist, ...) {
   # dist: distance matrix
 
   res = apply(as.matrix(dist), 1, max, ...)
+  res = as.matrix(res)
+
   attr(res, "filter") = "Linf"
   class(res) = "filter"
   return(res)
@@ -98,6 +102,8 @@ filter_ref = function(dist, groups_ind,
   rm(dist)
   # find the average distance
   res = apply(dist_center, 1, median, na.rm = TRUE)
+  res = as.matrix(res)
+
   attr(res, "filter") = "Reference"
   class(res) = "filter"
   return(res)
@@ -133,6 +139,7 @@ filter_gaussian = function(dist, sigma = 1,...) {
   ff = rowSums(dist)
   ff = ff/sum(ff)
 
+  ff = as.matrix(ff)
   attr(ff, "filter") = "Gaussian"
   class(ff) = "filter"
   return(ff)
@@ -162,6 +169,8 @@ filter_coordinate = function(dat, k, ...) {
   # k: the coordinate to be projected
 
   res = dat[,k,drop=FALSE]
+  res = as.matrix(res)
+
   attr(res, "filter") = "Coordinate"
   class(res) = "filter"
   return(res)
@@ -196,6 +205,8 @@ filter_dtm = function(dist, k, p=2, ...) {
   dist_sort = rowMeans(dist_sort)
 
   res = (dist_sort)^(1/p)
+  res = as.matrix(res)
+
   class(res) = "filter"
   attr(res, "filter") = "DTM"
   return(res)
@@ -225,6 +236,8 @@ filter_eccen = function(dist, p, ...) {
   # p: exponent
   dist = as.matrix(dist)
   res = rowMeans(dist^p)^(1/p)
+  res = as.matrix(res)
+
   attr(res, "filter") = "Eccentricity"
   class(res) = "filter"
   return(res)
@@ -253,4 +266,9 @@ filter_name = function(filter_vec) {
   }
 
   return(attr(filter_vec, "filter"))
+}
+
+print.filter = function(x) {
+  cat("This is the filter vecter returned by the ",
+      attributes(x)$filter, " filter function.\n", sep = "")
 }

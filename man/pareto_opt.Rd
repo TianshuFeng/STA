@@ -24,10 +24,28 @@ Shannon indices and spread measures with function \code{\link[rPref]{psel}}
 from R package `rPref`.
 }
 \examples{
-filter_names = c("ref","Linf","gaussian","coordinate","dtm","eccen","pca")
+filter_names = c("Coordinate","Eccen","LInf","Ref","DTM","Gaussian","PCA")
 res_filter = data.frame(Filter = filter_names,
-                        weighted_shannon = c(1.708074, 1.753691, 1.788572, 1.783137, 1.798342, 1.729896, 1.645932),
-                        spread_index = c(3.675639, 4.459636, 3.194998, 3.355519, 3.583395, 3.868635, 5.459008))
-pareto_opt(res_filter)
+                        weighted_shannon = c(1.389, 1.421, 1.453, 1.158, 1.345, 1.399, 1.349),
+                        spread_index = c(2.767, 4.101, 2.607, 4.001, 4.119, 3.957, 2.034))
+res = pareto_opt(res_filter)
+res
+
+# Illustration of Pareto frontier
+library(ggplot2)
+res = pareto_opt(res_filter, top = nrow(res_filter))
+res$.level[res$.level>1] = "Others"
+res$.level[res$.level==1] = "Frontier"
+class(res) = "data.frame"
+gp <- ggplot(res, aes(x = weighted_shannon, y = spread_index,
+                      color = factor(.level),
+                      label = Filter)) +
+  geom_point(size = 3) +
+  geom_line(aes(group = .level), data = res[res$.level=="Frontier",], size = 2) +
+  geom_label(aes(fill = factor(.level)), colour = "white", fontface = "bold") +
+  labs(fill='') + labs(color='') + xlab("Shannon index") + ylab("Spread measure")
+gp
+# The red line(s) is the Pareto frontier, and all the points on the top right
+# side of these line(s) are not potentially optimal.
 
 }

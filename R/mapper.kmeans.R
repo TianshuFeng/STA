@@ -45,6 +45,8 @@ lsfi_from_lsmi <- function( lsmi, num_intervals ) {
 #' \code{\link[NbClust]{NbClust}}.
 #'
 #' @inheritParams TDAmapper::mapper
+#' @param filter_values A n x m data frame of real numbers returned by the
+#'   filter functions.
 #' @param dat Matrix or dataset where rows are data points and columns are
 #'   predictive variables.
 #' @param dist_method The distance measure to be used to compute the
@@ -88,14 +90,13 @@ lsfi_from_lsmi <- function( lsmi, num_intervals ) {
 #'   http://www.jstatsoft.org/v61/i06/.
 #'
 #' @examples
-#' library(TDAmapper)
 #' tp_data = chicken_generator(1)
 #' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
 #'                                filter_values = tp_data$Y,
 #'                                num_intervals = 10,
 #'                                percent_overlap = 70)
 #'
-mapper.kmeans <- function(dat, dist_method = "euclidean", filter_values, num_intervals, percent_overlap,
+mapper.kmeans <- function(dat, filter_values, num_intervals, percent_overlap, dist_method = "euclidean",
                           cluster_method = "kmeans", cluster_index = "all",
                           n_class = 0, ...) {
 

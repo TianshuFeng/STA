@@ -4,7 +4,7 @@
 \alias{simple_visNet}
 \title{Simple graphs generation}
 \usage{
-simple_visNet(obj_mapper, filter = NULL, folder,
+simple_visNet(obj_mapper, filter = NULL, folder = getwd(),
   color_fun = color_map_Spectral, network_name = "network.html",
   color_filter = TRUE, groups_ind = NULL, color_code = NULL)
 }
@@ -53,7 +53,11 @@ the color method should be specified by the users by providing the function
 with necessary arguments.
 }
 \examples{
-library(TDAmapper)
 tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+simple_visNet(tp_data_mapper, filter = tp_data$Y)
 
 }

@@ -18,7 +18,6 @@
 #' @export
 #'
 #' @examples
-#' library(TDAmapper)
 #' tp_data = chicken_generator(1)
 #' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
 #'                                filter_values = tp_data$Y,
@@ -64,7 +63,6 @@ mapper_shannon_index = function(obj_mapper, group_ind) {
 #' @export
 #'
 #' @examples
-#' library(TDAmapper)
 #' tp_data = chicken_generator(1)
 #' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
 #'                                filter_values = tp_data$Y,
@@ -118,6 +116,11 @@ spread_measure = function(obj_mapper, group_ind) {
   }
 
   weight = table(group_ind)[rownames(groups_vertices)]
+
+  # Remove the classes not exist in the main graph
+  mean_dist[is.na(mean_dist)] = 0
+  weight[is.na(mean_dist)] = 0
+
   return(sum(weight * mean_dist)/sum(weight))
 }
 
@@ -140,11 +143,29 @@ spread_measure = function(obj_mapper, group_ind) {
 #' @export
 #'
 #' @examples
-#' filter_names = c("ref","Linf","gaussian","coordinate","dtm","eccen","pca")
+#' filter_names = c("Coordinate","Eccen","LInf","Ref","DTM","Gaussian","PCA")
 #' res_filter = data.frame(Filter = filter_names,
-#'                         weighted_shannon = c(1.708074, 1.753691, 1.788572, 1.783137, 1.798342, 1.729896, 1.645932),
-#'                         spread_index = c(3.675639, 4.459636, 3.194998, 3.355519, 3.583395, 3.868635, 5.459008))
-#' pareto_opt(res_filter)
+#'                         weighted_shannon = c(1.389, 1.421, 1.453, 1.158, 1.345, 1.399, 1.349),
+#'                         spread_index = c(2.767, 4.101, 2.607, 4.001, 4.119, 3.957, 2.034))
+#' res = pareto_opt(res_filter)
+#' res
+#'
+#' # Illustration of Pareto frontier
+#' library(ggplot2)
+#' res = pareto_opt(res_filter, top = nrow(res_filter))
+#' res$.level[res$.level>1] = "Others"
+#' res$.level[res$.level==1] = "Frontier"
+#' class(res) = "data.frame"
+#' gp <- ggplot(res, aes(x = weighted_shannon, y = spread_index,
+#'                       color = factor(.level),
+#'                       label = Filter)) +
+#'   geom_point(size = 3) +
+#'   geom_line(aes(group = .level), data = res[res$.level=="Frontier",], size = 2) +
+#'   geom_label(aes(fill = factor(.level)), colour = "white", fontface = "bold") +
+#'   labs(fill='') + labs(color='') + xlab("Shannon index") + ylab("Spread measure")
+#' gp
+#' # The red line(s) is the Pareto frontier, and all the points on the top right
+#' # side of these line(s) are not potentially optimal.
 #'
 pareto_opt = function(res_filter, ...) {
   require(rPref)
@@ -165,5 +186,80 @@ pareto_opt = function(res_filter, ...) {
   pref = low_(as.expression(c_name[2])) * low_(as.expression(c_name[3]))
   res = psel(res_filter, pref, ...)
 
+  class(res) = "Pareto_frontier"
+  return(res)
+}
+
+print.Pareto_frontier = function(res) {
+  cat("Filter functions in the Pareto frontier:\n\t", paste(res$Filter, collapse = ", "), "\n")
+  cat("\nEvaluation results of filter functions in the Pareto frontier:\n")
+  class(res) = "data.frame"
+  print(res)
+}
+
+
+#' Evaluate filter functions
+#'
+#' \code{filter_evaluate} evaluates filter function with provided filter
+#' vectors.
+#'
+#' @param ... Filter vectors.
+#' @inheritParams mapper.kmeans
+#' @param arg_mapper A list for additional arguments for
+#'   \code{\link{mapper.kmeans}}.
+#' @param group_ind A vector of group names each of the samples belongs to.
+#'
+#' @return A data.frame of Shannon indices and spread measures under given
+#'   filter functions. The first column contents names of filter functions, and
+#'   the second and third columns are the shannon indices and spread
+#'   measures, respectively.
+#' @export
+#'
+#' @examples
+#' tp_data = chicken_generator(1)
+#' tp_dist = dist(tp_data[,-1])
+#' a = filter_eccen(dist = tp_dist, p = 2)
+#' b = filter_coordinate(tp_data[,-1], 2)
+#' c = filter_gaussian(dist=tp_dist, sigma=1)
+#' filter_evaluate(a,b,c,
+#'                 dat = tp_data, group_ind = tp_data$Group,
+#'                 num_intervals = 10, percent_overlap = 70)
+#'
+#' # Add additional arguments (NOT RUN)
+#' if(FALSE) {
+#'   filter_evaluate(a,b,c,
+#'                   dat = tp_data, group_ind = tp_data$Group,
+#'                   num_intervals = 10, percent_overlap = 70,
+#'                   arg_mapper = list(n_class = 1))
+#' }
+#'
+filter_evaluate = function(..., dat, group_ind, num_intervals, percent_overlap,
+                           arg_mapper = list()) {
+
+  filter_list = list(...)
+  res = NULL
+
+  arg_mapper$dat = dat
+  arg_mapper$group_ind = group_ind
+  arg_mapper$num_intervals = num_intervals
+  arg_mapper$percent_overlap = percent_overlap
+
+  for(ff in filter_list) {
+    tp_filter = attributes(ff)$filter
+    class(ff) = "numeric"
+
+    arg_mapper$filter_values = ff
+    tp_mapper = do.call(mapper.kmeans, arg_mapper)
+
+    tp_shannon = mapper_shannon_index(obj_mapper = tp_mapper, group_ind = group_ind)
+    tp_spread = spread_measure(obj_mapper = tp_mapper, group_ind = group_ind)
+
+
+    res = rbind(res, c(tp_filter, tp_shannon$avg_index, tp_spread))
+  }
+
+  colnames(res) = c("Filter", "weighted_shannon", "spread_index")
+  res = as.data.frame(res, stringsAsFactors = FALSE)
+  res[,2:3] = lapply(res[,2:3], as.numeric)
   return(res)
 }

@@ -368,7 +368,6 @@ legend_node = function(stats_sum=NULL, color_code){
 #' @export
 #'
 #' @examples
-#' library(TDAmapper)
 #' tp_data = chicken_generator(1)
 #' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
 #'                                filter_values = tp_data$Y,
@@ -393,7 +392,6 @@ network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = ""
   #  groups_ind: the vector of group each individual sample belongs to
 
 
-  require(TDAmapper)
   require(visNetwork)
   require(RColorBrewer)
 

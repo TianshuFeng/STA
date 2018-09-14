@@ -35,12 +35,19 @@
 #' @export
 #'
 #' @examples
-#' library(TDAmapper)
 #' tp_data = chicken_generator(1)
+#' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+#'                                filter_values = tp_data$Y,
+#'                                num_intervals = 10,
+#'                                percent_overlap = 70)
+#' simple_visNet(tp_data_mapper, filter = tp_data$Y)
 #'
-simple_visNet = function(obj_mapper, filter=NULL, folder, color_fun = color_map_Spectral,
+simple_visNet = function(obj_mapper, filter=NULL, folder = getwd(), color_fun = color_map_Spectral,
                          network_name = "network.html", color_filter = TRUE,
                          groups_ind = NULL, color_code = NULL){
+
+  require(visNetwork)
+  require(RColorBrewer)
 
   MapperNodes <- mapperVertices(obj_mapper, 1)
   MapperLinks <- mapperEdges(obj_mapper)
@@ -55,6 +62,8 @@ simple_visNet = function(obj_mapper, filter=NULL, folder, color_fun = color_map_
       warning("filter not provided, repalced by 1.")
       filter = rep(1, max(unlist(obj_mapper$points_in_vertex)))
     }
+
+    dir.create(file.path(folder), showWarnings = FALSE)
 
     avg_filter = c()
     for(i in obj_mapper$points_in_vertex){

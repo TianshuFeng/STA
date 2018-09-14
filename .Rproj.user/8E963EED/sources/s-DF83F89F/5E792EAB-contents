@@ -1,0 +1,11 @@
+filter_names = c("ref","Linf","gaussian","coordinate","dtm","eccen","pca")
+res_filter = data.frame(Filter = filter_names,
+                        weighted_shannon = c(1.708074, 1.753691, 1.788572, 1.783137, 1.798342, 1.729896, 1.645932),
+                        spread_index = c(3.675639, 4.459636, 3.194998, 3.355519, 3.583395, 3.868635, 5.459008))
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network")

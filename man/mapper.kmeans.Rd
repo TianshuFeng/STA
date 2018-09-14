@@ -4,25 +4,26 @@
 \alias{mapper.kmeans}
 \title{Mapper function with multiple cluster methods}
 \usage{
-mapper.kmeans(dat, dist_method = "euclidean", filter_values,
-  num_intervals, percent_overlap, cluster_method = "kmeans",
+mapper.kmeans(dat, filter_values, num_intervals, percent_overlap,
+  dist_method = "euclidean", cluster_method = "kmeans",
   cluster_index = "all", n_class = 0, ...)
 }
 \arguments{
 \item{dat}{Matrix or dataset where rows are data points and columns are
 predictive variables.}
 
+\item{filter_values}{A n x m data frame of real numbers returned by the
+filter functions.}
+
+\item{num_intervals}{A length m vector of positive integers.}
+
+\item{percent_overlap}{A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.}
+
 \item{dist_method}{The distance measure to be used to compute the
 dissimilarity matrix. By default, distance="euclidean". It must be one of
 This must be one of: "euclidean", "maximum", "manhattan", "canberra",
 "binary", "minkowski" or "NULL". Details can be found in
 \code{\link[NbClust]{NbClust}}.}
-
-\item{filter_values}{A n x m data frame of real numbers.}
-
-\item{num_intervals}{A length m vector of positive integers.}
-
-\item{percent_overlap}{A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.}
 
 \item{cluster_method}{The cluster analysis method to be used. This should be
 one of: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty",
@@ -74,7 +75,6 @@ distance measures, clustering methods and cluster indices can be found in
 \code{\link[NbClust]{NbClust}}.
 }
 \examples{
-library(TDAmapper)
 tp_data = chicken_generator(1)
 tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
                                filter_values = tp_data$Y,

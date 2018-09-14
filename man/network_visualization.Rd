@@ -53,7 +53,6 @@ follow the format introduced in \code{\link{check_color_code}}, and we recommend
 reading color code files with \code{\link{read_color_code}}.
 }
 \examples{
-library(TDAmapper)
 tp_data = chicken_generator(1)
 tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
                                filter_values = tp_data$Y,

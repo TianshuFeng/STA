@@ -26,7 +26,6 @@ graph from Mapper.
 how it is computed
 }
 \examples{
-library(TDAmapper)
 tp_data = chicken_generator(1)
 tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
                                filter_values = tp_data$Y,
