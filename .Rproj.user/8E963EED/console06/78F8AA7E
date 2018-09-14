@@ -8686,4 +8686,407 @@ Changes not staged for commit:[0K
 no changes added to commit[0K
 [0K
 H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[57G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git a[0K[?25hd[0Kd[0K[61G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h[?25l
-[0K[?25h]0;Administrator:   - git  add .
+[0K[?25h]0;Administrator:   - git  add .warning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/155AE42F.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/3B88766.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-DF83F89F/697786B8.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-DF83F89F/697786B8-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-DF83F89F/A9B8CC1D.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-DF83F89F/C02F3436.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-DF83F89F/C67A6757.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-DF83F89F/C67A6757-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit add .[0K[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "example update"[0K[?25h]0;Administrator:   - git  commit -m "example update"[?25l
+[0K[?25h[master da8338a] example update[0K[?25l
+ Committer: Feng <feng.tianshu@mayo.edu>[0K
+Your name and email address were configured automatically based[0K
+on your username and hostname. Please check that they are accurate.[0K
+You can suppress this message by setting them explicitly. Run the[0K
+following command and follow the instructions in your editor to edit[0K
+your configuration file:[0K
+[0K
+    git config --global --edit[0K
+[0K
+After doing this, you may fix the identity used for this commit with:[0K
+[0K
+    git commit --amend --reset-author[0K
+[0K
+ 11 files changed, 160 insertions(+), 19 deletions(-)[0K
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[57G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git p[0K[?25hu[0Ks[0Kh[0K[62G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push m[0K[?25ha[0Ks[0Kt[0Ke[0Kr[0K[69G[68G[67G[66G[65G[64G[63G[62G[61G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git pusho master[0K[62G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push master[0K[61G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push  master[0K[62G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push o master[0K[63G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push or master[0K[64G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push ori master[0K[65G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push orig master[0K[66G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push origi master[0K[67G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push origin master[0K[68G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push origin  master[0K[69G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push origin master[0K[68G[?25h[?25l
+[0K[?25h]0;Administrator:   - git  push origin master Enumerating objects: 37, done.[0K[?25l
+Counting objects:  18% (7/37)[0K[1G[?25h[?25lCounting objects:  59% (22/37)[0K[1G[?25h[?25lCounting objects:  91% (34/37)[0K[1G[?25hCounting objects: 100% (37/37), done.[0K[?25l
+Delta compression using up to 4 threads.[0K
+Compressing objects:  21% (4/19)[0K[1G[?25h[?25lCompressing objects:  68% (13/19)[0K[1G[?25hCompressing objects: 100% (19/19), done.[0K[?25l
+Writing objects:  26% (5/19)[0K[1G[?25hWriting objects: 100% (19/19), 3.38 KiB | 157.00 KiB/s, done.[0K[?25l
+Total 19 (delta 14), reused 0 (delta 0)[0K
+[0K[?25hremote: Resolving deltas: 100% (14/14), completed with 14 local objects.[0K[?25l
+[0K[?25hTo github.com:TianshuFeng/SemiMapper.git[0K[?25l
+   563818b..da8338a  master -> master[0K
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hc[0Kd[0K[56G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd .[0K[?25h.[0K[?25l
+[0K
+[0K[?25hH:\Projects\Mapper_Visualization\Package>[0Kcd ..[0K[?25lH:\Projects\Mapper_Visualization\Package>git push origin master[0K[65G[?25h[?25lH:\Projects\Mapper_Visualization\Package>git commit -m "example update"[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package>git add .[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package>git commit -m "example update"[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package>git push origin master[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package>git commit -m "add more functions and revise the examples.[0K
+Remove the dependency of TDAmapper package"[0K[?25h[?25l[1AH:\Projects\Mapper_Visualization\Package>git add .[0K
+[0K[1A[51G[?25h[?25lH:\Projects\Mapper_Visualization\Package>cd SemiMapper[0K
+[0K[1A[55G[?25h[?25lH:\Projects\Mapper_Visualization\Package>git add .[0K
+[0K[1A[51G[?25h[?25lH:\Projects\Mapper_Visualization\Package>R CMD check SemiMapper[0K
+[0K[1A[64G[?25h[?25lH:\Projects\Mapper_Visualization\Package>R CMD build SemiMapper[0K
+[0K[1A[64G[?25h]0;Administrator:   - R  CMD build SemiMapper[?25l
+[?25h* checking for file 'SemiMapper/DESCRIPTION' ... OK[0K[?25l
+[0K[?25h* preparing 'SemiMapper':[0K[?25l
+* checking DESCRIPTION meta-information ... OK[0K
+[0K[?25h* checking for LF line-endings in source and make files and shell scripts[0K[?25l
+* checking f[0K[?25hor empty or unneeded directories[0K[?25l
+[0K[?25h* building 'SemiMapper_0.2.tar.gz'[0K[?25l
+[0K[?25h[?25l
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package>[0K[?25hR CMD build SemiMapper[0K[?25lH:\Projects\Mapper_Visualization\Package>R CMD check SemiMapper[0K[?25h]0;Administrator:   - R  CMD check SemiMapper[?25l
+[0K[?25h* using log directory 'H:/Projects/Mapper_Visualization/Package/SemiMapper.Rcheck'[0K[?25l
+* using R version 3.5.1 (2018-07-02)[0K
+* using platform: x86_64-w64-mingw32 (64-bit)[0K
+[0K[?25h* using session charset: ISO8859-1[0K[?25l
+[0K[?25h* checking for file 'SemiMapper/DESCRIPTION' ... OK[0K[?25l
+[0K[?25h* checking extension type ... Package[0K[?25l
+* this is package 'SemiMapper' version '0.2'[0K
+* package encoding: UTF-8[0K
+[0K[?25h* checking package namespace information ...[0K OK[0K[?25l
+* checking package dependencies ...[0K[?25h OK[0K[?25l
+* checking if this is a source package ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking if there is a namespace ... OK[0K[?25l
+[0K[?25h* c[0Khecking for .dll and .exe files ... OK[0K[?25l
+* checking for hidden files and directories[0K[45G[?25h[?25l* checking for hidden files and directories ...[0K[?25h NOTE[0K[?25l
+Found the following hidden files and directories:[0K
+  .Rhistory[0K
+  .Rproj.user[0K
+  .[0K[?25hgit[0K[?25l
+These were most likely included in error. See section 'Package[0K
+structure' in the 'Writing R Extensions' manual.[0K
+* checking for portable file names ...[0K[?25h OK[0K[?25l
+* checking whether package 'SemiMapper' can be installed ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking package directory ...[0K OK[0K[?25l
+* checking DESCRIPTION meta-information ...[0K[?25h NOTE[0K[?25l
+[0K[?25hChecking should be performed on sources prepared by 'R CMD build'.[0K[?25l
+* ch[0K[?25hecking top-level files ... NOTE[0K[?25l
+File[0K
+  LICENSE[0K
+is not mentioned in the DESCRIPTION file.[0K
+[0K[?25h* checking for left-over files ...[0K[36G[?25l* checking for left-over files ... OK[0K
+* checking index information ... OK[0K
+* checking package subdirectories ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking R files for non-ASCII characters ...[0K OK[0K[?25l
+* checking R files fo[0K[?25hr syntax errors ...[0K OK[0K[?25l
+[0K[?25h* checking whether the package can be loaded ...[0K OK[0K[?25l
+* checking whether the package can be loaded with stated dependencies ...[0K[?25h OK[0K[?25l
+* checking whether the package can be unloaded cleanly ...[0K[?25h OK[0K[?25l
+* checking whethe[0K[?25hr the namespace can be loaded with stated dependencies ...[0K OK[0K[?25l
+[0K[?25h* checking whether the namespace can be unloaded cleanly ...[0K OK[0K[?25l
+[0K[?25h* checking loading without being on the library search path ...[0K OK[0K[?25l
+[0K[?25h* checking dependencies in R code ...[0K WARNING[0K[?25l
+'::' or ':::' import not declared from: 'sparkline'[0K
+'library' or 'require' calls not declared from:[0K
+  'MASS' 'NbClust' 'RColorBrewer' 'entropy' 'igraph' 'rARPAC[0K[?25hK' 'rPref'[0K[?25l
+  'survival' 'visNetwork'[0K
+'library' or 'require' calls in package code:[0K
+  'MASS' 'NbClust' 'RColorBrewer' 'entropy' 'igraph' 'rARPACK' 'rPref'[0K
+  'survival' 'visNetwork'[0K
+  Please use :: or requireNamespace() instead.[0K
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.[0K
+Namespaces in Imports field not imported from:[0K
+  'MASS' 'NbClust' 'RColorBrewer' 'dplyr' 'entropy' 'igraph' 'rARPACK'[0K
+  'rPref' 'survival' 'visNetwork'[0K
+  All declared Imports should be used.[0K
+[0K[?25h* checking S3 generic/method consistency ...[0K OK[0K[?25l
+* che[0K[?25hcking replacement functions ...[0K OK[0K[?25l
+[0K[?25h* checking foreign function calls ...[0K OK[0K[?25l
+* checking R code for possible problems ...[0K[?25h NOTE[0K[?25l
+[0K[?25hauto_set_colorcode: no visible global function definition for[0K[?25l
+  'brewer.pal'[0K
+auto_set_colorcode: no visible global function definition for[0K
+  'colorRampPalette'[0K
+chicken_generator: no visible global function definition for 'mvrnorm'[0K
+color_map_Spectral: no visible global function definition for[0K
+  'colorRamp'[0K
+color_map_Spectral: no visible global function definition for[0K
+  'brewer.pal'[0K
+color_map_S[0K[?25hpectral: no visible global function definition for 'rgb'[0K[?25l
+filter_pca: no visible global function definition for 'cov'[0K
+filter_pca: no visible global function definition for 'eigs_sym'[0K
+filter_ref: no visible binding for global variable 'median'[0K
+mapper.kmeans: no visible global function definition for 'pdf'[0K
+mapper.kmeans: no visible global function definition for[0K
+  'capture.output'[0K
+mapper.kmeans: no visible global function definition for 'NbClust'[0K
+mapper.kmeans: no visible global function definition for 'dev.off'[0K
+mapper.kmeans: no visible[0K[27G[?25h[?25lmapper.kmeans: no visible global function definition for 'kmeans'[0K
+mapper_shannon_index: no visible global function definition for[0K
+  'entropy.empirical'[0K
+network_visualization: no visible global function definition for '%>%'[0K
+network_visualization: no visible global function definition for[0K
+  'visNetwork'[0K
+network_visualization: no visible global function definition for[0K
+  'visInteraction'[0K
+network_visualization: no visible global function definition for[0K
+  'visOptions'[0K
+network_visualization: no visible global function definition for[0K
+  'visLegend'[0K
+network_visualization: no visible global[0K[42G[?25h[?25lnetwork_visualization: no visible global function definition for[0K
+  'visSave'[0K
+pareto_opt: no visible global function definition for 'low_'[0K
+pareto_opt: no visible global function definition for 'psel'[0K
+read_color_code: no visible global function definition for 'read.table'[0K
+savepdf: no visible global function definition for 'png'[0K
+savepdf: no visible global function definition for 'par'[0K
+simple_visNet: no visible global function definition for '%>%'[0K
+simple_visNet: no visible[0K[?25h global function definition for 'visNetwork'[0K[?25l
+simple_visNet: no visible global function definition for[0K
+  'visInteraction'[0K
+simple_visNet: no visible global function definition for 'visOptions'[0K
+simple_visNet: no visible global function definition for 'visSave'[0K
+spread_measure: no visible global function definition for[0K
+  'graph_from_adjacency_matrix'[0K
+spread_measure: no visible global function definition for 'components'[0K
+spread_measure: no visible global function definition for 'distances'[0K
+stat_summery: no visible global function def[0K[?25hinition for 'pie'[0K[?25l
+stat_summery: no visible global function definition for 'dev.off'[0K
+stat_summery: no visible global function definition for 'median'[0K
+Undefined global functions or variables:[0K
+  %>% NbClust brewer.pal capture.output colorRamp colorRampPalette[0K
+  components cov dev.off distances eigs_sym entropy.empirical[0K
+  graph_from_adjacency_matrix kmeans low_ median mvrnorm par pdf pie[0K
+  png psel read.table rgb visInteraction visLegend visNetwork[0K
+  visOptions visSave[0K
+Consider adding[0K
+  importFrom("grDevices", "colorRamp",[0K[?25h "colorRampPalette", "dev.off",[0K[?25l
+             "pdf", "png", "rgb")[0K
+  importFrom("graphics", "par", "pie")[0K
+  importFrom("stats", "cov", "kmeans", "median")[0K
+  importFrom("utils", "capture.output", "read.table")[0K
+to your NAMESPACE file.[0K
+[0K[?25h* checking Rd fi[0Kles ...[0K OK[0K[?25l
+[0K[?25h* checking Rd metadata ...[0K OK[0K[?25l
+* checking Rd cross-references ...[0K[?25h OK[0K[?25l
+* checking for missing documentation entries ...[0K[?25h OK[0K[?25l
+* checking for code/documentation mismatches[0K[?25h ...[0K OK[0K[?25l
+* checking Rd \usage sections ...[0K[?25h WARNING[0K[?25l
+Undo[0K[?25hcumented arguments in documentation object 'mapperVertices'[0K[?25l
+  'pt_labels'[0K
+[0K
+Functions with \usage entries need to have the appropriate \alias[0K
+entries, and all their argumen[0K[?25hts documented.[0K[?25l
+The \usage entries must correspond to syntactically valid R code.[0K
+See chapter 'Writing R documentation files' in the 'Writing R[0K
+Extensions' manual.[0K
+[0K[?25h* checking Rd contents ...[0K O[0KK[0K[?25l
+* checking for unstated dependencies in examples ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking examples ...[0K ERROR[0K[?25l
+Running examples in 'SemiMapper[0K[?25h-Ex.R' failed[0K[?25l
+The error most likely o[0K[?25hccurred in:[0K[?25l
+[0K
+> ### Name: network_visualization[0K
+> ### Title: Generate graphs from results of Mapper[0K
+> ##[0K[?25h# Aliases: network_visualization[0K[?25l
+>[0K
+> ### ** Examples[0K
+>[0K
+> tp_data = chicken_generator(1)[0K
+> tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],[0K
++                                filter_values = filter_coordi[0K[?25hnate(tp_data[,-1], 2),[0K[?25l
++                                num_intervals = 10,[0K
++                                percent_overlap = 70)[0K
+Loading required package: NbClust[0K
+No number of cluters specified, use NbClust instead.[0K
+Error in as.data.frame.default(x[[i]], optional = TRUE) :[0K
+  cannot coerce class '"filter"' to a data.frame[0K
+Calls: mapper.kmeans ... data.frame -> as.data.frame -> as.data.frame.default[0K
+Execution halted[0K
+[0K[?25h* checking PDF version of manual ...[0K OK[0K[?25l
+[0K[?25h* DONE[0K[?25l
+[0K
+Status: 1 ERROR, 2 WARNINGs, 4 NOTEs[0K
+See[0K
+  'H:/Projects/Mapper_Visualization/Package/SemiMapper.Rcheck/00check.log'[0K
+for details.[0K
+[0K
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package>[0K[?25hR CMD check SemiMapper[0K[?25lH:\Projects\Mapper_Visualization\Package>R CMD build SemiMapper[0K[?25h]0;Administrator:   - R  CMD build SemiMapper[?25l
+[0K[?25h* checking for file 'SemiMapper/DESCRIPTION' ... OK[0K[?25l
+[0K[?25h* preparing 'SemiMapper':[0K[?25l
+* checking DESCRIPTION meta-information ... OK[0K
+[0K[?25h* checking for LF line-endings in source and make files and shell scripts[0K[?25l
+* checking for empty or unneeded directories[0K
+[0K[?25h* building 'SemiMapper_0.2.tar.gz'[0K[?25l
+[0K[?25h[?25l
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package>[0K[?25hR CMD build SemiMapper[0K]0;Administrator:   - R  CMD build SemiMapper[?25l
+[0K[?25h* checking for file 'SemiMapper/DESCRIPTION' ... OK[0K[?25l
+[0K[?25h* preparing 'SemiM[0Kapper':[0K[?25l
+* checking DESCRIPTION meta-information ... OK[0K
+[0K[?25h* checking for LF line-endings in source and make files and shell scripts[0K[?25l
+* checking for empty or unneeded directories[0K
+[0K[?25h* building 'SemiMapper_0.2.tar[0K.gz'[0K[?25l
+[0K[?25h[?25l
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package>R CMD check SemiMapper[0K[?25h]0;Administrator:   - R  CMD check SemiMapper[?25l
+[0K[?25h* using log directory 'H:/Projects/Mapper_Visualization/Package/SemiMapper.Rcheck'[0K[?25l
+* using[0K[?25h R version 3.5.1 (2018-07-02)[0K[?25l
+* using platform: x86_64-w64-mingw32 (64-bit)[0K
+* using session charset: ISO8859-1[0K
+[0K[?25h* checking for file 'SemiMapper/DESCRIPTION' ... OK[0K[?25l
+[0K[?25h* checking extension type ... Package[0K[?25l
+* this is package 'SemiMapper' version '0.2'[0K
+* package encoding: UTF-8[0K
+* checking package namespace information ...[0K[?25h OK[0K[?25l
+* checking package dependencies ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking if this is a source package ...[0K OK[0K[?25l
+* checking if there is a namespace ... OK[0K
+[0K[?25h* checking for .dll and .exe files ...[0K[40G[?25l* checking for .dll and .exe files ... OK[0K
+* checking for hidden files and directories ...[0K[?25h NOTE[0K[?25l
+F[0K[?25hound the following hidden files and directories:[0K[?25l
+  .Rhistory[0K
+  .Rproj.user[0K
+  .git[0K
+These were most likely included in error. See section 'Package[0K
+structure' in the 'Writing R Extensions' manual.[0K
+* checking for portable file names ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking whether package 'SemiMapper' can be installed ...[0K OK[0K[?25l
+[0K[?25h* checking package directory ...[0K OK[0K[?25l
+* checking DESCRIPTION meta-information ...[0K[?25h NOTE[0K[?25l
+[0K[?25hChecking should be performed on sources prepared by 'R CMD build'.[0K[?25l
+* checking top-level files ... NOTE[0K
+[0K[?25hFile[0K[?25l
+  LICENSE[0K
+is not mentioned in the DESCRIPTION file.[0K
+* checking for left-over files ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking index information ... OK[0K[?25l
+* checking package subdirectories ...[0K[?25h OK[0K[?25l
+* checki[0K[?25hng R files for non-ASCII characters ...[0K OK[0K[?25l
+[0K[?25h* checking R files for syntax errors ...[0K OK[0K[?25l
+[0K[?25h* checking whether the package can be loaded ...[0K OK[0K[?25l
+* checking whether the package can be loaded with stated dependencies ...[0K[?25h OK[0K[?25l
+* checking whether the package can be unloaded cleanly ...[0K[?25h OK[0K[?25l
+* checking whether the namespace can be loaded with stated dependencies ...[0K[?25h OK[0K[?25l
+* checking whether the namespace can be unload[0K[?25hed cleanly ...[0K OK[0K[?25l
+* checking loading without being on the library search path ...[0K[?25h OK[0K[?25l
+* checking dependencies in R code ...[0K[?25h WARNING[0K[?25l
+[0K[?25h'::' or ':::' import not declared from: 'sparkline'[0K[?25l
+'library' or 'require' calls not declared from:[0K
+  'MASS' 'NbClust' 'RColorBrewer' 'entropy' 'igraph' 'rARPACK' 'rPref'[0K
+  'survival' 'visNetwork'[0K
+'library' or 'require' calls in package code:[0K
+  'MASS' 'NbClust' 'RColorBrewer' 'entropy' 'igraph' 'rARPACK' 'rPref'[0K
+  'survival' 'visNetwork'[0K
+  Please use :: or requireNamespace() instead.[0K
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.[0K
+Namespaces in Imports field not imported from:[0K
+  'MASS' 'NbClust' 'RColorBrewe[0K[?25hr' 'dplyr' 'entropy' 'igraph' 'rARPACK'[0K[?25l
+  'rPref' 'survival' 'visNetwork'[0K
+  All declared Imports should be used.[0K
+* checking S3 generic/method consistency ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking replacement functions ...[0K OK[0K[?25l
+* checking foreign function calls ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking R code for possible problems ...[0K NOTE[0K[?25l
+auto_set_colorcode: no visible global function definition for[0K
+  'brewer.pal'[0K
+[0K[?25hauto_set_colorcode: no visible global function definition for[0K[?25l
+  'colorRampPalette'[0K
+chicken_generator: no visible global function definition for 'mvrnorm'[0K
+color_map_Spectral: no visible global function definition for[0K
+  'colorRamp'[0K
+color_map_Spectral: no visible global function definition for[0K
+  'brewer.pal'[0K
+color_map_Spectral: no visible global function definition for 'rgb'[0K
+filter_pca: no visible global function definition for 'cov'[0K
+filter_pca: no visible global function definition for 'eigs_sym'[0K
+filter_ref: no visible binding for global vari[0K[?25hable 'median'[0K[?25l
+mapper.kmeans: no visible global function definition for 'pdf'[0K
+mapper.kmeans: no visible global function definition for[0K
+  'capture.output'[0K
+mapper.kmeans: no visible global function definition for 'NbClust'[0K
+mapper.kmeans: no visible global function definition for 'dev.off'[0K
+mapper.kmeans: no visible global function definition for 'kmeans'[0K
+mapper_shannon_index: no visible[0K[34G[?25h[?25lmapper_shannon_index: no visible global function definition for[0K
+  'entropy.empirical'[0K
+network_visualization: no visible global function definition for '%>%'[0K
+network_visualization: no visible global function definition for[0K
+  'visNetwork'[0K
+network_visualization: no visible global function definition for[0K
+  'visInteraction'[0K
+network_visualization: no visible gl[0K[?25hobal function definition for[0K[?25l
+  'visOptions'[0K
+network_visualization: no visible global function definition for[0K
+  'visLegend'[0K
+network_visualization: no visible global function definition for[0K
+  'visSave'[0K
+pareto_opt: no visible global function definition for 'low_'[0K
+pareto_opt: no visible global function definition for 'psel'[0K
+read_color_code: no visible global function definition for[0K[?25h 'read.table'[0K[?25l
+savepdf: no visible global function definition for 'png'[0K
+savepdf: no visible global function definition for 'par'[0K
+simple_visNet: no visible global function definition for '%>%'[0K
+simple_visNet: no visible global function definition for 'visNetwork'[0K
+simple_visNet: no visible global function definition for[0K
+  'visInteraction'[0K
+simple_visNet: no visible global function definition for 'visOptions'[0K
+simple_visNet: no visible global functio[0K[?25hn definition for 'visSave'[0K[?25l
+spread_measure: no visible global function definition for[0K
+  'graph_from_adjacency_matrix'[0K
+spread_measure: no visible global function definition for 'components'[0K
+spread_measure: no visible global function definition for 'distances'[0K
+stat_summery: no visible global function definition for 'pie'[0K
+stat_summery: no visible global function de[0K[?25hfinition for 'dev.off'[0K[?25l
+stat_summery: no visible global function definition for 'median'[0K
+Undefined global functions or variables:[0K
+  %>% NbClust brewer.pal capture.output colorRamp colorRampPalette[0K
+  components cov dev.off distances eigs_sym entropy.empirical[0K
+  graph_from_adjacency_matrix kmeans low_ median mvrnorm par pdf pie[0K
+  png psel read.table rgb visInteraction visLegend visNetwork[0K
+  visOptions visSave[0K
+Consider adding[0K
+  importFrom("grDevices", "colorRamp", "colorRampPalette", "dev.off",[0K
+[0K[13G[?25h[?25l             "pdf", "png", "rgb")[0K
+  importFrom("graphics", "par", "pie")[0K
+  importFrom("stats", "cov", "kmeans", "median")[0K
+  importFrom("utils", "capture.output", "read.table")[0K
+to your NAMESPACE file.[0K
+[0K[?25h* checking Rd files ...[0K OK[0K[?25l
+*[0K[3G[?25h[?25l* checking Rd metadata ...[0K[?25h OK[0K[?25l
+* checking Rd cross-references ...[0K[?25h OK[0K[?25l
+* checking for missing documentation entries ...[0K[?25h OK[0K[?25l
+[0K[?25h* checking for code/documentation mismatches ...[0K OK[0K[?25l
+[0K[?25h* checking Rd \usage sections ...[0K WARNING[0K[?25l
+[0K[?25hUndocumented arguments in documentation object 'mapperVertices'[0K[?25l
+  'pt_labels'[0K
+[0K
+Functions with \usage entries need to have the appropriate \alias[0K
+entries, and all their arguments documented.[0K
+The \usage entries must correspond[0K[36G[?25h[?25lThe \usage entries must correspond to syntactically valid R code.[0K
+See chapter 'Writing R documentation files' in the 'Writing R[0K
+Extensions' manual.[0K
+[0K[?25h* checking Rd contents ..[0K.[0K OK[0K[?25l
+[0K[?25h* checking for unstated dependencies in examples ...[0K OK[0K[?25l
+[0K[?25h* checking examples ...[0K OK[0K[?25l
+[0K[?25h* checking PDF version of manual ...[0K OK[0K[?25l
+[0K[?25h* DONE[0K[?25l
+[0K[?25h[?25l
+Status: 2 WARNINGs, 4 NOTEs[0K
+See[0K
+  'H:/Projects/Mapper_Visualization/Package/SemiMapper.Rcheck/00check.log'[0K
+for details.[0K
+[0K
+[0K
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package>[0K[?25hc[0Kd[0K[45G[?25lH:\Projects\Mapper_Visualization\Package>cd S[0K[?25hm[0Ki[0K[?25lH:\Projects\Mapper_Visualization\Package>cd Sm[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package>cd S[0K[?25ha[0Km[0Ki[0KM[0Ka[0Kp[0Kp[0Ke[0Kr[0K[?25l
+The system cannot find the path specified.[0K
+[0K
+H:\Projects\Mapper_Visualization\Package>[0K[?25hcd SamiMapper[0K[54G[53G[52G[51G[50G[49G[48G[47G[?25lH:\Projects\Mapper_Visualization\Package>cd SmiMapper[0K[46G[?25h[?25lH:\Projects\Mapper_Visualization\Package>cd SemiMapper[0K[47G[?25h[?25l
+[0K
+H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[57G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git a[0K[?25hd[0Kd[0K.[0K[62G[61G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add[0K[?25h[61G[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h]0;Administrator:   - git  add .[?25l
+[0K[?25h

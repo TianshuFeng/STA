@@ -141,6 +141,7 @@ mapper.kmeans <- function(dat, filter_values, num_intervals, percent_overlap, di
   if(n_class == 0){
     cat("No number of cluters specified, use NbClust instead. \n")}
 
+  class(filter_values) = "numeric"
   filter_values <- data.frame(filter_values)
   num_points <- dim(filter_values)[1] # number of rows = number of observations
   filter_output_dim <- dim(filter_values)[2] # number of columns = number of variables = length(num_intervals)
