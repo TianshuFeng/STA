@@ -18,9 +18,13 @@ Imports:
     RColorBrewer,
     rARPACK,
     rPref,
+    sparkline,
     survival,
     visNetwork
 Suggests:
   TDAmapper,
-  ggplot2
+  ggplot2,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.1.0
+VignetteBuilder: knitr

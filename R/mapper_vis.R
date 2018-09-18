@@ -25,11 +25,11 @@ auto_set_colorcode = function(groups, palette = "Set1"){
 
   num_groups = length(unique(groups))
   if (num_groups <10) {
-    color_code = data.frame(Study.Abbreviation = unique(groups),
+    color_code = data.frame(Abbrev = unique(groups),
                             Hex.Colors = brewer.pal(num_groups, palette),
                             stringsAsFactors = FALSE)
   } else {
-    color_code = data.frame(Study.Abbreviation = unique(groups),
+    color_code = data.frame(Abbrev = unique(groups),
                             Hex.Colors = colorRampPalette(brewer.pal(9, palette))(num_groups),
                             stringsAsFactors = FALSE)
   }
@@ -74,7 +74,7 @@ read_color_code = function(file, header = FALSE, sep = "\t") {
     stop("Invalid hex color code")
   }
 
-  colnames(color_code) = c("Study.Abbreviation", "Hex.Colors")
+  colnames(color_code) = c("Abbrev", "Hex.Colors")
   color_code[,2] = toupper(color_code[,2])
   return(color_code)
 }
@@ -84,8 +84,8 @@ read_color_code = function(file, header = FALSE, sep = "\t") {
 #'
 #' \code{check_color_code} check the validation of a color code dataframe
 #'
-#' A valid color code dataframe contains two columns: \code{Study.Abbreviation}
-#' and \code{Hex.Colors}. The column \code{Study.Abbreviation} contains names of
+#' A valid color code dataframe contains two columns: \code{Abbrev}
+#' and \code{Hex.Colors}. The column \code{Abbrev} contains names of
 #' groups that should match the names of groups in the data. The column
 #' \code{Hex.Colors} contains self defined colors of groups where colors should
 #' be defined as Hex color codes. A tool for picking up colors can be found
@@ -100,8 +100,27 @@ read_color_code = function(file, header = FALSE, sep = "\t") {
 #' check_color_code(temp)
 #'
 check_color_code = function(color_code) {
-  return(colnames(color_code)[1] == "Study.Abbreviation" &
-           colnames(color_code)[2] == "Hex.Colors" &
+
+  if(!is.data.frame(color_code)) {
+    warning("color_code should be data frame.")
+    return(FALSE)
+  }
+
+  if(!(colnames(color_code)[1] == "Abbrev" &
+       colnames(color_code)[2] == "Hex.Colors")) {
+    warning("Invalid column names in color_code")
+    return(FALSE)
+  }
+
+  if(!all(nchar(color_code[,2]) == 7 &
+         substr(color_code[,2],
+                start = 1, stop = 1) == "#")) {
+    stop("Invalid hex color code.")
+    return(FALSE)
+  }
+
+  return((colnames(color_code)[1] == "Abbrev" &
+            colnames(color_code)[2] == "Hex.Colors") &
            all(nchar(color_code[,2]) == 7 &
                  substr(color_code[,2],
                         start = 1, stop = 1) == "#"))
@@ -126,8 +145,8 @@ color_map = function(samples_group, color_code) {
 
   # Accept a list of acronym and return the corresponding color codes
   samples_group = data.frame(id = 1:length(samples_group),
-                             Study.Abbreviation = samples_group)
-  res = merge(samples_group, color_code, by = "Study.Abbreviation",
+                             Abbrev = samples_group)
+  res = merge(samples_group, color_code, by = "Abbrev",
               all = FALSE, sort = FALSE)
 
   return(res$Hex.Colors[order(res$id)])
@@ -320,7 +339,7 @@ legend_node = function(stats_sum=NULL, color_code){
   #  stats_sum: results from stat_summery
   #group_list = unique(stats_sum$dominant_group)
 
-  legend_res = data.frame(label = color_code$Study.Abbreviation,
+  legend_res = data.frame(label = color_code$Abbrev,
                           color = color_code$Hex.Colors,  # color_map(group_list),
                           shape = 'dot', size = 22, font.size = 16)
   return(legend_res)

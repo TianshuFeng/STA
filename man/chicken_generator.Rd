@@ -10,8 +10,8 @@ chicken_generator(seed = 1)
 \item{seed}{A scaler determining the seed to be used.}
 }
 \value{
-A dataframe of the simulated data. The first three columns are the
-  coordinates of data points, and the forth column denote the groups of the
+A dataframe of the simulated data. The first column denotes the
+  groups of the points and the last three columns are the coordinates of data
   points.
 }
 \description{

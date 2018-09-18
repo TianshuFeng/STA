@@ -268,6 +268,14 @@ filter_name = function(filter_vec) {
   return(attr(filter_vec, "filter"))
 }
 
+#' Print filter function name
+#'
+#' @param x a filter object
+#'
+#' @return the name of the filter function producing the filter
+#' @export
+#'
+#' @seealso \code{\link{filter_pca}}
 print.filter = function(x) {
   cat("This is the filter vecter returned by the ",
       attributes(x)$filter, " filter function.\n", sep = "")

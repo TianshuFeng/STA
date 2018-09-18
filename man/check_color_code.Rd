@@ -13,8 +13,8 @@ check_color_code(color_code)
 \code{check_color_code} check the validation of a color code dataframe
 }
 \details{
-A valid color code dataframe contains two columns: \code{Study.Abbreviation}
-and \code{Hex.Colors}. The column \code{Study.Abbreviation} contains names of
+A valid color code dataframe contains two columns: \code{Abbrev}
+and \code{Hex.Colors}. The column \code{Abbrev} contains names of
 groups that should match the names of groups in the data. The column
 \code{Hex.Colors} contains self defined colors of groups where colors should
 be defined as Hex color codes. A tool for picking up colors can be found
