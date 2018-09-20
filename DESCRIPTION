@@ -1,7 +1,7 @@
 Package: SemiMapper
 Type: Package
 Title: Semi-supervised Mapper and Visualization
-Version: 0.2
+Version: 0.3
 Author: Tianshu Feng, Chen Wang
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)

@@ -80,9 +80,9 @@ filter_Linf = function(dist, ...) {
 #' @export
 #'
 #' @examples
-#' tp_data = chicken_generator(1)
-#' tp_dist = dist(tp_data[,-1])
-#' filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref=4)
+#' tp_data <- chicken_generator(1)
+#' tp_dist <- dist(tp_data[,-1])
+#' filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref = "Shank)
 #'
 filter_ref = function(dist, groups_ind,
                       ref, ...) {
@@ -95,9 +95,10 @@ filter_ref = function(dist, groups_ind,
   # Should keep the order of distance matrix the same as Metadat
   #colnames(dist) = Metadat[,id_var]
 
-  #diag(dist) = NA
-
   # Distance between samples and center samples
+
+  diag(dist) = NA
+
   dist_center = as.matrix(dist)[,which(groups_ind == ref)]
   rm(dist)
   # find the average distance

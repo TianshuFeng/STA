@@ -176,7 +176,7 @@ most_freq = function(vec){
 #'
 #' The users can also define and add customized statistics to this function. The
 #' customized statistics should be wraped into a vector of Javascript codes for
-#' each of the nodes and passed to \code{add_analysis_java} following the same
+#' each of the nodes and passed to \code{add_analysis_js} following the same
 #' order of nodes as in \code{obj_mapper}.
 #'
 #' @param obj_mapper An object of class \code{TDAmapper}.
@@ -188,7 +188,7 @@ most_freq = function(vec){
 #' @param folder The name of the folder to save the generated networks.
 #' @param add_surv_analysis A logical object. \code{TRUE} if median time at diagnosis
 #'   and median time to death should be included.
-#' @param add_analysis_java A vector of Javascript codes summerizing customized
+#' @param add_analysis_js A vector of Javascript codes summerizing customized
 #'   statistics.
 #' @param color_code A color code dataframe.
 #'
@@ -201,7 +201,7 @@ most_freq = function(vec){
 #' # See ?network_visualization
 #'
 stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
-                        add_surv_analysis = FALSE, add_analysis_java = NULL,
+                        add_surv_analysis = FALSE, add_analysis_js = NULL,
                         color_code) {
   # First get a dataframe where each column is a statistic. Then Turn them into
   # html.
@@ -285,7 +285,7 @@ stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
                      dominant_group = dominant_group, dominant_percent = percent,
                      median_diagnosis = median_diagnosis, median_death = median_death)
 
-    add_analysis_java = paste0('Median diagnosis age: <b>',
+    add_analysis_js = paste0('Median diagnosis age: <b>',
                                round(stats_sum$median_diagnosis, 1),
                                '</b><br>',
                                'Median death (days): <b>',
@@ -302,7 +302,7 @@ stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
     'Majority: <b>',
     stats_sum$dominant_group, ' (',stats_sum$dominant_percent,
     '%)</b><br>',
-    add_analysis_java,
+    add_analysis_js,
     # Mean : <b>1</b><br>
     # Variance : <b>0</b>',
     '<hr class = \"rPartvisNetwork\">
@@ -357,7 +357,7 @@ legend_node = function(stats_sum=NULL, color_code){
 #' accepts statistics summary from the \code{\link{stat_summery}} function and
 #' display them as tooltips. The tooltips can also be customized by the users by
 #' passing Javascript codes with additional summerise of nodes to the argument
-#' \code{add_analysis_java}.
+#' \code{add_analysis_js}.
 #'
 #' Nodes are colored with the colors associated with the dominated groups within
 #' each of the nodes. The colors of groups can either be defined by users or by
@@ -369,7 +369,7 @@ legend_node = function(stats_sum=NULL, color_code){
 #' @param obj_mapper An object of class \code{TDAmapper}.
 #' @param groups_ind A vector of group names each of the samples belongs to.
 #' @param folder The name of the folder to save the generated networks.
-#' @param dat,add_surv_analysis,add_analysis_java Arguments passed to
+#' @param dat,add_surv_analysis,add_analysis_js Arguments passed to
 #'   \code{\link{stat_summery}} for customizing statistics summary of nodes.
 #' @param palette A string giving the name of palette provided in
 #'   \code{\link[RColorBrewer:brewer.pal]{RColorBrewer}} to automatically assign
@@ -398,14 +398,14 @@ legend_node = function(stats_sum=NULL, color_code){
 #'
 #' # Add additional analysis to nodes
 #'
-#' add_analysis_java = paste0('Node Index:<b>',
+#' add_analysis_js = paste0('Node Index:<b>',
 #'                            1:length(tp_data_mapper$points_in_vertex),
 #'                            '</b><br>')
 #' network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
-#'                       folder = "Exp_network", add_analysis_java = add_analysis_java)
+#'                       folder = "Exp_network", add_analysis_js = add_analysis_js)
 #'
 network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = "",
-                                 add_surv_analysis = FALSE, add_analysis_java = NULL,
+                                 add_surv_analysis = FALSE, add_analysis_js = NULL,
                                  palette = "Set1", legend_ncol = 2,
                                  color_code = NULL){
   #  obj_mapper: the mapper object from TDAMapper
@@ -440,7 +440,7 @@ network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = ""
 
   stats_sum = stat_summery(obj_mapper, groups_ind, dat = dat, folder = folder,
                            add_surv_analysis = add_surv_analysis,
-                           add_analysis_java = add_analysis_java,
+                           add_analysis_js = add_analysis_js,
                            color_code = color_code)
 
   nodes <- data.frame(id = 1:nrow(MapperNodes), #label = MapperNodes$Nodename,
@@ -465,7 +465,15 @@ network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = ""
               width = 0.1, ncol = legend_ncol,
               position = "left")  %>% sparkline::spk_add_deps()%>%
     visSave(file = "network.html", background = "white")
-  file.rename(from = "network.html", to = file.path(folder, "network.html"))
+  save_logic = file.rename(from = "network.html", to = file.path(folder, "network.html"))
+
+  if(save_logic){
+    cat("The generated HTML file can be found in:\n",
+      file.path(folder, "network.html"), "\n")
+  } else {
+      warning("Cannot save file in the target folder,
+              please check the working directory.")
+    }
 }
 
 

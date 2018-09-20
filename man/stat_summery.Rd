@@ -5,7 +5,7 @@
 \title{Create statistics summary of nodes}
 \usage{
 stat_summery(obj_mapper, groups_ind, dat = NULL, folder = "",
-  add_surv_analysis = FALSE, add_analysis_java = NULL, color_code)
+  add_surv_analysis = FALSE, add_analysis_js = NULL, color_code)
 }
 \arguments{
 \item{obj_mapper}{An object of class \code{TDAmapper}.}
@@ -22,7 +22,7 @@ diagnosis and time to death at the time of observation.}
 \item{add_surv_analysis}{A logical object. \code{TRUE} if median time at diagnosis
 and median time to death should be included.}
 
-\item{add_analysis_java}{A vector of Javascript codes summerizing customized
+\item{add_analysis_js}{A vector of Javascript codes summerizing customized
 statistics.}
 
 \item{color_code}{A color code dataframe.}
@@ -49,7 +49,7 @@ statistics including median time at diagnosis and median time to death.
 
 The users can also define and add customized statistics to this function. The
 customized statistics should be wraped into a vector of Javascript codes for
-each of the nodes and passed to \code{add_analysis_java} following the same
+each of the nodes and passed to \code{add_analysis_js} following the same
 order of nodes as in \code{obj_mapper}.
 }
 \examples{

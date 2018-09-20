@@ -34,8 +34,6 @@ mapper_shannon_index = function(obj_mapper, group_ind) {
 
   require(entropy)
 
-  obj_mapper = null_remover(obj_mapper)
-
   shannon_indices = NULL
   for(i in obj_mapper$points_in_vertex){
     gp = group_ind[i]
@@ -44,11 +42,18 @@ mapper_shannon_index = function(obj_mapper, group_ind) {
   }
 
   colnames(shannon_indices) = c("Index", "Weight")
-  return(list(avg_index = sum(shannon_indices[,1] * shannon_indices[,2])/sum(shannon_indices[,2]),
-              index_per_node = shannon_indices))
+
+  res = list(avg_index = sum(shannon_indices[,1] * shannon_indices[,2])/sum(shannon_indices[,2]),
+             index_per_node = shannon_indices)
+  class(res) <- "shannon_index"
+  return(res)
 }
 
 
+#' @export
+print.shannon_index = function(x) {
+  cat("The weighted average of shannon indices is", signif(x$avg_index, 4), "\n")
+}
 
 #' Spread measure function
 #'
@@ -160,7 +165,8 @@ spread_measure = function(obj_mapper, group_ind) {
 #'                       color = factor(.level),
 #'                       label = Filter)) +
 #'   geom_point(size = 3) +
-#'   geom_line(aes(group = .level), data = res[res$.level=="Frontier",], size = 2) +
+#'   geom_step(aes(group = .level), data = res[res$.level=="Frontier",],
+#'             direction = "vh", size = 2) +
 #'   geom_label(aes(fill = factor(.level)), colour = "white", fontface = "bold") +
 #'   labs(fill='') + labs(color='') + xlab("Shannon index") + ylab("Spread measure")
 #' gp
@@ -190,6 +196,14 @@ pareto_opt = function(res_filter, ...) {
   return(res)
 }
 
+#' Print Pareto frontier
+#'
+#' @param res The Pareto_frontier object
+#'
+#' @return Summary of the Pareto_frontier object
+#' @export
+#'
+#' @seealso \code{\link{pareto_opt}}
 print.Pareto_frontier = function(res) {
   cat("Filter functions in the Pareto frontier:\n\t", paste(res$Filter, collapse = ", "), "\n")
   cat("\nEvaluation results of filter functions in the Pareto frontier:\n")
@@ -198,12 +212,15 @@ print.Pareto_frontier = function(res) {
 }
 
 
+
 #' Evaluate filter functions
 #'
 #' \code{filter_evaluate} evaluates filter function with provided filter
 #' vectors.
 #'
-#' @param ... Filter vectors.
+#' @param ... Filter objects. The classes of the objects should be \code{filter}
+#'   and include an attribute \code{filter} which is the name of the
+#'   corresponding filter function.
 #' @inheritParams mapper.kmeans
 #' @param arg_mapper A list for additional arguments for
 #'   \code{\link{mapper.kmeans}}.
@@ -211,8 +228,8 @@ print.Pareto_frontier = function(res) {
 #'
 #' @return A data.frame of Shannon indices and spread measures under given
 #'   filter functions. The first column contents names of filter functions, and
-#'   the second and third columns are the shannon indices and spread
-#'   measures, respectively.
+#'   the second and third columns are the shannon indices and spread measures,
+#'   respectively.
 #' @export
 #'
 #' @examples
@@ -245,6 +262,10 @@ filter_evaluate = function(..., dat, group_ind, num_intervals, percent_overlap,
   arg_mapper$percent_overlap = percent_overlap
 
   for(ff in filter_list) {
+    if(class(ff) != "filter") {
+      stop("filter_evaluate can only accept 'filter' object.")
+    }
+
     tp_filter = attributes(ff)$filter
     class(ff) = "numeric"
 

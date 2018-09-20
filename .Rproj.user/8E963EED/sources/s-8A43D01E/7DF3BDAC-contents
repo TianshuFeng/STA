@@ -60,7 +60,7 @@ The colors will be determined by built-in function `color_map_Spectral()` based 
 Alternatively, we can specify the colors of groups. This package provides several tools to help the users define colors for the groups. `auto_set_colorcode` is able to automatically generate color codes based on given palette. `read_color_code` can read color codes from local files and turn them into appropriate format, and `check_color_code` checks the validity of provided color code data frame. 
 
 We demostrate these tools with the following codes:
-```{r}
+```{r eval=FALSE}
 simu_color <- auto_set_colorcode(simu_data$Group, palette = "Set1")
 check_color_code(simu_color)
 simple_visNet(simu_data_mapper, color_filter = FALSE, 

@@ -194,7 +194,12 @@ chicken_generator = function(seed = 1) {
 
   dd$X = dd$X/max(dd$X + 0.01)
   dd$Y = dd$Y/max(dd$Y + 0.01)
-  dd$Z = dd$Z/max(dd$Z + 0.01)/5
+  # dd$Z = dd$Z/max(dd$Z + 0.01)/5
+
+  dd$Group[dd$Group == 1] = "Toe 1"
+  dd$Group[dd$Group == 2] = "Toe 2"
+  dd$Group[dd$Group == 3] = "Toe 3"
+  dd$Group[dd$Group == 4] = "Shank"
 
   return(dd)
 }

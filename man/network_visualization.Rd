@@ -5,7 +5,7 @@
 \title{Generate graphs from results of Mapper}
 \usage{
 network_visualization(obj_mapper, groups_ind, dat = NULL, folder = "",
-  add_surv_analysis = FALSE, add_analysis_java = NULL,
+  add_surv_analysis = FALSE, add_analysis_js = NULL,
   palette = "Set1", legend_ncol = 2, color_code = NULL)
 }
 \arguments{
@@ -13,7 +13,7 @@ network_visualization(obj_mapper, groups_ind, dat = NULL, folder = "",
 
 \item{groups_ind}{A vector of group names each of the samples belongs to.}
 
-\item{dat, add_surv_analysis, add_analysis_java}{Arguments passed to
+\item{dat, add_surv_analysis, add_analysis_js}{Arguments passed to
 \code{\link{stat_summery}} for customizing statistics summary of nodes.}
 
 \item{folder}{The name of the folder to save the generated networks.}
@@ -44,7 +44,7 @@ provided Mapper object with Javascript tools from \code{visNetwork}. It
 accepts statistics summary from the \code{\link{stat_summery}} function and
 display them as tooltips. The tooltips can also be customized by the users by
 passing Javascript codes with additional summerise of nodes to the argument
-\code{add_analysis_java}.
+\code{add_analysis_js}.
 
 Nodes are colored with the colors associated with the dominated groups within
 each of the nodes. The colors of groups can either be defined by users or by
@@ -64,10 +64,10 @@ network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[
 
 # Add additional analysis to nodes
 
-add_analysis_java = paste0('Node Index:<b>',
+add_analysis_js = paste0('Node Index:<b>',
                            1:length(tp_data_mapper$points_in_vertex),
                            '</b><br>')
 network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
-                      folder = "Exp_network", add_analysis_java = add_analysis_java)
+                      folder = "Exp_network", add_analysis_js = add_analysis_js)
 
 }

@@ -41,7 +41,8 @@ gp <- ggplot(res, aes(x = weighted_shannon, y = spread_index,
                       color = factor(.level),
                       label = Filter)) +
   geom_point(size = 3) +
-  geom_line(aes(group = .level), data = res[res$.level=="Frontier",], size = 2) +
+  geom_step(aes(group = .level), data = res[res$.level=="Frontier",],
+            direction = "vh", size = 2) +
   geom_label(aes(fill = factor(.level)), colour = "white", fontface = "bold") +
   labs(fill='') + labs(color='') + xlab("Shannon index") + ylab("Spread measure")
 gp

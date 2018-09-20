@@ -8,7 +8,9 @@ filter_evaluate(..., dat, group_ind, num_intervals, percent_overlap,
   arg_mapper = list())
 }
 \arguments{
-\item{...}{Filter vectors.}
+\item{...}{Filter objects. The classes of the objects should be \code{filter}
+and include an attribute \code{filter} which is the name of the
+corresponding filter function.}
 
 \item{dat}{Matrix or dataset where rows are data points and columns are
 predictive variables.}
@@ -25,8 +27,8 @@ predictive variables.}
 \value{
 A data.frame of Shannon indices and spread measures under given
   filter functions. The first column contents names of filter functions, and
-  the second and third columns are the shannon indices and spread
-  measures, respectively.
+  the second and third columns are the shannon indices and spread measures,
+  respectively.
 }
 \description{
 \code{filter_evaluate} evaluates filter function with provided filter

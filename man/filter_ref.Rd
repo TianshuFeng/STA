@@ -25,9 +25,3 @@ A matrix object of filter values.
 Reference distance filter function is defined as \eqn{f(x_i;y,g) =
 1-\textrm{median}_{y_j=g} d(x_i,x_j)}, where
 }
-\examples{
-tp_data = chicken_generator(1)
-tp_dist = dist(tp_data[,-1])
-filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref=4)
-
-}
