@@ -3945,4 +3945,107 @@ for details.[0K
 H:\Projects\Mapper_Visualization\Package>[0K[?25hc[0Kd[0K[45G[?25lH:\Projects\Mapper_Visualization\Package>cd S[0K[?25he[0Km[0Ki[0KM[0Ka[0Kp[0Kp[0Ke[0Kr[0K]0;Administrator:   - cd  SemiMapper[?25l
 [0K[?25h]0;Administrator:  [?25l
 H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0K[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hcd SemiMapper[0K[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD check SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD check SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd ..[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m ""[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h]0;Administrator:   - git  add .[?25l
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/persistent-state.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/155AE42F.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/37B90F58.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/3B88766.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/3FDAFC36.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/74E90DB9.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/9E4887A1.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/A0825FBA.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/prop/A353401C.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/3711ACAA.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/A033B5B0.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/A033B5B0-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/A9B8CC1D.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/A9B8CC1D-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/C02F3436.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/C02F3436-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/C67A6757.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/C67A6757-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/FDD47C0C.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/FDD47C0C-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/BD68B701.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/BD68B701-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/CDEBBF59.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/8E963EED/sources/s-8A43D01E/CDEBBF59-contents.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD check SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd ..[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push origin master[0K[76G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "update manual and help doc"[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "update manual and help doc"[0K[?25h[94G]0;Administrator:   - git  commit -m "update manual and help doc"[?25l
+[0K[?25h]0;Administrator:  [master 368dae2] update manual and help doc[0K[?25l
+ Committer: Feng <feng.tianshu@mayo.edu>[0K
+Your name and email address were configured automatically based[0K
+on your username and hostname. Please check that they are accurate.[0K
+You can suppress this message by setting them explicitly. Run the[0K
+following command and follow the instructions in your editor to edit[0K
+your configuration file:[0K
+[0K
+    git config --global --edit[0K
+[0K
+After doing this, you may fix the identity used for this commit with:[0K
+[0K
+    git commit --amend --reset-author[0K
+[0K
+ 71 files changed, 4541 insertions(+), 127 deletions(-)[0K
+ create mode 100644 .Rproj.user/8E963EED/sources/s-8A43D01E/BD68B701[0K
+ create mode 100644 .Rproj.user/8E963EED/sources/s-8A43D01E/BD68B701-contents[0K
+ rename .Rproj.user/8E963EED/sources/s-8A43D01E/{60B66FFA => C02F3436} (53%)[0K
+ rename .Rproj.user/8E963EED/sources/s-8A43D01E/{7DF3BDAC => CDEBBF59} (65%)[0K
+ create mode 100644 .Rproj.user/8E963EED/sources/s-8A43D01E/CDEBBF59-contents[0K
+ create mode 100644 Exp_network/figures/pie_1.png[0K
+ create mode 100644 Exp_network/figures/pie_10.png[0K
+ create mode 100644 Exp_network/figures/pie_11.png[0K
+ create mode 100644 Exp_network/figures/pie_12.png[0K
+ create mode 100644 Exp_network/figures/pie_13.png[0K
+ create mode 100644 Exp_network/figures/pie_14.png[0K
+ create mode 100644 Exp_network/figures/pie_15.png[0K
+ create mode 100644 Exp_network/figures/pie_16.png[0K
+ create mode 100644 Exp_network/figures/pie_17.png[0K
+ create mode 100644 Exp_network/figures/pie_18.png[0K
+ create mode 100644 Exp_network/figures/pie_19.png[0K
+ create mode 100644 Exp_network/figures/pie_2.png[0K
+ create mode 100644 Exp_network/figures/pie_20.png[0K
+ create mode 100644 Exp_network/figures/pie_21.png[0K
+ create mode 100644 Exp_network/figures/pie_22.png[0K
+ create mode 100644 Exp_network/figures/pie_23.png[0K
+ create mode 100644 Exp_network/figures/pie_24.png[0K
+ create mode 100644 Exp_network/figures/pie_25.png[0K
+ create mode 100644 Exp_network/figures/pie_26.png[0K
+ create mode 100644 Exp_network/figures/pie_27.png[0K
+ create mode 100644 Exp_network/figures/pie_28.png[0K
+ create mode 100644 Exp_network/figures/pie_29.png[0K
+ create mode 100644 Exp_network/figures/pie_3.png[0K
+ create mode 100644 Exp_network/figures/pie_4.png[0K
+ create mode 100644 Exp_network/figures/pie_5.png[0K
+ create mode 100644 Exp_network/figures/pie_6.png[0K
+ create mode 100644 Exp_network/figures/pie_7.png[0K
+ create mode 100644 Exp_network/figures/pie_8.png[0K
+ create mode 100644 Exp_network/figures/pie_9.png[0K
+ create mode 100644 Exp_network/network.html[0K
+ create mode 100644 man/print.Pareto_frontier.Rd[0K
+[0K
+H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit commit -m "update manual and help doc"[0K[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h]0;Administrator:   - git  add .[?25l
 [0K[?25h
