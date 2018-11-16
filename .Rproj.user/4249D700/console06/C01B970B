@@ -1,0 +1,141 @@
+[0mMicrosoft Windows [Version 10.0.17134.407][0K[?25l
+(c) 2018 Microsoft Corporation. All rights reserved.[0K
+[0K
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit[0K]0;  - git[?25l
+[0K[?25h]0; usage: git [--version] [--help] [-C <path>] [-c <name>=<value>][0K[?25l
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path][0K
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare][0K
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>][0K
+           <command> [<args>][0K
+[0K
+These are common Git commands used in various situations:[0K
+[0K
+start a working area (see also: git help tutorial)[0K
+   clone      Clone a repository into a new directory[0K
+   init       Create an empty Git repository or reinitialize an existing one[0K
+[0K
+work on the current change (see also: git help everyday)[0K
+   add        Add file contents to the index[0K
+   mv         Move or rename a file, a directory, or a symlink[0K
+   reset      Reset current HEAD to the specified state[0K
+   rm         Remove files from the working tree and from the index[0K
+[0K
+examine the history and state (see also: git help revisions)[0K
+   bisect     Use binary search to find the commit that introduced a bug[0K
+   grep       Print lines matching a pattern[0K
+   log        Show commit logs[0K
+   show       Show various types of objects[0K
+   status     Show the working tree status[0K
+[0K
+grow, mark and tweak your common history[0K
+   branch     List, create, or delete branches[0K
+   checkout   Switch branches or restore working tree files[0K
+   commit     Record changes to the repository[0K
+   diff       Show changes between commits, commit and working tree, etc[0K
+   merge      Join two or more development histories together[0K
+   rebase     Reapply commits on top of another base tip[0K
+   tag        Create, list, delete or verify a tag object signed with GPG[0K
+[0K
+collaborate (see also: git help workflows)[0K
+   fetch      Download objects and refs from another repository[0K
+   pull       Fetch from and integrate with another repository or a local branch[0K
+   push       Update remote refs along with associated objects[0K
+[0K
+'git help -a' and 'git help -g' list available subcommands and some[0K
+concept guides. See 'git help <command>' or 'git help <concept>'[0K
+to read about a specific subcommand or concept.[0K
+[0K
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[84G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K[?25l
+[0K[?25h]0;  - git  status]0; On branch master[0K[?25l
+Your branch is up to date with 'origin/master'.[0K
+[0K
+Changes not staged for commit:[0K
+  (use "git add/rm <file>..." to update what will be committed)[0K
+  (use "git checkout -- <file>..." to discard changes in working directory)[0K
+[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/console06/78F8AA7E[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/prop/155AE42F[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/prop/37B90F58[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/prop/3B88766[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/prop/9E4887A1[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/A9B8CC1D[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/A9B8CC1D-contents[0m[0K
+        [0;31mdeleted:    .Rproj.user/8E963EED/sources/s-8A43D01E/BD68B701[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/C67A6757[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/CDEBBF59[0m[0K
+        [0;31mdeleted:    .Rproj.user/8E963EED/sources/s-8A43D01E/F10EAC51-contents[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/FDD47C0C[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/8E963EED8A43D01E/chunks.json[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/8E963EEDDF83F89F/chunks.json[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/s/cfl4l9nr59pil/000002.csv[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/s/chunks.json[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/s/ckyjxr3saauq3/000002.csv[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/s/cm3qh5thot2wi/000006.csv[0m[0K
+        [0;31mmodified:   .Rproj.user/shared/notebooks/paths[0m[0K
+        [0;31mmodified:   R/evaluation.R[0m[0K
+        [0;31mdeleted:    vignettes/network.html[0m[0K
+[0K
+Untracked files:[0K
+  (use "git add <file>..." to include in what will be committed)[0K
+[0K
+        [0;31m.Rproj.user/4249D700/[0m[0K
+[0K
+no changes added to commit (use "git add" and/or "git commit -a")[0K
+[0K
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[84G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git p[0K[?25hu[0Kl[0Kl[0K[89G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git pull o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K]0;  - git  pull origin[?25l
+[0K[?25hThe authenticity of host 'github.com (192.30.255.113)' can't be established.[0K[?25l
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.[0K
+Are you sure you want to continue connecting (yes/no)?[0K[56G[?25h[?25lAre you sure you want to continue connecting (yes/no)? y[0K[?25he[0Ks[0K[?25l
+Warning: Permanently added 'github.com,192.30.255.113' (RSA) to the list of known hosts.[0K
+[0K[?25hremote: Enumerating objects: 4, done.[0K[?25l
+remote: Counting objects: 100% (4/4), done.[0K
+remote: Compressing objects: 100% (3/3), done.[0K
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0[0K
+[0K[?25h[?25lUnpacking objects:  66% (2/3)[0K[1G[?25hUnpacking objects: 100% (3/3), done.[0K[?25l
+[0K[?25hFrom github.com:TianshuFeng/SemiMapper[0K[?25l
+   dffff7e..c37778a  master     -> origin/master[0K
+[0K[?25hUpdating dffff7e..c37778a[0K[?25l
+Fast-forward[0K
+[0K[?25h]0;  README.md | 10 [0;32m++++++++++[0m[0K[?25l
+ 1 file changed, 10 insertions(+)[0K
+ create mode 100644 README.md[0K
+[0K
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[84G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K[?25l
+[0K[?25h]0;  - git  statusOn branch master[0K[?25l
+Your branch is up to date with 'origin/master'.[0K
+[0K
+Changes not staged for commit:[0K
+  (use "git add/rm <file>..." to update what will be committed)[0K
+  (use "git checkout -- <file>..." to discard changes in working directory)[0K
+[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/console06/78F8AA7E[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/prop/155AE42F[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/prop/37B90F58[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/prop/3B88766[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/prop/9E4887A1[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/A9B8CC1D[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/A9B8CC1D-contents[0m[0K
+        [0;31mdeleted:    .Rproj.user/8E963EED/sources/s-8A43D01E/BD68B701[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/C67A6757[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/CDEBBF59[0m[0K
+        [0;31mdeleted:    .Rproj.user/8E963EED/sources/s-8A43D01E/F10EAC51-contents[0m[0K
+        [0;31mmodified:   .Rproj.user/8E963EED/sources/s-8A43D01E/FDD47C0C[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/8E963EED8A43D01E/chunks.json[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/8E963EEDDF83F89F/chunks.json[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/s/cfl4l9nr59pil/000002.csv[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/s/chunks.json[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/s/ckyjxr3saauq3/000002.csv[0m[0K
+        [0;31mdeleted:    .Rproj.user/shared/notebooks/7CB551-my-vignette/1/s/cm3qh5thot2wi/000006.csv[0m[0K
+        [0;31mmodified:   .Rproj.user/shared/notebooks/paths[0m[0K
+        [0;31mmodified:   R/evaluation.R[0m[0K
+        [0;31mdeleted:    vignettes/network.html[0m[0K
+[0K
+Untracked files:[0K
+  (use "git add <file>..." to include in what will be committed)[0K
+[0K
+        [0;31m.Rproj.user/4249D700/[0m[0K
+[0K
+no changes added to commit (use "git add" and/or "git commit -a")[0K
+[0K[?25h]0; [?25l
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25h

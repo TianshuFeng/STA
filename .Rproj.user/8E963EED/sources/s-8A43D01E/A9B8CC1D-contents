@@ -168,7 +168,8 @@ spread_measure = function(obj_mapper, group_ind) {
 #'   geom_step(aes(group = .level), data = res[res$.level=="Frontier",],
 #'             direction = "vh", size = 2) +
 #'   geom_label(aes(fill = factor(.level)), colour = "white", fontface = "bold") +
-#'   labs(fill='') + labs(color='') + xlab("Shannon index") + ylab("Spread measure")
+#'   labs(fill='') + labs(color='') + xlab("Shannon index") +
+#'   ylab("Spread measure")
 #' gp
 #' # The red line(s) is the Pareto frontier, and all the points on the top right
 #' # side of these line(s) are not potentially optimal.

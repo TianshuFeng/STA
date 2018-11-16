@@ -4048,4 +4048,63 @@ After doing this, you may fix the identity used for this commit with:[0K
  create mode 100644 man/print.Pareto_frontier.Rd[0K
 [0K
 H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit commit -m "update manual and help doc"[0K[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h]0;Administrator:   - git  add .[?25l
-[0K[?25h
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit add .[0K[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd ..[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "update manual and help doc"[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push origin master[0K[76G[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "update manual and help doc"[0K[?25h]0;Administrator:   - git  commit -m "update manual and help doc"[?25l
+[0K[?25h]0;Administrator:  [master dffff7e] update manual and help doc[0K[?25l
+ Committer: Feng <feng.tianshu@mayo.edu>[0K
+Your name and email address were configured automatically based[0K
+on your username and hostname. Please check that they are accurate.[0K
+You can suppress this message by setting them explicitly. Run the[0K
+following command and follow the instructions in your editor to edit[0K
+your configuration file:[0K
+[0K
+    git config --global --edit[0K
+[0K
+After doing this, you may fix the identity used for this commit with:[0K
+[0K
+    git commit --amend --reset-author[0K
+[0K
+ 31 files changed, 103 insertions(+), 24 deletions(-)[0K
+ delete mode 100644 Exp_network/figures/pie_1.png[0K
+ delete mode 100644 Exp_network/figures/pie_10.png[0K
+ delete mode 100644 Exp_network/figures/pie_11.png[0K
+ delete mode 100644 Exp_network/figures/pie_12.png[0K
+ delete mode 100644 Exp_network/figures/pie_13.png[0K
+ delete mode 100644 Exp_network/figures/pie_14.png[0K
+ delete mode 100644 Exp_network/figures/pie_15.png[0K
+ delete mode 100644 Exp_network/figures/pie_16.png[0K
+ delete mode 100644 Exp_network/figures/pie_17.png[0K
+ delete mode 100644 Exp_network/figures/pie_18.png[0K
+ delete mode 100644 Exp_network/figures/pie_19.png[0K
+ delete mode 100644 Exp_network/figures/pie_2.png[0K
+ delete mode 100644 Exp_network/figures/pie_20.png[0K
+ delete mode 100644 Exp_network/figures/pie_21.png[0K
+ delete mode 100644 Exp_network/figures/pie_22.png[0K
+ delete mode 100644 Exp_network/figures/pie_23.png[0K
+ delete mode 100644 Exp_network/figures/pie_24.png[0K
+ delete mode 100644 Exp_network/figures/pie_25.png[0K
+ delete mode 100644 Exp_network/figures/pie_26.png[0K
+ delete mode 100644 Exp_network/figures/pie_27.png[0K
+ delete mode 100644 Exp_network/figures/pie_28.png[0K
+ delete mode 100644 Exp_network/figures/pie_29.png[0K
+ delete mode 100644 Exp_network/figures/pie_3.png[0K
+ delete mode 100644 Exp_network/figures/pie_4.png[0K
+ delete mode 100644 Exp_network/figures/pie_5.png[0K
+ delete mode 100644 Exp_network/figures/pie_6.png[0K
+ delete mode 100644 Exp_network/figures/pie_7.png[0K
+ delete mode 100644 Exp_network/figures/pie_8.png[0K
+ delete mode 100644 Exp_network/figures/pie_9.png[0K
+ delete mode 100644 Exp_network/network.html[0K
+[0K
+H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit commit -m "update manual and help doc"[0K[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd ..[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd ..[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>R CMD build SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>cd SemiMapper[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "update manual and help doc"[0K[?25h[?25lH:\Projects\Mapper_Visualization\Package\SemiMapper>git push origin master[0K[76G[?25h[?25l
+[0K[?25h]0;Administrator:   - git  push origin master Enumerating objects: 117, done.[0K[?25l
+[0K[?25h[?25lCounting objects:   9% (11/117)[0K[1G[?25h[?25lCounting objects:  22% (26/117)[0K[1G[?25h[?25lCounting objects:  32% (38/117)[0K[1G[?25h[?25lCounting objects:  43% (51/117)[0K[1G[?25h[?25lCounting objects:  54% (64/117)[0K[1G[?25h[?25lCounting objects:  63% (74/117)[0K[1G[?25h[?25lCounting objects:  76% (89/117)[0K[1G[?25h[?25lCounting objects:  85% (100/117)[0K[1G[?25h[?25lCounting objects:  99% (116/117)[0K[1G[?25hCounting objects: 100% (117/117), done.[0K[?25l
+Delta compression using up to 4 threads.[0K
+Compressing objects:  23% (16/68)[0K[1G[?25h[?25lCompressing objects:  39% (27/68)[0K[1G[?25h[?25lCompressing objects:  63% (43/68)[0K[1G[?25h[?25lCompressing objects:  80% (55/68)[0K[1G[?25h[?25lCompressing objects:  98% (67/68)[0K[1G[?25hCompressing objects: 100% (68/68), done.[0K[?25l
+Writing objects:  22% (16/72)[0K[1G[?25h[?25lWriting objects:  72% (52/72)[0K[1G[?25h[?25lWriting objects:  98% (71/72)[0K[1G[?25hWriting objects: 100% (72/72), 509.16 KiB | 3.14 MiB/s, done.[0K[?25l
+Total 72 (delta 31), reused 0 (delta 0)[0K
+[0K[?25hremote: Resolving deltas:  58% (18/31)[0K[42G[?25lremote: Resolving deltas: 100% (31/31), completed with 23 local objects.[0K
+[0K[?25hTo github.com:TianshuFeng/SemiMapper.git[0K[?25l
+   2141d5a..dffff7e  master -> master[0K
+[0K[?25h]0;Administrator:  [?25l
+H:\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25h
