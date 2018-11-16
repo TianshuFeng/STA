@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "846884947",
+    "hash" : "0",
     "id" : "14E8B7E3",
-    "lastKnownWriteTime" : 1537807166,
-    "last_content_update" : 1537807166,
+    "lastKnownWriteTime" : 1542344395,
+    "last_content_update" : 1542344395099,
     "path" : "G:/My Drive/Mayo_intern files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/my-vignette.Rmd",
     "project_path" : "vignettes/my-vignette.Rmd",
     "properties" : {
+        "cursorPosition" : "189,0",
+        "scrollLine" : "180"
     },
     "relative_order" : 7,
     "source_on_save" : false,

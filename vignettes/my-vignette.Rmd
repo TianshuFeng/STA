@@ -134,5 +134,58 @@ filter_eccen = function(dist, p, ...) {
 
 # Example 4: Result evaluation.
 
+We can generate many graphs under the filter functions. While we can manually and empirically select graphs based on the domain knowledge we have about the data, it is important to evaluate these graphs objectively based on the prior knowledge of the data with some measures. In this section, we introduce two measures that can effectively evaluate the graphs from different aspects by comparing the graphs with the prior knowledge we have about the data. 
+
+## Shannon index
+Shannon index [17] is an evaluation method measuring how diverse each node is. Specifically, given one node $X_k$, and assuming samples are from $L$ different labels, the Shannon index is defined as follows:
+$$\begin{array}{rl} H(X_{k}) &\displaystyle = − \sum_{l=1}^{L} p_l\log p_l\\ p_l &\displaystyle = \frac{|\{ x_{i} | x_{i} \in X_{k} \text{ and } y_i = l \} |}{|X_{k}|}.  \end{array}$$
+where $|.|$ denotes the number of elements in a set. 
+
+Taking into account that the sizes of nodesclusters are usually different, we measure the overall diversity of a graph as the weighted average of the Shannon indices weighted by the sizes of the nodesclusters, which is
+$$\bar{H}_f = \frac{ \sum_{j,k} |X_{k}| H(X_{k}) }{\sum_{j,k} |X_{k}|}.$$
+Here, the subscript $f$ of $\bar{H}_f$ emphasizes that $\bar{H}_f$ depends on the filter function $f$. Therefore, a small $\bar{H}_f$ implies the data points with different labels are well separated in different nodes, and the graph is good overall in terms of node-wise diversity.
+
+We demonstrate the calculation of Shannon index with the chicken foot example.
+```{r eval=FALSE}
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+tp_shannon = mapper_shannon_index(tp_data_mapper, tp_data$Group)
+tp_shannon
+```
+
+## Spread measure
+
+Although Shannon index can evaluate nodes of a graph, it neglects the connectivity of nodes. For example, these measures cannot detect the situation when two similar nodes containing samples with similar labels are separated from each other in a graph. 
+
+To compensate the Shannon index and evaluate graphs regarding the connectivity of nodes, we describe a heuristic sample-wise measure to evaluate how samples with the sample labels concentrate on a generated graph considering the structure of the graph. This measure is obtained as follows. First, for each data point in each of the nodes, we calculate the average distance between it and other data points with the same labels in the graph, where the distance is the length of the shortest path between nodes containing these points. Then we average the distance across all the data points. Mathematically, for one data point $x_i$ in a node $X_k$, the average distance is defined as 
+$$	sp_{X_{k}}(x_i) = \frac{\sum_{\substack{k‘}} |\{ x\in X_{k‘}| y=y_i \}| q(X_{k}, X_{k‘}) }{\sum_{\substack{k‘}} |\{ x\in X_{k‘}| y=y_i \}|}$$
+where $q(X_{k}, X_{k‘})$ is the length of the shortest path between nodes $X_{k}$ and $X_{k‘}$. Note that, in this measure, we focus on the largest connected subgraph and ignore the points not included in the largest subgraph. For computational simplicity, duplicate data points appearing in multiple nodes are as different data points.
+The overall measure for the spread of data points in a graph is then
+$$ \bar{sp}_f = \frac{ \sum_{\substack{i,k}} sp_{X_{k}}(x_i) }{\sum_{k} |{X_{k}}| } $$
+where the subscript $f$ of $\bar{sp}_f$ emphasizes that $\bar{sp}_f$ depends on the filter function $f$. A small $\bar{sp}_f$ indicates the nodes with similar samples are concentrated in a graph, and a graph is overall good regarding the connectivity of nodes.
+
+We demonstrate the calculation of the spread measure with the chicken foot example.
+```{r eval=FALSE}
+tp_data = chicken_generator(1)
+tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = tp_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+tp_spread = spread_measure(tp_data_mapper, tp_data$Group)
+tp_spread
+```
+
+
+It is worth noticing that $\bar{H}_f$ and $\bar{sp}_f$ measures the graph from two different aspects. $\bar{H}_f$ indicates whether labels of data points in each of the nodes in the graph are diverse or not in terms of data points' labels, regardless of the connectivity of nodes, while $\bar{sp}_f$ implies if data points with the same labels from different nodes concentrate in the graph, it does not explicitly assess the clustering results and does not consider nodes not connected to the largest subgraph. Therefore, in practice, both measures should be taken into consideration when evaluating and diagnosing a graph from the Mapper. For example, large $\bar{H}_f$ and small $\bar{sp}_f$ imply the existence of large nodes consisting of many data points, while small $\bar{H}_f$ and large $\bar{sp}_f$ may indicate some data points with the same label are separated in the graph which requires more analysis based on the prior information of the data and the graph. 
+
+
+
 # Example 5: Filter function selection with Pareto frontier.
+
+The evaluation methods in Example 4 enable us to evaluate the graphs from different aspects. The last problem is to find the optimal graphs regarding these measures. We solve this problem borrowing methods for the multi-objective optimization problems.
+
+
 
