@@ -23,7 +23,7 @@ This package aims to provide an easy and flexible way to explore the visualizati
 To install the latest version of this R package directly from github:
 ```
 install.package("devtools")
-devtools::install_github(TianshuFeng/SemiMapper)
+devtools::install_github("TianshuFeng/SemiMapper")
 ```
 
 # Example 1: Simple graph generation with SemiMapper.
@@ -108,13 +108,13 @@ One object of this package is to help users to select filter functions for Mappe
 
 | Function            | Name                  | Expression                                                                                                                  |
 |---------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------|
-|        `filter_ref` | Reference             | $$f(x_i;y,g) = 1−\text{median}_{y_j=g} d(x_i,x_j)$$                                                                         |
-|        `filter_pca` | PCA                   | $$f(x_i) = x_i^T\phi_{(1)}$$, where $$\phi_{(1)}$$ is the eigenvector associated with the largest eigenvalue of $$cov(X)$$. |
-|       `filter_Linf` | L-infinity            | $$f(x_i) = max_{j} d(x_i,x_j)$$                                                                                             |
+|        `filter_ref` | Reference             | $f(x_i;y,g) = 1−\text{median}_{y_j=g} d(x_i,x_j)$                                                                         |
+|        `filter_pca` | PCA                   | $f(x_i) = x_i^T\phi_{(1)}$, where $\phi_{(1)}$ is the eigenvector associated with the largest eigenvalue of $cov(X)$. |
+|       `filter_Linf` | L-infinity            | $f(x_i) = max_{j} d(x_i,x_j)$                                                                                             |
 |   `filter_gaussian` | Gaussian density      | density                                                                                                                     |
 | `filter_coordinate` | Coordinate projection | projection                                                                                                                  |
-|        `filter_dtm` | Distance to measure   | $$f(x_i;k) = \sqrt{\frac{1}{k}\sum_{j=2}^{k+1} d^2(x_i,x_{(j)})}$$                                                          |
-|      `filter_eccen` | Eccentricity          | $$f(x_i;p) = (\frac{1}{n}\sum_{j=1}^n d^p(x_i,x_j))^{1/p}$$                                                                 |
+|        `filter_dtm` | Distance to measure   | $f(x_i;k) = \sqrt{\frac{1}{k}\sum_{j=2}^{k+1} d^2(x_i,x_{(j)})}$                                                          |
+|      `filter_eccen` | Eccentricity          | $f(x_i;p) = (\frac{1}{n}\sum_{j=1}^n d^p(x_i,x_j))^{1/p}$                                                                 |
 
 
 Besides the built-in filter functions, users can also define their own standard filter functions. While `mapper.kmeans` can accept any numeric vector as a filter, the optimization function `filter_evaluate` can only accept `filter` object from standard filter functions. The return value from a standard filter function should have two attributes: `class` and `filter`. `class` should always be "filter", and `filter` contains the name of the corresponding filter function. An example of a standard filter function is:
@@ -185,7 +185,70 @@ It is worth noticing that $\bar{H}_f$ and $\bar{sp}_f$ measures the graph from t
 
 # Example 5: Filter function selection with Pareto frontier.
 
-The evaluation methods in Example 4 enable us to evaluate the graphs from different aspects. The last problem is to find the optimal graphs regarding these measures. We solve this problem borrowing methods for the multi-objective optimization problems.
+After generating graphs under different filter functions, the evaluation methods in Example 4 enable us to evaluate and compare the graphs from different aspects. The last problem is to find the optimal graphs regarding these measures. We solve this problem by borrowing methods for the multi-objective optimization problems.
+
+Given graphs generated under a set of filter functions $F$, the problem of selecting the optimal filter functions can be formulated as $$f=\text{argmin}_{f \in F} (\bar{H}_f, \bar{sp}_f).$$
+
+We solve this problem by finding the pareto frontier. In this problem, the pareto frontier is defined as 
+$$\{f \in F| \{f‘ \in F|f‘\ne f,\bar{H}_{f‘} < \bar{H}_{f} \text{ and } \bar{sp}_{f‘} < \bar{sp}_{f} \} = \emptyset \}.$$
+
+We generate an illustration of the pareto frontier with the package `ggplot2` and the function `pareto_opt` from the SemiMapper package assuming we have measures on seven graphs generated under different filter functions. First, we find the filter functions on the Pareto frontier with `pareto_opt`. Note that `pareto_opt` accept `data.frame` as input where the first column is the names of the filter functions and the second and third columns should be the corresponding Shannon indices and spread measures
+```{r}
+library(SemiMapper)
+filter_names = c("Coordinate","Eccen","LInf","Ref","DTM","Gaussian","PCA")
+res_filter = data.frame(Filter = filter_names,
+                        weighted_shannon = c(1.389, 1.221, 1.453, 1.158, 1.345, 1.399, 1.349),
+                        spread_measure = c(2.767, 3.101, 2.607, 4.001, 4.119, 3.957, 2.034))
+res = pareto_opt(res_filter)
+print(res)
+```
+Then, we plot the results with `ggplot2`:
+```{r}
+# Illustration of Pareto frontier
+library(ggplot2)
+res = pareto_opt(res_filter, top = nrow(res_filter))
+res$.level[res$.level>1] = "Others"
+res$.level[res$.level==1] = "Frontier"
+class(res) = "data.frame"
+gp <- ggplot(res, aes(x = weighted_shannon, y = spread_measure,
+                      color = factor(.level),
+                      label = Filter)) +
+  geom_point(size = 3) +
+  geom_step(aes(group = .level), data = res[res$.level=="Frontier",],
+            direction = "vh", size = 2) +
+  geom_label(aes(fill = factor(.level)), colour = "white", fontface = "bold") +
+  labs(fill='') + labs(color='') + xlab("Shannon index") +
+  ylab("Spread measure")
+
+```
+```{r fig2, fig.height = 2.5, fig.width = 5, fig.align = "center", echo=FALSE}
+gp
+```
+
+In the graph, the red line represents the Pareto frontier, the red squares represent the filter functions on the Pareto frontier and the blue squares represent the filter functions not in the Pareto frontier. 
+
+
+The package also provides a function, `filter_evaluate`, for users to efficiently get the measures for the graphs generated under different filter functions. It accepts arbitrary number of filter vectors from the filter functions and return the measures as a `data.frame object` that can be directly used in the `pareto_opt` function. An example of using the `filter_evaluate` function is shown below for three filter functions on the chicken foot example:
+```{r eval = FALSE}
+tp_data = chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+a = filter_eccen(dist = tp_dist, p = 2)
+b = filter_coordinate(tp_data[,-1], 2)
+c = filter_gaussian(dist=tp_dist, sigma=1)
+filter_evaluate(a,b,c,
+                dat = tp_data, group_ind = tp_data$Group,
+                num_intervals = 10, percent_overlap = 70)
+```
+Additional arguments for the `mapper.kmeans` can be passed to the argument `arg_mapper` of `filter_evaluate`.
+```{r eval = FALSE}
+# Add additional arguments (NOT RUN)
+if(FALSE) {
+  filter_evaluate(a,b,c,
+                  dat = tp_data, group_ind = tp_data$Group,
+                  num_intervals = 10, percent_overlap = 70,
+                  arg_mapper = list(n_class = 1))
+}
+```
 
 
 

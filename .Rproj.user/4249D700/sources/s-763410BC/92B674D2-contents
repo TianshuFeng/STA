@@ -1,0 +1,121 @@
+library(visNetwork)
+library(TDAmapper)
+library(readr)
+library(stringr)
+library(data.table)
+library(dplyr)
+library(tidyr)
+library(doParallel)
+library(rPref)
+library(ggplot2)
+
+source("Network Visualization Code/visualization_functions.R")
+source("Network Visualization Code/filter.R")
+source("Network Visualization Code/mapper.kmeans.R")
+
+
+dist_MetaOV = 1 - cor(t(MetaOV_merge[,1:nrow(gene_expr)]), use = "complete.obs")
+# dist_MetaOV = dist(MetaOV_merge[,1:nrow(gene_expr)], method = "euclidean")
+
+filter_ref_res = filter_ref(Metadat = MetaOV_merge,
+                            dist = dist_MetaOV,
+                            id_var = "alt_sample_name",
+                            ref_var = "tcga.type", 
+                            center = "DIF")
+
+
+plot(filter_ref_res, pch = 20)
+
+
+filter_pca_res = filter_pca(dat = MetaOV_merge[,1:nrow(gene_expr)], k = 1, 
+                            use = "complete.obs", method = "spearman")
+
+filter_Linf_res = filter_Linf(dist = dist_MetaOV)
+
+filter_gaussian_res = filter_gaussian(dist = dist_MetaOV, sigma = 1)
+
+filter_coordinate_res = filter_coordinate(dat = MetaOV_merge[,1:nrow(gene_expr)],
+                                          k = 1)
+
+filter_dtm_res = filter_dtm(dist = dist_MetaOV, k=3)
+
+filter_eccen_res = filter_eccen(dist = dist_MetaOV, p=2)
+
+filter_list = list(filter_ref_res, filter_Linf_res, filter_gaussian_res, 
+                   filter_coordinate_res, filter_dtm_res, filter_eccen_res, filter_pca_res)
+
+weighted_shannon = c()
+spread_index = c()
+k=0
+for(filter in filter_list) {
+  cat(k, "\r")
+  gtex_mapper.kmeans = mapper.kmeans(dat = MetaOV_merge[,1:nrow(gene_expr)],
+                                     n_class = 6,
+                                     filter_values = filter,
+                                     num_intervals = 25,
+                                     percent_overlap = 45,
+                                     dist_method = NULL,
+                                     diss = dist_MetaOV)
+  gtex_mapper.kmeans = null_remover(gtex_mapper.kmeans)
+  shannon_matrix = mapper_shannon_index(gtex_mapper.kmeans, MetaOV_merge$tcga.type)
+  weighted_shannon = c(weighted_shannon,
+                       sum(shannon_matrix[,1] * shannon_matrix[,2])/sum(shannon_matrix[,2]))
+  spread_index = c(spread_index, 
+                   avg_distance(obj_mapper = gtex_mapper.kmeans, group = MetaOV_merge$tcga.type))
+}
+
+filter_names = c("ref","Linf","gaussian","coordinate","dtm","eccen","pca")
+res_filter = data.frame(Filter = filter_names, weighted_shannon = weighted_shannon, spread_index = spread_index)
+pref = low(weighted_shannon) * low(spread_index)
+psel(res_filter, pref)
+
+
+
+a = matrix(c(2.114330,     4.018547,
+             2.857632,     4.452518,
+             2.707736,     3.186381,
+             2.711668,     3.352973,
+             2.764755,     3.586553,
+             2.558853,     3.864622,
+             2.133736,     5.464088), ncol = 2, byrow = T)
+res_filter = data.frame(Filter = filter_names, weighted_shannon = a[,1], spread_index = a[,2])
+pref = low("weighted_shannon") * low("spread_index")
+res <- psel(res_filter, pref)
+
+filter_names = c("Coordinate","Eccen","LInf","Ref","DTM","Gaussian","PCA")
+res_filter = data.frame(Filter = filter_names,
+                        weighted_shannon = c(1.389, 1.421, 1.453, 1.158, 1.345, 1.399, 1.349),
+                        spread_index = c(2.767, 4.101, 2.607, 4.001, 4.119, 3.957, 2.034))
+res = pareto_opt(res_filter)
+res
+
+# Illustration of Pareto frontier
+library(ggplot2)
+
+a = matrix(c(2.114330,     4.018547,
+             2.857632,     4.452518,
+             2.707736,     3.186381,
+             2.711668,     4.352973,
+             2.764755,     3.586553,
+             2.558853,     3.864622,
+             2.533736,     4.164088), ncol = 2, byrow = T)
+res_filter = data.frame(Filter = filter_names, weighted_shannon = a[,1], spread_index = a[,2])
+
+
+res = pareto_opt(res_filter, top = nrow(res_filter))
+res$.level[res$.level>1] = "Others"
+res$.level[res$.level==1] = "Frontier"
+class(res) = "data.frame"
+gp <- ggplot(res, aes(x = weighted_shannon, y = spread_index,
+                      color = factor(.level),
+                      label = Filter)) +
+  geom_point(size = 3) +
+  geom_step(aes(group = .level), data = res[res$.level=="Frontier",],
+            direction = "vh", size = 2) +
+  # geom_label(aes(fill = factor(.level)), colour = "white", fontface = "bold") +
+  labs(fill='') + labs(color='') + xlab("Shannon index") +
+  ylab("Spread measure") + theme_bw() + theme(legend.justification=c(0,1), 
+                                              legend.position=c(0.01,1+0.05),
+                                              legend.background=element_blank())
+gp
+

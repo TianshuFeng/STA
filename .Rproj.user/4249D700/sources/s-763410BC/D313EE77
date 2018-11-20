@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2503674236",
+    "hash" : "0",
     "id" : "D313EE77",
     "lastKnownWriteTime" : 1537807166,
     "last_content_update" : 1537807166,
     "path" : "G:/My Drive/Mayo_intern files/Projects/Mapper_Visualization/Package/SemiMapper/R/simulation.R",
     "project_path" : "R/simulation.R",
     "properties" : {
+        "cursorPosition" : "132,33",
+        "scrollLine" : "0"
     },
     "relative_order" : 5,
     "source_on_save" : false,
