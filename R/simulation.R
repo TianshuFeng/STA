@@ -131,6 +131,7 @@ simple_visNet = function(obj_mapper, filter=NULL, folder = getwd(), color_fun = 
     visSave(file = network_name, background = "white")
 
   file.rename(from = network_name, to = file.path(folder, network_name))
+  cat("The generated graph is saved in:\n", file.path(folder, network_name),"\n")
 }
 
 
@@ -194,7 +195,7 @@ chicken_generator = function(seed = 1) {
 
   dd$X = dd$X/max(dd$X + 0.01)
   dd$Y = dd$Y/max(dd$Y + 0.01)
-  # dd$Z = dd$Z/max(dd$Z + 0.01)/5
+  dd$Z = dd$Z/max(dd$Z + 0.01)/5
 
   dd$Group[dd$Group == 1] = "Toe 1"
   dd$Group[dd$Group == 2] = "Toe 2"

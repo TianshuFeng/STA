@@ -4,7 +4,7 @@ This package aims to provide an easy and flexible way to explore the visualizati
 
 To install the latest version of this R package directly from github:
 ```
-install.package("devtools")
+install.packages("devtools")
 devtools::install_github("TianshuFeng/SemiMapper")
 ```
 Further information can be found in the vignettes. 

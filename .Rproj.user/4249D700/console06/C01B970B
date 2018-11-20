@@ -48,4 +48,108 @@ Untracked files:[0K
 no changes added to commit (use "git add" and/or "git commit -a")[0K
 [0K
 G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[84G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git a[0K[?25hd[0Kd[0K[88G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h]0;  - git  add .[?25l
-[0K[?25h
+[0K[?25hwarning: LF will be replaced by CRLF in .Rhistory.[0K[?25l
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/pcs/source-pane.pper.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/pcs/windowlayoutstate.pper.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/pcs/workbench-pane.pper.[0K[?25l
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/rmd-outputs.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/prop/1798F765.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/prop/55870C40.[0K[?25l
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/prop/77F07D7F.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/prop/AF62B110.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/prop/INDEX.[0K[?25l
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/prop/7F028835.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/14E8B7E3.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/14E8B7E3-contents.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/3FDEB103.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/3FDEB103-contents.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/7117840A.[0K
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/7117840A-contents.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/92B674D2.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/92B674D2-contents.[0K
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/CD7A602A.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/CD7A602A-contents.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/D313EE77.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/4249D700/sources/s-763410BC/D313EE77-contents.[0K[?25l
+The file will have its original line endings in your working directory[0K
+[0K[?25h]0; [?25l
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[84G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git p[0K[?25hu[0Ks[0Kh[0K[89G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git push o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K]0;  - git  push origin[?25l
+[0K[?25hTo github.com:TianshuFeng/SemiMapper.git[0K[?25l
+ [0;31m! [rejected]       [0m master -> master (fetch first)[0K
+[0;31merror: failed to push some refs to 'git@github.com:TianshuFeng/SemiMapper.git'[0m[0K
+[0;33mhint: Updates were rejected because the remote contains work that you do[0m[0K
+[0;33mhint: not have locally. This is usually caused by another repository pushing[0m[0K
+[0;33mhint: to the same ref. You may want to first integrate the remote changes[0m[0K
+[0;33mhint: (e.g., 'git pull ...') before pushing again.[0m[0K
+[0;33mhint: See the 'Note about fast-forwards' in 'git push --help' for details.[0m[0K
+[0K[?25h]0; [?25l
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[84G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0K[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commi[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git comm[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git com[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git co[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git c[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git[0K[84G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git p[0K[?25hu[0Kl[0Kl[0K[89G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git pull o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K]0;  - git  pull origin[?25l
+[0K[?25hremote: Enumerating objects: 5, done.[0K[?25l
+remote: Counting objects: 100% (5/5), done.[0K
+remote: Compressing objects: 100% (3/3), done.[0K
+remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0[0K
+[0K[?25h[?25lUnpacking objects:  66% (2/3)[0K[1G[?25hUnpacking objects: 100% (3/3), done.[0K[?25l
+[0K[?25hFrom github.com:TianshuFeng/SemiMapper[0K[?25l
+   d032fb6..af4a264  master     -> origin/master[0K
+[0K[?25hUpdating d032fb6..af4a264[0K[?25l
+Fast-forward[0K
+[0K[?25h]0;  README.md | 2 [0;32m+[0;31m-[0m[0K[?25l
+ 1 file changed, 1 insertion(+), 1 deletion(-)[0K
+[0K
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hg[0Ki[0Kt[0K[84G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0K[91G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -[0K[?25hm[0K[94G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "[0K[?25h"[0K[95G[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "U"[0K[96G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Up"[0K[97G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Upd"[0K[98G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Upda"[0K[99G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Updat"[0K[100G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update"[0K[101G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update "[0K[102G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update v"[0K[103G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vi"[0K[104G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vig"[0K[105G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vign"[0K[106G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vigne"[0K[107G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vignet"[0K[108G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vignett"[0K[109G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vignette"[0K[110G[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vignettes"[0K[111G[?25h]0;  - git  commit -m "Update vignettes"[?25l
+[0K[?25h]0; [master 579747b] Update vignettes[0K[?25l
+ 32 files changed, 371 insertions(+), 867 deletions(-)[0K
+ rewrite .Rproj.user/4249D700/console06/C01B970B (90%)[0K
+ create mode 100644 .Rproj.user/4249D700/sources/prop/7F028835[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/14E8B7E3 (77%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/14E8B7E3-contents (73%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/3FDEB103 (76%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/3FDEB103-contents (98%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/7117840A (100%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/7117840A-contents (100%)[0K
+ create mode 100644 .Rproj.user/4249D700/sources/s-763410BC/92B674D2[0K
+ create mode 100644 .Rproj.user/4249D700/sources/s-763410BC/92B674D2-contents[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/CD7A602A (86%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/CD7A602A-contents (100%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/D313EE77 (86%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/D313EE77-contents (100%)[0K
+ rename .Rproj.user/4249D700/sources/{s-D383EF73 => s-763410BC}/lock_file (100%)[0K
+ delete mode 100644 .Rproj.user/4249D700/sources/s-D383EF73/47E94386-contents[0K
+ delete mode 100644 .Rproj.user/4249D700/sources/s-D383EF73/A61F5888-contents[0K
+ create mode 100644 .Rproj.user/shared/notebooks/76F2622D-my-vignette/1/4249D700763410BC/chunks.json[0K
+[0K
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit commit -m "Update vignettes"[0K[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git pull origin[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git push origin[0K[?25h]0;  - git  push origin[?25l
+[0K[?25hWarning: Permanently added the RSA host key for IP address '192.30.255.112' to the list of known hosts.[0K[?25l
+[0K[?25hEnumerating objects: 62, done.[0K[?25l
+Counting objects:  54% (33/61)[0K[1G[?25hCounting objects: 100% (61/61), done.[0K[?25l
+Delta compression using up to 8 threads[0K
+Compressing objects:  46% (15/32)[0K[1G[?25hCompressing objects: 100% (32/32), done.[0K[?25l
+Writing objects:  10% (4/37)[0K[1G[?25hWriting objects: 100% (37/37), 13.97 KiB | 420.00 KiB/s, done.[0K[?25l
+Total 37 (delta 12), reused 0 (delta 0)[0K
+[0K[?25h[?25lremote: Resolving deltas:   0% (0/12)[0K[1G[?25hremote: Resolving deltas: 100% (12/12), completed with 8 local objects.[0K[?25l
+[0K[?25hTo github.com:TianshuFeng/SemiMapper.git[0K[?25l
+   af4a264..579747b  master -> master[0K
+[0K[?25h]0; [?25l
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25h

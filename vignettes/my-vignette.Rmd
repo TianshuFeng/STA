@@ -22,7 +22,7 @@ This package aims to provide an easy and flexible way to explore the visualizati
 
 To install the latest version of this R package directly from github:
 ```
-install.package("devtools")
+install.packages("devtools")
 devtools::install_github("TianshuFeng/SemiMapper")
 ```
 
@@ -85,6 +85,8 @@ tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
 network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
                       folder = "Exp_network")
 ```
+Note that, in this example, we called the function `filter_coordinate` to get the filter vector, which is the same as `tp_data$Y` and is one of the filter functions provided in the package. More examples of the filter functions can be found in Example 3. 
+
 One difference between `network_visualization` and `simple_visNet` is that in `network_visualization`, the groups of samples must be defined by users, because the percentages of groups of samples in each node is part of the basic summary information. Nevertheless, `network_visualization` can automatically assign colors to groups, and color tools introduced in "Play with colors" can still be used to help the users to define their own colors for different groups of samples.
 
 The generated graphs from `network_visualization` and `simple_visnet` are also different. Besides the graph itself, the graph from `network_visualization` contains summaries of nodes which will show up when hovering the mouse cursor on a node. Basic summary information includes the number of samples in the node, the dominated group of the node, the percentages of groups of samples in the node and a pie plot depicting the percentages of groups.
@@ -104,7 +106,7 @@ network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[
 
 # Example 3: Use and define different filter functions.
 
-One object of this package is to help users to select filter functions for Mapper. This package includes 7 built-in filter functions: `filter_ref`, `filter_pca`, `filter_Linf`, `filter_gaussian`, `filter_coordinate`, `filter_dtm`, `filter_eccen`:
+As shown in Example 2, filter functions are necessary to calculate the filter vectors. This package includes 7 built-in filter functions: `filter_ref`, `filter_pca`, `filter_Linf`, `filter_gaussian`, `filter_coordinate`, `filter_dtm`, `filter_eccen` as shown in the table below:
 
 | Function            | Name                  | Expression                                                                                                                  |
 |---------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------|
@@ -116,6 +118,33 @@ One object of this package is to help users to select filter functions for Mappe
 |        `filter_dtm` | Distance to measure   | $f(x_i;k) = \sqrt{\frac{1}{k}\sum_{j=2}^{k+1} d^2(x_i,x_{(j)})}$                                                          |
 |      `filter_eccen` | Eccentricity          | $f(x_i;p) = (\frac{1}{n}\sum_{j=1}^n d^p(x_i,x_j))^{1/p}$                                                                 |
 
+Here we provide an example to show how to call a built-in filter function `filter_eccen` and pass the obtained filter vector to the `mapper.kmeans`. `filter_eccen` has two arguments, `dist` and `p`. `dist` accepts arbitrary distance matrix calculated based on the dataset. Many R functions and packages provide tools to calculate the distance matrix, such as the package `philentropy`. `p` is the exponent of the eccentricity filter function.
+
+```{r eval = FALSE}
+tp_data <- chicken_generator(1)
+tp_dist = dist(tp_data[,-1])
+ff <- filter_eccen(dist = tp_dist, p = 2)
+tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = ff,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network")
+```
+
+On the other hand, if users have the prior knowledge of the data they want to analyze, the reference filter function `filter_ref` can be a good choice to start with. `filter_ref` calculates the average distance between each of the samples and a group of reference samples. `filter_ref` has three arguments, `dist`, `groups_ind` and `ref`. `dist` accepts the distance matrix calculated based on the data, `groups_ind` should be a vector where each entry represents the group index of the corresponding sample point in the data, and `ref` is the index of the reference group. An example is shown below:
+
+```{r eval = FALSE}
+tp_data <- chicken_generator(1)
+tp_dist <- dist(tp_data[,-1])
+ff <- filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref = "Shank")
+tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = ff,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network")
+```
 
 Besides the built-in filter functions, users can also define their own standard filter functions. While `mapper.kmeans` can accept any numeric vector as a filter, the optimization function `filter_evaluate` can only accept `filter` object from standard filter functions. The return value from a standard filter function should have two attributes: `class` and `filter`. `class` should always be "filter", and `filter` contains the name of the corresponding filter function. An example of a standard filter function is:
 ```{r eval=FALSE}

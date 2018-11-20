@@ -82,7 +82,7 @@ filter_Linf = function(dist, ...) {
 #' @examples
 #' tp_data <- chicken_generator(1)
 #' tp_dist <- dist(tp_data[,-1])
-#' filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref = "Shank)
+#' filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref = "Shank")
 #'
 filter_ref = function(dist, groups_ind,
                       ref, ...) {

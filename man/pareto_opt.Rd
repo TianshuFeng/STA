@@ -27,7 +27,7 @@ from R package `rPref`.
 filter_names = c("Coordinate","Eccen","LInf","Ref","DTM","Gaussian","PCA")
 res_filter = data.frame(Filter = filter_names,
                         weighted_shannon = c(1.389, 1.421, 1.453, 1.158, 1.345, 1.399, 1.349),
-                        spread_index = c(2.767, 4.101, 2.607, 4.001, 4.119, 3.957, 2.034))
+                        spread_measure = c(2.767, 4.101, 2.607, 4.001, 4.119, 3.957, 2.034))
 res = pareto_opt(res_filter)
 res
 
@@ -37,14 +37,15 @@ res = pareto_opt(res_filter, top = nrow(res_filter))
 res$.level[res$.level>1] = "Others"
 res$.level[res$.level==1] = "Frontier"
 class(res) = "data.frame"
-gp <- ggplot(res, aes(x = weighted_shannon, y = spread_index,
+gp <- ggplot(res, aes(x = weighted_shannon, y = spread_measure,
                       color = factor(.level),
                       label = Filter)) +
   geom_point(size = 3) +
   geom_step(aes(group = .level), data = res[res$.level=="Frontier",],
             direction = "vh", size = 2) +
   geom_label(aes(fill = factor(.level)), colour = "white", fontface = "bold") +
-  labs(fill='') + labs(color='') + xlab("Shannon index") + ylab("Spread measure")
+  labs(fill='') + labs(color='') + xlab("Shannon index") +
+  ylab("Spread measure")
 gp
 # The red line(s) is the Pareto frontier, and all the points on the top right
 # side of these line(s) are not potentially optimal.
