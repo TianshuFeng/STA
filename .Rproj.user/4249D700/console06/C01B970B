@@ -327,4 +327,21 @@ Total 40 (delta 25), reused 0 (delta 0)[0K
    dd659cf..5e9b9f8  master -> master[0K
 [0K[?25h]0; [?25l
 G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit push origin[0K[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vignette and format"[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h]0;  - git  add .[?25l
-[0K[?25h
+[0K[?25h]0; [?25l
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit add .[0K[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git pull origin[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git push origin[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vignettes"[0K[?25h]0;  - git  commit -m "Update vignettes"[?25l
+[0K[?25h[master cf619bc] Update vignettes[0K[?25l
+ 2 files changed, 171 insertions(+), 20 deletions(-)[0K
+ delete mode 100644 vignettes/network.html[0K
+[0K[?25h]0; [?25l
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit commit -m "Update vignettes"[0K[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git pull origin[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vignettes"[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git push origin[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git pull origin[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git push origin[0K[?25h]0;  - git  push origin[?25l
+[0K[?25hEnumerating objects: 13, done.[0K[?25l
+Counting objects:  92% (12/13)[0K[1G[?25hCounting objects: 100% (13/13), done.[0K[?25l
+Delta compression using up to 8 threads[0K
+Compressing objects: 100% (6/6), done.[0K
+Writing objects: 100% (7/7), 3.85 KiB | 437.00 KiB/s, done.[0K
+Total 7 (delta 2), reused 0 (delta 0)[0K
+[0K[?25hremote: Resolving deltas: 100% (2/2), completed with 2 local objects.[0K[?25l
+[0K[?25hTo github.com:TianshuFeng/SemiMapper.git[0K[?25l
+   5e9b9f8..cf619bc  master -> master[0K
+[0K[?25h]0; [?25l
+G:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>[0K[?25hgit push origin[0K[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git commit -m "Update vignettes"[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git pull origin[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git push origin[0K[?25h[?25lG:\My Drive\Mayo_intern files\Projects\Mapper_Visualization\Package\SemiMapper>git add .[0K[?25h
