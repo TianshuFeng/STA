@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "14E8B7E3",
-    "lastKnownWriteTime" : 1542691233,
-    "last_content_update" : 1542691233694,
+    "lastKnownWriteTime" : 1542776047,
+    "last_content_update" : 1542776047436,
     "path" : "G:/My Drive/Mayo_intern files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/my-vignette.Rmd",
     "project_path" : "vignettes/my-vignette.Rmd",
     "properties" : {
-        "cursorPosition" : "22,55",
-        "scrollLine" : "10"
+        "cursorPosition" : "272,26",
+        "scrollLine" : "253"
     },
     "relative_order" : 7,
     "source_on_save" : false,

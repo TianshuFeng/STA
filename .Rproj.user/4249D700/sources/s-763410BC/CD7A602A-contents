@@ -1,6 +1,6 @@
 
-auto_set_colorcode = function(groups, palette = "Set1"){
 
+auto_set_colorcode = function(groups, palette = "Set1") {
   #' Create color codes for groups.
   #'
   #' \code{auto_set_colorcode} returns a dataframe with group names and color
@@ -24,21 +24,24 @@ auto_set_colorcode = function(groups, palette = "Set1"){
   require(RColorBrewer)
 
   num_groups = length(unique(groups))
-  if (num_groups <10) {
-    color_code = data.frame(Abbrev = unique(groups),
-                            Hex.Colors = brewer.pal(num_groups, palette),
-                            stringsAsFactors = FALSE)
+  if (num_groups < 10) {
+    color_code = data.frame(
+      Abbrev = unique(groups),
+      Hex.Colors = brewer.pal(num_groups, palette),
+      stringsAsFactors = FALSE
+    )
   } else {
-    color_code = data.frame(Abbrev = unique(groups),
-                            Hex.Colors = colorRampPalette(brewer.pal(9, palette))(num_groups),
-                            stringsAsFactors = FALSE)
+    color_code = data.frame(
+      Abbrev = unique(groups),
+      Hex.Colors = colorRampPalette(brewer.pal(9, palette))(num_groups),
+      stringsAsFactors = FALSE
+    )
   }
   return(color_code)
 }
 
 
 read_color_code = function(file, header = FALSE, sep = "\t") {
-
   #' Read color codes from a given file
   #'
   #' \code{read_color_code} reads a file with given group names and color codes
@@ -65,17 +68,22 @@ read_color_code = function(file, header = FALSE, sep = "\t") {
   #' check_color_code(read_color_code(tf))
   #' unlink(tf)
 
-  color_code = read.table(file, header = header, sep = sep,
-                          as.is = TRUE, comment.char = "")
+  color_code = read.table(
+    file,
+    header = header,
+    sep = sep,
+    as.is = TRUE,
+    comment.char = ""
+  )
 
-  if(any(nchar(color_code[,2]) != 7 |
-         substr(color_code[,2],
-                start = 1, stop = 1) != "#")) {
+  if (any(nchar(color_code[, 2]) != 7 |
+          substr(color_code[, 2],
+                 start = 1, stop = 1) != "#")) {
     stop("Invalid hex color code")
   }
 
   colnames(color_code) = c("Abbrev", "Hex.Colors")
-  color_code[,2] = toupper(color_code[,2])
+  color_code[, 2] = toupper(color_code[, 2])
   return(color_code)
 }
 
@@ -100,30 +108,33 @@ read_color_code = function(file, header = FALSE, sep = "\t") {
 #' check_color_code(temp)
 #'
 check_color_code = function(color_code) {
-
-  if(!is.data.frame(color_code)) {
+  if (!is.data.frame(color_code)) {
     warning("color_code should be data frame.")
     return(FALSE)
   }
 
-  if(!(colnames(color_code)[1] == "Abbrev" &
-       colnames(color_code)[2] == "Hex.Colors")) {
+  if (!(colnames(color_code)[1] == "Abbrev" &
+        colnames(color_code)[2] == "Hex.Colors")) {
     warning("Invalid column names in color_code")
     return(FALSE)
   }
 
-  if(!all(nchar(color_code[,2]) == 7 &
-         substr(color_code[,2],
-                start = 1, stop = 1) == "#")) {
+  if (!all(nchar(color_code[, 2]) == 7 &
+           substr(color_code[, 2],
+                  start = 1, stop = 1) == "#")) {
     stop("Invalid hex color code.")
     return(FALSE)
   }
 
-  return((colnames(color_code)[1] == "Abbrev" &
-            colnames(color_code)[2] == "Hex.Colors") &
-           all(nchar(color_code[,2]) == 7 &
-                 substr(color_code[,2],
-                        start = 1, stop = 1) == "#"))
+  return((
+    colnames(color_code)[1] == "Abbrev" &
+      colnames(color_code)[2] == "Hex.Colors"
+  ) &
+    all(
+      nchar(color_code[, 2]) == 7 &
+        substr(color_code[, 2],
+               start = 1, stop = 1) == "#"
+    ))
 }
 
 
@@ -142,19 +153,23 @@ check_color_code = function(color_code) {
 #' color_map(temp_groups, temp_code)
 #'
 color_map = function(samples_group, color_code) {
-
   # Accept a list of acronym and return the corresponding color codes
   samples_group = data.frame(id = 1:length(samples_group),
                              Abbrev = samples_group)
-  res = merge(samples_group, color_code, by = "Abbrev",
-              all = FALSE, sort = FALSE)
+  res = merge(
+    samples_group,
+    color_code,
+    by = "Abbrev",
+    all = FALSE,
+    sort = FALSE
+  )
 
   return(res$Hex.Colors[order(res$id)])
 }
 
 
-most_freq = function(vec){
-  return(names(table(vec))[as.vector(table(vec))==max(table(vec))][1])
+most_freq = function(vec) {
+  return(names(table(vec))[as.vector(table(vec)) == max(table(vec))][1])
 }
 
 
@@ -200,8 +215,12 @@ most_freq = function(vec){
 #' @examples
 #' # See ?network_visualization
 #'
-stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
-                        add_surv_analysis = FALSE, add_analysis_js = NULL,
+stat_summery = function(obj_mapper,
+                        groups_ind,
+                        dat = NULL,
+                        folder = "",
+                        add_surv_analysis = FALSE,
+                        add_analysis_js = NULL,
                         color_code) {
   # First get a dataframe where each column is a statistic. Then Turn them into
   # html.
@@ -217,15 +236,15 @@ stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
   dominant_group = c()
   stats_sum = c()
   percent = c()
-  k=0
+  k = 0
 
 
-  if(add_surv_analysis) {
-    if(is.null(dat)) {
+  if (add_surv_analysis) {
+    if (is.null(dat)) {
       stop("No data with survival information provided")
     }
 
-    if(!all(c("age_at_diagnosis", "days_to_death") %in% colnames(dat))){
+    if (!all(c("age_at_diagnosis", "days_to_death") %in% colnames(dat))) {
       stop("age_at_diagnosis or days_to_death not provided")
     }
 
@@ -234,28 +253,45 @@ stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
     median_death = NULL
   }
 
-  for(vtx in obj_mapper$points_in_vertex){
+  for (vtx in obj_mapper$points_in_vertex) {
     k = k + 1
     temp_tb = sort(table(group_by_indi[vtx]), decreasing = T)
-    temp_per = round(temp_tb/sum(temp_tb), 4)*100
+    temp_per = round(temp_tb / sum(temp_tb), 4) * 100
     temp_gp = names(temp_tb)
-    groups = c(groups,
-               paste0(temp_gp, ": <b>",temp_tb, " (", temp_per, "%)","</b>",
-                      collapse = "<br>")) # Maybe display the first few
+    groups = c(
+      groups,
+      paste0(
+        temp_gp,
+        ": <b>",
+        temp_tb,
+        " (",
+        temp_per,
+        "%)",
+        "</b>",
+        collapse = "<br>"
+      )
+    ) # Maybe display the first few
 
     percent = c(percent, temp_per[1])
 
     savepdf(paste0("pie_", k), folder)
-    pie(temp_tb, labels = NA, col = color_map(temp_gp,
-                                              color_code = color_code))
+    pie(temp_tb,
+        labels = NA,
+        col = color_map(temp_gp,
+                        color_code = color_code))
     dev.off()
 
     dominant_group = c(dominant_group, temp_gp[1])
 
-    N = c(N, paste0("N : <b>", length(vtx), " (",
-                    round(length(vtx)/n_row, 4)*100, "%)</b><br>"))
+    N = c(N, paste0(
+      "N : <b>",
+      length(vtx),
+      " (",
+      round(length(vtx) / n_row, 4) * 100,
+      "%)</b><br>"
+    ))
 
-    if(!is.null(dat) & add_surv_analysis){
+    if (!is.null(dat) & add_surv_analysis) {
       med_diag_temp = median(dat[vtx, "age_at_diagnosis"],
                              na.rm = T)
       median_diagnosis = c(median_diagnosis, med_diag_temp)
@@ -280,27 +316,40 @@ stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
   #stats_sum = paste0("N: ", N, "<br>Acronym:<br>", groups, "<br>")
 
 
-  if(add_surv_analysis) {
-    stats_sum = list(N = N, groups_per_node = groups,
-                     dominant_group = dominant_group, dominant_percent = percent,
-                     median_diagnosis = median_diagnosis, median_death = median_death)
+  if (add_surv_analysis) {
+    stats_sum = list(
+      N = N,
+      groups_per_node = groups,
+      dominant_group = dominant_group,
+      dominant_percent = percent,
+      median_diagnosis = median_diagnosis,
+      median_death = median_death
+    )
 
-    add_analysis_js = paste0('Median diagnosis age: <b>',
-                               round(stats_sum$median_diagnosis, 1),
-                               '</b><br>',
-                               'Median death (days): <b>',
-                               round(stats_sum$median_death, 1),
-                               '</b><br>')
+    add_analysis_js = paste0(
+      'Median diagnosis age: <b>',
+      round(stats_sum$median_diagnosis, 1),
+      '</b><br>',
+      'Median death (days): <b>',
+      round(stats_sum$median_death, 1),
+      '</b><br>'
+    )
   } else {
-    stats_sum = list(N = N, groups_per_node = groups,
-                     dominant_group = dominant_group, dominant_percent = percent)
+    stats_sum = list(
+      N = N,
+      groups_per_node = groups,
+      dominant_group = dominant_group,
+      dominant_percent = percent
+    )
   }
 
   java_description = paste0(
     '<div style=\"text-align:center;\">',
     stats_sum$N,
     'Majority: <b>',
-    stats_sum$dominant_group, ' (',stats_sum$dominant_percent,
+    stats_sum$dominant_group,
+    ' (',
+    stats_sum$dominant_percent,
     '%)</b><br>',
     add_analysis_js,
     # Mean : <b>1</b><br>
@@ -314,14 +363,18 @@ stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
     <U style=\"color:blue;\" class = \"classActivePointer\">Details</U>
     </div>
     <div class=\"showMeRpartTTp2\" style=\"display:none;\">
-    ',stats_sum$groups_per_node ,'
+    ',
+    stats_sum$groups_per_node ,
+    '
     </script>
     <script type=\"text/javascript\">
     $(document).ready(function(){\n$(\".showOnMe2\").click(function(){\n$(\".showMeRpartTTp2\").toggle();\n$.sparkline_display_visible();\n});\n  });
     </script>
     </div>
     </div>',
-    '</div>',"<br>")
+    '</div>',
+    "<br>"
+    )
 
   stats_sum$java_desp = java_description
   return(stats_sum)
@@ -335,13 +388,18 @@ stat_summery = function(obj_mapper, groups_ind, dat = NULL, folder = "",
 #'
 #' @return Dataframe of legends for the generated graph
 #'
-legend_node = function(stats_sum=NULL, color_code){
+legend_node = function(stats_sum = NULL, color_code) {
   #  stats_sum: results from stat_summery
   #group_list = unique(stats_sum$dominant_group)
 
-  legend_res = data.frame(label = color_code$Abbrev,
-                          color = color_code$Hex.Colors,  # color_map(group_list),
-                          shape = 'dot', size = 22, font.size = 16)
+  legend_res = data.frame(
+    label = color_code$Abbrev,
+    color = color_code$Hex.Colors,
+    # color_map(group_list),
+    shape = 'dot',
+    size = 22,
+    font.size = 16
+  )
   return(legend_res)
 
 }
@@ -404,10 +462,15 @@ legend_node = function(stats_sum=NULL, color_code){
 #' network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
 #'                       folder = "Exp_network", add_analysis_js = add_analysis_js)
 #'
-network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = "",
-                                 add_surv_analysis = FALSE, add_analysis_js = NULL,
-                                 palette = "Set1", legend_ncol = 2,
-                                 color_code = NULL){
+network_visualization = function(obj_mapper,
+                                 groups_ind,
+                                 dat = NULL,
+                                 folder = "",
+                                 add_surv_analysis = FALSE,
+                                 add_analysis_js = NULL,
+                                 palette = "Set1",
+                                 legend_ncol = 2,
+                                 color_code = NULL) {
   #  obj_mapper: the mapper object from TDAMapper
   #  groups_ind: the vector of group each individual sample belongs to
 
@@ -415,14 +478,14 @@ network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = ""
   require(visNetwork)
   require(RColorBrewer)
 
-  if(class(obj_mapper) != "TDAmapper") {
+  if (class(obj_mapper) != "TDAmapper") {
     stop("Invalid obj_mapper.")
   }
 
-  if(is.null(color_code)){
+  if (is.null(color_code)) {
     color_code = auto_set_colorcode(groups = groups_ind,
                                     palette = palette)
-  } else if(!check_color_code(color_code)){
+  } else if (!check_color_code(color_code)) {
     stop("Invalid color code.")
   }
 
@@ -434,46 +497,72 @@ network_visualization = function(obj_mapper, groups_ind, dat = NULL, folder = ""
   MapperLinks <- mapperEdges(obj_mapper)
 
   members = c()
-  for(i in obj_mapper$points_in_vertex){
+  for (i in obj_mapper$points_in_vertex) {
     members = c(members, paste0(i, collapse = ", "))
   }
 
-  stats_sum = stat_summery(obj_mapper, groups_ind, dat = dat, folder = folder,
-                           add_surv_analysis = add_surv_analysis,
-                           add_analysis_js = add_analysis_js,
-                           color_code = color_code)
+  stats_sum = stat_summery(
+    obj_mapper,
+    groups_ind,
+    dat = dat,
+    folder = folder,
+    add_surv_analysis = add_surv_analysis,
+    add_analysis_js = add_analysis_js,
+    color_code = color_code
+  )
 
-  nodes <- data.frame(id = 1:nrow(MapperNodes), #label = MapperNodes$Nodename,
-                      value = MapperNodes$Nodesize,
-                      group = stats_sum$dominant_group,
-                      color = color_map(stats_sum$dominant_group,
-                                        color_code = color_code),
-                      title = stats_sum$java_desp)
+  nodes <-
+    data.frame(
+      id = 1:nrow(MapperNodes),
+      #label = MapperNodes$Nodename,
+      value = MapperNodes$Nodesize,
+      group = stats_sum$dominant_group,
+      color = color_map(stats_sum$dominant_group,
+                        color_code = color_code),
+      title = stats_sum$java_desp
+    )
 
-  edges <- data.frame(from = MapperLinks$Linksource+1, to = MapperLinks$Linktarget+1)
+  edges <-
+    data.frame(from = MapperLinks$Linksource + 1, to = MapperLinks$Linktarget +
+                 1)
 
   visNetwork(nodes, edges, width = "100%", height = "700px") %>%
-    visInteraction(tooltipDelay = 500, selectConnectedEdges = FALSE,
-                   tooltipStyle = 'position: fixed;visibility:hidden;padding: 5px;
-                   white-space: normal;width: 150px;
-                   font-family: cursive;font-size:12px;font-color:purple;background-color: #E6E6E6;
-                   border-radius: 15px;') %>%
-    visOptions(selectedBy = "group",
-               highlightNearest = list(enabled =TRUE, degree = 2, hover = T)) %>%
-    visLegend(addNodes = legend_node(color_code = color_code),
-              useGroups = FALSE, enabled = TRUE,
-              width = 0.1, ncol = legend_ncol,
-              position = "left")  %>% sparkline::spk_add_deps()%>%
+    visInteraction(
+      tooltipDelay = 500,
+      selectConnectedEdges = FALSE,
+      tooltipStyle = 'position: fixed;visibility:hidden;padding: 5px;
+      white-space: normal;width: 150px;
+      font-family: cursive;font-size:12px;font-color:purple;background-color: #E6E6E6;
+      border-radius: 15px;'
+    ) %>%
+    visOptions(
+      selectedBy = "group",
+      highlightNearest = list(
+        enabled = TRUE,
+        degree = 2,
+        hover = T
+      )
+    ) %>%
+    visLegend(
+      addNodes = legend_node(color_code = color_code),
+      useGroups = FALSE,
+      enabled = TRUE,
+      width = 0.1,
+      ncol = legend_ncol,
+      position = "left"
+    )  %>% sparkline::spk_add_deps() %>%
     visSave(file = "network.html", background = "white")
   save_logic = file.rename(from = "network.html", to = file.path(folder, "network.html"))
 
-  if(save_logic){
-    cat("The generated HTML file can be found in:\n",
-      file.path(folder, "network.html"), "\n")
+
+  if (save_logic) {
+    cat(
+      "The generated HTML file can be found in:\n",
+      file.path(folder, "network.html"),
+      "\n"
+    )
   } else {
-      warning("Cannot save file in the target folder,
-              please check the working directory.")
-    }
-}
-
-
+    warning("Cannot save file in the target folder,
+            please check the working directory.")
+  }
+  }

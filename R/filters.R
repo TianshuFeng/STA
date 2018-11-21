@@ -96,10 +96,10 @@ filter_ref = function(dist, groups_ind,
   #colnames(dist) = Metadat[,id_var]
 
   # Distance between samples and center samples
-
+  dist <- as.matrix(dist)
   diag(dist) = NA
 
-  dist_center = as.matrix(dist)[,which(groups_ind == ref)]
+  dist_center = dist[,which(groups_ind == ref)]
   rm(dist)
   # find the average distance
   res = apply(dist_center, 1, median, na.rm = TRUE)

@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "D313EE77",
-    "lastKnownWriteTime" : 1537807166,
-    "last_content_update" : 1537807166,
+    "lastKnownWriteTime" : 1542774697,
+    "last_content_update" : 1542774697639,
     "path" : "G:/My Drive/Mayo_intern files/Projects/Mapper_Visualization/Package/SemiMapper/R/simulation.R",
     "project_path" : "R/simulation.R",
     "properties" : {
-        "cursorPosition" : "132,33",
-        "scrollLine" : "0"
+        "cursorPosition" : "139,82",
+        "scrollLine" : "118"
     },
     "relative_order" : 5,
     "source_on_save" : false,

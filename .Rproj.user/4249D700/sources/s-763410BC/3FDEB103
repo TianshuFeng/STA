@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "3FDEB103",
-    "lastKnownWriteTime" : 1542690426,
-    "last_content_update" : 1542690426592,
+    "lastKnownWriteTime" : 1542773928,
+    "last_content_update" : 1542773928952,
     "path" : "G:/My Drive/Mayo_intern files/Projects/Mapper_Visualization/Package/SemiMapper/R/evaluation.R",
     "project_path" : "R/evaluation.R",
     "properties" : {
-        "cursorPosition" : "236,0",
-        "scrollLine" : "228"
+        "cursorPosition" : "25,17",
+        "scrollLine" : "10"
     },
     "relative_order" : 1,
     "source_on_save" : false,

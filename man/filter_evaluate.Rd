@@ -17,10 +17,6 @@ predictive variables.}
 
 \item{group_ind}{A vector of group names each of the samples belongs to.}
 
-\item{num_intervals}{A length m vector of positive integers.}
-
-\item{percent_overlap}{A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.}
-
 \item{arg_mapper}{A list for additional arguments for
 \code{\link{mapper.kmeans}}.}
 }
@@ -35,11 +31,11 @@ A data.frame of Shannon indices and spread measures under given
 vectors.
 }
 \examples{
-tp_data = chicken_generator(1)
-tp_dist = dist(tp_data[,-1])
-a = filter_eccen(dist = tp_dist, p = 2)
-b = filter_coordinate(tp_data[,-1], 2)
-c = filter_gaussian(dist=tp_dist, sigma=1)
+tp_data <- chicken_generator(1)
+tp_dist <- dist(tp_data[,-1])
+a <- filter_eccen(dist = tp_dist, p = 2)
+b <- filter_coordinate(tp_data[,-1], 2)
+c <- filter_gaussian(dist=tp_dist, sigma=1)
 filter_evaluate(a,b,c,
                 dat = tp_data, group_ind = tp_data$Group,
                 num_intervals = 10, percent_overlap = 70)

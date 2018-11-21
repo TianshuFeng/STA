@@ -18,11 +18,11 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-This package aims to provide an easy and flexible way to explore the visualization of data based on Mapper, a topological data analysis method, It provides users with extensive tools to customize the visualization, optimally select filter functions and evaluate the results from Mapper.
+This package aims to provide a comfortable and flexible way to explore the visualization of data based on Mapper, a topological data analysis method. It provides users with extensive tools to customize the visualization, optimally select filter functions and evaluate the results from Mapper.
 
 To install the latest version of this R package directly from github:
 ```
-install.package("devtools")
+install.packages("devtools")
 devtools::install_github("TianshuFeng/SemiMapper")
 ```
 
@@ -30,7 +30,7 @@ devtools::install_github("TianshuFeng/SemiMapper")
 
 ## Start with the simulation data
 
-This package provides a function `chicken_generator` to generate simulation data which is similar to a chicken foot. We will use it to demostrate the tools of this package.
+This package provides a function `chicken_generator` to generate simulation data which is similar to a chicken foot. We will use it to demonstrate the tools of this package.
 
 We start by applying Mapper directly to the simulated data with function `mapper.kmeans` and generate a graph with the basic visualization function `simple_visNet`.
 
@@ -45,9 +45,9 @@ simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)
 ```
 In `chicken_generator`, the argument `seed` determines the seed to be used in data generation. The first column represent the groups of samples, and the last three columns are the coordinates of samples. 
 
-We apply Mapper to the simulated data with function `mapper.kmeans` modified from function `mapper` in package `TDAmapper`. In `mapper.kmeans`, `dat` is the input data, `filter_values` is the vector of filter. Here we simply use the Y axis as the filter. `num_intervals` and `percent_overlap` are the number of intervals and the percentage of intervals overlapped, respectively, which decides how `simu_data$Y` is convered. 
+We apply Mapper to the simulated data with function `mapper.kmeans` modified from function `mapper` in package `TDAmapper`. In `mapper.kmeans`, `dat` accepts the input data, and `filter_values` accepts the filter vector. Here we use the Y-axis as the filter. `num_intervals` and `percent_overlap` are the number of intervals and the percentage of intervals overlapped, respectively, which decides how `simu_data$Y` is converted to the set of overlapping intervals. 
 
-`simple_visNet` function visualize the graph from `mapper.kmeans`. It is capable of flexibly assigning colors to nodes in the graph. In this example, we set `color_filter = TRUE` and `filter = simu_data$Y`, and the colors of nodes are determined by the average values of filters of samples in the nodes.
+`simple_visNet` function visualize the graph from `mapper.kmeans`. It is capable of flexibly assigning colors to nodes in the graph. In this example, we set `color_filter = TRUE` and `filter = simu_data$Y`, and the colors of nodes are determined by the average values of the filters of samples in the nodes.
 
 ## Play with colors
 
@@ -55,9 +55,9 @@ We can also assign colors with the dominated group under each node with
 ```{r eval=FALSE}
 simple_visNet(simu_data_mapper, color_filter = FALSE, groups_ind = simu_data$Group)
 ```
-The colors will be determined by built-in function `color_map_Spectral()` based on the dominated groups. Users can also define their own color function and pass it to argument `color_fun`. The color function should be able to accept numeric vectors and output hex color codes.
+The colors will be determined by built-in function `color_map_Spectral()` based on the dominated groups. Users can also define their color function and pass it to argument `color_fun`. The color function should be able to accept numeric vectors and output hex color codes.
 
-Alternatively, we can specify the colors of groups. This package provides several tools to help the users define colors for the groups. `auto_set_colorcode` is able to automatically generate color codes based on given palette. `read_color_code` can read color codes from local files and turn them into appropriate format, and `check_color_code` checks the validity of provided color code data frame. 
+Alternatively, we can specify the colors of groups. This package provides several tools to help the users define colors for the groups. `auto_set_colorcode` can automatically generate color codes based on given palette. `read_color_code` can read color codes from local files and turn them into the appropriate format, and `check_color_code` checks the validity of provided color code data frame. 
 
 We demostrate these tools with the following codes:
 ```{r eval=FALSE}
@@ -85,7 +85,9 @@ tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
 network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
                       folder = "Exp_network")
 ```
-One difference between `network_visualization` and `simple_visNet` is that in `network_visualization`, the groups of samples must be defined by users, because the percentages of groups of samples in each node is part of the basic summary information. Nevertheless, `network_visualization` can automatically assign colors to groups, and color tools introduced in "Play with colors" can still be used to help the users to define their own colors for different groups of samples.
+Note that, in this example, we called the function `filter_coordinate` to get the filter vector, which is the same as `tp_data$Y` and is one of the filter functions provided in the package. More examples of the filter functions can be found in Example 3. 
+
+One difference between `network_visualization` and `simple_visNet` is that in `network_visualization`, the groups of samples must be defined by users because the percentages of groups of samples in each node are part of the basic summary information. Nevertheless, `network_visualization` can automatically assign colors to groups, and color tools introduced in "Play with colors" can still be used to help the users to define their colors for different groups of samples.
 
 The generated graphs from `network_visualization` and `simple_visnet` are also different. Besides the graph itself, the graph from `network_visualization` contains summaries of nodes which will show up when hovering the mouse cursor on a node. Basic summary information includes the number of samples in the node, the dominated group of the node, the percentages of groups of samples in the node and a pie plot depicting the percentages of groups.
 
@@ -104,7 +106,7 @@ network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[
 
 # Example 3: Use and define different filter functions.
 
-One object of this package is to help users to select filter functions for Mapper. This package includes 7 built-in filter functions: `filter_ref`, `filter_pca`, `filter_Linf`, `filter_gaussian`, `filter_coordinate`, `filter_dtm`, `filter_eccen`:
+As shown in Example 2, filter functions are necessary to calculate the filter vectors. This package includes 7 built-in filter functions: `filter_ref`, `filter_pca`, `filter_Linf`, `filter_gaussian`, `filter_coordinate`, `filter_dtm`, `filter_eccen` as shown in the table below:
 
 | Function            | Name                  | Expression                                                                                                                  |
 |---------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------|
@@ -116,8 +118,35 @@ One object of this package is to help users to select filter functions for Mappe
 |        `filter_dtm` | Distance to measure   | $f(x_i;k) = \sqrt{\frac{1}{k}\sum_{j=2}^{k+1} d^2(x_i,x_{(j)})}$                                                          |
 |      `filter_eccen` | Eccentricity          | $f(x_i;p) = (\frac{1}{n}\sum_{j=1}^n d^p(x_i,x_j))^{1/p}$                                                                 |
 
+Here we provide an example to show how to call a built-in filter function `filter_eccen` and pass the obtained filter vector to the `mapper.kmeans`. `filter_eccen` has two arguments, `dist` and `p`. `dist` accepts arbitrary distance matrix calculated based on the dataset. Many R functions and packages provide tools to calculate the distance matrix, such as the package `philentropy`. `p` is the exponent of the eccentricity filter function.
 
-Besides the built-in filter functions, users can also define their own standard filter functions. While `mapper.kmeans` can accept any numeric vector as a filter, the optimization function `filter_evaluate` can only accept `filter` object from standard filter functions. The return value from a standard filter function should have two attributes: `class` and `filter`. `class` should always be "filter", and `filter` contains the name of the corresponding filter function. An example of a standard filter function is:
+```{r eval = FALSE}
+tp_data <- chicken_generator(1)
+tp_dist <- dist(tp_data[,-1])
+ff <- filter_eccen(dist = tp_dist, p = 2)
+tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = ff,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network")
+```
+
+On the other hand, if users have the prior knowledge of the data they want to analyze, the reference filter function `filter_ref` can be a good choice to start with. `filter_ref` calculates the average distance between each of the samples and a group of reference samples. `filter_ref` has three arguments, `dist`, `groups_ind` and `ref`. `dist` accepts the distance matrix calculated based on the data, `groups_ind` should be a vector where each entry represents the group index of the corresponding sample point in the data, and `ref` is the index of the reference group. An example is shown below:
+
+```{r eval = FALSE}
+tp_data <- chicken_generator(1)
+tp_dist <- dist(tp_data[,-1])
+ff <- filter_ref(dist=tp_dist, groups_ind=tp_data$Group, ref = "Shank")
+tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
+                               filter_values = ff,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
+                      folder = "Exp_network")
+```
+
+Besides the built-in filter functions, users can also define their standard filter functions. While `mapper.kmeans` can accept any numeric vector as a filter, the optimization function `filter_evaluate` can only accept `filter` object from standard filter functions. The return value from a standard filter function should have two attributes: `class` and `filter`. `class` should always be "filter", and `filter` contains the name of the corresponding filter function. An example of a standard filter function is:
 ```{r eval=FALSE}
 filter_eccen = function(dist, p, ...) {
 
@@ -134,25 +163,25 @@ filter_eccen = function(dist, p, ...) {
 
 # Example 4: Result evaluation.
 
-We can generate many graphs under the filter functions. While we can manually and empirically select graphs based on the domain knowledge we have about the data, it is important to evaluate these graphs objectively based on the prior knowledge of the data with some measures. In this section, we introduce two measures that can effectively evaluate the graphs from different aspects by comparing the graphs with the prior knowledge we have about the data. 
+We can generate many graphs under the filter functions. While we can manually and empirically select graphs based on the domain knowledge we have about the data, it is important to evaluate these graphs objectively based on the prior knowledge of the data with some measures. In this section, we introduce two measures that can effectively assess the graphs from different aspects by comparing the graphs with the prior knowledge we have about the data. 
 
 ## Shannon index
 Shannon index [17] is an evaluation method measuring how diverse each node is. Specifically, given one node $X_k$, and assuming samples are from $L$ different labels, the Shannon index is defined as follows:
 $$\begin{array}{rl} H(X_{k}) &\displaystyle = − \sum_{l=1}^{L} p_l\log p_l\\ p_l &\displaystyle = \frac{|\{ x_{i} | x_{i} \in X_{k} \text{ and } y_i = l \} |}{|X_{k}|}.  \end{array}$$
 where $|.|$ denotes the number of elements in a set. 
 
-Taking into account that the sizes of nodesclusters are usually different, we measure the overall diversity of a graph as the weighted average of the Shannon indices weighted by the sizes of the nodesclusters, which is
+Taking into account that the sizes of nodes are usually different, we measure the overall diversity of a graph as the weighted average of the Shannon indices weighted by the sizes of the nodes, which is
 $$\bar{H}_f = \frac{ \sum_{j,k} |X_{k}| H(X_{k}) }{\sum_{j,k} |X_{k}|}.$$
-Here, the subscript $f$ of $\bar{H}_f$ emphasizes that $\bar{H}_f$ depends on the filter function $f$. Therefore, a small $\bar{H}_f$ implies the data points with different labels are well separated in different nodes, and the graph is good overall in terms of node-wise diversity.
+Here, the subscript $f$ of $\bar{H}_f$ emphasizes that $\bar{H}_f$ depends on the filter function $f$. Therefore, a small $\bar{H}_f$ implies the data points with different labels are well separated in different nodes, and the graph is good overall concerning node-wise diversity.
 
 We demonstrate the calculation of Shannon index with the chicken foot example.
 ```{r eval=FALSE}
-tp_data = chicken_generator(1)
-tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
-                               filter_values = tp_data$Y,
-                               num_intervals = 10,
-                               percent_overlap = 70)
-tp_shannon = mapper_shannon_index(tp_data_mapper, tp_data$Group)
+tp_data <- chicken_generator(1)
+tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
+                                filter_values = tp_data$Y,
+                                num_intervals = 10,
+                                percent_overlap = 70)
+tp_shannon <- mapper_shannon_index(tp_data_mapper, tp_data$Group)
 tp_shannon
 ```
 
@@ -161,7 +190,7 @@ tp_shannon
 Although Shannon index can evaluate nodes of a graph, it neglects the connectivity of nodes. For example, these measures cannot detect the situation when two similar nodes containing samples with similar labels are separated from each other in a graph. 
 
 To compensate the Shannon index and evaluate graphs regarding the connectivity of nodes, we describe a heuristic sample-wise measure to evaluate how samples with the sample labels concentrate on a generated graph considering the structure of the graph. This measure is obtained as follows. First, for each data point in each of the nodes, we calculate the average distance between it and other data points with the same labels in the graph, where the distance is the length of the shortest path between nodes containing these points. Then we average the distance across all the data points. Mathematically, for one data point $x_i$ in a node $X_k$, the average distance is defined as 
-$$	sp_{X_{k}}(x_i) = \frac{\sum_{\substack{k‘}} |\{ x\in X_{k‘}| y=y_i \}| q(X_{k}, X_{k‘}) }{\sum_{\substack{k‘}} |\{ x\in X_{k‘}| y=y_i \}|}$$
+$$    sp_{X_{k}}(x_i) = \frac{\sum_{\substack{k‘}} |\{ x\in X_{k‘}| y=y_i \}| q(X_{k}, X_{k‘}) }{\sum_{\substack{k‘}} |\{ x\in X_{k‘}| y=y_i \}|}$$
 where $q(X_{k}, X_{k‘})$ is the length of the shortest path between nodes $X_{k}$ and $X_{k‘}$. Note that, in this measure, we focus on the largest connected subgraph and ignore the points not included in the largest subgraph. For computational simplicity, duplicate data points appearing in multiple nodes are as different data points.
 The overall measure for the spread of data points in a graph is then
 $$ \bar{sp}_f = \frac{ \sum_{\substack{i,k}} sp_{X_{k}}(x_i) }{\sum_{k} |{X_{k}}| } $$
@@ -169,12 +198,12 @@ where the subscript $f$ of $\bar{sp}_f$ emphasizes that $\bar{sp}_f$ depends on 
 
 We demonstrate the calculation of the spread measure with the chicken foot example.
 ```{r eval=FALSE}
-tp_data = chicken_generator(1)
-tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+tp_data <- chicken_generator(1)
+tp_data_mapper<- mapper.kmeans(dat = tp_data[,2:4],
                                filter_values = tp_data$Y,
                                num_intervals = 10,
                                percent_overlap = 70)
-tp_spread = spread_measure(tp_data_mapper, tp_data$Group)
+tp_spread <- spread_measure(tp_data_mapper, tp_data$Group)
 tp_spread
 ```
 
@@ -185,7 +214,7 @@ It is worth noticing that $\bar{H}_f$ and $\bar{sp}_f$ measures the graph from t
 
 # Example 5: Filter function selection with Pareto frontier.
 
-After generating graphs under different filter functions, the evaluation methods in Example 4 enable us to evaluate and compare the graphs from different aspects. The last problem is to find the optimal graphs regarding these measures. We solve this problem by borrowing methods for the multi-objective optimization problems.
+After generating graphs under different filter functions, the evaluation methods in Example 4 enable us to evaluate and compare the graphs from different aspects. The last problem is to find the optimal graphs regarding these measures. We solve this problem by borrowing methods for multi-objective optimization problems.
 
 Given graphs generated under a set of filter functions $F$, the problem of selecting the optimal filter functions can be formulated as $$f=\text{argmin}_{f \in F} (\bar{H}_f, \bar{sp}_f).$$
 
@@ -195,21 +224,21 @@ $$\{f \in F| \{f‘ \in F|f‘\ne f,\bar{H}_{f‘} < \bar{H}_{f} \text{ and } \b
 We generate an illustration of the pareto frontier with the package `ggplot2` and the function `pareto_opt` from the SemiMapper package assuming we have measures on seven graphs generated under different filter functions. First, we find the filter functions on the Pareto frontier with `pareto_opt`. Note that `pareto_opt` accept `data.frame` as input where the first column is the names of the filter functions and the second and third columns should be the corresponding Shannon indices and spread measures
 ```{r}
 library(SemiMapper)
-filter_names = c("Coordinate","Eccen","LInf","Ref","DTM","Gaussian","PCA")
-res_filter = data.frame(Filter = filter_names,
+filter_names <- c("Coordinate","Eccen","LInf","Ref","DTM","Gaussian","PCA")
+res_filter <- data.frame(Filter = filter_names,
                         weighted_shannon = c(1.389, 1.221, 1.453, 1.158, 1.345, 1.399, 1.349),
                         spread_measure = c(2.767, 3.101, 2.607, 4.001, 4.119, 3.957, 2.034))
-res = pareto_opt(res_filter)
+res <- pareto_opt(res_filter)
 print(res)
 ```
 Then, we plot the results with `ggplot2`:
 ```{r}
 # Illustration of Pareto frontier
 library(ggplot2)
-res = pareto_opt(res_filter, top = nrow(res_filter))
-res$.level[res$.level>1] = "Others"
-res$.level[res$.level==1] = "Frontier"
-class(res) = "data.frame"
+res <- pareto_opt(res_filter, top = nrow(res_filter))
+res$.level[res$.level>1] <- "Others"
+res$.level[res$.level==1] <- "Frontier"
+class(res) <- "data.frame"
 gp <- ggplot(res, aes(x = weighted_shannon, y = spread_measure,
                       color = factor(.level),
                       label = Filter)) +
@@ -225,30 +254,22 @@ gp <- ggplot(res, aes(x = weighted_shannon, y = spread_measure,
 gp
 ```
 
-In the graph, the red line represents the Pareto frontier, the red squares represent the filter functions on the Pareto frontier and the blue squares represent the filter functions not in the Pareto frontier. 
+In the graph, the red line represents the Pareto frontier, the red squares represent the filter functions on the Pareto frontier, and the blue squares represent the filter functions not in the Pareto frontier. 
 
 
-The package also provides a function, `filter_evaluate`, for users to efficiently get the measures for the graphs generated under different filter functions. It accepts arbitrary number of filter vectors from the filter functions and return the measures as a `data.frame object` that can be directly used in the `pareto_opt` function. An example of using the `filter_evaluate` function is shown below for three filter functions on the chicken foot example:
+The package also provides a function, `filter_evaluate`, for users to efficiently get the measures for the graphs generated under different filter functions. It accepts arbitrary number of filter vectors from the filter functions and returns the measures as a `data.frame` object that can be directly used in the `pareto_opt` function. An example of using the `filter_evaluate` function is shown below for three filter functions on the chicken foot example:
 ```{r eval = FALSE}
-tp_data = chicken_generator(1)
-tp_dist = dist(tp_data[,-1])
-a = filter_eccen(dist = tp_dist, p = 2)
-b = filter_coordinate(tp_data[,-1], 2)
-c = filter_gaussian(dist=tp_dist, sigma=1)
-filter_evaluate(a,b,c,
-                dat = tp_data, group_ind = tp_data$Group,
-                num_intervals = 10, percent_overlap = 70)
+tp_data <- chicken_generator(1)
+tp_dist <- dist(tp_data[,-1])
+fe <- filter_eccen(dist = tp_dist, p = 2)
+fc <- filter_coordinate(tp_data[,-1], 2)
+fg <- filter_gaussian(dist=tp_dist, sigma=1)
+res_eval <- filter_evaluate(fe,fc,fg,
+                            dat = tp_data, group_ind = tp_data$Group,
+                            num_intervals = 10, percent_overlap = 70)
 ```
-Additional arguments for the `mapper.kmeans` can be passed to the argument `arg_mapper` of `filter_evaluate`.
-```{r eval = FALSE}
-# Add additional arguments (NOT RUN)
-if(FALSE) {
-  filter_evaluate(a,b,c,
-                  dat = tp_data, group_ind = tp_data$Group,
-                  num_intervals = 10, percent_overlap = 70,
-                  arg_mapper = list(n_class = 1))
-}
+Then the results can be passed to the `pareto_opt` function.
+```{r eval=FALSE}
+res <- pareto_opt(res_eval)
+print(res)
 ```
-
-
-
