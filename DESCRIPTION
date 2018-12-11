@@ -2,10 +2,17 @@ Package: SemiMapper
 Type: Package
 Title: Semi-supervised Mapper and Visualization
 Version: 0.3
-Author: Tianshu Feng, Chen Wang
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: as.person(c(
+    "Tianshu Feng <tsfeng@uw.edu> [aut, cre]", 
+    "Yuanhang Liu <Liu.Yuanhang@mayo.edu> [aut]",
+    "Sangdi Lin <slin63@asu.edu> [aut]",
+    "Chen Wang <Wang.Chen@mayo.edu> [aut]"
+  ))
+Description: This package aims to provide a comfortable and flexible 
+    way to explore the visualization of data based on Mapper, a 
+    topological data analysis method. It provides users with extensive 
+    tools to customize the visualization, optimally select filter 
+    functions and evaluate the results from Mapper.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

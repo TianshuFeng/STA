@@ -104,13 +104,13 @@ simple_visNet <-
         dom_grp <-
           c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
       }
-      dom_grp <- as.numeric(dom_grp)
+      dom_grp <- as.numeric(as.factor(dom_grp))
 
       nodes <-
         data.frame(
           id = 1:nrow(MapperNodes),
           value = MapperNodes$Nodesize,
-          color = color_fun(dom_grp / max(groups_ind))
+          color = color_fun(dom_grp / max(dom_grp))
         )
 
     } else if (check_color_code(color_code)) {
@@ -139,12 +139,16 @@ simple_visNet <-
     edges <-
       data.frame(from = MapperLinks$Linksource + 1, to = MapperLinks$Linktarget + 1)
 
-    visNetwork(nodes, edges, width = "100%", height = "700px") %>% visInteraction(tooltipDelay = 500,
-                                                                                  selectConnectedEdges = FALSE) %>% visOptions(highlightNearest = list(
-                                                                                    enabled = TRUE,
-                                                                                    degree = 2,
-                                                                                    hover = T
-                                                                                  )) %>% visSave(file = network_name, background = "white")
+    net_file <- visNetwork(nodes, edges, width = "100%", height = "700px") %>%
+      visInteraction(tooltipDelay = 500,
+                     selectConnectedEdges = FALSE) %>%
+      visOptions(highlightNearest = list(
+                 enabled = TRUE,
+                 degree = 2,
+                 hover = T) )
+    print(net_file)
+
+    net_file %>% visSave(file = network_name, background = "white")
 
     save_logic = file.rename(from = network_name, to = file.path(folder, network_name))
 
