@@ -15,6 +15,10 @@ predictive variables.}
 \item{filter_values}{A n x m data frame of real numbers returned by the
 filter functions.}
 
+\item{num_intervals}{A length m vector of positive integers.}
+
+\item{percent_overlap}{A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.}
+
 \item{dist_method}{The distance measure to be used to compute the
 dissimilarity matrix. By default, distance="euclidean". It must be one of
 This must be one of: "euclidean", "maximum", "manhattan", "canberra",

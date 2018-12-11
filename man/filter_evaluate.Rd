@@ -17,6 +17,10 @@ predictive variables.}
 
 \item{group_ind}{A vector of group names each of the samples belongs to.}
 
+\item{num_intervals}{A length m vector of positive integers.}
+
+\item{percent_overlap}{A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.}
+
 \item{arg_mapper}{A list for additional arguments for
 \code{\link{mapper.kmeans}}.}
 }
