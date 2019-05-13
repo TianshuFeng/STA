@@ -104,7 +104,7 @@ simple_visNet <-
         dom_grp <-
           c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
       }
-      dom_grp <- as.numeric(as.factor(dom_grp))
+      dom_grp <- as.numeric(as.factor(dom_grp)) - 1
 
       nodes <-
         data.frame(

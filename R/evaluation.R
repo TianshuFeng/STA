@@ -209,7 +209,7 @@ pareto_opt <- function(res_filter, ...) {
 #'
 #' @seealso \code{\link{pareto_opt}}
 print.Pareto_frontier <- function(res) {
-  cat("Filter functions in the Pareto frontier:\n\t", paste(res$Filter,
+  cat("Filter functions in the Pareto frontier:\n\t", paste(res$Filter[res$.level==1],
                                                             collapse = ", "), "\n")
   cat("\nEvaluation results of filter functions in the Pareto frontier:\n")
   class(res) <- "data.frame"
