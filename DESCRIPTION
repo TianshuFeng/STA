@@ -1,14 +1,14 @@
-Package: SemiMapper
+Package: STA
 Type: Package
-Title: Semi-supervised Mapper and Visualization
-Version: 0.3
+Title: Semi-supervised Topological Analysis
+Version: 0.4
 Authors@R: as.person(c(
     "Tianshu Feng <tsfeng@uw.edu> [aut, cre]", 
     "Yuanhang Liu <Liu.Yuanhang@mayo.edu> [aut]",
     "Sangdi Lin <slin63@asu.edu> [aut]",
     "Chen Wang <Wang.Chen@mayo.edu> [aut]"
   ))
-Description: This package aims to provide a comfortable and flexible 
+Description: This package aims to provide a flexible 
     way to explore the visualization of data based on Mapper, a 
     topological data analysis method. It provides users with extensive 
     tools to customize the visualization, optimally select filter 

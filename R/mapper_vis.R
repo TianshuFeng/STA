@@ -407,8 +407,8 @@ legend_node = function(stats_sum = NULL, color_code) {
 
 #' Generate graphs from results of Mapper
 #'
-#' \code{network_visualization} generates an interactive graph from the
-#' provided Mapper object.
+#' \code{network_visualization} generates an interactive graph from the provided
+#' Mapper object.
 #'
 #' \code{network_visualization} generates an interactive graph based on the
 #' provided Mapper object with Javascript tools from \code{visNetwork}. It
@@ -420,8 +420,8 @@ legend_node = function(stats_sum = NULL, color_code) {
 #' Nodes are colored with the colors associated with the dominated groups within
 #' each of the nodes. The colors of groups can either be defined by users or by
 #' function \code{\link{auto_set_colorcode}}. Self defined color codes should
-#' follow the format introduced in \code{\link{check_color_code}}, and we recommend
-#' reading color code files with \code{\link{read_color_code}}.
+#' follow the format introduced in \code{\link{check_color_code}}, and we
+#' recommend reading color code files with \code{\link{read_color_code}}.
 #'
 #'
 #' @param obj_mapper An object of class \code{TDAmapper}.
@@ -461,6 +461,11 @@ legend_node = function(stats_sum = NULL, color_code) {
 #'                            '</b><br>')
 #' network_visualization(tp_data_mapper, groups_ind = tp_data$Group, dat = tp_data[,2:4],
 #'                       folder = "Exp_network", add_analysis_js = add_analysis_js)
+#'
+#' @references Feng, T., Davila, J.I., Liu, Y., Lin, S., Huang, S. and Wang, C.,
+#' 2019. Semi-supervised Topological Analysis for Elucidating Hidden Structures
+#' in High-Dimensional Transcriptome Datasets. _IEEE/ACM transactions on
+#' computational biology and bioinformatics._
 #'
 network_visualization = function(obj_mapper,
                                  groups_ind,

@@ -8,3 +8,7 @@ install.packages("devtools")
 devtools::install_github("TianshuFeng/STA")
 ```
 Further information can be found in the vignettes. 
+
+# Reference
+
+- Feng, T., Davila, J.I., Liu, Y., Lin, S., Huang, S. and Wang, C., 2019. Semi-supervised Topological Analysis for Elucidating Hidden Structures in High-Dimensional Transcriptome Datasets. _IEEE/ACM transactions on computational biology and bioinformatics._ <[doi:10.1109/TCBB.2019.2950657](https://doi.org/10.1109/TCBB.2019.2950657)>
