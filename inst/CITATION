@@ -10,7 +10,8 @@ citEntry(entry = "Article",
   as.person("Shuai Huang"),
   as.person("Chen Wang")),
   journal      = "IEEE/ACM transactions on computational biology and bioinformatics",
-  publisher={IEEE},
+  publisher="IEEE",
+  year=2019,
   textVersion  =
   paste("Feng, T., Davila, J.I., Liu, Y., Lin, S., Huang, S. and Wang, C., 2019. Semi-supervised Topological Analysis for Elucidating Hidden Structures in High-Dimensional Transcriptome Datasets. IEEE/ACM transactions on computational biology and bioinformatics.")
 )
