@@ -4,8 +4,10 @@ Title: Semi-supervised Topological Analysis
 Version: 0.4
 Authors@R: as.person(c(
     "Tianshu Feng <tsfeng@uw.edu> [aut, cre]", 
-    "Yuanhang Liu <Liu.Yuanhang@mayo.edu> [aut]",
-    "Sangdi Lin <slin63@asu.edu> [aut]",
+    "Jaime I Davila <tsfeng@uw.edu> [ctb]", 
+    "Yuanhang Liu <Liu.Yuanhang@mayo.edu> [ctb]",
+    "Sangdi Lin <slin63@asu.edu> [ctb]",
+    "Shuai Huang <shuaih@uw.edu> [ctb]",
     "Chen Wang <Wang.Chen@mayo.edu> [aut]"
   ))
 Description: This package aims to provide a flexible 
@@ -13,6 +15,7 @@ Description: This package aims to provide a flexible
     topological data analysis method. It provides users with extensive 
     tools to customize the visualization, optimally select filter 
     functions and evaluate the results from Mapper.
+URL: https://tianshufeng.github.io/STA/, https://github.com/TianshuFeng/STA
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

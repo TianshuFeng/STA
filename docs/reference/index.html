@@ -81,7 +81,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/TianshuFeng/STA">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -108,17 +113,11 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-mapper" class="hasAnchor"><a href="#section-mapper" class="anchor"></a>Mapper</h2>
+          <p class="section-desc"><p>Functions for the mapper model.</p></p>
         </th>
       </tr>
       <tr>
-        
-        <td>
-          <p><code><a href="filter_name.html">filter_name()</a></code> </p>
-        </td>
-        <td><p>Which filter function produces the filter?</p></td>
-      </tr><tr>
         
         <td>
           <p><code><a href="mapperVertices.html">mapperVertices()</a></code> </p>
@@ -139,27 +138,35 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="print.filter.html">print(<i>&lt;filter&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print filter function name</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="spread_measure.html">spread_measure()</a></code> </p>
-        </td>
-        <td><p>Spread measure function</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="mapper.kmeans.html">mapper.kmeans()</a></code> </p>
         </td>
         <td><p>Mapper function with multiple cluster methods</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-network-generation" class="hasAnchor"><a href="#section-network-generation" class="anchor"></a>Network generation</h2>
+          <p class="section-desc"><p>Functions for generating the network graph based on the results from the mapper model.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="simple_visNet.html">simple_visNet()</a></code> </p>
+        </td>
+        <td><p>Simple graphs generation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="pareto_opt.html">pareto_opt()</a></code> </p>
+          <p><code><a href="stat_summery.html">stat_summery()</a></code> </p>
         </td>
-        <td><p>Find the pareto frontier</p></td>
+        <td><p>Create statistics summary of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="network_visualization.html">network_visualization()</a></code> </p>
+        </td>
+        <td><p>Generate graphs from results of Mapper</p></td>
       </tr><tr>
         
         <td>
@@ -175,21 +182,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="print.Pareto_frontier.html">print(<i>&lt;Pareto_frontier&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print Pareto frontier</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="check_color_code.html">check_color_code()</a></code> </p>
         </td>
         <td><p>Check the validation of a color code dataframe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="filter_evaluate.html">filter_evaluate()</a></code> </p>
-        </td>
-        <td><p>Evaluate filter functions</p></td>
       </tr><tr>
         
         <td>
@@ -199,15 +194,41 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="filter_pca.html">filter_pca()</a></code> </p>
+          <p><code><a href="color_map_Spectral.html">color_map_Spectral()</a></code> </p>
         </td>
-        <td><p>PCA filter</p></td>
+        <td><p>Spectral color map function</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="stat_summery.html">stat_summery()</a></code> </p>
+          <p><code><a href="legend_node.html">legend_node()</a></code> </p>
         </td>
-        <td><p>Create statistics summary of nodes</p></td>
+        <td><p>Add legends to the generated graph</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-filter-functions" class="hasAnchor"><a href="#section-filter-functions" class="anchor"></a>Filter functions</h2>
+          <p class="section-desc"><p>Built-in Filter functions that can be used to generate the network graph.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="filter_name.html">filter_name()</a></code> </p>
+        </td>
+        <td><p>Which filter function produces the filter?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_evaluate.html">filter_evaluate()</a></code> </p>
+        </td>
+        <td><p>Evaluate filter functions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_pca.html">filter_pca()</a></code> </p>
+        </td>
+        <td><p>PCA filter</p></td>
       </tr><tr>
         
         <td>
@@ -223,21 +244,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="legend_node.html">legend_node()</a></code> </p>
-        </td>
-        <td><p>Add legends to the generated graph</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="filter_gaussian.html">filter_gaussian()</a></code> </p>
         </td>
         <td><p>Gaussian density filter</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="network_visualization.html">network_visualization()</a></code> </p>
-        </td>
-        <td><p>Generate graphs from results of Mapper</p></td>
       </tr><tr>
         
         <td>
@@ -247,39 +256,81 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="simple_visNet.html">simple_visNet()</a></code> </p>
-        </td>
-        <td><p>Simple graphs generation</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="filter_dtm.html">filter_dtm()</a></code> </p>
         </td>
         <td><p>Distance to measure filter</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="chicken_generator.html">chicken_generator()</a></code> </p>
-        </td>
-        <td><p>Chicken foot simulation data generator</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="null_remover.html">null_remover()</a></code> </p>
-        </td>
-        <td><p>Remove NULL nodes in the graph</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="filter_eccen.html">filter_eccen()</a></code> </p>
         </td>
         <td><p>Eccentricity filter</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-evaluation" class="hasAnchor"><a href="#section-evaluation" class="anchor"></a>Evaluation</h2>
+          <p class="section-desc"><p>Functions for evaluating the results.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="mapper_shannon_index.html">mapper_shannon_index()</a></code> </p>
+        </td>
+        <td><p>Shannon index for Mapper</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="color_map_Spectral.html">color_map_Spectral()</a></code> </p>
+          <p><code><a href="spread_measure.html">spread_measure()</a></code> </p>
         </td>
-        <td><p>Spectral color map function</p></td>
+        <td><p>Spread measure function</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pareto_opt.html">pareto_opt()</a></code> </p>
+        </td>
+        <td><p>Find the pareto frontier</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_evaluate.html">filter_evaluate()</a></code> </p>
+        </td>
+        <td><p>Evaluate filter functions</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-simulation" class="hasAnchor"><a href="#section-simulation" class="anchor"></a>Simulation</h2>
+          <p class="section-desc"><p>Functions for simulation studies.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="chicken_generator.html">chicken_generator()</a></code> </p>
+        </td>
+        <td><p>Chicken foot simulation data generator</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-utilities" class="hasAnchor"><a href="#section-utilities" class="anchor"></a>Utilities</h2>
+          <p class="section-desc"><p>Utility functions.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="print.filter.html">print(<i>&lt;filter&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print filter function name</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.Pareto_frontier.html">print(<i>&lt;Pareto_frontier&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print Pareto frontier</p></td>
       </tr>
     </tbody>
     </table>
@@ -288,14 +339,19 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-mapper">Mapper</a></li>
+      <li><a href="#section-network-generation">Network generation</a></li>
+      <li><a href="#section-filter-functions">Filter functions</a></li>
+      <li><a href="#section-evaluation">Evaluation</a></li>
+      <li><a href="#section-simulation">Simulation</a></li>
+      <li><a href="#section-utilities">Utilities</a></li>
     </ul>
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Tianshu Feng, Yuanhang Liu, Sangdi Lin, Chen Wang.</p>
+  <p>Developed by Tianshu Feng, Chen Wang.</p>
 </div>
 
 <div class="pkgdown">

@@ -1,0 +1,39 @@
+template:
+  params:
+    bootswatch: paper
+
+reference:
+  - title: "Mapper"
+    desc: >
+      Functions for the mapper model.
+    contents:
+      - matches("mapper")
+  - title: "Network generation"
+    desc: >
+      Functions for generating the network graph based on the results from the mapper model.
+    contents:
+      - simple_visNet
+      - stat_summery
+      - network_visualization
+      - matches("color")
+      - legend_node
+  - title: "Filter functions"
+    desc: "Built-in Filter functions that can be used to generate the network graph."
+    contents:
+      - starts_with("filter")
+  - title: "Evaluation"
+    desc: "Functions for evaluating the results."
+    contents:
+      - mapper_shannon_index
+      - spread_measure
+      - pareto_opt
+      - filter_evaluate
+  - title: "Simulation"
+    desc: "Functions for simulation studies."
+    contents:
+      - chicken_generator
+  - title: "Utilities"
+    desc: "Utility functions."
+    contents:
+      - print.filter
+      - print.Pareto_frontier
