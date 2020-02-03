@@ -23,7 +23,7 @@ This package aims to provide a comfortable and flexible way to explore the visua
 To install the latest version of this R package directly from github:
 ```
 install.packages("devtools")
-devtools::install_github("TianshuFeng/SemiMapper")
+devtools::install_github("TianshuFeng/STA")
 ```
 
 # Example 1: Simple graph generation with SemiMapper.

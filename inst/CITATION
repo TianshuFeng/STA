@@ -1,0 +1,18 @@
+citHeader("To cite lubridate in publications use:")
+
+citEntry(entry = "Article",
+  title        = "Semi-supervised Topological Analysis for Elucidating Hidden Structures in High-Dimensional Transcriptome Datasets",
+  author       = personList(
+  as.person("Tianshu Feng"),
+  as.person("Jaime I Davila"),
+  as.person("Yuanhang Liu"),
+  as.person("Sangdi Lin"),
+  as.person("Shuai Huang"),
+  as.person("Chen Wang")),
+  journal      = "IEEE/ACM transactions on computational biology and bioinformatics",
+  publisher={IEEE},
+  textVersion  =
+  paste("Feng, T., Davila, J.I., Liu, Y., Lin, S., Huang, S. and Wang, C., 2019. Semi-supervised Topological Analysis for Elucidating Hidden Structures in High-Dimensional Transcriptome Datasets. IEEE/ACM transactions on computational biology and bioinformatics.")
+)
+
+
