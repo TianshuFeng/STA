@@ -15,3 +15,4 @@ A Mapper object
 \description{
 Remove NULL nodes in the graph
 }
+\keyword{internal}

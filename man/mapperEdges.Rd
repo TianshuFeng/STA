@@ -26,4 +26,5 @@ plot utility.
 \author{
 Paul Pearson, \email{pearsonp@hope.edu}
 }
+\keyword{internal}
 \keyword{mapperEdges}
