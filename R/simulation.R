@@ -83,6 +83,9 @@ simple_visNet <-
         avg_filter <- c(avg_filter, mean(filter[i], na.rm = TRUE))
       }
 
+      # Standardize to (0, 1)
+      avg_filter <- (avg_filter - min(avg_filter))/(max(avg_filter) - min(avg_filter))
+
       nodes <-
         data.frame(
           id = 1:nrow(MapperNodes),

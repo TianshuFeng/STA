@@ -4,6 +4,7 @@
 #' @param obj_mapper The Mapper object
 #'
 #' @return A Mapper object
+#' @keywords internal
 #'
 null_remover <- function(obj_mapper) {
 
@@ -70,6 +71,7 @@ savepdf <- function(file, folder = "", width = 10, height = 10) {
 #' @seealso \code{\link{mapperEdges}}
 #' @keywords mapperVertices
 #'
+#' @keywords internal
 #'
 mapperVertices <- function(m, pt_labels) {
 
@@ -112,6 +114,7 @@ mapperVertices <- function(m, pt_labels) {
 #' @seealso \code{\link{mapperVertices}}
 #' @keywords mapperEdges
 #'
+#' @keywords internal
 #'
 mapperEdges <- function(m) {
   linksource <- c()

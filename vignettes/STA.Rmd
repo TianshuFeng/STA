@@ -34,8 +34,8 @@ This package provides a function `chicken_generator` to generate simulation data
 
 We start by applying Mapper directly to the simulated data with function `mapper.kmeans` and generate a graph with the basic visualization function `simple_visNet`.
 
-```{r eval=FALSE}
-library(SemiMapper)
+```{r eval=TRUE}
+library(STA)
 simu_data <-  chicken_generator(seed = 1)
 simu_data_mapper <- mapper.kmeans(dat = simu_data[,2:4],
                                filter_values = simu_data$Y,

@@ -1,7 +1,3 @@
-template:
-  params:
-    bootswatch: paper
-
 reference:
   - title: "Mapper"
     desc: >
