@@ -37,6 +37,9 @@
 #' @param color_filter  A logical object. \code{TRUE} if colors of nodes are to
 #'   be determined by the average filter values of samples.
 #' @param color_code A color code dataframe.
+#' @param color_mix Boolean. If to display the color of nodes as a mixer of the
+#'   colors of samples within the nodes, where colors of samples are determined
+#'   by their associated groups
 #'
 #' @return An HTML file saved under the location given in \code{folder}. The
 #'   HTML file contains the interactive graph generated based on the Mapper
@@ -59,12 +62,13 @@ simple_visNet <-
            network_name = "network.html",
            color_filter = TRUE,
            groups_ind = NULL,
-           color_code = NULL) {
+           color_code = NULL,
+           color_mix = FALSE) {
     require(visNetwork)
     require(RColorBrewer)
 
-    MapperNodes <- mapperVertices(obj_mapper, 1)
-    MapperLinks <- mapperEdges(obj_mapper)
+    MapperNodes <- STA:::mapperVertices(obj_mapper, 1)
+    MapperLinks <- STA:::mapperEdges(obj_mapper)
 
     if (color_filter) {
       if (is.null(color_fun)) {
@@ -102,19 +106,40 @@ simple_visNet <-
       }
 
       # Use dominant group
-      dom_grp <- c()
-      for (i in obj_mapper$points_in_vertex) {
-        dom_grp <-
-          c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
-      }
-      dom_grp <- as.numeric(as.factor(dom_grp)) - 1
+      if (!color_mix) {
 
-      nodes <-
-        data.frame(
-          id = 1:nrow(MapperNodes),
-          value = MapperNodes$Nodesize,
-          color = color_fun(dom_grp / max(dom_grp))
-        )
+        dom_grp <- c()
+        for (i in obj_mapper$points_in_vertex) {
+          dom_grp <-
+            c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
+        }
+        dom_grp <- as.numeric(as.factor(dom_grp)) - 1
+
+        nodes <-
+          data.frame(
+            id = 1:nrow(MapperNodes),
+            value = MapperNodes$Nodesize,
+            color = color_fun(dom_grp / max(dom_grp))
+          )
+
+      } else if (color_mix) {
+
+        sample_color <- as.numeric(as.factor(groups_ind)) - 1
+        sample_color <- color_fun(grp_color/max(grp_color))
+
+        avg_color <- c()
+        for (i in obj_mapper$points_in_vertex) {
+          avg_color <- c(avg_color, color_mixer(sample_color[i], na.rm = TRUE))
+        }
+
+        nodes <-
+          data.frame(
+            id = 1:nrow(MapperNodes),
+            value = MapperNodes$Nodesize,
+            color = avg_color
+          )
+
+      }
 
     } else if (check_color_code(color_code)) {
       if (is.null(groups_ind)) {
@@ -122,19 +147,43 @@ simple_visNet <-
       }
 
       # Use provided color code
-      dom_grp <- c()
-      for (i in obj_mapper$points_in_vertex) {
-        dom_grp <-
-          c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
+
+      if(!color_mix) {
+        dom_grp <- c()
+        for (i in obj_mapper$points_in_vertex) {
+          dom_grp <-
+            c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
+        }
+
+        nodes <-
+          data.frame(
+            id = 1:nrow(MapperNodes),
+            value = MapperNodes$Nodesize,
+            group = dom_grp,
+            color = color_map(dom_grp, color_code = color_code)
+          )
+      } else if (color_mix) {
+
+        sample_color <- color_map(groups_ind, color_code = color_code)
+
+        avg_color <- c()
+        dom_grp <- c()
+        for (i in obj_mapper$points_in_vertex) {
+          avg_color <- c(avg_color, color_mixer(sample_color[i], na.rm = TRUE))
+          dom_grp <-
+            c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
+        }
+
+        nodes <-
+          data.frame(
+            id = 1:nrow(MapperNodes),
+            value = MapperNodes$Nodesize,
+            group = dom_grp,
+            color = avg_color
+          )
+
       }
 
-      nodes <-
-        data.frame(
-          id = 1:nrow(MapperNodes),
-          value = MapperNodes$Nodesize,
-          group = dom_grp,
-          color = color_map(dom_grp, color_code = color_code)
-        )
     } else {
       stop("Invalid color code")
     }

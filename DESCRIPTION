@@ -16,6 +16,7 @@ Description: This package aims to provide a flexible
     tools to customize the visualization, optimally select filter 
     functions and evaluate the results from Mapper.
 URL: https://tianshufeng.github.io/STA/, https://github.com/TianshuFeng/STA
+BugReports: https://github.com/TianshuFeng/STA/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

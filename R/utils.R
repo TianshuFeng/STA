@@ -43,6 +43,40 @@ color_map_Spectral <- function(x) {
 }
 
 
+
+#' Color mixer
+#'
+#' @param colors vector of Hex colors
+#' @param weight vector of weight of each color in calculating the average
+#'
+#' @return
+#' @export
+#' @keywords internal
+#'
+#' @examples
+color_mixer <- function(col_vec, weight = NULL, na.rm = TRUE) {
+
+  rgb_mat <- col2rgb(col_vec)
+  if (is.null(weight)) {
+    weight <- rep(1, length(col_vec))
+  } else if (length(weight) != length(col_vec)) {
+    stop("The length of weight is not equal")
+  }
+
+  if(na.rm) {
+    col_vec <- na.omit(col_vec)
+  }
+
+  weight <- weight/sum(weight)
+  avg_col <- rgb_mat %*% weight
+
+  avg_col_hex <- rgb(red = avg_col[1],
+                     green = avg_col[2],
+                     blue = avg_col[3],
+                     maxColorValue = 255)
+  return(avg_col_hex)
+}
+
 savepdf <- function(file, folder = "", width = 10, height = 10) {
   dir.create(file.path(folder, "figures"), showWarnings = FALSE)
   fname <- paste(folder, "/figures/", file, ".png", sep = "")
