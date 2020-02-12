@@ -125,7 +125,7 @@ simple_visNet <-
       } else if (color_mix) {
 
         sample_color <- as.numeric(as.factor(groups_ind)) - 1
-        sample_color <- color_fun(grp_color/max(grp_color))
+        sample_color <- color_fun(sample_color/max(sample_color))
 
         avg_color <- c()
         for (i in obj_mapper$points_in_vertex) {
@@ -213,7 +213,7 @@ simple_visNet <-
       warning("Cannot save file in the target folder,
               please check the working directory.")
     }
-    }
+}
 
 
 #' Chicken foot simulation data generator
