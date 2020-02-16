@@ -6,7 +6,8 @@
 \usage{
 network_visualization(obj_mapper, groups_ind, dat = NULL, folder = "",
   add_surv_analysis = FALSE, add_analysis_js = NULL,
-  palette = "Set1", legend_ncol = 2, color_code = NULL)
+  palette = "Set1", legend_ncol = 2, color_code = NULL,
+  color_mix = FALSE)
 }
 \arguments{
 \item{obj_mapper}{An object of class \code{TDAmapper}.}
@@ -27,6 +28,10 @@ colors to nodes.}
 \item{color_code}{The dataframe of color codes for groups of samples. If not
 provided, the function will automatically assign colors to different
 groups.}
+
+\item{color_mix}{Boolean. If to display the color of nodes as a mixer of the
+colors of samples within the nodes, where colors of samples are determined
+by their associated groups}
 }
 \value{
 An HTML file and a set of pie plots will be saved under the location

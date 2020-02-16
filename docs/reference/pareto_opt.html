@@ -65,7 +65,7 @@ from R package `rPref`." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -142,17 +142,14 @@ and spread measures.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>filter_names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'Coordinate'</span>,<span class='st'>'Eccen'</span>,<span class='st'>'LInf'</span>,<span class='st'>'Ref'</span>,<span class='st'>'DTM'</span>,<span class='st'>'Gaussian'</span>,<span class='st'>'PCA'</span>)
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>filter_names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'Coordinate'</span>,<span class='st'>'Eccen'</span>,<span class='st'>'LInf'</span>,<span class='st'>'Ref'</span>,<span class='st'>'DTM'</span>,<span class='st'>'Gaussian'</span>,<span class='st'>'PCA'</span>)
 <span class='no'>res_filter</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>Filter</span> <span class='kw'>=</span> <span class='no'>filter_names</span>,
                         <span class='kw'>weighted_shannon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1.389</span>, <span class='fl'>1.421</span>, <span class='fl'>1.453</span>, <span class='fl'>1.158</span>, <span class='fl'>1.345</span>, <span class='fl'>1.399</span>, <span class='fl'>1.349</span>),
                         <span class='kw'>spread_measure</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2.767</span>, <span class='fl'>4.101</span>, <span class='fl'>2.607</span>, <span class='fl'>4.001</span>, <span class='fl'>4.119</span>, <span class='fl'>3.957</span>, <span class='fl'>2.034</span>))
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>pareto_opt</span>(<span class='no'>res_filter</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: rPref</span></div><div class='input'><span class='no'>res</span></div><div class='output co'>#&gt; Filter functions in the Pareto frontier:
-#&gt; 	  
-#&gt; 
-#&gt; Evaluation results of filter functions in the Pareto frontier:
-#&gt;   Filter weighted_shannon spread_measure
-#&gt; 4    Ref            1.158          4.001
-#&gt; 7    PCA            1.349          2.034</div><div class='input'>
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>pareto_opt</span>(<span class='no'>res_filter</span>)
+<span class='no'>res</span>
+
 <span class='co'># Illustration of Pareto frontier</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>pareto_opt</span>(<span class='no'>res_filter</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>res_filter</span>))
@@ -168,10 +165,11 @@ and spread measures.</p></td>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>.level</span>)), <span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>'white'</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>'bold'</span>) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>fill</span><span class='kw'>=</span><span class='st'>''</span>) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>color</span><span class='kw'>=</span><span class='st'>''</span>) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span>(<span class='st'>'Shannon index'</span>) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span>(<span class='st'>'Spread measure'</span>)
-<span class='no'>gp</span></div><div class='img'><img src='pareto_opt-1.png' alt='' width='700' height='433' /></div><div class='input'># The red line(s) is the Pareto frontier, and all the points on the top right
-# side of these line(s) are not potentially optimal.
+<span class='no'>gp</span>
+<span class='co'># The red line(s) is the Pareto frontier, and all the points on the top right</span>
+<span class='co'># side of these line(s) are not potentially optimal.</span>
 
-</div></pre>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

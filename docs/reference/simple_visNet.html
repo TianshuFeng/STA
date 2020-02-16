@@ -64,7 +64,7 @@ tooltips." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -186,13 +186,15 @@ function with necessary arguments.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tp_data</span> <span class='kw'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span>(<span class='fl'>1</span>)
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>tp_data</span> <span class='kw'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span>(<span class='fl'>1</span>)
 <span class='no'>tp_data_mapper</span> <span class='kw'>=</span> <span class='fu'><a href='mapper.kmeans.html'>mapper.kmeans</a></span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>tp_data</span>[,<span class='fl'>2</span>:<span class='fl'>4</span>],
                                <span class='kw'>filter_values</span> <span class='kw'>=</span> <span class='no'>tp_data</span>$<span class='no'>Y</span>,
                                <span class='kw'>num_intervals</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-                               <span class='kw'>percent_overlap</span> <span class='kw'>=</span> <span class='fl'>70</span>)</div><div class='output co'>#&gt; No number of cluters specified, use NbClust instead. </div><div class='input'><span class='fu'>simple_visNet</span>(<span class='no'>tp_data_mapper</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='no'>tp_data</span>$<span class='no'>Y</span>)</div><div class='output co'>#&gt; The generated HTML file can be found in:
-#&gt;  H:/My Drive/Mayo_intern files/Projects/Mapper_Visualization/Package/SemiMapper/docs/reference/network.html </div><div class='input'>
-</div></pre>
+                               <span class='kw'>percent_overlap</span> <span class='kw'>=</span> <span class='fl'>70</span>)
+<span class='fu'>simple_visNet</span>(<span class='no'>tp_data_mapper</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='no'>tp_data</span>$<span class='no'>Y</span>)
+
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

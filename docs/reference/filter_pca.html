@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -146,9 +146,11 @@ each column represents a predictive variable.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tp_data</span> <span class='kw'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span>(<span class='fl'>1</span>)
-<span class='fu'>filter_pca</span>(<span class='kw'>dat</span><span class='kw'>=</span><span class='no'>tp_data</span>[,-<span class='fl'>1</span>])</div><div class='output co'>#&gt; <span class='message'>Loading required package: rARPACK</span></div><div class='output co'>#&gt; This is the filter vecter returned by the PCA filter function.</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>tp_data</span> <span class='kw'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span>(<span class='fl'>1</span>)
+<span class='fu'>filter_pca</span>(<span class='kw'>dat</span><span class='kw'>=</span><span class='no'>tp_data</span>[,-<span class='fl'>1</span>])
+
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -64,7 +64,7 @@ provided filter." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -132,11 +132,13 @@ provided filter.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tp_data</span> <span class='kw'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span>(<span class='fl'>1</span>)
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>tp_data</span> <span class='kw'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span>(<span class='fl'>1</span>)
 <span class='no'>tp_dist</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='no'>tp_data</span>[,-<span class='fl'>1</span>])
 <span class='no'>res</span> <span class='kw'>=</span> <span class='fu'><a href='filter_eccen.html'>filter_eccen</a></span>(<span class='kw'>dist</span> <span class='kw'>=</span> <span class='no'>tp_dist</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='fu'>filter_name</span>(<span class='no'>res</span>)</div><div class='output co'>#&gt; [1] "Eccentricity"</div><div class='input'>## "Eccentricity"
-</div></pre>
+<span class='fu'>filter_name</span>(<span class='no'>res</span>)
+<span class='co'>## "Eccentricity"</span>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
