@@ -437,6 +437,10 @@ legend_node = function(stats_sum = NULL, color_code) {
 #'   provided, the function will automatically assign colors to different
 #'   groups.
 #'
+#' @param color_mix Boolean. If to display the color of nodes as a mixer of the
+#'   colors of samples within the nodes, where colors of samples are determined
+#'   by their associated groups
+#'
 #' @return An HTML file and a set of pie plots will be saved under the location
 #'   given in \code{folder}. The HTML file contains the interactive graph
 #'   generated based on the Mapper object, and the pie plots are for the
@@ -475,7 +479,8 @@ network_visualization = function(obj_mapper,
                                  add_analysis_js = NULL,
                                  palette = "Set1",
                                  legend_ncol = 2,
-                                 color_code = NULL) {
+                                 color_code = NULL,
+                                 color_mix = FALSE) {
   #  obj_mapper: the mapper object from TDAMapper
   #  groups_ind: the vector of group each individual sample belongs to
 
@@ -516,16 +521,38 @@ network_visualization = function(obj_mapper,
     color_code = color_code
   )
 
-  nodes <-
-    data.frame(
-      id = 1:nrow(MapperNodes),
-      #label = MapperNodes$Nodename,
-      value = MapperNodes$Nodesize,
-      group = stats_sum$dominant_group,
-      color = color_map(stats_sum$dominant_group,
-                        color_code = color_code),
-      title = stats_sum$java_desp
+  if (!color_mix) {
+    nodes <-
+      data.frame(
+        id = 1:nrow(MapperNodes),
+        #label = MapperNodes$Nodename,
+        value = MapperNodes$Nodesize,
+        group = stats_sum$dominant_group,
+        color = color_map(stats_sum$dominant_group,
+                          color_code = color_code),
+        title = stats_sum$java_desp
     )
+  } else if (color_mix) {
+    sample_color <- color_map(groups_ind, color_code = color_code)
+
+    avg_color <- c()
+    for (i in obj_mapper$points_in_vertex) {
+      avg_color <- c(avg_color, color_mixer(sample_color[i], na.rm = TRUE))
+    }
+
+    nodes <-
+      data.frame(
+        id = 1:nrow(MapperNodes),
+        #label = MapperNodes$Nodename,
+        value = MapperNodes$Nodesize,
+        group = stats_sum$dominant_group,
+        color = color_map(stats_sum$dominant_group,
+                          color_code = color_code),
+        title = stats_sum$java_desp
+      )
+  } else {
+    stop("Invalid color_mix. Should be Boolean.")
+  }
 
   edges <-
     data.frame(from = MapperLinks$Linksource + 1, to = MapperLinks$Linktarget +

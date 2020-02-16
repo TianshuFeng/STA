@@ -217,7 +217,7 @@ mapper.kmeans <- function(dat, filter_values, num_intervals, percent_overlap, di
     ######################################
 
     ######################################
-    # begin clustering
+    # ##### begin clustering #####
 
     points_in_this_level <- points_in_level_set[[lsfi]]
     num_points_in_this_level <- length(points_in_level_set[[lsfi]])
@@ -284,8 +284,8 @@ mapper.kmeans <- function(dat, filter_values, num_intervals, percent_overlap, di
 
 
 
-    # end clustering
-    ######################################
+    ##################### end clustering  #################
+
 
     ######################################
     # begin vertex construction

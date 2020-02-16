@@ -67,6 +67,9 @@ simple_visNet <-
     require(visNetwork)
     require(RColorBrewer)
 
+    # Remove nodes without samples
+    obj_mapper = null_remover(obj_mapper)
+
     MapperNodes <- STA:::mapperVertices(obj_mapper, 1)
     MapperLinks <- STA:::mapperEdges(obj_mapper)
 
@@ -182,6 +185,8 @@ simple_visNet <-
             color = avg_color
           )
 
+      } else {
+        stop("Invalid color_mix. Should be Boolean.")
       }
 
     } else {
