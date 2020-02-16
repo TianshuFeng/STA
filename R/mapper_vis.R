@@ -546,8 +546,7 @@ network_visualization = function(obj_mapper,
         #label = MapperNodes$Nodename,
         value = MapperNodes$Nodesize,
         group = stats_sum$dominant_group,
-        color = color_map(stats_sum$dominant_group,
-                          color_code = color_code),
+        color = avg_color,
         title = stats_sum$java_desp
       )
   } else {
