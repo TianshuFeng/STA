@@ -49,7 +49,7 @@ color_map_Spectral <- function(x) {
 #' @param colors vector of Hex colors
 #' @param weight vector of weight of each color in calculating the average
 #'
-#' @return
+#' @return A char of Hex color code.
 #' @export
 #' @keywords internal
 #'

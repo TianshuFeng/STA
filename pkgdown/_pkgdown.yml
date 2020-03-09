@@ -24,6 +24,8 @@ reference:
       - spread_measure
       - pareto_opt
       - filter_evaluate
+      - ref_dist_nodewise
+      - ref_dist_samplewise
   - title: "Simulation"
     desc: "Functions for simulation studies."
     contents:

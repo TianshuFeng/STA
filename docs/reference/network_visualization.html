@@ -64,7 +64,7 @@ Mapper object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7</span>
       </span>
     </div>
 
@@ -117,7 +117,8 @@ Mapper object.</p>
 
     <pre class="usage"><span class='fu'>network_visualization</span>(<span class='no'>obj_mapper</span>, <span class='no'>groups_ind</span>, <span class='kw'>dat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>folder</span> <span class='kw'>=</span> <span class='st'>""</span>,
   <span class='kw'>add_surv_analysis</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>add_analysis_js</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Set1"</span>, <span class='kw'>legend_ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Set1"</span>, <span class='kw'>legend_ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>color_mix</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,6 +155,12 @@ colors to nodes.</p></td>
       <td><p>The dataframe of color codes for groups of samples. If not
 provided, the function will automatically assign colors to different
 groups.</p></td>
+    </tr>
+    <tr>
+      <th>color_mix</th>
+      <td><p>Boolean. If to display the color of nodes as a mixer of the
+colors of samples within the nodes, where colors of samples are determined
+by their associated groups</p></td>
     </tr>
     </table>
     

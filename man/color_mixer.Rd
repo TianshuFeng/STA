@@ -11,6 +11,9 @@ color_mixer(col_vec, weight = NULL, na.rm = TRUE)
 
 \item{colors}{vector of Hex colors}
 }
+\value{
+A char of Hex color code.
+}
 \description{
 Color mixer
 }
