@@ -289,3 +289,106 @@ filter_evaluate <- function(..., dat, group_ind, num_intervals, percent_overlap,
   res[, 2:3] <- lapply(res[, 2:3], as.numeric)
   return(res)
 }
+
+
+#' Nodewise topological distance to a node
+#'
+#' This function calculates the nodewise topological distances to a selected
+#' node based on the generated network.
+#'
+#' @param obj_mapper An object of class \code{TDAmapper}.
+#' @param node_idx The index of the selected node.
+#'
+#' @return A vector of distance to the selected node. Distance of outlier nodes
+#'   will be set to \code{NA}.
+#' @export
+#'
+#' @examples
+ref_dist_nodewise <- function(obj_mapper, node_idx) {
+  require(igraph)
+
+  ad_igraph <- graph_from_adjacency_matrix(as.matrix(obj_mapper$adjacency),
+                                           mode = "undirected")
+
+  # Find the main network
+  comp_mapper <- components(graph = ad_igraph)
+  main_network <- comp_mapper$membership == which.max(comp_mapper$csize)
+  points_in_vertex_main <- obj_mapper$points_in_vertex[main_network]
+
+  main_network_idx <-which(main_network)
+
+  dist_graph = distances(graph = ad_igraph,
+                         v = which(main_network),
+                         to = which(main_network))
+  rownames(dist_graph) <- main_network_idx
+
+  dist_ref <- rep(NA, length(obj_mapper$points_in_vertex))
+  dist_ref[main_network_idx] <- dist_graph[as.character(node_idx),]
+
+  return(dist_ref)
+}
+
+
+#' Average samplewise topological distance to a group of nodes
+#'
+#' This function calculated the average topological distance of samples to a
+#' geoup of samples.
+#'
+#' @param obj_mapper An object of class \code{TDAmapper}.
+#' @param groups_ind A vector of group names each of the samples belongs to.
+#' @param ref A string object specifying the name of the reference group.
+#'
+#' @return A vector of the average distance to the selected group of samples.
+#'   Distance of samples in the outlier nodes will be set to \code{NA}. Length
+#'   of the vector will be the number of samples.
+#' @export
+#'
+#' @examples
+ref_dist_samplewise <- function(obj_mapper, groups_ind, ref) {
+
+  ad_igraph <- graph_from_adjacency_matrix(as.matrix(obj_mapper$adjacency),
+                                           mode = "undirected")
+  vertex_point_matrix <- Matrix(0,
+                                nrow = length(obj_mapper$points_in_vertex),
+                                ncol = length(groups_ind),
+                                sparse = TRUE)
+  for (i in 1:length(obj_mapper$points_in_vertex)) {
+    vertex_point_matrix[i, obj_mapper$points_in_vertex[[i]]] <- 1
+  }
+
+  comp_mapper <- components(graph = ad_igraph)
+  main_network <- comp_mapper$membership == which.max(comp_mapper$csize)
+
+  ## select samples in the main network
+  point_idx <- which(colSums(vertex_point_matrix[main_network,]) != 0)
+
+  ref_points <- which(group_ind == ref)
+  sample_point_idx <- point_idx
+
+  combn_ref_other_points <- expand.grid(sample_point_idx, ref_points)
+  combn_ref_other_points <- combn_ref_other_points[order(combn_ref_other_points[,1],
+                                                         combn_ref_other_points[,2]),]
+
+  mean_dist <- c()
+  num_combination <- nrow(combn_ref_other_points)
+  for(comb_idx in 1:num_combination) {
+    dist_shortest <- distances(graph = ad_igraph,
+                               v = which(vertex_point_matrix[,combn_ref_other_points[comb_idx,1]] > 0),
+                               to = which(vertex_point_matrix[,combn_ref_other_points[comb_idx,2]] > 0))
+    mean_dist <- c(mean_dist, mean(dist_shortest[is.finite(dist_shortest)]))
+
+    if(comb_idx %% 100 == 0) {
+      cat(round(comb_idx/num_combination*100, 1), "% \r", sep = "")
+    }
+  }
+
+  ### For each sample, calculate the average distance
+  avg_sample_dist <- c()
+
+  for(sample in unique(combn_ref_other_points[,1])) {
+    idx <- which(combn_ref_other_points[,1] == sample)
+    avg_sample_dist <- c(avg_sample_dist, mean(mean_dist[idx]))
+  }
+
+  return(avg_sample_dist)
+}
