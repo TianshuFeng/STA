@@ -1,7 +1,7 @@
 Package: STA
 Type: Package
 Title: Semi-supervised Topological Analysis
-Version: 0.7
+Version: 0.71
 Authors@R: as.person(c(
     "Tianshu Feng <tsfeng@uw.edu> [aut, cre]", 
     "Jaime I Davila <tsfeng@uw.edu> [ctb]", 

@@ -160,7 +160,13 @@ mapperEdges <- function(m) {
       if (m$adjacency[i, j] == 1) {
         linksource[k] <- i - 1
         linktarget[k] <- j - 1
-        linkvalue[k] <- 2
+
+        # Calculate the percentage of overlaped samples
+        node1 <- m$points_in_vertex[[i]]
+        node2 <- m$points_in_vertex[[j]]
+        inter <- intersect(node1, node2)
+
+        linkvalue[k] <- length(inter)/min(length(node1), length(node2))
         k <- k + 1
       }
     }

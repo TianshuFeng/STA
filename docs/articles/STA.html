@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Semi-supervised Mapper • STA</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Semi-supervised Mapper">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.71</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -52,7 +53,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/TianshuFeng/STA">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -65,12 +66,13 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Semi-supervised Mapper</h1>
             
-            <h4 class="date">2020-03-09</h4>
+            <h4 class="date">2020-03-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TianshuFeng/STA/blob/master/vignettes/STA.Rmd"><code>vignettes/STA.Rmd</code></a></small>
       <div class="hidden name"><code>STA.Rmd</code></div>
@@ -84,8 +86,8 @@
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>This package aims to provide a comfortable and flexible way to explore the visualization of data based on Mapper, a topological data analysis method. It provides users with extensive tools to customize the visualization, optimally select filter functions and evaluate the results from Mapper.</p>
 <p>To install the latest version of this R package directly from github:</p>
-<pre><code>install.packages("devtools")
-devtools::install_github("TianshuFeng/STA")</code></pre>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("devtools")
+devtools::install_github("TianshuFeng/STA")</a></code></pre>
 </div>
 <div id="example-1-simple-graph-generation-with-semimapper-" class="section level1">
 <h1 class="hasAnchor">
@@ -95,7 +97,7 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 <a href="#start-with-the-simulation-data" class="anchor"></a>Start with the simulation data</h2>
 <p>This package provides a function <code>chicken_generator</code> to generate simulation data which is similar to a chicken foot. We will use it to demonstrate the tools of this package.</p>
 <p>We start by applying Mapper directly to the simulated data with function <code>mapper.kmeans</code> and generate a graph with the basic visualization function <code>simple_visNet</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(STA)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(STA)</a>
 <a class="sourceLine" id="cb2-2" title="2">simu_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chicken_generator.html">chicken_generator</a></span>(<span class="dt">seed =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3">simu_data_mapper &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span>(<span class="dt">dat =</span> simu_data[,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>],</a>
 <a class="sourceLine" id="cb2-4" title="4">                               <span class="dt">filter_values =</span> simu_data<span class="op">$</span>Y,</a>
@@ -145,8 +147,8 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 <h2 class="hasAnchor">
 <a href="#adding-customized-summaries" class="anchor"></a>Adding customized summaries</h2>
 <p>Users can also add customized summaries of nodes to the graph generated by <code>network_visualization</code>, which allows the users to evaluate the graph based on the unique features of the data. This is achieved by passing JavaScript organizing the summaries to <code>add_analysis_java</code> of <code>network_visualization</code></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">add_analysis_js &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">'Node Index:&lt;b&gt;'</span>,</a>
-<a class="sourceLine" id="cb6-2" title="2">                           <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(tp_data_mapper<span class="op">$</span>points_in_vertex),</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">add_analysis_js &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">'Node Index:&lt;b&gt;'</span>,</a>
+<a class="sourceLine" id="cb6-2" title="2">                           <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(tp_data_mapper<span class="op">$</span>points_in_vertex),</a>
 <a class="sourceLine" id="cb6-3" title="3">                           <span class="st">'&lt;/b&gt;&lt;br&gt;'</span>)</a>
 <a class="sourceLine" id="cb6-4" title="4"><span class="kw"><a href="../reference/network_visualization.html">network_visualization</a></span>(tp_data_mapper, <span class="dt">groups_ind =</span> tp_data<span class="op">$</span>Group, <span class="dt">dat =</span> tp_data[,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>],</a>
 <a class="sourceLine" id="cb6-5" title="5">                      <span class="dt">folder =</span> <span class="st">"Exp_network"</span>, <span class="dt">add_analysis_js =</span> add_analysis_js)</a></code></pre></div>
@@ -208,7 +210,7 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 </table>
 <p>Here we provide an example to show how to call a built-in filter function <code>filter_eccen</code> and pass the obtained filter vector to the <code>mapper.kmeans</code>. <code>filter_eccen</code> has two arguments, <code>dist</code> and <code>p</code>. <code>dist</code> accepts arbitrary distance matrix calculated based on the dataset. Many R functions and packages provide tools to calculate the distance matrix, such as the package <code>philentropy</code>. <code>p</code> is the exponent of the eccentricity filter function.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">tp_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chicken_generator.html">chicken_generator</a></span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2">tp_dist &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(tp_data[,<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb7-2" title="2">tp_dist &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(tp_data[,<span class="op">-</span><span class="dv">1</span>])</a>
 <a class="sourceLine" id="cb7-3" title="3">ff &lt;-<span class="st"> </span><span class="kw"><a href="../reference/filter_eccen.html">filter_eccen</a></span>(<span class="dt">dist =</span> tp_dist, <span class="dt">p =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb7-4" title="4">tp_data_mapper &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span>(<span class="dt">dat =</span> tp_data[,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>],</a>
 <a class="sourceLine" id="cb7-5" title="5">                               <span class="dt">filter_values =</span> ff,</a>
@@ -218,7 +220,7 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 <a class="sourceLine" id="cb7-9" title="9">                      <span class="dt">folder =</span> <span class="st">"Exp_network"</span>)</a></code></pre></div>
 <p>On the other hand, if users have the prior knowledge of the data they want to analyze, the reference filter function <code>filter_ref</code> can be a good choice to start with. <code>filter_ref</code> calculates the average distance between each of the samples and a group of reference samples. <code>filter_ref</code> has three arguments, <code>dist</code>, <code>groups_ind</code> and <code>ref</code>. <code>dist</code> accepts the distance matrix calculated based on the data, <code>groups_ind</code> should be a vector where each entry represents the group index of the corresponding sample point in the data, and <code>ref</code> is the index of the reference group. An example is shown below:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">tp_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chicken_generator.html">chicken_generator</a></span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2">tp_dist &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(tp_data[,<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb8-2" title="2">tp_dist &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(tp_data[,<span class="op">-</span><span class="dv">1</span>])</a>
 <a class="sourceLine" id="cb8-3" title="3">ff &lt;-<span class="st"> </span><span class="kw"><a href="../reference/filter_ref.html">filter_ref</a></span>(<span class="dt">dist=</span>tp_dist, <span class="dt">groups_ind=</span>tp_data<span class="op">$</span>Group, <span class="dt">ref =</span> <span class="st">"Shank"</span>)</a>
 <a class="sourceLine" id="cb8-4" title="4">tp_data_mapper &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span>(<span class="dt">dat =</span> tp_data[,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>],</a>
 <a class="sourceLine" id="cb8-5" title="5">                               <span class="dt">filter_values =</span> ff,</a>
@@ -229,13 +231,13 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 <p>Besides the built-in filter functions, users can also define their standard filter functions. While <code>mapper.kmeans</code> can accept any numeric vector as a filter, the optimization function <code>filter_evaluate</code> can only accept <code>filter</code> object from standard filter functions. The return value from a standard filter function should have two attributes: <code>class</code> and <code>filter</code>. <code>class</code> should always be “filter”, and <code>filter</code> contains the name of the corresponding filter function. An example of a standard filter function is:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">filter_eccen =<span class="st"> </span><span class="cf">function</span>(dist, p, ...) {</a>
 <a class="sourceLine" id="cb9-2" title="2"></a>
-<a class="sourceLine" id="cb9-3" title="3">  dist &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(dist)</a>
-<a class="sourceLine" id="cb9-4" title="4">  res&lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">rowMeans</a></span>(dist<span class="op">^</span>p)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span>p)</a>
-<a class="sourceLine" id="cb9-5" title="5">  res &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(res)</a>
+<a class="sourceLine" id="cb9-3" title="3">  dist &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(dist)</a>
+<a class="sourceLine" id="cb9-4" title="4">  res&lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(dist<span class="op">^</span>p)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span>p)</a>
+<a class="sourceLine" id="cb9-5" title="5">  res &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(res)</a>
 <a class="sourceLine" id="cb9-6" title="6"></a>
-<a class="sourceLine" id="cb9-7" title="7">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/attr">attr</a></span>(res, <span class="st">"filter"</span>) &lt;-<span class="st"> "Eccentricity"</span></a>
-<a class="sourceLine" id="cb9-8" title="8">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(res) &lt;-<span class="st"> "filter"</span></a>
-<a class="sourceLine" id="cb9-9" title="9">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/function">return</a></span>(res)</a>
+<a class="sourceLine" id="cb9-7" title="7">  <span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(res, <span class="st">"filter"</span>) &lt;-<span class="st"> "Eccentricity"</span></a>
+<a class="sourceLine" id="cb9-8" title="8">  <span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(res) &lt;-<span class="st"> "filter"</span></a>
+<a class="sourceLine" id="cb9-9" title="9">  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(res)</a>
 <a class="sourceLine" id="cb9-10" title="10">}</a></code></pre></div>
 </div>
 <div id="example-4-result-evaluation-" class="section level1">
@@ -279,43 +281,44 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 <p>Given graphs generated under a set of filter functions <span class="math inline">\(F\)</span>, the problem of selecting the optimal filter functions can be formulated as <span class="math display">\[f=\text{argmin}_{f \in F} (\bar{H}_f, \bar{sp}_f).\]</span></p>
 <p>We solve this problem by finding the pareto frontier. In this problem, the pareto frontier is defined as <span class="math display">\[\{f \in F| \{f‘ \in F|f‘\ne f,\bar{H}_{f‘} &lt; \bar{H}_{f} \text{ and } \bar{sp}_{f‘} &lt; \bar{sp}_{f} \} = \emptyset \}.\]</span></p>
 <p>We generate an illustration of the pareto frontier with the package <code>ggplot2</code> and the function <code>pareto_opt</code> from the SemiMapper package assuming we have measures on seven graphs generated under different filter functions. First, we find the filter functions on the Pareto frontier with <code>pareto_opt</code>. Note that <code>pareto_opt</code> accept <code>data.frame</code> as input where the first column is the names of the filter functions and the second and third columns should be the corresponding Shannon indices and spread measures</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(SemiMapper)</a>
-<a class="sourceLine" id="cb12-2" title="2">filter_names &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Coordinate"</span>,<span class="st">"Eccen"</span>,<span class="st">"LInf"</span>,<span class="st">"Ref"</span>,<span class="st">"DTM"</span>,<span class="st">"Gaussian"</span>,<span class="st">"PCA"</span>)</a>
-<a class="sourceLine" id="cb12-3" title="3">res_filter &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">Filter =</span> filter_names,</a>
-<a class="sourceLine" id="cb12-4" title="4">                        <span class="dt">weighted_shannon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">1.389</span>, <span class="fl">1.221</span>, <span class="fl">1.453</span>, <span class="fl">1.158</span>, <span class="fl">1.345</span>, <span class="fl">1.399</span>, <span class="fl">1.349</span>),</a>
-<a class="sourceLine" id="cb12-5" title="5">                        <span class="dt">spread_measure =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">2.767</span>, <span class="fl">3.101</span>, <span class="fl">2.607</span>, <span class="fl">4.001</span>, <span class="fl">4.119</span>, <span class="fl">3.957</span>, <span class="fl">2.034</span>))</a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SemiMapper)</a>
+<a class="sourceLine" id="cb12-2" title="2">filter_names &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Coordinate"</span>,<span class="st">"Eccen"</span>,<span class="st">"LInf"</span>,<span class="st">"Ref"</span>,<span class="st">"DTM"</span>,<span class="st">"Gaussian"</span>,<span class="st">"PCA"</span>)</a>
+<a class="sourceLine" id="cb12-3" title="3">res_filter &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">Filter =</span> filter_names,</a>
+<a class="sourceLine" id="cb12-4" title="4">                        <span class="dt">weighted_shannon =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1.389</span>, <span class="fl">1.221</span>, <span class="fl">1.453</span>, <span class="fl">1.158</span>, <span class="fl">1.345</span>, <span class="fl">1.399</span>, <span class="fl">1.349</span>),</a>
+<a class="sourceLine" id="cb12-5" title="5">                        <span class="dt">spread_measure =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2.767</span>, <span class="fl">3.101</span>, <span class="fl">2.607</span>, <span class="fl">4.001</span>, <span class="fl">4.119</span>, <span class="fl">3.957</span>, <span class="fl">2.034</span>))</a>
 <a class="sourceLine" id="cb12-6" title="6">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pareto_opt.html">pareto_opt</a></span>(res_filter)</a>
 <a class="sourceLine" id="cb12-7" title="7"><span class="co">#&gt; Loading required package: rPref</span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(res)</a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="co">#&gt; Filter functions in the Pareto frontier:</span></a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="co">#&gt;    </span></a>
-<a class="sourceLine" id="cb12-11" title="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-12" title="12"><span class="co">#&gt; Evaluation results of filter functions in the Pareto frontier:</span></a>
-<a class="sourceLine" id="cb12-13" title="13"><span class="co">#&gt;   Filter weighted_shannon spread_measure</span></a>
-<a class="sourceLine" id="cb12-14" title="14"><span class="co">#&gt; 2  Eccen            1.221          3.101</span></a>
-<a class="sourceLine" id="cb12-15" title="15"><span class="co">#&gt; 4    Ref            1.158          4.001</span></a>
-<a class="sourceLine" id="cb12-16" title="16"><span class="co">#&gt; 7    PCA            1.349          2.034</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-8" title="8"><span class="co">#&gt; Warning: package 'rPref' was built under R version 3.5.2</span></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(res)</a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="co">#&gt; Filter functions in the Pareto frontier:</span></a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="co">#&gt;    </span></a>
+<a class="sourceLine" id="cb12-12" title="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-13" title="13"><span class="co">#&gt; Evaluation results of filter functions in the Pareto frontier:</span></a>
+<a class="sourceLine" id="cb12-14" title="14"><span class="co">#&gt;   Filter weighted_shannon spread_measure</span></a>
+<a class="sourceLine" id="cb12-15" title="15"><span class="co">#&gt; 2  Eccen            1.221          3.101</span></a>
+<a class="sourceLine" id="cb12-16" title="16"><span class="co">#&gt; 4    Ref            1.158          4.001</span></a>
+<a class="sourceLine" id="cb12-17" title="17"><span class="co">#&gt; 7    PCA            1.349          2.034</span></a></code></pre></div>
 <p>Then, we plot the results with <code>ggplot2</code>:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Illustration of Pareto frontier</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb13-3" title="3">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pareto_opt.html">pareto_opt</a></span>(res_filter, <span class="dt">top =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(res_filter))</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb13-3" title="3">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pareto_opt.html">pareto_opt</a></span>(res_filter, <span class="dt">top =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(res_filter))</a>
 <a class="sourceLine" id="cb13-4" title="4">res<span class="op">$</span>.level[res<span class="op">$</span>.level<span class="op">&gt;</span><span class="dv">1</span>] &lt;-<span class="st"> "Others"</span></a>
 <a class="sourceLine" id="cb13-5" title="5">res<span class="op">$</span>.level[res<span class="op">$</span>.level<span class="op">==</span><span class="dv">1</span>] &lt;-<span class="st"> "Frontier"</span></a>
-<a class="sourceLine" id="cb13-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(res) &lt;-<span class="st"> "data.frame"</span></a>
-<a class="sourceLine" id="cb13-7" title="7">gp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(res, <span class="kw">aes</span>(<span class="dt">x =</span> weighted_shannon, <span class="dt">y =</span> spread_measure,</a>
-<a class="sourceLine" id="cb13-8" title="8">                      <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">factor</a></span>(.level),</a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(res) &lt;-<span class="st"> "data.frame"</span></a>
+<a class="sourceLine" id="cb13-7" title="7">gp &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(res, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> weighted_shannon, <span class="dt">y =</span> spread_measure,</a>
+<a class="sourceLine" id="cb13-8" title="8">                      <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(.level),</a>
 <a class="sourceLine" id="cb13-9" title="9">                      <span class="dt">label =</span> Filter)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-10" title="10"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-11" title="11"><span class="st">  </span><span class="kw">geom_step</span>(<span class="kw">aes</span>(<span class="dt">group =</span> .level), <span class="dt">data =</span> res[res<span class="op">$</span>.level<span class="op">==</span><span class="st">"Frontier"</span>,],</a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">group =</span> .level), <span class="dt">data =</span> res[res<span class="op">$</span>.level<span class="op">==</span><span class="st">"Frontier"</span>,],</a>
 <a class="sourceLine" id="cb13-12" title="12">            <span class="dt">direction =</span> <span class="st">"vh"</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-13" title="13"><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">factor</a></span>(.level)), <span class="dt">colour =</span> <span class="st">"white"</span>, <span class="dt">fontface =</span> <span class="st">"bold"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-14" title="14"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill=</span><span class="st">''</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">color=</span><span class="st">''</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">"Shannon index"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-15" title="15"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Spread measure"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb13-13" title="13"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(.level)), <span class="dt">colour =</span> <span class="st">"white"</span>, <span class="dt">fontface =</span> <span class="st">"bold"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-14" title="14"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill=</span><span class="st">''</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">color=</span><span class="st">''</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Shannon index"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-15" title="15"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Spread measure"</span>)</a></code></pre></div>
 <p><img src="STA_files/figure-html/fig2-1.png" width="480" style="display: block; margin: auto;"></p>
 <p>In the graph, the red line represents the Pareto frontier, the red squares represent the filter functions on the Pareto frontier, and the blue squares represent the filter functions not in the Pareto frontier.</p>
 <p>The package also provides a function, <code>filter_evaluate</code>, for users to efficiently get the measures for the graphs generated under different filter functions. It accepts arbitrary number of filter vectors from the filter functions and returns the measures as a <code>data.frame</code> object that can be directly used in the <code>pareto_opt</code> function. An example of using the <code>filter_evaluate</code> function is shown below for three filter functions on the chicken foot example:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">tp_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/chicken_generator.html">chicken_generator</a></span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb14-2" title="2">tp_dist &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(tp_data[,<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb14-2" title="2">tp_dist &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(tp_data[,<span class="op">-</span><span class="dv">1</span>])</a>
 <a class="sourceLine" id="cb14-3" title="3">fe &lt;-<span class="st"> </span><span class="kw"><a href="../reference/filter_eccen.html">filter_eccen</a></span>(<span class="dt">dist =</span> tp_dist, <span class="dt">p =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb14-4" title="4">fc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/filter_coordinate.html">filter_coordinate</a></span>(tp_data[,<span class="op">-</span><span class="dv">1</span>], <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb14-5" title="5">fg &lt;-<span class="st"> </span><span class="kw"><a href="../reference/filter_gaussian.html">filter_gaussian</a></span>(<span class="dt">dist=</span>tp_dist, <span class="dt">sigma=</span><span class="dv">1</span>)</a>
@@ -324,11 +327,12 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 <a class="sourceLine" id="cb14-8" title="8">                            <span class="dt">num_intervals =</span> <span class="dv">10</span>, <span class="dt">percent_overlap =</span> <span class="dv">70</span>)</a></code></pre></div>
 <p>Then the results can be passed to the <code>pareto_opt</code> function.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pareto_opt.html">pareto_opt</a></span>(res_eval)</a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(res)</a></code></pre></div>
+<a class="sourceLine" id="cb15-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(res)</a></code></pre></div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -361,17 +365,20 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Tianshu Feng, Chen Wang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

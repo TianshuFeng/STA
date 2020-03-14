@@ -44,7 +44,8 @@ tooltips.
 \code{simple_visNet} generates graphs from the provided Mapper object without
 tooltips. The colors of nodes can be more flexibly defined than in
 \code{\link{network_visualization}} which is suitable for simulation and
-tests.
+tests. The width of edges is propotional to the percentage of overlapping
+between connected nodes.
 
 Users can assign colors to nodes with three different approaches.
 \itemize{

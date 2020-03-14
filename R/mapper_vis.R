@@ -423,6 +423,9 @@ legend_node = function(stats_sum = NULL, color_code) {
 #' follow the format introduced in \code{\link{check_color_code}}, and we
 #' recommend reading color code files with \code{\link{read_color_code}}.
 #'
+#' The width of edges is propotional to the percentage of overlapping between
+#' connected nodes.
+#'
 #'
 #' @param obj_mapper An object of class \code{TDAmapper}.
 #' @param groups_ind A vector of group names each of the samples belongs to.
@@ -553,9 +556,10 @@ network_visualization = function(obj_mapper,
     stop("Invalid color_mix. Should be Boolean.")
   }
 
-  edges <-
-    data.frame(from = MapperLinks$Linksource + 1, to = MapperLinks$Linktarget +
-                 1)
+  edges <- data.frame(from = MapperLinks$Linksource + 1,
+                      to = MapperLinks$Linktarget + 1,
+                      width = MapperLinks$Linkvalue/max(MapperLinks$Linkvalue) * 20)
+
 
   visNetwork(nodes, edges, width = "100%", height = "700px") %>%
     visInteraction(

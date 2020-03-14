@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Semi-supervised Topological Analysis • STA</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Semi-supervised Topological Analysis">
 <meta property="og:description" content="This package aims to provide a flexible 
     way to explore the visualization of data based on Mapper, a 
@@ -34,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.71</span>
       </span>
     </div>
 
@@ -42,7 +43,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -56,7 +57,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/TianshuFeng/STA">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -69,6 +70,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="contents col-md-9">
 
@@ -77,8 +79,8 @@
 <a href="#introduction" class="anchor"></a>Introduction</h1></div>
 <p>This package aims to provide an easy and flexible framework, semi-supervised topological analysis (STA), to explore the visualization of data based on Mapper, a topological data analysis method, It provides users with extensive tools to customize the visualization, optimally select filter functions and evaluate the results from Mapper.</p>
 <p>To install the latest version of this R package directly from github:</p>
-<pre><code>install.packages("devtools")
-devtools::install_github("TianshuFeng/STA")</code></pre>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("devtools")
+devtools::install_github("TianshuFeng/STA")</a></code></pre>
 </div>
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
@@ -122,13 +124,13 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 </tr></tbody>
 </table>
 <p>Then, we apply the STA method to it:</p>
-<pre><code>library(STA)
+<pre><code><a href="https://rdrr.io/r/base/library.html">library(STA)
 simu_data &lt;- chicken_generator(seed = 1)
 simu_data_mapper &lt;- mapper.kmeans(dat = simu_data[,2:4],
                                filter_values = simu_data$Y,
                                num_intervals = 10,
                                percent_overlap = 70)
-simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)</code></pre>
+simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)</a></code></pre>
 <p>The generated network can be found <a href="vignettes/network.html">here</a>, and the screenshot is shown below:</p>
 <table class="table">
 <thead><tr class="header">
@@ -147,7 +149,7 @@ simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)</code
 
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -182,17 +184,20 @@ simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)</code
   </div>
 </div>
 
+
       <footer><div class="copyright">
   <p>Developed by Tianshu Feng, Chen Wang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

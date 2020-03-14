@@ -56,6 +56,9 @@ each of the nodes. The colors of groups can either be defined by users or by
 function \code{\link{auto_set_colorcode}}. Self defined color codes should
 follow the format introduced in \code{\link{check_color_code}}, and we
 recommend reading color code files with \code{\link{read_color_code}}.
+
+The width of edges is propotional to the percentage of overlapping between
+connected nodes.
 }
 \examples{
 tp_data = chicken_generator(1)
