@@ -41,6 +41,7 @@
 #' @param color_mix Boolean. If to display the color of nodes as a mixer of the
 #'   colors of samples within the nodes, where colors of samples are determined
 #'   by their associated groups
+#' @param save_network Boolean. If save the network file. Used for the SHiny app
 #'
 #' @return An HTML file saved under the location given in \code{folder}. The
 #'   HTML file contains the interactive graph generated based on the Mapper
@@ -64,7 +65,8 @@ simple_visNet <-
            color_filter = TRUE,
            groups_ind = NULL,
            color_code = NULL,
-           color_mix = FALSE) {
+           color_mix = FALSE,
+           save_network = TRUE) {
     require(visNetwork)
     require(RColorBrewer)
 
@@ -206,20 +208,23 @@ simple_visNet <-
                  enabled = TRUE,
                  degree = 2,
                  hover = T) )
-    print(net_file)
 
-    net_file %>% visSave(file = network_name, background = "white")
+    if(save_network) {
+      print(net_file)
 
-    save_logic = file.rename(from = network_name, to = file.path(folder, network_name))
+      net_file %>% visSave(file = network_name, background = "white")
+      save_logic = file.rename(from = network_name, to = file.path(folder, network_name))
 
-
-    if (save_logic) {
-      cat("The generated HTML file can be found in:\n",
-          file.path(folder, network_name),
-          "\n")
-    } else {
-      warning("Cannot save file in the target folder,
+      if (save_logic) {
+        cat("The generated HTML file can be found in:\n",
+            file.path(folder, network_name),
+            "\n")
+      } else {
+        warning("Cannot save file in the target folder,
               please check the working directory.")
+      }
+    } else {
+      return(net_file)
     }
 }
 

@@ -1,10 +1,10 @@
 ---
-title: "Semi-supervised Mapper"
+title: "Semi-supervised topological analysis"
 author: ""
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Semi-supervised Mapper}
+  %\VignetteIndexEntry{Semi-supervised topological analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,7 +26,7 @@ install.packages("devtools")
 devtools::install_github("TianshuFeng/STA")
 ```
 
-# Example 1: Simple graph generation with SemiMapper.
+# Example 1: Simple graph generation with semi-supervised topological analysis (STA)
 
 ## Start with the simulation data
 
@@ -221,9 +221,9 @@ Given graphs generated under a set of filter functions $F$, the problem of selec
 We solve this problem by finding the pareto frontier. In this problem, the pareto frontier is defined as 
 $$\{f \in F| \{f‘ \in F|f‘\ne f,\bar{H}_{f‘} < \bar{H}_{f} \text{ and } \bar{sp}_{f‘} < \bar{sp}_{f} \} = \emptyset \}.$$
 
-We generate an illustration of the pareto frontier with the package `ggplot2` and the function `pareto_opt` from the SemiMapper package assuming we have measures on seven graphs generated under different filter functions. First, we find the filter functions on the Pareto frontier with `pareto_opt`. Note that `pareto_opt` accept `data.frame` as input where the first column is the names of the filter functions and the second and third columns should be the corresponding Shannon indices and spread measures
+We generate an illustration of the pareto frontier with the package `ggplot2` and the function `pareto_opt` from the STA package assuming we have measures on seven graphs generated under different filter functions. First, we find the filter functions on the Pareto frontier with `pareto_opt`. Note that `pareto_opt` accept `data.frame` as input where the first column is the names of the filter functions and the second and third columns should be the corresponding Shannon indices and spread measures
 ```{r}
-library(SemiMapper)
+library(STA)
 filter_names <- c("Coordinate","Eccen","LInf","Ref","DTM","Gaussian","PCA")
 res_filter <- data.frame(Filter = filter_names,
                         weighted_shannon = c(1.389, 1.221, 1.453, 1.158, 1.345, 1.399, 1.349),
