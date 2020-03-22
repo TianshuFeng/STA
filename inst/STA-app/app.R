@@ -27,7 +27,7 @@ ui <- fluidPage(
                 multiple = FALSE,
                 accept = c(".csv")),
 
-      # Input: Select a categorical variable ---
+      # Input: Select a categorical variable ----
       conditionalPanel(condition = "input.networkType == 'cate'",
                        # Input: Select a categorical variable
                        selectInput(inputId = "group_var",
@@ -37,11 +37,22 @@ ui <- fluidPage(
                        checkboxInput(inputId = "color_mixer",
                                      label = "Color mixer")
                        ),
+      # Input: Select a continuous variable ----
       conditionalPanel(condition = "input.networkType == 'conti'",
                        selectInput(inputId = "continuous_var",
                                    label = "Select a continuous variable:",
                                    choices = "")
-                       )
+                       ),
+
+      # input: Selection of brewer palettes ----
+      hr(),
+      selectInput(inputId = "color_palettes",
+                  label = "Select a color palette:",
+                  choices = c("Spectral",
+                              "Blues","BuGn","BuPu","GnBu","Greens","Greys","Oranges","OrRd","PuBu","PuBuGn","PuRd","Purples","RdPu","Reds","YlGn","YlGnBu YlOrBr","YlOrRd",
+                              "BrBG","PiYG","PRGn","PuOr","RdBu","RdGy","RdYlBu","RdYlGn",
+                              "Set1", "Set3"),
+                  selected = "Spectral")
 
     ),
 
@@ -53,7 +64,8 @@ ui <- fluidPage(
                            value = 'conti'),
                   id = "networkType"
       ),
-      visNetworkOutput("network_proxy")
+      visNetworkOutput("network_proxy"),
+      verbatimTextOutput("shiny_return")
     )
   )
 )
@@ -62,7 +74,7 @@ ui <- fluidPage(
 #### Server ####
 server <- function(input, output, session) {
 
-  # read network file
+  # Server: read network file ----
   obj_mapper <- reactive({
 
     req(input$network_file)
@@ -70,7 +82,7 @@ server <- function(input, output, session) {
     readRDS(input$network_file$datapath)
     })
 
-  # Read description file
+  # Server: Read description file ----
   description <- reactive({
     req(input$descript_file)
 
@@ -78,7 +90,7 @@ server <- function(input, output, session) {
              header = TRUE)
   })
 
-  # Update the categorical variable selection widget
+  # Server: Update the categorical variable selection widget ----
   observe({
     req(input$descript_file)
 
@@ -88,7 +100,7 @@ server <- function(input, output, session) {
                       choices = colnames(description())[is.fact])
   })
 
-  # Update the categorical variable selection widget
+  # Server: Update the continuous variable selection widget ----
   observe({
     req(input$descript_file)
 
@@ -98,12 +110,12 @@ server <- function(input, output, session) {
                       choices = colnames(description())[!is.fact])
   })
 
-  # Update nodes with selected categorical variable
+  # Server: Update nodes with selected categorical variable ----
   observe({
     req(input$network_file)
     req(input$descript_file)
 
-    if(input$group_var != "") {
+    if(input$group_var != "" & input$networkType == 'cate') {
       groups_ind <- description()[input$group_var]
 
       if(!input$color_mixer) {
@@ -120,7 +132,8 @@ server <- function(input, output, session) {
         }
 
         update_node <- data.frame(id = 1:length(dom_grp),
-                                  color = STA:::color_map_Spectral(dom_grp / max(dom_grp)))
+                                  color = STA:::color_map_Spectral(dom_grp / max(dom_grp),
+                                                                   name = input$color_palettes))
 
         visNetworkProxy("network_proxy") %>%
           visUpdateNodes(nodes = update_node)
@@ -132,7 +145,8 @@ server <- function(input, output, session) {
           sample_color <- sample_color + 1
         }
 
-        sample_color <- STA:::color_map_Spectral(sample_color/max(sample_color))
+        sample_color <- STA:::color_map_Spectral(sample_color/max(sample_color),
+                                                 name = input$color_palettes)
 
         avg_color <- c()
         for (i in obj_mapper()$points_in_vertex) {
@@ -149,41 +163,48 @@ server <- function(input, output, session) {
     }
   })
 
-  # Update nodes with selected continuous variable
+  # Server: Update nodes with selected continuous variable ----
 
   observe({
     req(input$network_file)
     req(input$descript_file)
 
-    if(input$continuous_var != "") {
+    if(input$continuous_var != "" & input$networkType == 'conti') {
       conti_var <- description()[input$continuous_var]
 
       avg_value <- c()
       for (i in obj_mapper()$points_in_vertex) {
         avg_value <-
-          c(avg_value, mean(conti_var, na.rm = TRUE))
+          c(avg_value, mean(conti_var[i,], na.rm = TRUE))
       }
 
       # Standardize to (0, 1)
       avg_value <- (avg_value - min(avg_value))/(max(avg_value) - min(avg_value))
 
       update_node <- data.frame(id = 1:length(avg_value),
-                                color = STA:::color_map_Spectral(avg_value))
+                                color = STA:::color_map_Spectral(avg_value,
+                                                                 name = input$color_palettes))
 
       visNetworkProxy("network_proxy") %>%
         visUpdateNodes(nodes = update_node)
     }
   })
 
-  # Generate the network
+  # Server: Generate the network ----
   output$network_proxy <- renderVisNetwork({
-    n_obs <- num_obs_network(obj_mapper())
+    n_obs <- STA:::num_obs_network(obj_mapper())
     simple_visNet(obj_mapper = obj_mapper(),
                   color_filter = F,
                   groups_ind = rep(1, n_obs),
-                  save_network = FALSE)
+                  save_network = FALSE)%>%
+      visEvents(selectNode = "function(nodes) {
+        Shiny.onInputChange('current_node_id', nodes);
+      ;}")
   })
 
+  output$shiny_return <- renderPrint({
+    input$current_node_id$nodes[[1]]
+  })
 }
 
 # Create Shiny app ----
