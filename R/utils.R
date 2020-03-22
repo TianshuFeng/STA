@@ -34,9 +34,9 @@ null_remover <- function(obj_mapper) {
 #' @examples
 #' color_map_Spectral((1:5)/5)
 #'
-color_map_Spectral <- function(x) {
+color_map_Spectral <- function(x, name = "Spectral") {
   require(RColorBrewer)
-  color_temp <- colorRamp(brewer.pal(11, "Spectral"))(x)
+  color_temp <- colorRamp(brewer.pal(11, name))(x)
   color_hex <- rgb(color_temp[, 1], color_temp[, 2], color_temp[, 3],
                    maxColorValue = 255)
   return(color_hex)
@@ -174,4 +174,10 @@ mapperEdges <- function(m) {
   return(data.frame(Linksource = linksource, Linktarget = linktarget,
                     Linkvalue = linkvalue))
 
+}
+
+
+num_obs_network <- function(obj_mapper) {
+  nobs <- sapply(obj_mapper$points_in_vertex, max)
+  return(max(nobs))
 }

@@ -71,7 +71,7 @@ simple_visNet <-
     require(RColorBrewer)
 
     # Remove nodes without samples
-    obj_mapper = null_remover(obj_mapper)
+    obj_mapper = STA:::null_remover(obj_mapper)
 
     MapperNodes <- STA:::mapperVertices(obj_mapper, 1)
     MapperLinks <- STA:::mapperEdges(obj_mapper)
@@ -121,6 +121,10 @@ simple_visNet <-
         }
         dom_grp <- as.numeric(as.factor(dom_grp)) - 1
 
+        if(max(dom_grp) == 0) {
+          dom_grp <- dom_grp + 1
+        }
+
         nodes <-
           data.frame(
             id = 1:nrow(MapperNodes),
@@ -131,6 +135,11 @@ simple_visNet <-
       } else if (color_mix) {
 
         sample_color <- as.numeric(as.factor(groups_ind)) - 1
+
+        if(max(sample_color) == 0) {
+          sample_color <- sample_color + 1
+        }
+
         sample_color <- color_fun(sample_color/max(sample_color))
 
         avg_color <- c()
