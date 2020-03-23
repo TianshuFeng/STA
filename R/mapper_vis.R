@@ -24,7 +24,7 @@ auto_set_colorcode = function(groups, palette = "Set1") {
   require(RColorBrewer)
 
   num_groups = length(unique(groups))
-  if (num_groups < 10) {
+  if (num_groups < 10 & num_groups >=3) {
     color_code = data.frame(
       Abbrev = unique(groups),
       Hex.Colors = brewer.pal(num_groups, palette),

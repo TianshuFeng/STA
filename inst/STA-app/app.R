@@ -65,7 +65,9 @@ ui <- fluidPage(
                   id = "networkType"
       ),
       visNetworkOutput("network_proxy"),
-      verbatimTextOutput("shiny_return")
+      "Node summary:",
+      tableOutput('summary_node'),
+      plotOutput('pie_chart', width = "50%")
     )
   )
 )
@@ -110,6 +112,15 @@ server <- function(input, output, session) {
                       choices = colnames(description())[!is.fact])
   })
 
+  # Server: create color code if under categorical label\
+  color_code <- reactive({
+    if(input$group_var != "" & input$networkType == 'cate') {
+      groups_ind <- description()[input$group_var]
+      STA:::auto_set_colorcode(groups = groups_ind[,1],
+                         palette = input$color_palettes)
+    }
+  })
+
   # Server: Update nodes with selected categorical variable ----
   observe({
     req(input$network_file)
@@ -125,28 +136,23 @@ server <- function(input, output, session) {
             c(dom_grp, names(sort(table(groups_ind[i,]), decreasing = T))[1])
         }
 
-        dom_grp <- as.numeric(as.factor(dom_grp)) - 1
-
-        if(max(dom_grp) == 0) {
-          dom_grp <- dom_grp + 1
-        }
+        # dom_grp <- as.numeric(as.factor(dom_grp)) - 1
+        #
+        # if(max(dom_grp) == 0) {
+        #   dom_grp <- dom_grp + 1
+        # }
 
         update_node <- data.frame(id = 1:length(dom_grp),
-                                  color = STA:::color_map_Spectral(dom_grp / max(dom_grp),
-                                                                   name = input$color_palettes))
+                                  color = color_map(dom_grp,
+                                                    color_code = color_code())
+                                  )
 
         visNetworkProxy("network_proxy") %>%
           visUpdateNodes(nodes = update_node)
 
       } else {
-        sample_color <- as.numeric(as.factor(groups_ind[,1])) - 1
-
-        if(max(sample_color) == 0) {
-          sample_color <- sample_color + 1
-        }
-
-        sample_color <- STA:::color_map_Spectral(sample_color/max(sample_color),
-                                                 name = input$color_palettes)
+        sample_color <- color_map(groups_ind[,1],
+                                  color_code = color_code())
 
         avg_color <- c()
         for (i in obj_mapper()$points_in_vertex) {
@@ -170,6 +176,7 @@ server <- function(input, output, session) {
     req(input$descript_file)
 
     if(input$continuous_var != "" & input$networkType == 'conti') {
+
       conti_var <- description()[input$continuous_var]
 
       avg_value <- c()
@@ -185,8 +192,59 @@ server <- function(input, output, session) {
                                 color = STA:::color_map_Spectral(avg_value,
                                                                  name = input$color_palettes))
 
+
       visNetworkProxy("network_proxy") %>%
         visUpdateNodes(nodes = update_node)
+    }
+  })
+
+  # Server: When a node is selected ----
+
+  current_node_id <- reactive({
+    input$current_node_id$nodes[[1]]
+    })
+
+  observe({
+    if(!is.null(current_node_id())) {
+      print(current_node_id())
+
+      if(input$group_var != "" & input$networkType == 'cate') {
+
+        # If it is under a categorical variable ----
+        groups_ind <- description()[input$group_var]
+        temp_node_summary <- table(groups_ind[obj_mapper()$points_in_vertex[[current_node_id()]],])
+        temp_node_summary <- sort(temp_node_summary, decreasing = T)
+
+        output$summary_node <- renderTable({
+          if(!is.null(current_node_id())) {
+            temp_node_summary
+            }
+          })
+
+        output$pie_chart <- renderPlot({
+          pie(temp_node_summary,
+              labels = names(temp_node_summary),
+              col = color_map(names(temp_node_summary),
+                              color_code = color_code()))
+        })
+
+      } else if(input$continuous_var != "" & input$networkType == 'conti') {
+
+        # If it is under a continuous variable ----
+        conti_var <- description()[input$continuous_var]
+
+        # Calculate the summary of the node
+        output$summary_node <- renderTable({
+          if(!is.null(current_node_id())) {
+            temp_node_summary <- summary(conti_var[obj_mapper()$points_in_vertex[[current_node_id()]],],
+                                         digits = 3)
+            t(as.matrix(temp_node_summary))
+          }
+        })
+
+      } else if ( is.null(current_node_id() )) {
+        output$summary_node <- NULL
+      }
     }
   })
 
@@ -199,11 +257,13 @@ server <- function(input, output, session) {
                   save_network = FALSE)%>%
       visEvents(selectNode = "function(nodes) {
         Shiny.onInputChange('current_node_id', nodes);
-      ;}")
+      ;}", deselectNode = "function(nodes) {
+                Shiny.onInputChange('current_node_id', null);
+                ;}")
   })
 
   output$shiny_return <- renderPrint({
-    input$current_node_id$nodes[[1]]
+    input$current_node_id
   })
 }
 
