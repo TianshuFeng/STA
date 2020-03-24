@@ -1,5 +1,7 @@
 library(STA)
 library(visNetwork)
+library(igraph)
+library(plotly)
 
 #### User Interface ####
 
@@ -66,8 +68,16 @@ ui <- fluidPage(
       ),
       visNetworkOutput("network_proxy"),
       "Node summary:",
-      tableOutput('summary_node'),
-      plotOutput('pie_chart', width = "50%")
+      conditionalPanel(condition = "input.networkType == 'cate'",
+                       fluidRow(
+                         column(5, tableOutput('summary_node_categorical')),
+                         column(7, plotlyOutput('pie_chart', width = "70%"))
+                       )
+      ),
+      conditionalPanel(condition = "input.networkType == 'conti'",
+                       tableOutput('summary_node_continuous'),
+                       verbatimTextOutput("cor_res")
+      )
     )
   )
 )
@@ -204,6 +214,12 @@ server <- function(input, output, session) {
     input$current_node_id$nodes[[1]]
     })
 
+  dist_between_nodes <- reactive({
+    ad_igraph <- graph_from_adjacency_matrix(as.matrix(obj_mapper()$adjacency),
+                                             mode = "undirected")
+    igraph::distances(graph = ad_igraph)
+  })
+
   observe({
     if(!is.null(current_node_id())) {
       print(current_node_id())
@@ -213,19 +229,39 @@ server <- function(input, output, session) {
         # If it is under a categorical variable ----
         groups_ind <- description()[input$group_var]
         temp_node_summary <- table(groups_ind[obj_mapper()$points_in_vertex[[current_node_id()]],])
-        temp_node_summary <- sort(temp_node_summary, decreasing = T)
+        # temp_node_summary <- sort(temp_node_summary, decreasing = T)
 
-        output$summary_node <- renderTable({
+        output$summary_node_categorical <- renderTable({
           if(!is.null(current_node_id())) {
             temp_node_summary
             }
           })
 
-        output$pie_chart <- renderPlot({
-          pie(temp_node_summary,
-              labels = names(temp_node_summary),
-              col = color_map(names(temp_node_summary),
-                              color_code = color_code()))
+        output$pie_chart <- renderPlotly({
+          if(!is.null(current_node_id())){
+
+            plotly_color <- color_map(names(temp_node_summary),
+                                      color_code = color_code())
+            names(plotly_color) <- names(temp_node_summary)
+
+            fig <- plotly::plot_ly(data = as.data.frame(temp_node_summary),
+                                   labels = ~Var1,
+                                   values = ~Freq,
+                                   type = 'pie',
+                                   marker = list(colors = plotly_color),
+                                   textposition = 'inside',
+                                   textinfo = 'label+percent',insidetextfont = list(color = '#FFFFFF'),
+                                   showlegend = FALSE,
+                                   width = 200, height = 200)
+            fig <- fig %>% layout(title = 'Pie chart for the selected node',
+                                  xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+                                  yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+                                  autosize = F,
+                                  margin = list(l = 0, r = 0, b = 0, t = 0, pad = 0))
+            fig
+            } else {
+              NULL
+            }
         })
 
       } else if(input$continuous_var != "" & input$networkType == 'conti') {
@@ -234,11 +270,33 @@ server <- function(input, output, session) {
         conti_var <- description()[input$continuous_var]
 
         # Calculate the summary of the node
-        output$summary_node <- renderTable({
+        output$summary_node_continuous <- renderTable({
           if(!is.null(current_node_id())) {
             temp_node_summary <- summary(conti_var[obj_mapper()$points_in_vertex[[current_node_id()]],],
                                          digits = 3)
             t(as.matrix(temp_node_summary))
+          }
+        })
+
+        # Calculate the correlation between topological distance and average values
+        avg_value <- c()
+
+        for(points in obj_mapper()$points_in_vertex) {
+          temp_values <- conti_var[points,]
+          avg_value <- c(avg_value, mean(temp_values[is.finite(temp_values)],
+                                         na.rm = TRUE))
+        }
+
+        same_graph_nodes <- is.finite(dist_between_nodes()[current_node_id(),])
+        relative_dist <- dist_between_nodes()[current_node_id(),same_graph_nodes]
+        avg_var_value <- avg_value[same_graph_nodes]
+        cor_res <- cor.test(relative_dist,
+                            avg_var_value)
+        output$cor_res <- renderPrint({
+          if(!is.null(current_node_id())) {
+            cor_res
+          } else {
+            "Please select a node."
           }
         })
 
