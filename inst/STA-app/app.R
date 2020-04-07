@@ -14,11 +14,11 @@ ui <- fluidPage(
       helpText("Interactive analysis of network from STA."),
 
       # Input: Select a network file ----
-      helpText("The network rds file containing a TDAmapper class object"),
+      helpText("The h5 file from function save_network_h5"),
       fileInput(inputId = "network_file",
-                label = "Choose a network RDS file",
+                label = "Choose a h5 file",
                 multiple = FALSE,
-                accept = c(".rds")),
+                accept = c(".h5")),
 
       # Input: Select a description file ----
       helpText("Samples in the description csv file should follow the same
@@ -32,15 +32,28 @@ ui <- fluidPage(
       # Input: Select a categorical variable ----
       conditionalPanel(condition = "input.networkType == 'cate'",
                        # Input: Select a categorical variable
+
+                       selectInput(inputId = "discrete_feature",
+                                   label = "Select a categorical feature from the original dataset:",
+                                   choices = "None",
+                                   selected = "None"),
+
                        selectInput(inputId = "group_var",
                                    label = "Select a categorical variable as the group index:",
                                    choices = ""),
+
                        # Input: whether or not using a color mixer
                        checkboxInput(inputId = "color_mixer",
                                      label = "Color mixer")
                        ),
       # Input: Select a continuous variable ----
       conditionalPanel(condition = "input.networkType == 'conti'",
+
+                       selectInput(inputId = "continuous_feature",
+                                   label = "Select a continuous feature from the original dataset:",
+                                   choices = "None",
+                                   selected = "None"),
+
                        selectInput(inputId = "continuous_var",
                                    label = "Select a continuous variable:",
                                    choices = "")
@@ -86,13 +99,35 @@ ui <- fluidPage(
 #### Server ####
 server <- function(input, output, session) {
 
+  # Server read h5 file
+  h5_mapper <- reactive({
+    req(input$network_file)
+    name_list <- h5ls(input$network_file$datapath)$name
+
+    if (!"obj_mapper" %in% name_list){
+      stop("Invalid h5 file: obj_mapper not found")
+    } else if (!"colname_feature" %in% name_list) {
+      stop("Invalid h5 file: colname_feature not found")
+    } else {
+      load_network_h5(file = input$network_file$datapath)
+    }
+  })
+
   # Server: read network file ----
   obj_mapper <- reactive({
 
     req(input$network_file)
 
-    readRDS(input$network_file$datapath)
+    h5_mapper()$obj_mapper
     })
+
+  # Server: load colnames of features of the original dataset
+
+  colname_feature <- reactive({
+    req(input$network_file)
+
+    h5_mapper()$colname_feature
+  })
 
   # Server: Read description file ----
   description <- reactive({
@@ -102,6 +137,25 @@ server <- function(input, output, session) {
              header = TRUE)
   })
 
+  # Update the feature selection widgets
+  observer({
+    if(colname_feature() != "None") {
+
+      discrete_feature_name <- colname_feature()[colname_feature()[,1] == "character",1]
+      continuous_feature_name <- colname_feature()[colname_feature()[,1] != "character",1]
+
+      updateSelectInput(session = session,
+                        inputId = "discrete_feature",
+                        choices = c("None", discrete_feature_name),
+                        selected = "None")
+
+      updateSelectInput(session = session,
+                        inputId = "continuous_feature",
+                        choices = c("None", discrete_feature_name),
+                        selected = "None")
+    }
+  })
+
   # Server: Update the categorical variable selection widget ----
   observe({
     req(input$descript_file)
@@ -109,7 +163,8 @@ server <- function(input, output, session) {
     is.fact <- sapply(description(), is.factor)
     updateSelectInput(session = session,
                       inputId = "group_var",
-                      choices = colnames(description())[is.fact])
+                      choices = c("None", colnames(description())[is.fact]),
+                      selected = "None")
   })
 
   # Server: Update the continuous variable selection widget ----
@@ -119,16 +174,36 @@ server <- function(input, output, session) {
     is.fact <- sapply(description(), is.factor)
     updateSelectInput(session = session,
                       inputId = "continuous_var",
-                      choices = colnames(description())[!is.fact])
+                      choices = c("None", colnames(description())[!is.fact]),
+                      selected = "None")
   })
 
   # Server: create color code if under categorical label\
   color_code <- reactive({
-    if(input$group_var != "" & input$networkType == 'cate') {
+    if(input$group_var != "None" & input$group_var != "" & input$networkType == 'cate') {
       groups_ind <- description()[input$group_var]
       STA:::auto_set_colorcode(groups = groups_ind[,1],
                          palette = input$color_palettes)
     }
+  })
+
+  # Server: Update nodes if None is selected ----
+
+  observe({
+    req(input$network_file)
+    req(input$descript_file)
+
+    if(input$group_var == "None" | input$continuous_var == "None") {
+
+      update_node <- data.frame(id = 1:length(obj_mapper()$points_in_vertex),
+                                color = rep(color_map_Spectral(1),
+                                            length(obj_mapper()$points_in_vertex))
+      )
+
+      visNetworkProxy("network_proxy") %>%
+        visUpdateNodes(nodes = update_node)
+    }
+
   })
 
   # Server: Update nodes with selected categorical variable ----
@@ -136,7 +211,7 @@ server <- function(input, output, session) {
     req(input$network_file)
     req(input$descript_file)
 
-    if(input$group_var != "" & input$networkType == 'cate') {
+    if(input$group_var != "None" & input$group_var != "" & input$networkType == 'cate') {
       groups_ind <- description()[input$group_var]
 
       if(!input$color_mixer) {
@@ -185,7 +260,7 @@ server <- function(input, output, session) {
     req(input$network_file)
     req(input$descript_file)
 
-    if(input$continuous_var != "" & input$networkType == 'conti') {
+    if(input$continuous_var != "None" & input$continuous_var != "" & input$networkType == 'conti') {
 
       conti_var <- description()[input$continuous_var]
 
@@ -224,7 +299,7 @@ server <- function(input, output, session) {
     if(!is.null(current_node_id())) {
       print(current_node_id())
 
-      if(input$group_var != "" & input$networkType == 'cate') {
+      if(input$group_var != "None" & input$group_var != "" & input$networkType == 'cate') {
 
         # If it is under a categorical variable ----
         groups_ind <- description()[input$group_var]
@@ -264,7 +339,7 @@ server <- function(input, output, session) {
             }
         })
 
-      } else if(input$continuous_var != "" & input$networkType == 'conti') {
+      } else if(input$continuous_var != "None" & input$continuous_var != "" & input$networkType == 'conti') {
 
         # If it is under a continuous variable ----
         conti_var <- description()[input$continuous_var]

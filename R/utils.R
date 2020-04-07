@@ -181,3 +181,71 @@ num_obs_network <- function(obj_mapper) {
   nobs <- sapply(obj_mapper$points_in_vertex, max)
   return(max(nobs))
 }
+
+
+save_network_h5 <- function(obj_mapper, dataset = NULL, file = "network.h5") {
+  if(class(obj_mapper) != "TDAmapper") {
+    stop("The obj_mapper must be the result from mapper or
+         mapper.kmeans of STA package.")
+  } else {
+    h5createFile(file)
+
+    # Processing obj_mapper ----
+    obj_mapper_list <- obj_mapper
+
+    # Remove its class
+    attr(obj_mapper_list, "class") <- NULL
+
+    # Write to h5 file
+    h5write(obj_mapper_list, file = file, name = "obj_mapper")
+
+    # Processing raw data ----
+    if(is.null(dataset)) {
+
+      h5write("None", file = file, name = "dataset")
+      h5write("None", file = file, name = "colname_feature")
+
+    } else if(!is.data.frame(dataset)) {
+
+      stop("Arg 'dataset' should be a data.frame.")
+
+    } else {
+
+      # change factors to strings
+      ii <- sapply(dataset, is.factor)
+      dataset[ii] <- lapply(dataset[ii], as.character)
+
+      # Write to h5 file
+      h5write(dataset, file = file, name = "dataset")
+
+      type_col <- sapply(dataset, class)
+      colnames_matrix <- data.frame(colname = names(type_col), type = type_col)
+      colnames(colnames_matrix) <- NULL
+
+      # Write to h5 file
+      h5write(colnames_matrix, file = file, name = "colname_feature")
+    }
+    h5closeAll()
+  }
+}
+
+
+load_network_h5 <- function(file = "network.h5") {
+
+  require(gtools)
+  # read the obj_mapper ----
+  obj_mapper <- h5read(file = file, name = "obj_mapper")
+
+  # correct the order of list
+  obj_mapper$points_in_level_set <- obj_mapper$points_in_level_set[mixedsort(names(obj_mapper$points_in_level_set))]
+  obj_mapper$points_in_vertex <- obj_mapper$points_in_vertex[mixedsort(names(obj_mapper$points_in_vertex))]
+  obj_mapper$vertices_in_level_set <- obj_mapper$vertices_in_level_set[mixedsort(names(obj_mapper$vertices_in_level_set))]
+
+  # Read the colnames of features
+
+  colname_feature <- h5read(file = file, name = "colname_feature")
+
+  h5closeAll()
+
+  return(obj_mapper = obj_mapper, colname_feature = colname_feature)
+}
