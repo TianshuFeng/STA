@@ -1,5 +1,3 @@
-
-
 #' Simple graphs generation
 #'
 #' \code{simple_visNet} generates graphs from the provided Mapper object without

@@ -2,6 +2,7 @@ library(STA)
 library(visNetwork)
 library(igraph)
 library(plotly)
+library(rhdf5)
 
 #### User Interface ####
 
@@ -109,7 +110,7 @@ server <- function(input, output, session) {
     } else if (!"colname_feature" %in% name_list) {
       stop("Invalid h5 file: colname_feature not found")
     } else {
-      load_network_h5(file = input$network_file$datapath)
+      STA:::load_network_h5(file = input$network_file$datapath)
     }
   })
 

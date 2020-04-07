@@ -219,9 +219,9 @@ save_network_h5 <- function(obj_mapper, dataset = NULL, file = "network.h5") {
       h5write(dataset, file = file, name = "dataset")
 
       type_col <- sapply(dataset, class)
-      colnames_matrix <- data.frame(colname = names(type_col), type = type_col)
-      colnames(colnames_matrix) <- NULL
-
+      colnames_matrix <- data.frame(colname = names(type_col),
+                                    type = type_col,
+                                    stringsAsFactors = FALSE)
       # Write to h5 file
       h5write(colnames_matrix, file = file, name = "colname_feature")
     }
