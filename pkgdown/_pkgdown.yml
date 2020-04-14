@@ -35,3 +35,5 @@ reference:
     contents:
       - print.filter
       - print.Pareto_frontier
+      - save_network_h5
+      - load_network_h5

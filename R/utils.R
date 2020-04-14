@@ -183,7 +183,21 @@ num_obs_network <- function(obj_mapper) {
 }
 
 
+#' Save results into a h5 file
+#'
+#' @param obj_mapper An object of class \code{TDAmapper}.
+#' @param dataset The original dataset used to generate the network.
+#' @param file The filename (character) of the file in which the dataset will be
+#'   located.
+#'
+#' @return
+#' @export
+#'
+#' @examples
 save_network_h5 <- function(obj_mapper, dataset = NULL, file = "network.h5") {
+
+  h5closeAll()
+
   if(class(obj_mapper) != "TDAmapper") {
     stop("The obj_mapper must be the result from mapper or
          mapper.kmeans of STA package.")
@@ -216,7 +230,7 @@ save_network_h5 <- function(obj_mapper, dataset = NULL, file = "network.h5") {
       dataset[ii] <- lapply(dataset[ii], as.character)
 
       # Write to h5 file
-      h5write(dataset, file = file, name = "dataset")
+      h5write(dataset, file = file, name = "dataset", DataFrameAsCompound = FALSE)
 
       type_col <- sapply(dataset, class)
       colnames_matrix <- data.frame(colname = names(type_col),
@@ -230,9 +244,22 @@ save_network_h5 <- function(obj_mapper, dataset = NULL, file = "network.h5") {
 }
 
 
+#' Load a h5 file
+#'
+#' Load a h5 file from save_network_h5.
+#'
+#' @param file The filename (character) of the file in which the dataset will be
+#'   located.
+#'
+#' @return
+#' @export
+#'
+#' @examples
 load_network_h5 <- function(file = "network.h5") {
 
   require(gtools)
+  h5closeAll()
+
   # read the obj_mapper ----
   obj_mapper <- h5read(file = file, name = "obj_mapper")
 
@@ -247,5 +274,5 @@ load_network_h5 <- function(file = "network.h5") {
 
   h5closeAll()
 
-  return(obj_mapper = obj_mapper, colname_feature = colname_feature)
+  return(list(obj_mapper = obj_mapper, colname_feature = colname_feature))
 }

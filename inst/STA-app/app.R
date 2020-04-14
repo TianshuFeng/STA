@@ -4,6 +4,8 @@ library(igraph)
 library(plotly)
 library(rhdf5)
 
+options(shiny.maxRequestSize = 300*1024^2)
+
 #### User Interface ####
 
 ui <- fluidPage(
@@ -41,12 +43,13 @@ ui <- fluidPage(
 
                        selectInput(inputId = "group_var",
                                    label = "Select a categorical variable as the group index:",
-                                   choices = ""),
+                                   choices = "None",
+                                   selected = "None"),
 
                        # Input: whether or not using a color mixer
                        checkboxInput(inputId = "color_mixer",
                                      label = "Color mixer")
-                       ),
+      ),
       # Input: Select a continuous variable ----
       conditionalPanel(condition = "input.networkType == 'conti'",
 
@@ -57,8 +60,9 @@ ui <- fluidPage(
 
                        selectInput(inputId = "continuous_var",
                                    label = "Select a continuous variable:",
-                                   choices = "")
-                       ),
+                                   choices = "None",
+                                   selected = "None")
+      ),
 
       # input: Selection of brewer palettes ----
       hr(),
@@ -110,7 +114,7 @@ server <- function(input, output, session) {
     } else if (!"colname_feature" %in% name_list) {
       stop("Invalid h5 file: colname_feature not found")
     } else {
-      STA:::load_network_h5(file = input$network_file$datapath)
+      load_network_h5(file = input$network_file$datapath)
     }
   })
 
@@ -120,7 +124,7 @@ server <- function(input, output, session) {
     req(input$network_file)
 
     h5_mapper()$obj_mapper
-    })
+  })
 
   # Server: load colnames of features of the original dataset
 
@@ -139,11 +143,11 @@ server <- function(input, output, session) {
   })
 
   # Update the feature selection widgets
-  observer({
-    if(colname_feature() != "None") {
+  observe({
+    if(colname_feature()[1] != "None") {
 
-      discrete_feature_name <- colname_feature()[colname_feature()[,1] == "character",1]
-      continuous_feature_name <- colname_feature()[colname_feature()[,1] != "character",1]
+      discrete_feature_name <- colname_feature()[colname_feature()[,2] == "character",1]
+      continuous_feature_name <- colname_feature()[colname_feature()[,2] != "character",1]
 
       updateSelectInput(session = session,
                         inputId = "discrete_feature",
@@ -152,10 +156,11 @@ server <- function(input, output, session) {
 
       updateSelectInput(session = session,
                         inputId = "continuous_feature",
-                        choices = c("None", discrete_feature_name),
+                        choices = c("None", continuous_feature_name),
                         selected = "None")
     }
   })
+
 
   # Server: Update the categorical variable selection widget ----
   observe({
@@ -179,22 +184,14 @@ server <- function(input, output, session) {
                       selected = "None")
   })
 
-  # Server: create color code if under categorical label\
-  color_code <- reactive({
-    if(input$group_var != "None" & input$group_var != "" & input$networkType == 'cate') {
-      groups_ind <- description()[input$group_var]
-      STA:::auto_set_colorcode(groups = groups_ind[,1],
-                         palette = input$color_palettes)
-    }
-  })
 
   # Server: Update nodes if None is selected ----
 
   observe({
     req(input$network_file)
-    req(input$descript_file)
 
-    if(input$group_var == "None" | input$continuous_var == "None") {
+    if((input$group_var == "None" & input$discrete_feature == "None") |
+       (input$continuous_var == "None" & input$continuous_feature == "None")) {
 
       update_node <- data.frame(id = 1:length(obj_mapper()$points_in_vertex),
                                 color = rep(color_map_Spectral(1),
@@ -207,19 +204,67 @@ server <- function(input, output, session) {
 
   })
 
+  # Server: Update the categorical variable from description ----
+  #
+
+  groups_ind_descript <- reactive({
+    req(input$network_file)
+
+    if(input$group_var != "None" & input$networkType == 'cate') {
+      description()[input$group_var][,1]
+    }
+  })
+
+  # Server: Update the categorical variable from original data ----
+
+  groups_ind_feature <- reactive({
+    req(input$network_file)
+
+    if(input$discrete_feature != "None" &
+       colname_feature()[1] != "None" &
+       input$networkType == 'cate') {
+
+      feature <- h5read(file = input$network_file$datapath,
+                        name = paste0("dataset/", input$discrete_feature))
+      h5closeAll()
+
+      feature
+    }
+  })
+
+  groups_ind <- reactive({
+    if(input$group_var != "None") {
+      groups_ind_descript()
+    } else if (input$discrete_feature != "None") {
+      groups_ind_feature()
+    } else if (input$group_var != "None" & input$discrete_feature != "None") {
+      groups_ind_descript()
+    }
+  })
+
+  # Server: create color code if under categorical label\
+  color_code <- reactive({
+    if((input$group_var != "None" | input$discrete_feature != "None") &
+       input$networkType == 'cate') {
+
+      STA:::auto_set_colorcode(groups = groups_ind(),
+                               palette = input$color_palettes)
+    }
+  })
+
   # Server: Update nodes with selected categorical variable ----
   observe({
     req(input$network_file)
-    req(input$descript_file)
 
-    if(input$group_var != "None" & input$group_var != "" & input$networkType == 'cate') {
-      groups_ind <- description()[input$group_var]
-
+    if(input$networkType == 'cate' &
+       (input$group_var != "None" |
+        input$discrete_feature != "None")) {
       if(!input$color_mixer) {
+
         dom_grp <- c()
         for (i in obj_mapper()$points_in_vertex) {
           dom_grp <-
-            c(dom_grp, names(sort(table(groups_ind[i,]), decreasing = T))[1])
+            c(dom_grp, names(sort(table(groups_ind()[i]), decreasing = T))[1])
         }
 
         # dom_grp <- as.numeric(as.factor(dom_grp)) - 1
@@ -231,13 +276,13 @@ server <- function(input, output, session) {
         update_node <- data.frame(id = 1:length(dom_grp),
                                   color = color_map(dom_grp,
                                                     color_code = color_code())
-                                  )
+        )
 
         visNetworkProxy("network_proxy") %>%
           visUpdateNodes(nodes = update_node)
 
       } else {
-        sample_color <- color_map(groups_ind[,1],
+        sample_color <- color_map(groups_ind(),
                                   color_code = color_code())
 
         avg_color <- c()
@@ -255,24 +300,66 @@ server <- function(input, output, session) {
     }
   })
 
+
+
+  # Server: Update the continuous variable from description ----
+  #
+
+  conti_var_descript <- reactive({
+    req(input$network_file)
+    req(input$descript_file)
+
+    if(input$continuous_var != "None" &
+       input$continuous_var != "" & input$networkType == 'conti') {
+      description()[input$continuous_var][,1]
+    }
+  })
+
+  # Server: Update the continuous variable from original data ----
+
+  conti_var_feature <- reactive({
+    req(input$network_file)
+
+    if(input$continuous_feature != "None" &
+       colname_feature()[1] != "None" &
+       input$networkType == 'conti') {
+
+      feature <- h5read(file = input$network_file$datapath,
+                        name = paste0("dataset/", input$continuous_feature))
+      h5closeAll()
+
+      feature
+    }
+  })
+
+  conti_var <- reactive({
+    if(input$continuous_var != "None") {
+      conti_var_descript()
+    } else if (input$continuous_feature != "None") {
+      conti_var_feature()
+    } else if (input$continuous_var != "None" & input$continuous_feature != "None") {
+      conti_var_descript()
+    }
+  })
+
   # Server: Update nodes with selected continuous variable ----
 
   observe({
     req(input$network_file)
-    req(input$descript_file)
 
-    if(input$continuous_var != "None" & input$continuous_var != "" & input$networkType == 'conti') {
-
-      conti_var <- description()[input$continuous_var]
+    if((input$continuous_var != "None" |
+        input$continuous_feature != "None") &
+       input$networkType == 'conti') {
 
       avg_value <- c()
       for (i in obj_mapper()$points_in_vertex) {
         avg_value <-
-          c(avg_value, mean(conti_var[i,], na.rm = TRUE))
+          c(avg_value, mean(conti_var()[i], na.rm = TRUE))
       }
 
       # Standardize to (0, 1)
       avg_value <- (avg_value - min(avg_value))/(max(avg_value) - min(avg_value))
+
 
       update_node <- data.frame(id = 1:length(avg_value),
                                 color = STA:::color_map_Spectral(avg_value,
@@ -284,11 +371,12 @@ server <- function(input, output, session) {
     }
   })
 
+
   # Server: When a node is selected ----
 
   current_node_id <- reactive({
     input$current_node_id$nodes[[1]]
-    })
+  })
 
   dist_between_nodes <- reactive({
     ad_igraph <- graph_from_adjacency_matrix(as.matrix(obj_mapper()$adjacency),
@@ -300,21 +388,21 @@ server <- function(input, output, session) {
     if(!is.null(current_node_id())) {
       print(current_node_id())
 
-      if(input$group_var != "None" & input$group_var != "" & input$networkType == 'cate') {
+      if((input$group_var != "None" |
+          input$discrete_feature != "None") & input$networkType == 'cate') {
 
         # If it is under a categorical variable ----
-        groups_ind <- description()[input$group_var]
-        temp_node_summary <- table(groups_ind[obj_mapper()$points_in_vertex[[current_node_id()]],])
+        temp_node_summary <- table(groups_ind()[obj_mapper()$points_in_vertex[[current_node_id()]]])
         # temp_node_summary <- sort(temp_node_summary, decreasing = T)
 
         output$summary_node_categorical <- renderTable({
           if(!is.null(current_node_id())) {
             temp_node_summary
-            }
-          })
+          }
+        })
 
         output$pie_chart <- renderPlotly({
-          if(!is.null(current_node_id())){
+          if(!is.null(current_node_id()) & input$networkType == 'cate'){
 
             plotly_color <- color_map(names(temp_node_summary),
                                       color_code = color_code())
@@ -335,20 +423,21 @@ server <- function(input, output, session) {
                                   autosize = F,
                                   margin = list(l = 0, r = 0, b = 0, t = 0, pad = 0))
             fig
-            } else {
-              NULL
-            }
+          } else {
+            NULL
+          }
         })
 
-      } else if(input$continuous_var != "None" & input$continuous_var != "" & input$networkType == 'conti') {
+      } else if((input$continuous_var != "None" |
+                 input$continuous_feature != "None") &
+                 input$networkType == 'conti') {
 
         # If it is under a continuous variable ----
-        conti_var <- description()[input$continuous_var]
 
         # Calculate the summary of the node
         output$summary_node_continuous <- renderTable({
           if(!is.null(current_node_id())) {
-            temp_node_summary <- summary(conti_var[obj_mapper()$points_in_vertex[[current_node_id()]],],
+            temp_node_summary <- summary(conti_var()[ obj_mapper()$points_in_vertex[[current_node_id()]] ],
                                          digits = 3)
             t(as.matrix(temp_node_summary))
           }
@@ -358,7 +447,7 @@ server <- function(input, output, session) {
         avg_value <- c()
 
         for(points in obj_mapper()$points_in_vertex) {
-          temp_values <- conti_var[points,]
+          temp_values <- conti_var()[points]
           avg_value <- c(avg_value, mean(temp_values[is.finite(temp_values)],
                                          na.rm = TRUE))
         }
