@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Spectral color map function — color_map_Spectral • STA</title>
+<title>Load a h5 file — load_network_h5 • STA</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Spectral color map function — color_map_Spectral" />
-<meta property="og:description" content="color_map_Spectral maps numeric values between 0 and 1 to hex codes" />
+<meta property="og:title" content="Load a h5 file — load_network_h5" />
+<meta property="og:description" content="Load a h5 file from save_network_h5." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,39 +108,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Spectral color map function</h1>
+    <h1>Load a h5 file</h1>
     <small class="dont-index">Source: <a href='https://github.com/TianshuFeng/STA/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>color_map_Spectral.Rd</code></div>
+    <div class="hidden name"><code>load_network_h5.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>color_map_Spectral</code> maps numeric values between 0 and 1 to hex codes</p>
+    <p>Load a h5 file from save_network_h5.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>color_map_Spectral</span>(<span class='no'>x</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Spectral"</span>)</pre>
+    <pre class="usage"><span class='fu'>load_network_h5</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"network.h5"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A numeric vector whose entries are between 0 and 1.</p></td>
+      <th>file</th>
+      <td><p>The filename (character) of the file in which the dataset will be
+located.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of hex codes.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='fu'>color_map_Spectral</span>((<span class='fl'>1</span>:<span class='fl'>5</span>)/<span class='fl'>5</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

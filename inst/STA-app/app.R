@@ -72,7 +72,12 @@ ui <- fluidPage(
                               "Blues","BuGn","BuPu","GnBu","Greens","Greys","Oranges","OrRd","PuBu","PuBuGn","PuRd","Purples","RdPu","Reds","YlGn","YlGnBu YlOrBr","YlOrRd",
                               "BrBG","PiYG","PRGn","PuOr","RdBu","RdGy","RdYlBu","RdYlGn",
                               "Set1", "Set3"),
-                  selected = "Spectral")
+                  selected = "Spectral"),
+
+      # input: Selection of the degree of depth when highlighting ----
+      sliderInput(inputId = "degree_network",
+                  label = "Select a degree of depth when highlighting nearest nodes.",
+                  min = 0, max = 9,value = 2, step = 1)
 
     ),
 
@@ -114,7 +119,7 @@ server <- function(input, output, session) {
     } else if (!"colname_feature" %in% name_list) {
       stop("Invalid h5 file: colname_feature not found")
     } else {
-      load_network_h5(file = input$network_file$datapath)
+      STA:::load_network_h5(file = input$network_file$datapath)
     }
   })
 
@@ -142,7 +147,7 @@ server <- function(input, output, session) {
              header = TRUE)
   })
 
-  # Update the feature selection widgets
+  # Server: Update the feature selection widgets
   observe({
     if(colname_feature()[1] != "None") {
 
@@ -427,10 +432,9 @@ server <- function(input, output, session) {
             NULL
           }
         })
-
       } else if((input$continuous_var != "None" |
                  input$continuous_feature != "None") &
-                 input$networkType == 'conti') {
+                input$networkType == 'conti') {
 
         # If it is under a continuous variable ----
 
@@ -483,6 +487,20 @@ server <- function(input, output, session) {
       ;}", deselectNode = "function(nodes) {
                 Shiny.onInputChange('current_node_id', null);
                 ;}")
+  })
+
+  # Server: Adjust the degree of depth of highlight when a node is selected ----
+  observe({
+    req(input$network_file)
+
+    visNetworkProxy("network_proxy") %>%
+      visOptions(
+        highlightNearest = list(
+          enabled = TRUE,
+          degree = input$degree_network,
+          hover = T
+        ))
+
   })
 
   output$shiny_return <- renderPrint({

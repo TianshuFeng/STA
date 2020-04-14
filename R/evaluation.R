@@ -51,7 +51,7 @@ mapper_shannon_index <- function(obj_mapper, group_ind) {
 
 
 #' @export
-print.shannon_index <- function(x) {
+print.shannon_index <- function(x, ...) {
   cat("The weighted average of shannon indices is", signif(x$avg_index,
                                                            4), "\n")
 }
@@ -208,7 +208,7 @@ pareto_opt <- function(res_filter, ...) {
 #' @export
 #'
 #' @seealso \code{\link{pareto_opt}}
-print.Pareto_frontier <- function(res) {
+print.Pareto_frontier <- function(res,...) {
   cat("Filter functions in the Pareto frontier:\n\t", paste(res$Filter[res$.level==1],
                                                             collapse = ", "), "\n")
   cat("\nEvaluation results of filter functions in the Pareto frontier:\n")

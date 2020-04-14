@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Semi-supervised Mapper • STA</title>
+<title>Semi-supervised topological analysis • STA</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Semi-supervised Mapper">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Semi-supervised topological analysis">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.71</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
       </span>
     </div>
 
@@ -70,9 +70,9 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Semi-supervised Mapper</h1>
+      <h1>Semi-supervised topological analysis</h1>
             
-            <h4 class="date">2020-03-14</h4>
+            <h4 class="date">2020-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TianshuFeng/STA/blob/master/vignettes/STA.Rmd"><code>vignettes/STA.Rmd</code></a></small>
       <div class="hidden name"><code>STA.Rmd</code></div>
@@ -89,9 +89,9 @@
 <pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("devtools")
 devtools::install_github("TianshuFeng/STA")</a></code></pre>
 </div>
-<div id="example-1-simple-graph-generation-with-semimapper-" class="section level1">
+<div id="example-1-simple-graph-generation-with-semi-supervised-topological-analysis-sta" class="section level1">
 <h1 class="hasAnchor">
-<a href="#example-1-simple-graph-generation-with-semimapper-" class="anchor"></a>Example 1: Simple graph generation with SemiMapper.</h1>
+<a href="#example-1-simple-graph-generation-with-semi-supervised-topological-analysis-sta" class="anchor"></a>Example 1: Simple graph generation with semi-supervised topological analysis (STA)</h1>
 <div id="start-with-the-simulation-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#start-with-the-simulation-data" class="anchor"></a>Start with the simulation data</h2>
@@ -280,8 +280,8 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <p>After generating graphs under different filter functions, the evaluation methods in Example 4 enable us to evaluate and compare the graphs from different aspects. The last problem is to find the optimal graphs regarding these measures. We solve this problem by borrowing methods for multi-objective optimization problems.</p>
 <p>Given graphs generated under a set of filter functions <span class="math inline">\(F\)</span>, the problem of selecting the optimal filter functions can be formulated as <span class="math display">\[f=\text{argmin}_{f \in F} (\bar{H}_f, \bar{sp}_f).\]</span></p>
 <p>We solve this problem by finding the pareto frontier. In this problem, the pareto frontier is defined as <span class="math display">\[\{f \in F| \{f‘ \in F|f‘\ne f,\bar{H}_{f‘} &lt; \bar{H}_{f} \text{ and } \bar{sp}_{f‘} &lt; \bar{sp}_{f} \} = \emptyset \}.\]</span></p>
-<p>We generate an illustration of the pareto frontier with the package <code>ggplot2</code> and the function <code>pareto_opt</code> from the SemiMapper package assuming we have measures on seven graphs generated under different filter functions. First, we find the filter functions on the Pareto frontier with <code>pareto_opt</code>. Note that <code>pareto_opt</code> accept <code>data.frame</code> as input where the first column is the names of the filter functions and the second and third columns should be the corresponding Shannon indices and spread measures</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SemiMapper)</a>
+<p>We generate an illustration of the pareto frontier with the package <code>ggplot2</code> and the function <code>pareto_opt</code> from the STA package assuming we have measures on seven graphs generated under different filter functions. First, we find the filter functions on the Pareto frontier with <code>pareto_opt</code>. Note that <code>pareto_opt</code> accept <code>data.frame</code> as input where the first column is the names of the filter functions and the second and third columns should be the corresponding Shannon indices and spread measures</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(STA)</a>
 <a class="sourceLine" id="cb12-2" title="2">filter_names &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Coordinate"</span>,<span class="st">"Eccen"</span>,<span class="st">"LInf"</span>,<span class="st">"Ref"</span>,<span class="st">"DTM"</span>,<span class="st">"Gaussian"</span>,<span class="st">"PCA"</span>)</a>
 <a class="sourceLine" id="cb12-3" title="3">res_filter &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">Filter =</span> filter_names,</a>
 <a class="sourceLine" id="cb12-4" title="4">                        <span class="dt">weighted_shannon =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1.389</span>, <span class="fl">1.221</span>, <span class="fl">1.453</span>, <span class="fl">1.158</span>, <span class="fl">1.345</span>, <span class="fl">1.399</span>, <span class="fl">1.349</span>),</a>
@@ -339,7 +339,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li>
-<a href="#example-1-simple-graph-generation-with-semimapper-">Example 1: Simple graph generation with SemiMapper.</a><ul class="nav nav-pills nav-stacked">
+<a href="#example-1-simple-graph-generation-with-semi-supervised-topological-analysis-sta">Example 1: Simple graph generation with semi-supervised topological analysis (STA)</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#start-with-the-simulation-data">Start with the simulation data</a></li>
       <li><a href="#play-with-colors">Play with colors</a></li>
       </ul>

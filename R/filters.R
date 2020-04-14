@@ -277,7 +277,7 @@ filter_name = function(filter_vec) {
 #' @export
 #'
 #' @seealso \code{\link{filter_pca}}
-print.filter = function(x) {
+print.filter = function(x, ...) {
   cat("This is the filter vecter returned by the ",
       attributes(x)$filter, " filter function.\n", sep = "")
 }

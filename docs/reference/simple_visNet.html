@@ -70,7 +70,7 @@ tooltips." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.71</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ tooltips.</p>
     <pre class="usage"><span class='fu'>simple_visNet</span>(<span class='no'>obj_mapper</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),
   <span class='kw'>color_fun</span> <span class='kw'>=</span> <span class='no'>color_map_Spectral</span>, <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"network.html"</span>,
   <span class='kw'>color_filter</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>groups_ind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color_mix</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>color_mix</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>save_network</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,6 +165,10 @@ be determined by the average filter values of samples.</p></td>
       <td><p>Boolean. If to display the color of nodes as a mixer of the
 colors of samples within the nodes, where colors of samples are determined
 by their associated groups</p></td>
+    </tr>
+    <tr>
+      <th>save_network</th>
+      <td><p>Boolean. If save the network file. Used for the SHiny app</p></td>
     </tr>
     </table>
 

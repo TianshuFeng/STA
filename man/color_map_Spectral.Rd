@@ -4,7 +4,7 @@
 \alias{color_map_Spectral}
 \title{Spectral color map function}
 \usage{
-color_map_Spectral(x)
+color_map_Spectral(x, name = "Spectral")
 }
 \arguments{
 \item{x}{A numeric vector whose entries are between 0 and 1.}

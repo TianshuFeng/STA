@@ -27,6 +27,7 @@ null_remover <- function(obj_mapper) {
 #' \code{color_map_Spectral} maps numeric values between 0 and 1 to hex codes
 #'
 #' @param x A numeric vector whose entries are between 0 and 1.
+#' @param name Name of the color palette. Default is Spectral.
 #'
 #' @return A vector of hex codes.
 #' @export

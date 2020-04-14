@@ -7,7 +7,7 @@
 simple_visNet(obj_mapper, filter = NULL, folder = getwd(),
   color_fun = color_map_Spectral, network_name = "network.html",
   color_filter = TRUE, groups_ind = NULL, color_code = NULL,
-  color_mix = FALSE)
+  color_mix = FALSE, save_network = TRUE)
 }
 \arguments{
 \item{obj_mapper}{An object of class \code{TDAmapper}.}
@@ -30,6 +30,8 @@ be determined by the average filter values of samples.}
 \item{color_mix}{Boolean. If to display the color of nodes as a mixer of the
 colors of samples within the nodes, where colors of samples are determined
 by their associated groups}
+
+\item{save_network}{Boolean. If save the network file. Used for the SHiny app}
 }
 \value{
 An HTML file saved under the location given in \code{folder}. The

@@ -27,13 +27,13 @@ auto_set_colorcode = function(groups, palette = "Set1") {
   if (num_groups < 10 & num_groups >=3) {
     color_code = data.frame(
       Abbrev = unique(groups),
-      Hex.Colors = brewer.pal(num_groups, palette),
+      Hex.Colors = RColorBrewer::brewer.pal(num_groups, palette),
       stringsAsFactors = FALSE
     )
   } else {
     color_code = data.frame(
       Abbrev = unique(groups),
-      Hex.Colors = colorRampPalette(brewer.pal(9, palette))(num_groups),
+      Hex.Colors = colorRampPalette(RColorBrewer::brewer.pal(9, palette))(num_groups),
       stringsAsFactors = FALSE
     )
   }
