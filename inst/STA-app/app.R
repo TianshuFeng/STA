@@ -47,6 +47,7 @@ ui <- fluidPage(
                                    selected = "None"),
 
                        # Input: whether or not using a color mixer
+                       helpText("Whether to mix the color of samples within nodes."),
                        checkboxInput(inputId = "color_mixer",
                                      label = "Color mixer")
       ),
@@ -63,6 +64,11 @@ ui <- fluidPage(
                                    choices = "None",
                                    selected = "None")
       ),
+
+      # Input: whether or not to compare nodes ----
+      helpText("Whether to compare two consecutively selected nodes with Chi-sq test."),
+      checkboxInput(inputId = "if_node_compare",
+                    label = "Node comparison"),
 
       # input: Selection of brewer palettes ----
       hr(),
@@ -90,12 +96,16 @@ ui <- fluidPage(
                   id = "networkType"
       ),
       visNetworkOutput("network_proxy"),
-      "Node summary:",
       conditionalPanel(condition = "input.networkType == 'cate'",
-                       fluidRow(
+                       "Nodes comparison:",
+                       verbatimTextOutput("chisq_test_res"),
+                       "",
+                       "Node summary:",
+                       fluidRow(style='height:200px',
                          column(5, tableOutput('summary_node_categorical')),
                          column(7, plotlyOutput('pie_chart', width = "70%"))
                        )
+
       ),
       conditionalPanel(condition = "input.networkType == 'conti'",
                        tableOutput('summary_node_continuous'),
@@ -105,11 +115,14 @@ ui <- fluidPage(
   )
 )
 
+# Node click history
+
+node_history <- c()
 
 #### Server ####
 server <- function(input, output, session) {
 
-  # Server read h5 file
+  # Server: read h5 file ----
   h5_mapper <- reactive({
     req(input$network_file)
     name_list <- h5ls(input$network_file$datapath)$name
@@ -190,7 +203,7 @@ server <- function(input, output, session) {
   })
 
 
-  # Server: Update nodes if None is selected ----
+  # Server: Update nodes if None variable is selected ----
 
   observe({
     req(input$network_file)
@@ -377,10 +390,20 @@ server <- function(input, output, session) {
   })
 
 
-  # Server: When a node is selected ----
+  # Server: When a node is selected/clicked ----
 
   current_node_id <- reactive({
     input$current_node_id$nodes[[1]]
+  })
+
+  # Update node clicking history, append to the beginning of the list
+  observe({
+    node_history <<- c(current_node_id(), node_history)
+
+    if( length(node_history) > 10) {
+      node_history <<- node_history[1:10]
+    }
+    print(node_history)
   })
 
   dist_between_nodes <- reactive({
@@ -391,7 +414,6 @@ server <- function(input, output, session) {
 
   observe({
     if(!is.null(current_node_id())) {
-      print(current_node_id())
 
       if((input$group_var != "None" |
           input$discrete_feature != "None") & input$networkType == 'cate') {
@@ -406,6 +428,28 @@ server <- function(input, output, session) {
           }
         })
 
+        # Recent two nodes comparison
+        output$chisq_test_res <- NULL
+        if(length(node_history) >= 2 & !is.null(current_node_id()) & input$if_node_compare) {
+          group_ind_factor <- as.factor(groups_ind())
+          var_node1 <- group_ind_factor[obj_mapper()$points_in_vertex[[node_history[1]]]]
+          var_node2 <- group_ind_factor[obj_mapper()$points_in_vertex[[node_history[2]]]]
+          contingency <- rbind(table(var_node1), table(var_node2))
+
+          contingency <- contingency[, colSums(contingency != 0, na.rm = T) > 0]
+          chi_res <- chisq.test(contingency)
+
+          output$chisq_test_res <- renderPrint({
+            if(length(node_history) >= 2 & !is.null(current_node_id()) & input$if_node_compare) {
+              print(paste("IDs of compared nodes:", node_history[1], node_history[2]))
+              chi_res
+            } else {
+              "Two consecutively selected nodes will be compared with Chi-sq test."
+            }
+          })
+        }
+
+        # Plot the pie chart with plotly
         output$pie_chart <- renderPlotly({
           if(!is.null(current_node_id()) & input$networkType == 'cate'){
 
@@ -461,8 +505,29 @@ server <- function(input, output, session) {
         avg_var_value <- avg_value[same_graph_nodes]
         cor_res <- cor.test(relative_dist,
                             avg_var_value)
+
+        # If nodes are compared
+
+        if(length(node_history) >= 2 &
+           !is.null(current_node_id()) &
+           input$if_node_compare) {
+
+          conti_var1 <- conti_var()[ obj_mapper()$points_in_vertex[[node_history[1]]] ]
+          conti_var2 <- conti_var()[ obj_mapper()$points_in_vertex[[node_history[2]]] ]
+
+          ks_test_res <- ks.test(conti_var1, conti_var2)
+        }
+
+
         output$cor_res <- renderPrint({
-          if(!is.null(current_node_id())) {
+          if (length(node_history) >= 2 &
+              !is.null(current_node_id()) &
+              input$if_node_compare) {
+            print(paste("IDs of compared nodes:", node_history[1], node_history[2]))
+            print(ks_test_res)
+            print("Correlation result:")
+            print(cor_res)
+          } else if(!is.null(current_node_id())) {
             cor_res
           } else {
             "Please select a node."
