@@ -66,7 +66,7 @@ ui <- fluidPage(
       ),
 
       # Input: whether or not to compare nodes ----
-      helpText("Whether to compare two consecutively selected nodes with Chi-sq test."),
+      helpText("Whether to compare two consecutively selected nodes."),
       checkboxInput(inputId = "if_node_compare",
                     label = "Node comparison"),
 
@@ -108,6 +108,7 @@ ui <- fluidPage(
 
       ),
       conditionalPanel(condition = "input.networkType == 'conti'",
+                       plotOutput('legend_continuous', height = 150),
                        tableOutput('summary_node_continuous'),
                        verbatimTextOutput("cor_res")
       )
@@ -360,6 +361,43 @@ server <- function(input, output, session) {
     }
   })
 
+  # Server: Update LEGEND with selected continuous variable ----
+
+  observe({
+    req(input$network_file)
+
+    if((input$continuous_var != "None" |
+        input$continuous_feature != "None") &
+       input$networkType == 'conti') {
+
+      temp_var <- conti_var()
+
+      op <- par(mar=c(1,0,0,0))
+
+      lth <- 50
+
+      output$legend_continuous <- renderPlot({
+        plot(NA,type="n",ann=FALSE,xlim=c(1,2),ylim=c(1,1.5),xaxt="n",yaxt="n",bty="n")
+
+        rect(
+          xleft = head(seq(1, 2, length.out = lth),-1),
+          ybottom = 1,
+          xright =  tail(seq(1, 2, length.out = lth),-1),
+          ytop = 1.5,
+          col=STA:::color_map_Spectral((1:lth)/lth),
+          border = NA
+        )
+
+        mtext(round(c(min(temp_var, na.rm = TRUE),
+                      median(temp_var, na.rm = TRUE),
+                      max(temp_var, na.rm = TRUE)), digits = 3),
+              side=1,
+              at=c(1.05, 1.5, 1.95),
+              las=1,cex=1.2)
+      })
+    }
+  })
+
   # Server: Update nodes with selected continuous variable ----
 
   observe({
@@ -489,7 +527,7 @@ server <- function(input, output, session) {
                                          digits = 3)
             t(as.matrix(temp_node_summary))
           }
-        })
+        }, align = 'c')
 
         # Calculate the correlation between topological distance and average values
         avg_value <- c()

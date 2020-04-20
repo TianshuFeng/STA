@@ -1,0 +1,25 @@
+---
+title: "Shiny app instruction"
+author: "Tianshu Feng"
+date: "4/20/2020"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This page introduces the Shiny app designed to interactively analysis results from the `mapper.kmeans` function of package STA. 
+
+## Interface
+
+This app includes a sidebar for input/output and settings, and a main panel for result display. An overview of the user interface of the shiny app is shown below:
+| ![Interface](figures/main_screen.png) | 
+|:--:| 
+| *User interface of the shiny app.* |
+
+## Input
+
+
+
