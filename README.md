@@ -11,8 +11,8 @@ devtools::install_github("TianshuFeng/STA")
 # Resources
 
 - __Detailed instructions__ on how to use this package can be found in the __[vignette](https://tianshufeng.github.io/STA/articles/STA.html)__. 
-- The __interactive network analysis [Shiny app](https://tianshufeng.github.io/STA/articles/Shiny app.html)__ is hosted on [shinyapp.io](http://tsfeng.shinyapps.io/STA-app) and also available in this website under the [Article/shiny app](https://tianshufeng.github.io/STA/articles/Shiny app.html). 
-- The __instruction of the app__ can be found [here](https://tianshufeng.github.io/STA/articles/Shiny app instruction.html).
+- The __interactive network analysis [Shiny app](https://tianshufeng.github.io/STA/articles/Shiny_app.html)__ is hosted on [shinyapp.io](http://tsfeng.shinyapps.io/STA-app) and also available in this website under the [Article/shiny app](https://tianshufeng.github.io/STA/articles/Shiny_app.html). 
+- The __instruction of the app__ can be found [here](https://tianshufeng.github.io/STA/articles/Shiny_app_instruction.html).
 
 # Usage
 
@@ -57,8 +57,7 @@ simu_data_mapper <- mapper.kmeans(dat = simu_data[,2:4],
                                percent_overlap = 70)
 simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)
 ```
-The generated network can be found  [here](vignettes/network.html), and the screenshot is shown below:
-
+The screenshot of the generated networkis is shown below:
 | ![Screenshot](man/figures/Res_chicken_foot.png) | 
 |:--:| 
 | *Screenshot of the network from the STA method.* |
