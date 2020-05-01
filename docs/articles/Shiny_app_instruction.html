@@ -101,7 +101,7 @@
 <div id="section-interface" class="section level2">
 <h2 class="hasAnchor">
 <a href="#section-interface" class="anchor"></a>Interface</h2>
-<p>This app includes a sidebar for input/output and settings, and a main panel for result display. An overview of the user interface of the shiny app is shown below: | <img src="man/figures/main_screen.png" alt="Interface"> | |:–:| | <em>User interface of the shiny app.</em> |</p>
+<p>This app includes a sidebar for input/output and settings, and a main panel for result display. An overview of the user interface of the shiny app is shown below: | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/main_screen.png" alt="Interface"> | |:–:| | <em>User interface of the shiny app.</em> |</p>
 </div>
 <div id="section-input" class="section level2">
 <h2 class="hasAnchor">
@@ -119,7 +119,7 @@
 <a class="sourceLine" id="cb1-9" title="9"><span class="kw"><a href="../reference/save_network_h5.html">save_network_h5</a></span>(<span class="dt">obj_mapper =</span> simu_data_mapper,</a>
 <a class="sourceLine" id="cb1-10" title="10">                <span class="dt">dataset =</span> simu_data,</a>
 <a class="sourceLine" id="cb1-11" title="11">                <span class="dt">file =</span> <span class="st">"simu.h5"</span>)</a></code></pre></div>
-<p>After loading the .h5 file, the app will automatically generate the network based on the <code>obj_mapper</code> object saved in the .h5 file. | <img src="man/figures/open_h5.png" alt="Input"> | |:–:| | <em>.h5 file input.</em> |</p>
+<p>After loading the .h5 file, the app will automatically generate the network based on the <code>obj_mapper</code> object saved in the .h5 file. | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/Open_h5.png" alt="Input"> | |:–:| | <em>.h5 file input.</em> |</p>
 <p>Then, if the dataset is provided in the .h5 file with <code>save_network_h5</code>, users can choose either a categorical or continuous variable under the categorical/continuous tab to color the network.</p>
 <p>Furthermore, the app accepts an additional descriptive .csv file containing additional features of the samples. Note that the order of samples in the description csv file should follow the same order as data used to generate the network. The first row of the descriptive file is always treated as header. Character variables in the file will be treated as <code>factor</code>s.</p>
 </div>
@@ -129,27 +129,27 @@
 <div id="section-categorical-variable" class="section level3">
 <h3 class="hasAnchor">
 <a href="#section-categorical-variable" class="anchor"></a>Categorical variable</h3>
-<p>If we select a categorical variable under the “Categorical” tab, the Shiny app will color the nodes based on the majority of categories within each node. For example, if we choose ‘Group’ in the above example, the network will look like: | <img src="man/figures/categorical_color.png" alt="cate_color"> | |:–:| | <em>Categorical data analysis.</em> | Alternatively, we can mix the colors of samples within each node by selecting the “color mixer” option. It will lead to: | <img src="man/figures/color_mixer.png" alt="color_mixer"> | |:–:| | <em>Color mixer.</em> |</p>
-<p>Clicking on the nodes in the shiny app will lead to a node summary shown below the network. Currently, for categorical variables, the summary of a node includes a frequency table and a pie chart based on the categories of the samples within the node. For example, | <img src="man/figures/Node_summary.png" alt="node_sum"> | |:–:| | <em>Node summary for categorical variables.</em> |</p>
+<p>If we select a categorical variable under the “Categorical” tab, the Shiny app will color the nodes based on the majority of categories within each node. For example, if we choose ‘Group’ in the above example, the network will look like: | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/categorical_color.png" alt="cate_color"> | |:–:| | <em>Categorical data analysis.</em> | Alternatively, we can mix the colors of samples within each node by selecting the “color mixer” option. It will lead to: | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/color_mixer.png" alt="color_mixer"> | |:–:| | <em>Color mixer.</em> |</p>
+<p>Clicking on the nodes in the shiny app will lead to a node summary shown below the network. Currently, for categorical variables, the summary of a node includes a frequency table and a pie chart based on the categories of the samples within the node. For example, | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/Node_summary.png" alt="node_sum"> | |:–:| | <em>Node summary for categorical variables.</em> |</p>
 </div>
 <div id="section-continuous-variable" class="section level3">
 <h3 class="hasAnchor">
 <a href="#section-continuous-variable" class="anchor"></a>Continuous variable</h3>
-<p>Similarly, we can select a continuous variable under the “Continuous” tab, and the Shiny app will color the nodes based on the average values of samples w.r.t. the varible. For example, if we choose ‘Y’-axis in the above example, the app will look like: | <img src="man/figures/continuous_color.png" alt="conti_color"> | |:–:| | <em>Continuous data analysis.</em> |</p>
+<p>Similarly, we can select a continuous variable under the “Continuous” tab, and the Shiny app will color the nodes based on the average values of samples w.r.t. the varible. For example, if we choose ‘Y’-axis in the above example, the app will look like: | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/continuous_color.png" alt="conti_color"> | |:–:| | <em>Continuous data analysis.</em> |</p>
 <p>Clicking on the nodes in the shiny app will lead to a node summary shown below the network. Currently, for continuous variables, the summary of a node includes a violin plot, a table of quantiles and a test for Spearman’s <span class="math inline">\(\rho\)</span>. Here, the correlation is between the average values of the selected continuous variable of the nodes, and the minimum distance to the seleted node from other nodes.</p>
-<p>For example, | <img src="man/figures/node_summary_continuous.png" alt="node_sum_conti"> | |:–:| | <em>Node summary for continuous variables. </em> |</p>
+<p>For example, | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/node_summary_continuous.png" alt="node_sum_conti"> | |:–:| | <em>Node summary for continuous variables. </em> |</p>
 </div>
 <div id="section-node-comparison" class="section level3">
 <h3 class="hasAnchor">
 <a href="#section-node-comparison" class="anchor"></a>Node comparison</h3>
-<p>Checking the “Node comparison” will enable the app to compare consecutively selected nodes. For example: | <img src="man/figures/node_comparison.png" alt="node_compare"> | |:–:| | <em>Node comparison. </em> |</p>
+<p>Checking the “Node comparison” will enable the app to compare consecutively selected nodes. For example: | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/node_comparison.png" alt="node_compare"> | |:–:| | <em>Node comparison. </em> |</p>
 <p>For categorical variables, the comparison is conducted with <span class="math inline">\(\chi\)</span>^2 test. For continuous variables, we use violin plot and KS test.</p>
 </div>
 </div>
 <div id="section-customization" class="section level2">
 <h2 class="hasAnchor">
 <a href="#section-customization" class="anchor"></a>Customization</h2>
-<p>Two options are provided to customize the network visualization. | <img src="man/figures/settings.png" alt="node_custom"> | |:–:| | <em>Network customization. </em> |</p>
+<p>Two options are provided to customize the network visualization. | <img src="../../../../../../../My%20Drive/Mayo_intern%20files/Projects/Mapper_Visualization/Package/SemiMapper/vignettes/figures/settings.png" alt="node_custom"> | |:–:| | <em>Network customization. </em> |</p>
 <p>The first option allows to choose a color palette to color the nodes. The second option is to set the depth of nearest nodes to be highlighted if a node is seleted.</p>
 </div>
   </div>
