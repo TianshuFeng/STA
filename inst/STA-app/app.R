@@ -3,6 +3,8 @@ library(visNetwork)
 library(igraph)
 library(plotly)
 library(rhdf5)
+library(gtools)
+library(ggplot2)
 
 options(shiny.maxRequestSize = 300*1024^2)
 
@@ -100,15 +102,16 @@ ui <- fluidPage(
                        "Nodes comparison:",
                        verbatimTextOutput("chisq_test_res"),
                        "",
-                       "Node summary:",
+                       "Summary:",
                        fluidRow(style='height:200px',
-                         column(5, tableOutput('summary_node_categorical')),
-                         column(7, plotlyOutput('pie_chart', width = "70%"))
+                                column(5, tableOutput('summary_node_categorical')),
+                                column(7, plotlyOutput('pie_chart', width = "70%"))
                        )
 
       ),
       conditionalPanel(condition = "input.networkType == 'conti'",
                        plotOutput('legend_continuous', height = 150),
+                       plotOutput('violin_plot', height = 250),
                        tableOutput('summary_node_continuous'),
                        verbatimTextOutput("cor_res")
       )
@@ -213,7 +216,8 @@ server <- function(input, output, session) {
        (input$continuous_var == "None" & input$continuous_feature == "None")) {
 
       update_node <- data.frame(id = 1:length(obj_mapper()$points_in_vertex),
-                                color = rep(color_map_Spectral(1),
+                                color = rep(color_map_Spectral(1,
+                                                               name = input$color_palettes),
                                             length(obj_mapper()$points_in_vertex))
       )
 
@@ -351,6 +355,7 @@ server <- function(input, output, session) {
     }
   })
 
+  # Server: Update the vector of values of the selected continuous variable ----
   conti_var <- reactive({
     if(input$continuous_var != "None") {
       conti_var_descript()
@@ -359,6 +364,25 @@ server <- function(input, output, session) {
     } else if (input$continuous_var != "None" & input$continuous_feature != "None") {
       conti_var_descript()
     }
+  })
+
+  # Server: Update the average values of nodes based on the selected conti_var ----
+
+  avg_value_global <- reactive({
+    req(input$network_file)
+
+    if((input$continuous_var != "None" |
+        input$continuous_feature != "None") &
+       input$networkType == 'conti') {
+      avg_value <- c()
+
+      for(points in obj_mapper()$points_in_vertex) {
+        temp_values <- conti_var()[points]
+        avg_value <- c(avg_value, mean(temp_values[is.finite(temp_values)],
+                                       na.rm = TRUE))
+      }
+    }
+    avg_value
   })
 
   # Server: Update LEGEND with selected continuous variable ----
@@ -370,7 +394,9 @@ server <- function(input, output, session) {
         input$continuous_feature != "None") &
        input$networkType == 'conti') {
 
-      temp_var <- conti_var()
+      avg_value <- avg_value_global()
+
+      med_temp <- 0.5 * (max(avg_value) + min(avg_value))
 
       op <- par(mar=c(1,0,0,0))
 
@@ -384,13 +410,14 @@ server <- function(input, output, session) {
           ybottom = 1,
           xright =  tail(seq(1, 2, length.out = lth),-1),
           ytop = 1.5,
-          col=STA:::color_map_Spectral((1:lth)/lth),
+          col=STA:::color_map_Spectral((1:lth)/lth,
+                                       name = input$color_palettes),
           border = NA
         )
 
-        mtext(round(c(min(temp_var, na.rm = TRUE),
-                      median(temp_var, na.rm = TRUE),
-                      max(temp_var, na.rm = TRUE)), digits = 3),
+        mtext(round(c(min(avg_value, na.rm = TRUE),
+                      med_temp,
+                      max(avg_value, na.rm = TRUE)), digits = 3),
               side=1,
               at=c(1.05, 1.5, 1.95),
               las=1,cex=1.2)
@@ -407,11 +434,7 @@ server <- function(input, output, session) {
         input$continuous_feature != "None") &
        input$networkType == 'conti') {
 
-      avg_value <- c()
-      for (i in obj_mapper()$points_in_vertex) {
-        avg_value <-
-          c(avg_value, mean(conti_var()[i], na.rm = TRUE))
-      }
+      avg_value <- avg_value_global()
 
       # Standardize to (0, 1)
       avg_value <- (avg_value - min(avg_value))/(max(avg_value) - min(avg_value))
@@ -427,6 +450,76 @@ server <- function(input, output, session) {
     }
   })
 
+
+  # Server: When NO NODE is selected, update the violin plot and pie chart----
+  observe({
+    if(is.null(current_node_id())) {
+      if((input$group_var != "None" |
+          input$discrete_feature != "None") &
+         input$networkType == 'cate') {
+
+        # If it is under a categorical variable
+        temp_node_summary <- table(groups_ind())
+        # temp_node_summary <- sort(temp_node_summary, decreasing = T)
+
+        output$summary_node_categorical <- renderTable({
+          if(is.null(current_node_id())) {
+            temp_node_summary
+          }
+        })
+
+
+        # Plot the pie chart with plotly
+        output$pie_chart <- renderPlotly({
+          if(is.null(current_node_id()) &
+             input$networkType == 'cate'){
+
+            plotly_color <- color_map(names(temp_node_summary),
+                                      color_code = color_code())
+            names(plotly_color) <- names(temp_node_summary)
+
+            fig <- plotly::plot_ly(data = as.data.frame(temp_node_summary),
+                                   labels = ~Var1,
+                                   values = ~Freq,
+                                   type = 'pie',
+                                   marker = list(colors = plotly_color),
+                                   textposition = 'inside',
+                                   textinfo = 'label+percent',insidetextfont = list(color = '#FFFFFF'),
+                                   showlegend = FALSE,
+                                   width = 200, height = 200)
+            fig <- fig %>% layout(title = 'Pie chart for the selected node',
+                                  xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+                                  yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+                                  autosize = F,
+                                  margin = list(l = 0, r = 0, b = 0, t = 0, pad = 0))
+            fig
+          } else {
+            NULL
+          }
+        })
+
+      } else if ((input$continuous_var != "None" |
+                  input$continuous_feature != "None") &
+                 input$networkType == 'conti') {
+        # For the violin plot
+
+        violin_dat <- data.frame(data = conti_var(),
+                                 label = "Var")
+        violin_dat$label <- as.factor(violin_dat$label)
+
+        output$violin_plot <- renderPlot({
+
+          if(is.null(current_node_id())) {
+            ggplot(violin_dat, aes(data, label, fill = label)) +
+              geom_violin(show.legend = FALSE) +
+              xlab("Values") + ylab(" ") +
+              xlim(min(conti_var()), max(conti_var())) +
+              theme_bw(base_size = 15)
+          }
+        })
+      }
+    }
+  })
 
   # Server: When a node is selected/clicked ----
 
@@ -520,31 +613,55 @@ server <- function(input, output, session) {
 
         # If it is under a continuous variable ----
 
+        # Get the value vector for the selected node and
+        # average value vector for all the nodes
+
+        conti_var_current <- conti_var()[ obj_mapper()$points_in_vertex[[current_node_id()]] ]
+        avg_value <- avg_value_global()
+
         # Calculate the summary of the node
         output$summary_node_continuous <- renderTable({
           if(!is.null(current_node_id())) {
-            temp_node_summary <- summary(conti_var()[ obj_mapper()$points_in_vertex[[current_node_id()]] ],
+            temp_node_summary <- summary(conti_var_current,
                                          digits = 3)
             t(as.matrix(temp_node_summary))
           }
         }, align = 'c')
 
-        # Calculate the correlation between topological distance and average values
-        avg_value <- c()
 
-        for(points in obj_mapper()$points_in_vertex) {
-          temp_values <- conti_var()[points]
-          avg_value <- c(avg_value, mean(temp_values[is.finite(temp_values)],
-                                         na.rm = TRUE))
+        # Draw the violin plot
+
+        if(!input$if_node_compare){
+          color_violin <- STA::color_map_Spectral((avg_value[current_node_id()] - min(avg_value))/
+                                                    (max(avg_value) - min(avg_value)),
+                                                  name = input$color_palettes)
+
+          violin_dat <- data.frame(data = conti_var_current,
+                                   label = paste0("Node ", current_node_id()))
+          violin_dat$label <- as.factor(violin_dat$label)
+
+          output$violin_plot <- renderPlot({
+            if(!input$if_node_compare){
+
+              ggplot(violin_dat, aes(data, label)) +
+                geom_violin(fill = color_violin, show.legend = FALSE) +
+                xlab("Values") + ylab(" ") + xlim(min(conti_var()), max(conti_var())) +
+                theme_bw(base_size = 15)
+            }
+          })
         }
+
+
+        # Calculate the correlation between topological distance and average values
 
         same_graph_nodes <- is.finite(dist_between_nodes()[current_node_id(),])
         relative_dist <- dist_between_nodes()[current_node_id(),same_graph_nodes]
         avg_var_value <- avg_value[same_graph_nodes]
-        cor_res <- cor.test(relative_dist,
-                            avg_var_value)
+        cor_res <- cor.test(x = relative_dist,
+                            y = avg_var_value,
+                            method = "spearman")
 
-        # If nodes are compared
+        # If nodes are Compared
 
         if(length(node_history) >= 2 &
            !is.null(current_node_id()) &
@@ -554,6 +671,47 @@ server <- function(input, output, session) {
           conti_var2 <- conti_var()[ obj_mapper()$points_in_vertex[[node_history[2]]] ]
 
           ks_test_res <- ks.test(conti_var1, conti_var2)
+
+          # violin plot
+
+          color_violin_var1 <- STA::color_map_Spectral((mean(conti_var1, na.rm = T) - min(avg_value))/
+                                                         (max(avg_value) - min(avg_value)),
+                                                       name = input$color_palettes)
+          color_violin_var2 <- STA::color_map_Spectral((mean(conti_var2, na.rm = T) - min(avg_value))/
+                                                         (max(avg_value) - min(avg_value)),
+                                                       name = input$color_palettes)
+
+          color_violin <- c(color_violin_var1,
+                            color_violin_var2)
+          names(color_violin) <- c(paste0("Node ", node_history[1]),
+                                   paste0("Node ", node_history[2]))
+
+          violin_dat_var1 <- data.frame(data = conti_var1,
+                                        label = paste0("Node ", node_history[1]))
+          violin_dat_var2 <- data.frame(data = conti_var2,
+                                        label = paste0("Node ", node_history[2]))
+
+          violin_dat <- rbind(violin_dat_var1, violin_dat_var2)
+
+          violin_dat$label <- as.factor(violin_dat$label)
+
+          output$violin_plot <- renderPlot({
+            if (length(node_history) >= 2 &
+                !is.null(current_node_id()) &
+                input$if_node_compare) {
+
+              ggplot(violin_dat, aes(data, label, fill = label)) +
+                geom_violin() +
+                scale_fill_manual(values = color_violin) +
+                xlab("Values") + ylab(" ") +
+                xlim(min(conti_var()), max(conti_var())) +
+                theme_bw(base_size = 15)
+
+            }
+          })
+
+          # Do not display the summary table
+          output$summary_node_continuous <- NULL
         }
 
 
@@ -571,6 +729,8 @@ server <- function(input, output, session) {
             "Please select a node."
           }
         })
+
+
 
       } else if ( is.null(current_node_id() )) {
         output$summary_node <- NULL

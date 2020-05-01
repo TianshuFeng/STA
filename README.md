@@ -8,8 +8,15 @@ install.packages("devtools")
 devtools::install_github("TianshuFeng/STA")
 ```
 
+# Resources
+
+- __Detailed instructions__ on how to use this package can be found in the __[vignette](https://tianshufeng.github.io/STA/articles/STA.html)__. 
+- The __interactive network analysis [Shiny app](https://tianshufeng.github.io/STA/articles/Shiny app.html)__ is hosted on [shinyapp.io](http://tsfeng.shinyapps.io/STA-app) and also available in this website under the [Article/shiny app](https://tianshufeng.github.io/STA/articles/Shiny app.html). 
+- The __instruction of the app__ can be found [here](https://tianshufeng.github.io/STA/articles/Shiny app instruction.html).
+
 # Usage
-Detailed instructions on how to use this package can be found in the [vignette](https://tianshufeng.github.io/STA/articles/STA.html). The vignette includes example codes to simulate the chicken foot data and to generate the network graph with the STA method. Examples of how to select filter functions and to custom and evaluate the generated networks are also provided.
+
+The vignette includes example codes to simulate the chicken foot data and to generate the network graph with the STA method. Examples of how to select filter functions and to custom and evaluate the generated networks are also provided.
 
 # Overview of the semi-supervised topological analysis (STA) framework
 

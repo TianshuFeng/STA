@@ -10,7 +10,7 @@ runtime: shiny
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This page introduces the Shiny app designed to interactively analysis results from the `mapper.kmeans` function of package STA. 
+This page introduces the [Shiny app](https://tianshufeng.github.io/STA/articles/Shiny app.html) designed to interactively analysis results from the `mapper.kmeans` function of package STA. 
 
 ## Interface
 
@@ -21,5 +21,80 @@ This app includes a sidebar for input/output and settings, and a main panel for 
 
 ## Input
 
+The app accept .h5 file from function `save_network_h5`. The first argument of the function is for the object `TDAMapper` from `mapper.kmeans`; and the second, optional argument allows users to save the dataset used in the analysis. Note that the order of samples in the dataset should be the same as that used in `mapper.kmeans`, and rows represent the samples. The third argument decides the name and path of the .h5 file and should end with '.h5'.
+
+The following example code applies the STA method to the chicken foot data and generate a .h5 file based on the result.
+```{r eval = FALSE}
+library(STA)
+
+simu_data <- chicken_generator(seed = 1)
+simu_data_mapper <- mapper.kmeans(dat = simu_data[,2:4],
+                               filter_values = simu_data$Y,
+                               num_intervals = 10,
+                               percent_overlap = 70)
+
+save_network_h5(obj_mapper = simu_data_mapper,
+                dataset = simu_data,
+                file = "simu.h5")
+```
+
+After loading the .h5 file, the app will automatically generate the network based on the `obj_mapper` object saved in the .h5 file.
+| ![Input](figures/open_h5.png) | 
+|:--:| 
+| *.h5 file input.* |
+
+Then, if the dataset is provided in the .h5 file with `save_network_h5`, users can choose either a categorical or continuous variable under the categorical/continuous tab to color the network. 
+
+Furthermore, the app accepts an additional descriptive .csv file containing additional features of the samples. Note that the order of samples in the description csv file should follow the same order as data used to generate the network. The first row of the descriptive file is always treated as header. Character variables in the file will be treated as `factor`s.
 
 
+## Data visualization and analysis
+
+### Categorical variable
+If we select a categorical variable under the "Categorical" tab, the Shiny app will color the nodes based on the majority of categories within each node. For example, if we choose 'Group' in the above example, the network will look like:
+| ![cate_color](figures/categorical_color.png) | 
+|:--:| 
+| *Categorical data analysis.* |
+Alternatively, we can mix the colors of samples within each node by selecting the "color mixer" option. It will lead to:
+| ![color_mixer](figures/color_mixer.png) | 
+|:--:| 
+| *Color mixer.* |
+
+Clicking on the nodes in the shiny app will lead to a node summary shown below the network. Currently, for categorical variables, the summary of a node includes a frequency table and a pie chart based on the categories of the samples within the node. For example, 
+| ![node_sum](figures/Node_summary.png) | 
+|:--:| 
+| *Node summary for categorical variables.* |
+
+
+### Continuous variable
+
+Similarly, we can select a continuous variable under the "Continuous" tab, and the Shiny app will color the nodes based on the average values of samples w.r.t. the varible. For example, if we choose 'Y'-axis in the above example, the app will look like:
+| ![conti_color](figures/continuous_color.png) | 
+|:--:| 
+| *Continuous data analysis.* |
+
+Clicking on the nodes in the shiny app will lead to a node summary shown below the network. Currently, for continuous variables, the summary of a node includes a violin plot, a table of quantiles and a test for Spearman's $\rho$. Here, the correlation is between the average values of the selected continuous variable of the nodes, and the minimum distance to the seleted node from other nodes.
+
+For example, 
+| ![node_sum_conti](figures/node_summary_continuous.png) | 
+|:--:| 
+| *Node summary for continuous variables. * |
+
+
+### Node comparison
+
+Checking the "Node comparison" will enable the app to compare consecutively selected nodes. For example:
+| ![node_compare](figures/node_comparison.png) | 
+|:--:| 
+| *Node comparison. * |
+
+For categorical variables, the comparison is conducted with $\chi$^2 test. For continuous variables, we use violin plot and KS test.
+
+## Customization
+
+Two options are provided to customize the network visualization. 
+| ![node_custom](figures/settings.png) | 
+|:--:| 
+| *Network customization. * |
+
+The first option allows to choose a color palette to color the nodes. The second option is to set the depth of nearest nodes to be highlighted if a node is seleted.

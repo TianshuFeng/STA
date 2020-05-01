@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
       </span>
     </div>
 
@@ -48,6 +48,21 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/Shiny%20app%20instruction.html">Shiny app instruction</a>
+    </li>
+    <li>
+      <a href="../articles/Shiny%20app.html">Shiny app</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -72,7 +87,7 @@
     <div class="page-header toc-ignore">
       <h1>Semi-supervised topological analysis</h1>
             
-            <h4 class="date">2020-04-14</h4>
+            <h4 class="date">2020-04-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TianshuFeng/STA/blob/master/vignettes/STA.Rmd"><code>vignettes/STA.Rmd</code></a></small>
       <div class="hidden name"><code>STA.Rmd</code></div>
@@ -301,19 +316,20 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <p>Then, we plot the results with <code>ggplot2</code>:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Illustration of Pareto frontier</span></a>
 <a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb13-3" title="3">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pareto_opt.html">pareto_opt</a></span>(res_filter, <span class="dt">top =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(res_filter))</a>
-<a class="sourceLine" id="cb13-4" title="4">res<span class="op">$</span>.level[res<span class="op">$</span>.level<span class="op">&gt;</span><span class="dv">1</span>] &lt;-<span class="st"> "Others"</span></a>
-<a class="sourceLine" id="cb13-5" title="5">res<span class="op">$</span>.level[res<span class="op">$</span>.level<span class="op">==</span><span class="dv">1</span>] &lt;-<span class="st"> "Frontier"</span></a>
-<a class="sourceLine" id="cb13-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(res) &lt;-<span class="st"> "data.frame"</span></a>
-<a class="sourceLine" id="cb13-7" title="7">gp &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(res, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> weighted_shannon, <span class="dt">y =</span> spread_measure,</a>
-<a class="sourceLine" id="cb13-8" title="8">                      <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(.level),</a>
-<a class="sourceLine" id="cb13-9" title="9">                      <span class="dt">label =</span> Filter)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">group =</span> .level), <span class="dt">data =</span> res[res<span class="op">$</span>.level<span class="op">==</span><span class="st">"Frontier"</span>,],</a>
-<a class="sourceLine" id="cb13-12" title="12">            <span class="dt">direction =</span> <span class="st">"vh"</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-13" title="13"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(.level)), <span class="dt">colour =</span> <span class="st">"white"</span>, <span class="dt">fontface =</span> <span class="st">"bold"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-14" title="14"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill=</span><span class="st">''</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">color=</span><span class="st">''</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Shannon index"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-15" title="15"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Spread measure"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 3.5.2</span></a>
+<a class="sourceLine" id="cb13-4" title="4">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pareto_opt.html">pareto_opt</a></span>(res_filter, <span class="dt">top =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(res_filter))</a>
+<a class="sourceLine" id="cb13-5" title="5">res<span class="op">$</span>.level[res<span class="op">$</span>.level<span class="op">&gt;</span><span class="dv">1</span>] &lt;-<span class="st"> "Others"</span></a>
+<a class="sourceLine" id="cb13-6" title="6">res<span class="op">$</span>.level[res<span class="op">$</span>.level<span class="op">==</span><span class="dv">1</span>] &lt;-<span class="st"> "Frontier"</span></a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(res) &lt;-<span class="st"> "data.frame"</span></a>
+<a class="sourceLine" id="cb13-8" title="8">gp &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(res, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> weighted_shannon, <span class="dt">y =</span> spread_measure,</a>
+<a class="sourceLine" id="cb13-9" title="9">                      <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(.level),</a>
+<a class="sourceLine" id="cb13-10" title="10">                      <span class="dt">label =</span> Filter)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-12" title="12"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">group =</span> .level), <span class="dt">data =</span> res[res<span class="op">$</span>.level<span class="op">==</span><span class="st">"Frontier"</span>,],</a>
+<a class="sourceLine" id="cb13-13" title="13">            <span class="dt">direction =</span> <span class="st">"vh"</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-14" title="14"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(.level)), <span class="dt">colour =</span> <span class="st">"white"</span>, <span class="dt">fontface =</span> <span class="st">"bold"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-15" title="15"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill=</span><span class="st">''</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">color=</span><span class="st">''</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Shannon index"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-16" title="16"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Spread measure"</span>)</a></code></pre></div>
 <p><img src="STA_files/figure-html/fig2-1.png" width="480" style="display: block; margin: auto;"></p>
 <p>In the graph, the red line represents the Pareto frontier, the red squares represent the filter functions on the Pareto frontier, and the blue squares represent the filter functions not in the Pareto frontier.</p>
 <p>The package also provides a function, <code>filter_evaluate</code>, for users to efficiently get the measures for the graphs generated under different filter functions. It accepts arbitrary number of filter vectors from the filter functions and returns the measures as a <code>data.frame</code> object that can be directly used in the <code>pareto_opt</code> function. An example of using the <code>filter_evaluate</code> function is shown below for three filter functions on the chicken foot example:</p>
