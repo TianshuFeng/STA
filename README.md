@@ -11,7 +11,7 @@ devtools::install_github("TianshuFeng/STA")
 # Resources
 
 - __Detailed instructions__ on how to use this package can be found in the __[vignette](https://tianshufeng.github.io/STA/articles/STA.html)__. 
-- The __interactive network analysis [Shiny app](https://tianshufeng.github.io/STA/articles/Shiny_app.html)__ is hosted on [shinyapp.io](http://tsfeng.shinyapps.io/STA-app) and also available in this website under the [Article/shiny app](https://tianshufeng.github.io/STA/articles/Shiny_app.html). 
+- The __interactive network analysis Shiny app__ is hosted on [shinyapp.io](http://tsfeng.shinyapps.io/STA-app). 
 - The __instruction of the app__ can be found [here](https://tianshufeng.github.io/STA/articles/Shiny_app_instruction.html).
 
 # Usage
