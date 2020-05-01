@@ -4,13 +4,16 @@ author: "Tianshu Feng"
 date: "4/20/2020"
 output: html_document
 runtime: shiny
+resource_files:
+  - figures/*.png
+  - man/figures/*.png
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This page introduces the __[Shiny app](http://tsfeng.shinyapps.io/STA-app)__ designed to interactively analysis results from the `mapper.kmeans` function of package STA. 
+This page introduces the __[Shiny app](http://tsfeng.shinyapps.io/STA-app)__ designed to interactively analysis results from the `mapper.kmeans` function of package STA.
 
 ## Interface
 
