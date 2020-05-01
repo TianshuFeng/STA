@@ -58,6 +58,7 @@ simu_data_mapper <- mapper.kmeans(dat = simu_data[,2:4],
 simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)
 ```
 The screenshot of the generated networkis is shown below:
+
 | ![Screenshot](man/figures/Res_chicken_foot.png) | 
 |:--:| 
 | *Screenshot of the network from the STA method.* |
