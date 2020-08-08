@@ -72,6 +72,12 @@ ui <- fluidPage(
       checkboxInput(inputId = "if_node_compare",
                     label = "Node comparison"),
 
+      # Input: whether or not to compare nodes ----
+      helpText("Whether to output static network."),
+      checkboxInput(inputId = "if_png",
+                    label = "PNG",
+                    value = FALSE),
+
       # input: Selection of brewer palettes ----
       hr(),
       selectInput(inputId = "color_palettes",
@@ -744,12 +750,12 @@ server <- function(input, output, session) {
     simple_visNet(obj_mapper = obj_mapper(),
                   color_filter = F,
                   groups_ind = rep(1, n_obs),
-                  save_network = FALSE)%>%
-      visEvents(selectNode = "function(nodes) {
-        Shiny.onInputChange('current_node_id', nodes);
-      ;}", deselectNode = "function(nodes) {
-                Shiny.onInputChange('current_node_id', null);
-                ;}")
+                  save_network = FALSE)%>% visExport()
+      # visEvents(selectNode = "function(nodes) {
+      #   Shiny.onInputChange('current_node_id', nodes);
+      # ;}", deselectNode = "function(nodes) {
+      #           Shiny.onInputChange('current_node_id', null);
+      #           ;}")
   })
 
   # Server: Adjust the degree of depth of highlight when a node is selected ----

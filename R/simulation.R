@@ -64,7 +64,9 @@ simple_visNet <-
            groups_ind = NULL,
            color_code = NULL,
            color_mix = FALSE,
-           save_network = TRUE) {
+           save_network = TRUE,
+           png_output = FALSE,
+           layout_igraph = layout_with_fr) {
     require(visNetwork)
     require(RColorBrewer)
 
@@ -208,30 +210,41 @@ simple_visNet <-
                  to = MapperLinks$Linktarget + 1,
                  width = MapperLinks$Linkvalue/max(MapperLinks$Linkvalue) * 20)
 
-    net_file <- visNetwork(nodes, edges, width = "100%", height = "700px") %>%
-      visInteraction(tooltipDelay = 500,
-                     selectConnectedEdges = FALSE) %>%
-      visOptions(highlightNearest = list(
-                 enabled = TRUE,
-                 degree = 2,
-                 hover = T) )
+    if(!png_output){
+      net_file <- visNetwork(nodes, edges, width = "100%", height = "700px") %>%
+        visInteraction(tooltipDelay = 500,
+                       selectConnectedEdges = FALSE) %>%
+        visOptions(highlightNearest = list(
+          enabled = TRUE,
+          degree = 2,
+          hover = T) )
 
-    if(save_network) {
-      print(net_file)
+      if(save_network) {
+        print(net_file)
 
-      net_file %>% visSave(file = network_name, background = "white")
-      save_logic = file.rename(from = network_name, to = file.path(folder, network_name))
+        net_file %>% visSave(file = network_name, background = "white")
+        save_logic = file.rename(from = network_name, to = file.path(folder, network_name))
 
-      if (save_logic) {
-        cat("The generated HTML file can be found in:\n",
-            file.path(folder, network_name),
-            "\n")
-      } else {
-        warning("Cannot save file in the target folder,
+        if (save_logic) {
+          cat("The generated HTML file can be found in:\n",
+              file.path(folder, network_name),
+              "\n")
+        } else {
+          warning("Cannot save file in the target folder,
               please check the working directory.")
+        }
+      } else {
+        return(net_file)
       }
-    } else {
-      return(net_file)
+    } else { # If we want to output a static png file
+      igraph_obj <-igraph::graph_from_adjacency_matrix(adjmatrix = as.matrix(obj_mapper$adjacency),
+                                                       mode = "undirected")
+
+      plot(igraph_obj,
+           layout = layout_igraph,
+           vertex.size = log(nodes$value/2 + 1)*4,
+           vertex.color = nodes$color,
+           vertex.label = NA)
     }
 }
 
