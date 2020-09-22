@@ -69,6 +69,8 @@ simple_visNet <-
            layout_igraph = layout_with_fr) {
     require(visNetwork)
     require(RColorBrewer)
+    require(igraph)
+
 
     # Remove nodes without samples
     obj_mapper = STA:::null_remover(obj_mapper)
@@ -243,7 +245,7 @@ simple_visNet <-
       plot(igraph_obj,
            layout = layout_igraph,
            vertex.size = log(nodes$value/2 + 1)*4,
-           vertex.color = nodes$color,
+           vertex.color = as.character(nodes$color),
            vertex.label = NA)
     }
 }
