@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-This package aims to provide a comfortable and flexible way to explore the visualization of data based on Mapper, a topological data analysis method. It provides users with extensive tools to customize the visualization, optimally select filter functions and evaluate the results from Mapper.
+This package aims to provide a comfortable and flexible way to explore the visualization of data based on Mapper, a topological data analysis method. It provides users with extensive tools to customize the visualization, optimally select filter functions and evaluate the results from Mapper .
 
 To install the latest version of this R package directly from github:
 ```

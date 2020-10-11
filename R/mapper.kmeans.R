@@ -27,6 +27,11 @@ lsfi_from_lsmi <- function( lsmi, num_intervals ) {
 }
 
 
+columnwise_permute <- function(x) {
+  x_tmp <- apply(x, 2, function(col) sample(col))
+  return(x_tmp)
+}
+
 #' Mapper function with multiple cluster methods
 #'
 #' This function is adopted from \code{mapper} function of \code{TDAmapper} with
@@ -69,6 +74,8 @@ lsfi_from_lsmi <- function( lsmi, num_intervals ) {
 #' @param n_class number of clusters. By default, n_class=0. If n_class>0, this
 #'   function will instead call \code{\link[stats]{kmeans}} and pass
 #'   \code{n_class} to argument \code{centers} of \code{\link[stats]{kmeans}}.
+#' @param permute_interval_level boolean. True if samples within each interval
+#'   are to be permuted
 #' @param ... Further arguments for either \code{\link[NbClust]{NbClust}} or
 #'   \code{\link[stats]{kmeans}}.
 #'
@@ -98,7 +105,7 @@ lsfi_from_lsmi <- function( lsmi, num_intervals ) {
 #'
 mapper.kmeans <- function(dat, filter_values, num_intervals, percent_overlap, dist_method = "euclidean",
                           cluster_method = "kmeans", cluster_index = "all",
-                          n_class = 0, ...) {
+                          n_class = 0, permute_interval_level = FALSE, ...) {
 
   # ...: further argument for nbclust
 
@@ -253,12 +260,20 @@ mapper.kmeans <- function(dat, filter_values, num_intervals, percent_overlap, di
       #   h=level_cutoff))
       # num_vertices_in_this_level <- max(level_internal_indices)
 
+      # Permute data within levels ----
+      data_in_this_level <- dat[points_in_this_level,]
+
+      if(permute_interval_level) {
+        # Permute the
+        data_in_this_level <- columnwise_permute(data_in_this_level)
+      }
+
       if(n_class == 0){
 
         pdf(file = NULL)
         options(warn=-1)
         log = capture.output({
-          level_kmeans = try(NbClust(data = dat[points_in_this_level,],
+          level_kmeans = try(NbClust(data = data_in_this_level,
                                      distance = dist_method,
                                      method = cluster_method, index = cluster_index, ...),
                              silent = TRUE)
@@ -272,7 +287,7 @@ mapper.kmeans <- function(dat, filter_values, num_intervals, percent_overlap, di
           level_internal_indices = as.numeric(level_kmeans$Best.partition)
         }
       } else {
-        level_kmeans = kmeans(x = dat[points_in_this_level,],
+        level_kmeans = kmeans(x = data_in_this_level,
                               centers = n_class, ...)
         level_internal_indices = level_kmeans$cluster
       }

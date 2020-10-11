@@ -246,7 +246,8 @@ simple_visNet <-
            layout = layout_igraph,
            vertex.size = log(nodes$value/2 + 1)*4,
            vertex.color = as.character(nodes$color),
-           vertex.label = 1:length(nodes$color))
+           vertex.label = 1:length(nodes$color),
+           label.cex = 0.7)
     }
 }
 
