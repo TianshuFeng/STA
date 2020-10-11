@@ -134,7 +134,7 @@ graph from Mapper." />
 graph from Mapper.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mapper_shannon_index</span>(<span class='no'>obj_mapper</span>, <span class='no'>group_ind</span>)</pre>
+    <pre class="usage"><span class='fu'>mapper_shannon_index</span><span class='op'>(</span><span class='va'>obj_mapper</span>, <span class='va'>group_ind</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,13 +161,15 @@ graph from Mapper.</p>
     <p>how it is computed</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='no'>tp_data</span> <span class='kw'>&lt;-</span> <span class='fu'>chicken_generator</span>(<span class='fl'>1</span>)
-<span class='no'>tp_data_mapper</span> <span class='kw'>&lt;-</span> <span class='fu'>mapper.kmeans</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>tp_data</span>[,<span class='fl'>2</span>:<span class='fl'>4</span>],
-                               <span class='kw'>filter_values</span> <span class='kw'>=</span> <span class='no'>tp_data</span>$<span class='no'>Y</span>,
-                               <span class='kw'>num_intervals</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-                               <span class='kw'>percent_overlap</span> <span class='kw'>=</span> <span class='fl'>70</span>)
-<span class='no'>tp_shannon</span> <span class='kw'>&lt;-</span> <span class='fu'>mapper_shannon_index</span>(<span class='no'>tp_data_mapper</span>, <span class='no'>tp_data</span>$<span class='no'>Group</span>)
-<span class='no'>tp_shannon</span></pre>
+    <pre class="examples"><span class='va'>tp_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>tp_data_mapper</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mapper.kmeans.html'>mapper.kmeans</a></span><span class='op'>(</span>dat <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>,
+                               filter_values <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>$</span><span class='va'>Y</span>,
+                               num_intervals <span class='op'>=</span> <span class='fl'>10</span>,
+                               percent_overlap <span class='op'>=</span> <span class='fl'>70</span><span class='op'>)</span>
+<span class='va'>tp_shannon</span> <span class='op'>&lt;-</span> <span class='fu'>mapper_shannon_index</span><span class='op'>(</span><span class='va'>tp_data_mapper</span>, <span class='va'>tp_data</span><span class='op'>$</span><span class='va'>Group</span><span class='op'>)</span>
+<span class='va'>tp_shannon</span>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -183,7 +185,7 @@ graph from Mapper.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -132,7 +132,7 @@
     <p><code>color_map</code> assigns color codes to samples based on the given color code.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>color_map</span>(<span class='no'>samples_group</span>, <span class='no'>color_code</span>)</pre>
+    <pre class="usage"><span class='fu'>color_map</span><span class='op'>(</span><span class='va'>samples_group</span>, <span class='va'>color_code</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,9 +152,11 @@
     <p>A vector of color codes matching the group names</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='no'>temp_code</span> <span class='kw'>=</span> <span class='fu'>auto_set_colorcode</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'a'</span>,<span class='st'>'b'</span>,<span class='st'>'c'</span>))
-<span class='no'>temp_groups</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'a'</span>,<span class='st'>'a'</span>,<span class='st'>'b'</span>,<span class='st'>'c'</span>)
-<span class='fu'>color_map</span>(<span class='no'>temp_groups</span>, <span class='no'>temp_code</span>)</pre>
+    <pre class="examples"><span class='va'>temp_code</span> <span class='op'>=</span> <span class='fu'><a href='auto_set_colorcode.html'>auto_set_colorcode</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'a'</span>,<span class='st'>'b'</span>,<span class='st'>'c'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>temp_groups</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'a'</span>,<span class='st'>'a'</span>,<span class='st'>'b'</span>,<span class='st'>'c'</span><span class='op'>)</span>
+<span class='fu'>color_map</span><span class='op'>(</span><span class='va'>temp_groups</span>, <span class='va'>temp_code</span><span class='op'>)</span>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -170,7 +172,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

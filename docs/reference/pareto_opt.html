@@ -136,7 +136,7 @@ Shannon indices and spread measures with function <code><a href='https://rdrr.io
 from R package `rPref`.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pareto_opt</span>(<span class='no'>res_filter</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>pareto_opt</span><span class='op'>(</span><span class='va'>res_filter</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,31 +160,33 @@ and spread measures.</p></td>
   as well as their Shannon indices and spread measures.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='no'>filter_names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'Coordinate'</span>,<span class='st'>'Eccen'</span>,<span class='st'>'LInf'</span>,<span class='st'>'Ref'</span>,<span class='st'>'DTM'</span>,<span class='st'>'Gaussian'</span>,<span class='st'>'PCA'</span>)
-<span class='no'>res_filter</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>Filter</span> <span class='kw'>=</span> <span class='no'>filter_names</span>,
-                        <span class='kw'>weighted_shannon</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1.389</span>, <span class='fl'>1.421</span>, <span class='fl'>1.453</span>, <span class='fl'>1.158</span>, <span class='fl'>1.345</span>, <span class='fl'>1.399</span>, <span class='fl'>1.349</span>),
-                        <span class='kw'>spread_measure</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2.767</span>, <span class='fl'>4.101</span>, <span class='fl'>2.607</span>, <span class='fl'>4.001</span>, <span class='fl'>4.119</span>, <span class='fl'>3.957</span>, <span class='fl'>2.034</span>))
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>pareto_opt</span>(<span class='no'>res_filter</span>)
-<span class='no'>res</span>
+    <pre class="examples"><span class='va'>filter_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Coordinate'</span>,<span class='st'>'Eccen'</span>,<span class='st'>'LInf'</span>,<span class='st'>'Ref'</span>,<span class='st'>'DTM'</span>,<span class='st'>'Gaussian'</span>,<span class='st'>'PCA'</span><span class='op'>)</span>
+<span class='va'>res_filter</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Filter <span class='op'>=</span> <span class='va'>filter_names</span>,
+                        weighted_shannon <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.389</span>, <span class='fl'>1.421</span>, <span class='fl'>1.453</span>, <span class='fl'>1.158</span>, <span class='fl'>1.345</span>, <span class='fl'>1.399</span>, <span class='fl'>1.349</span><span class='op'>)</span>,
+                        spread_measure <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2.767</span>, <span class='fl'>4.101</span>, <span class='fl'>2.607</span>, <span class='fl'>4.001</span>, <span class='fl'>4.119</span>, <span class='fl'>3.957</span>, <span class='fl'>2.034</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>pareto_opt</span><span class='op'>(</span><span class='va'>res_filter</span><span class='op'>)</span>
+<span class='va'>res</span>
 
 <span class='co'># Illustration of Pareto frontier</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>pareto_opt</span>(<span class='no'>res_filter</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>res_filter</span>))
-<span class='no'>res</span>$<span class='no'>.level</span>[<span class='no'>res</span>$<span class='no'>.level</span><span class='kw'>&gt;</span><span class='fl'>1</span>] <span class='kw'>&lt;-</span> <span class='st'>'Others'</span>
-<span class='no'>res</span>$<span class='no'>.level</span>[<span class='no'>res</span>$<span class='no'>.level</span><span class='kw'>==</span><span class='fl'>1</span>] <span class='kw'>&lt;-</span> <span class='st'>'Frontier'</span>
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>res</span>) <span class='kw'>&lt;-</span> <span class='st'>'data.frame'</span>
-<span class='no'>gp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>res</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>weighted_shannon</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>spread_measure</span>,
-                      <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='no'>.level</span>),
-                      <span class='kw'>label</span> <span class='kw'>=</span> <span class='no'>Filter</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_step</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>.level</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>res</span>[<span class='no'>res</span>$<span class='no'>.level</span><span class='kw'>==</span><span class='st'>'Frontier'</span>,],
-            <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>'vh'</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>2</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='no'>.level</span>)), <span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>'white'</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>'bold'</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>fill</span><span class='kw'>=</span><span class='st'>''</span>) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>color</span><span class='kw'>=</span><span class='st'>''</span>) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span>(<span class='st'>'Shannon index'</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span>(<span class='st'>'Spread measure'</span>)
-<span class='no'>gp</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>pareto_opt</span><span class='op'>(</span><span class='va'>res_filter</span>, top <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>res_filter</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>res</span><span class='op'>$</span><span class='va'>.level</span><span class='op'>[</span><span class='va'>res</span><span class='op'>$</span><span class='va'>.level</span><span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>'Others'</span>
+<span class='va'>res</span><span class='op'>$</span><span class='va'>.level</span><span class='op'>[</span><span class='va'>res</span><span class='op'>$</span><span class='va'>.level</span><span class='op'>==</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>'Frontier'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>'data.frame'</span>
+<span class='va'>gp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>res</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>weighted_shannon</span>, y <span class='op'>=</span> <span class='va'>spread_measure</span>,
+                      color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>.level</span><span class='op'>)</span>,
+                      label <span class='op'>=</span> <span class='va'>Filter</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_step</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>group <span class='op'>=</span> <span class='va'>.level</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>res</span><span class='op'>[</span><span class='va'>res</span><span class='op'>$</span><span class='va'>.level</span><span class='op'>==</span><span class='st'>'Frontier'</span>,<span class='op'>]</span>,
+            direction <span class='op'>=</span> <span class='st'>'vh'</span>, size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>.level</span><span class='op'>)</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>'white'</span>, fontface <span class='op'>=</span> <span class='st'>'bold'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>fill<span class='op'>=</span><span class='st'>''</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>''</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>'Shannon index'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>'Spread measure'</span><span class='op'>)</span>
+<span class='va'>gp</span>
 <span class='co'># The red line(s) is the Pareto frontier, and all the points on the top right</span>
-<span class='co'># side of these line(s) are not potentially optimal.</span></pre>
+<span class='co'># side of these line(s) are not potentially optimal.</span>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -200,7 +202,7 @@ and spread measures.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

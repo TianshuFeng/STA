@@ -136,7 +136,7 @@ and returns a dataframe with group names and color codes that can be
 accepted by visualization functions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_color_code</span>(<span class='no'>file</span>, <span class='kw'>header</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\t"</span>)</pre>
+    <pre class="usage"><span class='fu'>read_color_code</span><span class='op'>(</span><span class='va'>file</span>, header <span class='op'>=</span> <span class='cn'>FALSE</span>, sep <span class='op'>=</span> <span class='st'>"\t"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,12 +190,13 @@ of the names of the labels, and the second column should contain standard
 Hex color codes.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='no'>test1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'a'</span>,<span class='st'>'b'</span>,<span class='st'>'c'</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#f97f6c"</span>, <span class='st'>"#6dcff6"</span>, <span class='st'>"#fdbc4b"</span>))
-<span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>test1</span>, <span class='no'>tf</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\t"</span>)
+    <pre class="examples"><span class='va'>test1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'a'</span>,<span class='st'>'b'</span>,<span class='st'>'c'</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#f97f6c"</span>, <span class='st'>"#6dcff6"</span>, <span class='st'>"#fdbc4b"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>test1</span>, <span class='va'>tf</span>, row.names <span class='op'>=</span> <span class='cn'>FALSE</span>, col.names <span class='op'>=</span> <span class='cn'>FALSE</span>, sep <span class='op'>=</span> <span class='st'>"\t"</span><span class='op'>)</span>
 
-<span class='fu'>check_color_code</span>(<span class='fu'>read_color_code</span>(<span class='no'>tf</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>tf</span>)</pre>
+<span class='fu'><a href='check_color_code.html'>check_color_code</a></span><span class='op'>(</span><span class='fu'>read_color_code</span><span class='op'>(</span><span class='va'>tf</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='va'>tf</span><span class='op'>)</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -211,7 +212,7 @@ Hex color codes.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

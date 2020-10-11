@@ -4,10 +4,23 @@ author: "Tianshu Feng"
 date: "4/20/2020"
 output: html_document
 runtime: shiny
+resource_files:
+  - vignettes/figures/main_screen.png
+  - vignettes/figures/open_h5.png
+  - vignettes/figures/categorical_color.png
+  - vignettes/figures/color_mixer.png
+  - vignettes/figures/Node_summary.png
+  - vignettes/figures/continuous_color.png
+  - vignettes/figures/node_summary_continuous.png
+  - vignettes/figures/node_comparison.png
+  - vignettes/figures/settings.png
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  fig.path = "vignettes/figures/"
+)
 ```
 
 This page introduces the __[Shiny app](http://tsfeng.shinyapps.io/STA-app)__ designed to interactively analysis results from the `mapper.kmeans` function of package STA.
@@ -16,7 +29,7 @@ This page introduces the __[Shiny app](http://tsfeng.shinyapps.io/STA-app)__ des
 
 This app includes a sidebar for input/output and settings, and a main panel for result display. An overview of the user interface of the shiny app is shown below:
 
-| ![Interface](man/figures/main_screen.png) | 
+| ![Interface](vignettes/figures/main_screen.png) | 
 |:--:| 
 | *User interface of the shiny app.* |
 
@@ -41,7 +54,7 @@ save_network_h5(obj_mapper = simu_data_mapper,
 
 After loading the .h5 file, the app will automatically generate the network based on the `obj_mapper` object saved in the .h5 file.
 
-| ![Input](man/figures/open_h5.png) |
+| ![Input](vignettes/figures/open_h5.png) |
 |:--:|
 | *.h5 file input.* |
 
@@ -55,19 +68,19 @@ Furthermore, the app accepts an additional descriptive .csv file containing addi
 ### Categorical variable
 If we select a categorical variable under the "Categorical" tab, the Shiny app will color the nodes based on the majority of categories within each node. For example, if we choose 'Group' in the above example, the network will look like:
 
-| ![cate_color](man/figures/categorical_color.png) | 
+| ![cate_color](vignettes/figures/categorical_color.png) | 
 |:--:| 
 | *Categorical data analysis.* |
 
 Alternatively, we can mix the colors of samples within each node by selecting the "color mixer" option. It will lead to:
 
-| ![color_mixer](man/figures/color_mixer.png) | 
+| ![color_mixer](vignettes/figures/color_mixer.png) | 
 |:--:| 
 | *Color mixer.* |
 
 Clicking on the nodes in the shiny app will lead to a node summary shown below the network. Currently, for categorical variables, the summary of a node includes a frequency table and a pie chart based on the categories of the samples within the node. For example, 
 
-| ![node_sum](man/figures/Node_summary.png) | 
+| ![node_sum](vignettes/figures/Node_summary.png) | 
 |:--:| 
 | *Node summary for categorical variables.* |
 
@@ -76,7 +89,7 @@ Clicking on the nodes in the shiny app will lead to a node summary shown below t
 
 Similarly, we can select a continuous variable under the "Continuous" tab, and the Shiny app will color the nodes based on the average values of samples w.r.t. the varible. For example, if we choose 'Y'-axis in the above example, the app will look like:
 
-| ![conti_color](man/figures/continuous_color.png) | 
+| ![conti_color](vignettes/figures/continuous_color.png) | 
 |:--:| 
 | *Continuous data analysis.* |
 
@@ -84,7 +97,7 @@ Clicking on the nodes in the shiny app will lead to a node summary shown below t
 
 For example, 
 
-| ![node_sum_conti](man/figures/node_summary_continuous.png) | 
+| ![node_sum_conti](vignettes/figures/node_summary_continuous.png) | 
 |:--:| 
 | *Node summary for continuous variables. * |
 
@@ -93,7 +106,7 @@ For example,
 
 Checking the "Node comparison" will enable the app to compare consecutively selected nodes. For example:
 
-| ![node_compare](man/figures/node_comparison.png) | 
+| ![node_compare](vignettes/figures/node_comparison.png) | 
 |:--:| 
 | *Node comparison. * |
 
@@ -103,7 +116,7 @@ For categorical variables, the comparison is conducted with $\chi$^2 test. For c
 
 Two options are provided to customize the network visualization. 
 
-| ![node_custom](man/figures/settings.png) | 
+| ![node_custom](vignettes/figures/settings.png) | 
 |:--:| 
 | *Network customization. * |
 

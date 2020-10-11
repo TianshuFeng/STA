@@ -132,7 +132,7 @@
     <p><code>filter_pca</code> returns the first k principle components as filter values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_pca</span>(<span class='no'>dat</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_pca</span><span class='op'>(</span><span class='va'>dat</span>, k <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,8 +163,10 @@ each column represents a predictive variable.</p></td>
 \(X\) is the data matrix.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='no'>tp_data</span> <span class='kw'>=</span> <span class='fu'>chicken_generator</span>(<span class='fl'>1</span>)
-<span class='fu'>filter_pca</span>(<span class='kw'>dat</span><span class='kw'>=</span><span class='no'>tp_data</span>[,-<span class='fl'>1</span>])</pre>
+    <pre class="examples"><span class='va'>tp_data</span> <span class='op'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>filter_pca</span><span class='op'>(</span>dat<span class='op'>=</span><span class='va'>tp_data</span><span class='op'>[</span>,<span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -180,7 +182,7 @@ each column represents a predictive variable.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

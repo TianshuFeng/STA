@@ -134,8 +134,8 @@ vectors." />
 vectors.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_evaluate</span>(<span class='no'>...</span>, <span class='no'>dat</span>, <span class='no'>group_ind</span>, <span class='no'>num_intervals</span>, <span class='no'>percent_overlap</span>,
-  <span class='kw'>arg_mapper</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre>
+    <pre class="usage"><span class='fu'>filter_evaluate</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>dat</span>, <span class='va'>group_ind</span>, <span class='va'>num_intervals</span>, <span class='va'>percent_overlap</span>,
+  arg_mapper <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,7 +166,7 @@ predictive variables.</p></td>
     <tr>
       <th>arg_mapper</th>
       <td><p>A list for additional arguments for
-<code>mapper.kmeans</code>.</p></td>
+<code><a href='mapper.kmeans.html'>mapper.kmeans</a></code>.</p></td>
     </tr>
     </table>
 
@@ -178,22 +178,24 @@ predictive variables.</p></td>
   respectively.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='no'>tp_data</span> <span class='kw'>&lt;-</span> <span class='fu'>chicken_generator</span>(<span class='fl'>1</span>)
-<span class='no'>tp_dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>tp_data</span>[,-<span class='fl'>1</span>])
-<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_eccen</span>(<span class='kw'>dist</span> <span class='kw'>=</span> <span class='no'>tp_dist</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_coordinate</span>(<span class='no'>tp_data</span>[,-<span class='fl'>1</span>], <span class='fl'>2</span>)
-<span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_gaussian</span>(<span class='kw'>dist</span><span class='kw'>=</span><span class='no'>tp_dist</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='fu'>filter_evaluate</span>(<span class='no'>a</span>,<span class='no'>b</span>,<span class='no'>c</span>,
-                <span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>tp_data</span>, <span class='kw'>group_ind</span> <span class='kw'>=</span> <span class='no'>tp_data</span>$<span class='no'>Group</span>,
-                <span class='kw'>num_intervals</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>percent_overlap</span> <span class='kw'>=</span> <span class='fl'>70</span>)
+    <pre class="examples"><span class='va'>tp_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>tp_dist</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>tp_data</span><span class='op'>[</span>,<span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='filter_eccen.html'>filter_eccen</a></span><span class='op'>(</span>dist <span class='op'>=</span> <span class='va'>tp_dist</span>, p <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='filter_coordinate.html'>filter_coordinate</a></span><span class='op'>(</span><span class='va'>tp_data</span><span class='op'>[</span>,<span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span>, <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>c</span> <span class='op'>&lt;-</span> <span class='fu'><a href='filter_gaussian.html'>filter_gaussian</a></span><span class='op'>(</span>dist<span class='op'>=</span><span class='va'>tp_dist</span>, sigma<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>filter_evaluate</span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='va'>c</span>,
+                dat <span class='op'>=</span> <span class='va'>tp_data</span>, group_ind <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>$</span><span class='va'>Group</span>,
+                num_intervals <span class='op'>=</span> <span class='fl'>10</span>, percent_overlap <span class='op'>=</span> <span class='fl'>70</span><span class='op'>)</span>
 
 <span class='co'># Add additional arguments (NOT RUN)</span>
-<span class='kw'>if</span>(<span class='fl'>FALSE</span>) {
-  <span class='fu'>filter_evaluate</span>(<span class='no'>a</span>,<span class='no'>b</span>,<span class='no'>c</span>,
-                  <span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>tp_data</span>, <span class='kw'>group_ind</span> <span class='kw'>=</span> <span class='no'>tp_data</span>$<span class='no'>Group</span>,
-                  <span class='kw'>num_intervals</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>percent_overlap</span> <span class='kw'>=</span> <span class='fl'>70</span>,
-                  <span class='kw'>arg_mapper</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>n_class</span> <span class='kw'>=</span> <span class='fl'>1</span>))
-}</pre>
+<span class='kw'>if</span><span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>filter_evaluate</span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='va'>c</span>,
+                  dat <span class='op'>=</span> <span class='va'>tp_data</span>, group_ind <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>$</span><span class='va'>Group</span>,
+                  num_intervals <span class='op'>=</span> <span class='fl'>10</span>, percent_overlap <span class='op'>=</span> <span class='fl'>70</span>,
+                  arg_mapper <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>n_class <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -209,7 +211,7 @@ predictive variables.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

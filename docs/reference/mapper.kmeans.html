@@ -134,9 +134,9 @@ different clustering methods (mainly k-means)." />
 different clustering methods (mainly k-means).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mapper.kmeans</span>(<span class='no'>dat</span>, <span class='no'>filter_values</span>, <span class='no'>num_intervals</span>, <span class='no'>percent_overlap</span>,
-  <span class='kw'>dist_method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>cluster_method</span> <span class='kw'>=</span> <span class='st'>"kmeans"</span>,
-  <span class='kw'>cluster_index</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>n_class</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>mapper.kmeans</span><span class='op'>(</span><span class='va'>dat</span>, <span class='va'>filter_values</span>, <span class='va'>num_intervals</span>, <span class='va'>percent_overlap</span>,
+  dist_method <span class='op'>=</span> <span class='st'>"euclidean"</span>, cluster_method <span class='op'>=</span> <span class='st'>"kmeans"</span>,
+  cluster_index <span class='op'>=</span> <span class='st'>"all"</span>, n_class <span class='op'>=</span> <span class='fl'>0</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -229,11 +229,13 @@ distance measures, clustering methods and cluster indices can be found in
   http://www.jstatsoft.org/v61/i06/.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='no'>tp_data</span> <span class='kw'>=</span> <span class='fu'>chicken_generator</span>(<span class='fl'>1</span>)
-<span class='no'>tp_data_mapper</span> <span class='kw'>=</span> <span class='fu'>mapper.kmeans</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>tp_data</span>[,<span class='fl'>2</span>:<span class='fl'>4</span>],
-                               <span class='kw'>filter_values</span> <span class='kw'>=</span> <span class='no'>tp_data</span>$<span class='no'>Y</span>,
-                               <span class='kw'>num_intervals</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-                               <span class='kw'>percent_overlap</span> <span class='kw'>=</span> <span class='fl'>70</span>)</pre>
+    <pre class="examples"><span class='va'>tp_data</span> <span class='op'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>tp_data_mapper</span> <span class='op'>=</span> <span class='fu'>mapper.kmeans</span><span class='op'>(</span>dat <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>,
+                               filter_values <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>$</span><span class='va'>Y</span>,
+                               num_intervals <span class='op'>=</span> <span class='fl'>10</span>,
+                               percent_overlap <span class='op'>=</span> <span class='fl'>70</span><span class='op'>)</span>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -249,7 +251,7 @@ distance measures, clustering methods and cluster indices can be found in
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
