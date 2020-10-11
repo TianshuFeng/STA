@@ -91,8 +91,8 @@
 <a href="#introduction" class="anchor"></a>Introduction</h1></div>
 <p>This package aims to provide an easy and flexible framework, semi-supervised topological analysis (STA), to explore the visualization of data based on Mapper, a topological data analysis method, It provides users with extensive tools to customize the visualization, optimally select filter functions and evaluate the results from Mapper.</p>
 <p>To install the latest version of this R package directly from github:</p>
-<pre><code>install.packages("devtools")
-devtools::install_github("TianshuFeng/STA")</code></pre>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("devtools")
+devtools::install_github("TianshuFeng/STA")</a></code></pre>
 </div>
 <div id="resources" class="section level1">
 <h1 class="hasAnchor">
@@ -146,13 +146,13 @@ devtools::install_github("TianshuFeng/STA")</code></pre>
 </tr></tbody>
 </table>
 <p>Then, we apply the STA method to it:</p>
-<pre><code>library(STA)
+<pre><code><a href="https://tianshufeng.github.io/STA/">library(STA)
 simu_data &lt;- chicken_generator(seed = 1)
 simu_data_mapper &lt;- mapper.kmeans(dat = simu_data[,2:4],
                                filter_values = simu_data$Y,
                                num_intervals = 10,
                                percent_overlap = 70)
-simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)</code></pre>
+simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)</a></code></pre>
 <p>The screenshot of the generated networkis is shown below:</p>
 <table class="table">
 <thead><tr class="header">
@@ -212,7 +212,7 @@ simple_visNet(simu_data_mapper, filter = simu_data$Y, color_filter = TRUE)</code
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
