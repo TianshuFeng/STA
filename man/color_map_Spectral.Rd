@@ -8,6 +8,8 @@ color_map_Spectral(x, name = "Spectral")
 }
 \arguments{
 \item{x}{A numeric vector whose entries are between 0 and 1.}
+
+\item{name}{Name of the color palette. Default is Spectral.}
 }
 \value{
 A vector of hex codes.

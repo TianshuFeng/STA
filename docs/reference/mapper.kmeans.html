@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mapper function with multiple cluster methods — mapper.kmeans • STA</title>
+<title>Mapper function with multiple cluster methods (deprecated) — mapper.kmeans • STA</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Mapper function with multiple cluster methods — mapper.kmeans" />
+<meta property="og:title" content="Mapper function with multiple cluster methods (deprecated) — mapper.kmeans" />
 <meta property="og:description" content="This function is adopted from mapper function of TDAmapper with
 different clustering methods (mainly k-means)." />
 
@@ -124,8 +124,8 @@ different clustering methods (mainly k-means)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Mapper function with multiple cluster methods</h1>
-    <small class="dont-index">Source: <a href='https://github.com/TianshuFeng/STA/blob/master/R/mapper.kmeans.R'><code>R/mapper.kmeans.R</code></a></small>
+    <h1>Mapper function with multiple cluster methods (deprecated)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/TianshuFeng/STA/blob/master/R/mapper.R'><code>R/mapper.R</code></a></small>
     <div class="hidden name"><code>mapper.kmeans.Rd</code></div>
     </div>
 
@@ -134,9 +134,22 @@ different clustering methods (mainly k-means)." />
 different clustering methods (mainly k-means).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mapper.kmeans</span><span class='op'>(</span><span class='va'>dat</span>, <span class='va'>filter_values</span>, <span class='va'>num_intervals</span>, <span class='va'>percent_overlap</span>,
-  dist_method <span class='op'>=</span> <span class='st'>"euclidean"</span>, cluster_method <span class='op'>=</span> <span class='st'>"kmeans"</span>,
-  cluster_index <span class='op'>=</span> <span class='st'>"all"</span>, n_class <span class='op'>=</span> <span class='fl'>0</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mapper.kmeans</span><span class='op'>(</span>
+  <span class='va'>dat</span>,
+  <span class='va'>filter_values</span>,
+  <span class='va'>num_intervals</span>,
+  <span class='va'>percent_overlap</span>,
+  dist_method <span class='op'>=</span> <span class='st'>"euclidean"</span>,
+  cluster_method <span class='op'>=</span> <span class='st'>"kmeans"</span>,
+  NbClust_cluster_method <span class='op'>=</span> <span class='st'>"kmeans"</span>,
+  num_bins_when_clustering <span class='op'>=</span> <span class='fl'>10</span>,
+  cluster_index <span class='op'>=</span> <span class='st'>"all"</span>,
+  n_class <span class='op'>=</span> <span class='fl'>0</span>,
+  eps <span class='op'>=</span> <span class='fl'>0.5</span>,
+  minPts <span class='op'>=</span> <span class='fl'>2</span>,
+  permute_interval_level <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,14 +165,6 @@ predictive variables.</p></td>
 filter functions.</p></td>
     </tr>
     <tr>
-      <th>num_intervals</th>
-      <td><p>A length m vector of positive integers.</p></td>
-    </tr>
-    <tr>
-      <th>percent_overlap</th>
-      <td><p>A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.</p></td>
-    </tr>
-    <tr>
       <th>dist_method</th>
       <td><p>The distance measure to be used to compute the
 dissimilarity matrix. By default, distance="euclidean". It must be one of
@@ -169,10 +174,21 @@ This must be one of: "euclidean", "maximum", "manhattan", "canberra",
     </tr>
     <tr>
       <th>cluster_method</th>
-      <td><p>The cluster analysis method to be used. This should be
-one of: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty",
-"median", "centroid", "kmeans".Details can be found in
+      <td><p>Clustering method. This should be one of:
+"hierarchical", "kmeans", "dbscan", "hdbscan".</p></td>
+    </tr>
+    <tr>
+      <th>NbClust_cluster_method</th>
+      <td><p>The cluster analysis method to be used. This
+should be one of: "ward.D", "ward.D2", "single", "complete", "average",
+"mcquitty", "median", "centroid", "kmeans".Details can be found in
 <code><a href='https://rdrr.io/pkg/NbClust/man/NbClust.html'>NbClust</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>num_bins_when_clustering</th>
+      <td><p>For hierachical clustering. A positive
+integer that controls whether points in the same level set end up in the
+same cluster.</p></td>
     </tr>
     <tr>
       <th>cluster_index</th>
@@ -187,14 +203,30 @@ indices with Gap, Gamma, Gplus and Tau included). Details can be found in
     </tr>
     <tr>
       <th>n_class</th>
-      <td><p>number of clusters. By default, n_class=0. If n_class&gt;0, this
-function will instead call <code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code> and pass
-<code>n_class</code> to argument <code>centers</code> of <code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code>.</p></td>
+      <td><p>number of clusters for k means. By default, n_class=0. If
+n_class&gt;0, this function will instead call <code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code> and
+pass <code>n_class</code> to argument <code>centers</code> of
+<code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>eps</th>
+      <td><p>for DBSCAN, size of the epsilon neighborhood</p></td>
+    </tr>
+    <tr>
+      <th>minPts</th>
+      <td><p>for DBSCAN and HDBSCAN, number of minimum points in the eps
+region for core points. Default is 2 points</p></td>
+    </tr>
+    <tr>
+      <th>permute_interval_level</th>
+      <td><p>boolean. True if samples within each interval
+are to be permuted</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Further arguments for either <code><a href='https://rdrr.io/pkg/NbClust/man/NbClust.html'>NbClust</a></code> or
-<code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code>.</p></td>
+      <td><p>Further arguments for <code><a href='https://rdrr.io/pkg/NbClust/man/NbClust.html'>NbClust</a></code> or
+<code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code> or <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code> or
+<code><a href='https://rdrr.io/pkg/dbscan/man/dbscan.html'>dbscan</a></code> or <code><a href='https://rdrr.io/pkg/dbscan/man/hdbscan.html'>hdbscan</a></code></p></td>
     </tr>
     </table>
 

@@ -4,10 +4,18 @@
 \alias{network_visualization}
 \title{Generate graphs from results of Mapper}
 \usage{
-network_visualization(obj_mapper, groups_ind, dat = NULL, folder = "",
-  add_surv_analysis = FALSE, add_analysis_js = NULL,
-  palette = "Set1", legend_ncol = 2, color_code = NULL,
-  color_mix = FALSE)
+network_visualization(
+  obj_mapper,
+  groups_ind,
+  dat = NULL,
+  folder = "",
+  add_surv_analysis = FALSE,
+  add_analysis_js = NULL,
+  palette = "Set1",
+  legend_ncol = 2,
+  color_code = NULL,
+  color_mix = FALSE
+)
 }
 \arguments{
 \item{obj_mapper}{An object of class \code{TDAmapper}.}
@@ -63,7 +71,7 @@ connected nodes.
 \examples{
 tp_data = chicken_generator(1)
 ff = filter_coordinate(tp_data[,-1], 2)
-tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+tp_data_mapper = mapper.sta(dat = tp_data[,2:4],
                                filter_values = ff,
                                num_intervals = 10,
                                percent_overlap = 70)

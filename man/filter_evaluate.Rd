@@ -4,8 +4,14 @@
 \alias{filter_evaluate}
 \title{Evaluate filter functions}
 \usage{
-filter_evaluate(..., dat, group_ind, num_intervals, percent_overlap,
-  arg_mapper = list())
+filter_evaluate(
+  ...,
+  dat,
+  group_ind,
+  num_intervals,
+  percent_overlap,
+  arg_mapper = list()
+)
 }
 \arguments{
 \item{...}{Filter objects. The classes of the objects should be \code{filter}
@@ -17,12 +23,8 @@ predictive variables.}
 
 \item{group_ind}{A vector of group names each of the samples belongs to.}
 
-\item{num_intervals}{A length m vector of positive integers.}
-
-\item{percent_overlap}{A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.}
-
 \item{arg_mapper}{A list for additional arguments for
-\code{\link{mapper.kmeans}}.}
+\code{\link{mapper.sta}}.}
 }
 \value{
 A data.frame of Shannon indices and spread measures under given

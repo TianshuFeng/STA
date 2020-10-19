@@ -4,7 +4,7 @@
 \alias{print.filter}
 \title{Print filter function name}
 \usage{
-\method{print}{filter}(x)
+\method{print}{filter}(x, ...)
 }
 \arguments{
 \item{x}{a filter object}

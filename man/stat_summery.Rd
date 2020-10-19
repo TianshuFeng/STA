@@ -4,8 +4,15 @@
 \alias{stat_summery}
 \title{Create statistics summary of nodes}
 \usage{
-stat_summery(obj_mapper, groups_ind, dat = NULL, folder = "",
-  add_surv_analysis = FALSE, add_analysis_js = NULL, color_code)
+stat_summery(
+  obj_mapper,
+  groups_ind,
+  dat = NULL,
+  folder = "",
+  add_surv_analysis = FALSE,
+  add_analysis_js = NULL,
+  color_code
+)
 }
 \arguments{
 \item{obj_mapper}{An object of class \code{TDAmapper}.}

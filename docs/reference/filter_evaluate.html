@@ -134,8 +134,14 @@ vectors." />
 vectors.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_evaluate</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>dat</span>, <span class='va'>group_ind</span>, <span class='va'>num_intervals</span>, <span class='va'>percent_overlap</span>,
-  arg_mapper <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>filter_evaluate</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  <span class='va'>dat</span>,
+  <span class='va'>group_ind</span>,
+  <span class='va'>num_intervals</span>,
+  <span class='va'>percent_overlap</span>,
+  arg_mapper <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,17 +162,9 @@ predictive variables.</p></td>
       <td><p>A vector of group names each of the samples belongs to.</p></td>
     </tr>
     <tr>
-      <th>num_intervals</th>
-      <td><p>A length m vector of positive integers.</p></td>
-    </tr>
-    <tr>
-      <th>percent_overlap</th>
-      <td><p>A length m vector of numbers between 0 and 100 specifying how much adjacent intervals should overlap.</p></td>
-    </tr>
-    <tr>
       <th>arg_mapper</th>
       <td><p>A list for additional arguments for
-<code><a href='mapper.kmeans.html'>mapper.kmeans</a></code>.</p></td>
+<code><a href='mapper.sta.html'>mapper.sta</a></code>.</p></td>
     </tr>
     </table>
 

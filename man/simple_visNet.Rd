@@ -4,10 +4,20 @@
 \alias{simple_visNet}
 \title{Simple graphs generation}
 \usage{
-simple_visNet(obj_mapper, filter = NULL, folder = getwd(),
-  color_fun = color_map_Spectral, network_name = "network.html",
-  color_filter = TRUE, groups_ind = NULL, color_code = NULL,
-  color_mix = FALSE, save_network = TRUE)
+simple_visNet(
+  obj_mapper,
+  filter = NULL,
+  folder = getwd(),
+  color_fun = color_map_Spectral,
+  network_name = "network.html",
+  color_filter = TRUE,
+  groups_ind = NULL,
+  color_code = NULL,
+  color_mix = FALSE,
+  save_network = TRUE,
+  png_output = FALSE,
+  layout_igraph = layout_with_fr
+)
 }
 \arguments{
 \item{obj_mapper}{An object of class \code{TDAmapper}.}
@@ -68,7 +78,7 @@ function with necessary arguments.
 }
 \examples{
 tp_data = chicken_generator(1)
-tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+tp_data_mapper = mapper.sta(dat = tp_data[,2:4],
                                filter_values = tp_data$Y,
                                num_intervals = 10,
                                percent_overlap = 70)

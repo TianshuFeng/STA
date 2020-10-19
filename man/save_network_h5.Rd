@@ -14,6 +14,9 @@ save_network_h5(obj_mapper, dataset = NULL, file = "network.h5")
 \item{file}{The filename (character) of the file in which the dataset will be
 located.}
 }
+\value{
+
+}
 \description{
 Save results into a h5 file
 }

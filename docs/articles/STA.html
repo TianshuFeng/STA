@@ -112,7 +112,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tianshufeng.github.io/STA/">STA</a></span><span class="op">)</span>
 <span class="va">simu_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">simu_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">simu_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">simu_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.sta.html">mapper.sta</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">simu_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">simu_data</span><span class="op">$</span><span class="va">Y</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -149,7 +149,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">ff</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_coordinate.html">filter_coordinate</a></span><span class="op">(</span><span class="va">tp_data</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.sta.html">mapper.sta</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">ff</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -230,7 +230,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">tp_dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">tp_data</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="va">ff</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_eccen.html">filter_eccen</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="va">tp_dist</span>, p <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.sta.html">mapper.sta</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">ff</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -241,7 +241,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">tp_dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">tp_data</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="va">ff</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_ref.html">filter_ref</a></span><span class="op">(</span>dist<span class="op">=</span><span class="va">tp_dist</span>, groups_ind<span class="op">=</span><span class="va">tp_data</span><span class="op">$</span><span class="va">Group</span>, ref <span class="op">=</span> <span class="st">"Shank"</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.sta.html">mapper.sta</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">ff</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -272,7 +272,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <p>We demonstrate the calculation of Shannon index with the chicken foot example.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.sta.html">mapper.sta</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                 filter_values <span class="op">=</span> <span class="va">tp_data</span><span class="op">$</span><span class="va">Y</span>,
                                 num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                 percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -287,7 +287,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <p>We demonstrate the calculation of the spread measure with the chicken foot example.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span><span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.sta.html">mapper.sta</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">tp_data</span><span class="op">$</span><span class="va">Y</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>

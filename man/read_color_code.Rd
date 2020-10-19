@@ -57,7 +57,7 @@ Hex color codes.
 \examples{
 test1 <- data.frame(c('a','b','c'), c("#f97f6c", "#6dcff6", "#fdbc4b"))
 tf <- tempfile()
-write.table(test1, tf, row.names = FALSE, col.names = FALSE, sep = "\\t")
+write.table(test1, tf, row.names = FALSE, col.names = FALSE, sep = "\t")
 
 check_color_code(read_color_code(tf))
 unlink(tf)

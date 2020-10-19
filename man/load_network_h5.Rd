@@ -10,6 +10,9 @@ load_network_h5(file = "network.h5")
 \item{file}{The filename (character) of the file in which the dataset will be
 located.}
 }
+\value{
+
+}
 \description{
 Load a h5 file from save_network_h5.
 }

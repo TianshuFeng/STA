@@ -134,10 +134,20 @@ tooltips." />
 tooltips.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>simple_visNet</span><span class='op'>(</span><span class='va'>obj_mapper</span>, filter <span class='op'>=</span> <span class='cn'>NULL</span>, folder <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>,
-  color_fun <span class='op'>=</span> <span class='va'>color_map_Spectral</span>, network_name <span class='op'>=</span> <span class='st'>"network.html"</span>,
-  color_filter <span class='op'>=</span> <span class='cn'>TRUE</span>, groups_ind <span class='op'>=</span> <span class='cn'>NULL</span>, color_code <span class='op'>=</span> <span class='cn'>NULL</span>,
-  color_mix <span class='op'>=</span> <span class='cn'>FALSE</span>, save_network <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>simple_visNet</span><span class='op'>(</span>
+  <span class='va'>obj_mapper</span>,
+  filter <span class='op'>=</span> <span class='cn'>NULL</span>,
+  folder <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>,
+  color_fun <span class='op'>=</span> <span class='va'>color_map_Spectral</span>,
+  network_name <span class='op'>=</span> <span class='st'>"network.html"</span>,
+  color_filter <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  groups_ind <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color_code <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color_mix <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  save_network <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  png_output <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  layout_igraph <span class='op'>=</span> <span class='va'>layout_with_fr</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -217,7 +227,7 @@ function with necessary arguments.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='va'>tp_data</span> <span class='op'>=</span> <span class='fu'><a href='chicken_generator.html'>chicken_generator</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>tp_data_mapper</span> <span class='op'>=</span> <span class='fu'><a href='mapper.kmeans.html'>mapper.kmeans</a></span><span class='op'>(</span>dat <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>,
+<span class='va'>tp_data_mapper</span> <span class='op'>=</span> <span class='fu'><a href='mapper.sta.html'>mapper.sta</a></span><span class='op'>(</span>dat <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>,
                                filter_values <span class='op'>=</span> <span class='va'>tp_data</span><span class='op'>$</span><span class='va'>Y</span>,
                                num_intervals <span class='op'>=</span> <span class='fl'>10</span>,
                                percent_overlap <span class='op'>=</span> <span class='fl'>70</span><span class='op'>)</span>

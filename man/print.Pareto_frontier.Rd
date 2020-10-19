@@ -4,7 +4,7 @@
 \alias{print.Pareto_frontier}
 \title{Print Pareto frontier}
 \usage{
-\method{print}{Pareto_frontier}(res)
+\method{print}{Pareto_frontier}(res, ...)
 }
 \arguments{
 \item{res}{The Pareto_frontier object}

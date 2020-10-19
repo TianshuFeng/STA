@@ -40,7 +40,7 @@
 <li>
   <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
-
+     
   </a>
 </li>
 <li>
@@ -52,7 +52,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
-
+     
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -66,7 +66,7 @@
 <li>
   <a href="https://github.com/TianshuFeng/STA/">
     <span class="fab fa fab fa-github fa-lg"></span>
-
+     
   </a>
 </li>
       </ul>
@@ -77,23 +77,23 @@
 </div>
 <!--/.navbar -->
 
-
+      
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Shiny app instruction</h1>
                         <h4 class="author">Tianshu Feng</h4>
-
+            
             <h4 class="date">4/20/2020</h4>
-
+      
       <small class="dont-index">Source: <a href="https://github.com/TianshuFeng/STA/blob/master/vignettes/Shiny_app_instruction.Rmd"><code>vignettes/Shiny_app_instruction.Rmd</code></a></small>
       <div class="hidden name"><code>Shiny_app_instruction.Rmd</code></div>
 
     </div>
 
-
-
+    
+    
 <p>This page introduces the <strong><a href="http://tsfeng.shinyapps.io/STA-app">Shiny app</a></strong> designed to interactively analysis results from the <code>mapper.sta</code> function of package STA.</p>
 <div id="section-interface" class="section level2">
 <h2 class="hasAnchor">
@@ -101,7 +101,7 @@
 <p>This app includes a sidebar for input/output and settings, and a main panel for result display. An overview of the user interface of the shiny app is shown below:</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/main_screen.png" alt="Interface"></th>
+<th align="center"><img src="vignettes/figures/main_screen.png" alt="Interface"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>User interface of the shiny app.</em></td>
@@ -117,7 +117,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tianshufeng.github.io/STA/">STA</a></span><span class="op">)</span>
 
 <span class="va">simu_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">simu_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">simu_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">simu_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.sta.html">mapper.sta</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">simu_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">simu_data</span><span class="op">$</span><span class="va">Y</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -128,7 +128,7 @@
 <p>After loading the .h5 file, the app will automatically generate the network based on the <code>obj_mapper</code> object saved in the .h5 file.</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/open_h5.png" alt="Input"></th>
+<th align="center"><img src="vignettes/figures/open_h5.png" alt="Input"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>.h5 file input.</em></td>
@@ -146,7 +146,7 @@
 <p>If we select a categorical variable under the “Categorical” tab, the Shiny app will color the nodes based on the majority of categories within each node. For example, if we choose ‘Group’ in the above example, the network will look like:</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/categorical_color.png" alt="cate_color"></th>
+<th align="center"><img src="vignettes/figures/categorical_color.png" alt="cate_color"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>Categorical data analysis.</em></td>
@@ -155,7 +155,7 @@
 <p>Alternatively, we can mix the colors of samples within each node by selecting the “color mixer” option. It will lead to:</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/color_mixer.png" alt="color_mixer"></th>
+<th align="center"><img src="vignettes/figures/color_mixer.png" alt="color_mixer"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>Color mixer.</em></td>
@@ -164,7 +164,7 @@
 <p>Clicking on the nodes in the shiny app will lead to a node summary shown below the network. Currently, for categorical variables, the summary of a node includes a frequency table and a pie chart based on the categories of the samples within the node. For example,</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/Node_summary.png" alt="node_sum"></th>
+<th align="center"><img src="vignettes/figures/Node_summary.png" alt="node_sum"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>Node summary for categorical variables.</em></td>
@@ -177,7 +177,7 @@
 <p>Similarly, we can select a continuous variable under the “Continuous” tab, and the Shiny app will color the nodes based on the average values of samples w.r.t. the varible. For example, if we choose ‘Y’-axis in the above example, the app will look like:</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/continuous_color.png" alt="conti_color"></th>
+<th align="center"><img src="vignettes/figures/continuous_color.png" alt="conti_color"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>Continuous data analysis.</em></td>
@@ -187,7 +187,7 @@
 <p>For example,</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/node_summary_continuous.png" alt="node_sum_conti"></th>
+<th align="center"><img src="vignettes/figures/node_summary_continuous.png" alt="node_sum_conti"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>Node summary for continuous variables. </em></td>
@@ -200,7 +200,7 @@
 <p>Checking the “Node comparison” will enable the app to compare consecutively selected nodes. For example:</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/node_comparison.png" alt="node_compare"></th>
+<th align="center"><img src="vignettes/figures/node_comparison.png" alt="node_compare"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>Node comparison. </em></td>
@@ -215,7 +215,7 @@
 <p>Two options are provided to customize the network visualization.</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="figures/settings.png" alt="node_custom"></th>
+<th align="center"><img src="vignettes/figures/settings.png" alt="node_custom"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>Network customization. </em></td>
@@ -246,7 +246,7 @@
       </footer>
 </div>
 
-
+  
 
 
   </body>
