@@ -51,7 +51,7 @@ Then, we apply the STA method to it:
 ```
 library(STA)
 simu_data <- chicken_generator(seed = 1)
-simu_data_mapper <- mapper.kmeans(dat = simu_data[,2:4],
+simu_data_mapper <- mapper.sta(dat = simu_data[,2:4],
                                filter_values = simu_data$Y,
                                num_intervals = 10,
                                percent_overlap = 70)

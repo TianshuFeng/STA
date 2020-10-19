@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' tp_data <- chicken_generator(1)
-#' tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
+#' tp_data_mapper <- mapper.sta(dat = tp_data[,2:4],
 #'                                filter_values = tp_data$Y,
 #'                                num_intervals = 10,
 #'                                percent_overlap = 70)
@@ -70,7 +70,7 @@ print.shannon_index <- function(x, ...) {
 #'
 #' @examples
 #' tp_data <- chicken_generator(1)
-#' tp_data_mapper <- mapper.kmeans(dat = tp_data[,2:4],
+#' tp_data_mapper <- mapper.sta(dat = tp_data[,2:4],
 #'                                filter_values = tp_data$Y,
 #'                                num_intervals = 10,
 #'                                percent_overlap = 70)
@@ -226,9 +226,9 @@ print.Pareto_frontier <- function(res,...) {
 #' @param ... Filter objects. The classes of the objects should be \code{filter}
 #'   and include an attribute \code{filter} which is the name of the
 #'   corresponding filter function.
-#' @inheritParams mapper.kmeans
+#' @inheritParams mapper.sta
 #' @param arg_mapper A list for additional arguments for
-#'   \code{\link{mapper.kmeans}}.
+#'   \code{\link{mapper.sta}}.
 #' @param group_ind A vector of group names each of the samples belongs to.
 #'
 #' @return A data.frame of Shannon indices and spread measures under given
@@ -275,7 +275,7 @@ filter_evaluate <- function(..., dat, group_ind, num_intervals, percent_overlap,
     class(ff) <- "numeric"
 
     arg_mapper$filter_values <- ff
-    tp_mapper <- do.call(mapper.kmeans, arg_mapper)
+    tp_mapper <- do.call(mapper.sta, arg_mapper)
 
     tp_shannon <- mapper_shannon_index(obj_mapper = tp_mapper, group_ind = group_ind)
     tp_spread <- spread_measure(obj_mapper = tp_mapper, group_ind = group_ind)

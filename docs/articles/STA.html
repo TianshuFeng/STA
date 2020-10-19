@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.30</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Semi-supervised topological analysis</h1>
             
-            <h4 class="date">2020-10-11</h4>
+            <h4 class="date">2020-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/TianshuFeng/STA/blob/master/vignettes/STA.Rmd"><code>vignettes/STA.Rmd</code></a></small>
       <div class="hidden name"><code>STA.Rmd</code></div>
@@ -108,18 +108,18 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <h2 class="hasAnchor">
 <a href="#start-with-the-simulation-data" class="anchor"></a>Start with the simulation data</h2>
 <p>This package provides a function <code>chicken_generator</code> to generate simulation data which is similar to a chicken foot. We will use it to demonstrate the tools of this package.</p>
-<p>We start by applying Mapper directly to the simulated data with function <code>mapper.kmeans</code> and generate a graph with the basic visualization function <code>simple_visNet</code>.</p>
+<p>We start by applying Mapper directly to the simulated data with function <code>mapper.sta</code> and generate a graph with the basic visualization function <code>simple_visNet</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tianshufeng.github.io/STA/">STA</a></span><span class="op">)</span>
 <span class="va">simu_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">simu_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">simu_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">simu_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">simu_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">simu_data</span><span class="op">$</span><span class="va">Y</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
 <span class="fu"><a href="../reference/simple_visNet.html">simple_visNet</a></span><span class="op">(</span><span class="va">simu_data_mapper</span>, filter <span class="op">=</span> <span class="va">simu_data</span><span class="op">$</span><span class="va">Y</span>, color_filter <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
 <p>In <code>chicken_generator</code>, the argument <code>seed</code> determines the seed to be used in data generation. The first column represent the groups of samples, and the last three columns are the coordinates of samples.</p>
-<p>We apply Mapper to the simulated data with function <code>mapper.kmeans</code> modified from function <code>mapper</code> in package <code>TDAmapper</code>. In <code>mapper.kmeans</code>, <code>dat</code> accepts the input data, and <code>filter_values</code> accepts the filter vector. Here we use the Y-axis as the filter. <code>num_intervals</code> and <code>percent_overlap</code> are the number of intervals and the percentage of intervals overlapped, respectively, which decides how <code>simu_data$Y</code> is converted to the set of overlapping intervals.</p>
-<p><code>simple_visNet</code> function visualize the graph from <code>mapper.kmeans</code>. It is capable of flexibly assigning colors to nodes in the graph. In this example, we set <code>color_filter = TRUE</code> and <code>filter = simu_data$Y</code>, and the colors of nodes are determined by the average values of the filters of samples in the nodes.</p>
+<p>We apply Mapper to the simulated data with function <code>mapper.sta</code> modified from function <code>mapper</code> in package <code>TDAmapper</code>. In <code>mapper.sta</code>, <code>dat</code> accepts the input data, and <code>filter_values</code> accepts the filter vector. Here we use the Y-axis as the filter. <code>num_intervals</code> and <code>percent_overlap</code> are the number of intervals and the percentage of intervals overlapped, respectively, which decides how <code>simu_data$Y</code> is converted to the set of overlapping intervals.</p>
+<p><code>simple_visNet</code> function visualize the graph from <code>mapper.sta</code>. It is capable of flexibly assigning colors to nodes in the graph. In this example, we set <code>color_filter = TRUE</code> and <code>filter = simu_data$Y</code>, and the colors of nodes are determined by the average values of the filters of samples in the nodes.</p>
 </div>
 <div id="play-with-colors" class="section level2">
 <h2 class="hasAnchor">
@@ -149,7 +149,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">ff</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_coordinate.html">filter_coordinate</a></span><span class="op">(</span><span class="va">tp_data</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">ff</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -225,12 +225,12 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>Here we provide an example to show how to call a built-in filter function <code>filter_eccen</code> and pass the obtained filter vector to the <code>mapper.kmeans</code>. <code>filter_eccen</code> has two arguments, <code>dist</code> and <code>p</code>. <code>dist</code> accepts arbitrary distance matrix calculated based on the dataset. Many R functions and packages provide tools to calculate the distance matrix, such as the package <code>philentropy</code>. <code>p</code> is the exponent of the eccentricity filter function.</p>
+<p>Here we provide an example to show how to call a built-in filter function <code>filter_eccen</code> and pass the obtained filter vector to the <code>mapper.sta</code>. <code>filter_eccen</code> has two arguments, <code>dist</code> and <code>p</code>. <code>dist</code> accepts arbitrary distance matrix calculated based on the dataset. Many R functions and packages provide tools to calculate the distance matrix, such as the package <code>philentropy</code>. <code>p</code> is the exponent of the eccentricity filter function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">tp_dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">tp_data</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="va">ff</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_eccen.html">filter_eccen</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="va">tp_dist</span>, p <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">ff</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -241,13 +241,13 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">tp_dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">tp_data</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="va">ff</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_ref.html">filter_ref</a></span><span class="op">(</span>dist<span class="op">=</span><span class="va">tp_dist</span>, groups_ind<span class="op">=</span><span class="va">tp_data</span><span class="op">$</span><span class="va">Group</span>, ref <span class="op">=</span> <span class="st">"Shank"</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">ff</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
 <span class="fu"><a href="../reference/network_visualization.html">network_visualization</a></span><span class="op">(</span><span class="va">tp_data_mapper</span>, groups_ind <span class="op">=</span> <span class="va">tp_data</span><span class="op">$</span><span class="va">Group</span>, dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                       folder <span class="op">=</span> <span class="st">"Exp_network"</span><span class="op">)</span></pre></div>
-<p>Besides the built-in filter functions, users can also define their standard filter functions. While <code>mapper.kmeans</code> can accept any numeric vector as a filter, the optimization function <code>filter_evaluate</code> can only accept <code>filter</code> object from standard filter functions. The return value from a standard filter function should have two attributes: <code>class</code> and <code>filter</code>. <code>class</code> should always be “filter”, and <code>filter</code> contains the name of the corresponding filter function. An example of a standard filter function is:</p>
+<p>Besides the built-in filter functions, users can also define their standard filter functions. While <code>mapper.sta</code> can accept any numeric vector as a filter, the optimization function <code>filter_evaluate</code> can only accept <code>filter</code> object from standard filter functions. The return value from a standard filter function should have two attributes: <code>class</code> and <code>filter</code>. <code>class</code> should always be “filter”, and <code>filter</code> contains the name of the corresponding filter function. An example of a standard filter function is:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="va">filter_eccen</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">dist</span>, <span class="va">p</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
 
@@ -272,7 +272,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <p>We demonstrate the calculation of Shannon index with the chicken foot example.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                 filter_values <span class="op">=</span> <span class="va">tp_data</span><span class="op">$</span><span class="va">Y</span>,
                                 num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                 percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -287,7 +287,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <p>We demonstrate the calculation of the spread measure with the chicken foot example.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="va">tp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">tp_data_mapper</span><span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">tp_data_mapper</span><span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">tp_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">tp_data</span><span class="op">$</span><span class="va">Y</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>

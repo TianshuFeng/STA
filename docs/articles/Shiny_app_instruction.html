@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.30</span>
       </span>
     </div>
 
@@ -87,14 +87,14 @@
 
             <h4 class="date">4/20/2020</h4>
 
-      <small class="dont-index">Source: <a href="https://github.com/TianshuFeng/STA/blob/master/Shiny_app_instruction.Rmd"><code>Shiny_app_instruction.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/TianshuFeng/STA/blob/master/vignettes/Shiny_app_instruction.Rmd"><code>vignettes/Shiny_app_instruction.Rmd</code></a></small>
       <div class="hidden name"><code>Shiny_app_instruction.Rmd</code></div>
 
     </div>
 
 
 
-<p>This page introduces the <strong><a href="http://tsfeng.shinyapps.io/STA-app">Shiny app</a></strong> designed to interactively analysis results from the <code>mapper.kmeans</code> function of package STA.</p>
+<p>This page introduces the <strong><a href="http://tsfeng.shinyapps.io/STA-app">Shiny app</a></strong> designed to interactively analysis results from the <code>mapper.sta</code> function of package STA.</p>
 <div id="section-interface" class="section level2">
 <h2 class="hasAnchor">
 <a href="#section-interface" class="anchor"></a>Interface</h2>
@@ -111,13 +111,13 @@
 <div id="section-input" class="section level2">
 <h2 class="hasAnchor">
 <a href="#section-input" class="anchor"></a>Input</h2>
-<p>The app accept .h5 file from function <code>save_network_h5</code>. The first argument of the function is for the object <code>TDAMapper</code> from <code>mapper.kmeans</code>; and the second, optional argument allows users to save the dataset used in the analysis. Note that the order of samples in the dataset should be the same as that used in <code>mapper.kmeans</code>, and rows represent the samples. The third argument decides the name and path of the .h5 file and should end with ‘.h5’.</p>
+<p>The app accept .h5 file from function <code>save_network_h5</code>. The first argument of the function is for the object <code>TDAMapper</code> from <code>mapper.sta</code>; and the second, optional argument allows users to save the dataset used in the analysis. Note that the order of samples in the dataset should be the same as that used in <code>mapper.sta</code>, and rows represent the samples. The third argument decides the name and path of the .h5 file and should end with ‘.h5’.</p>
 <p>The following example code applies the STA method to the chicken foot data and generate a .h5 file based on the result.</p>
 <div class="sourceCode" id="section-cb1"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tianshufeng.github.io/STA/">STA</a></span><span class="op">)</span>
 
 <span class="va">simu_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chicken_generator.html">chicken_generator</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">simu_data_mapper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mapper.kmeans.html">mapper.kmeans</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">simu_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
+<span class="va">simu_data_mapper</span> <span class="op">&lt;-</span> <span class="fu">mapper.sta</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">simu_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
                                filter_values <span class="op">=</span> <span class="va">simu_data</span><span class="op">$</span><span class="va">Y</span>,
                                num_intervals <span class="op">=</span> <span class="fl">10</span>,
                                percent_overlap <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
@@ -146,7 +146,7 @@
 <p>If we select a categorical variable under the “Categorical” tab, the Shiny app will color the nodes based on the majority of categories within each node. For example, if we choose ‘Group’ in the above example, the network will look like:</p>
 <table class="table">
 <thead><tr class="header">
-<th align="center"><img src="vignetes/figures/categorical_color.png" alt="cate_color"></th>
+<th align="center"><img src="figures/categorical_color.png" alt="cate_color"></th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><em>Categorical data analysis.</em></td>

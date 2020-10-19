@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This page introduces the __[Shiny app](http://tsfeng.shinyapps.io/STA-app)__ designed to interactively analysis results from the `mapper.kmeans` function of package STA.
+This page introduces the __[Shiny app](http://tsfeng.shinyapps.io/STA-app)__ designed to interactively analysis results from the `mapper.sta` function of package STA.
 
 ## Interface
 
@@ -35,14 +35,14 @@ This app includes a sidebar for input/output and settings, and a main panel for 
 
 ## Input
 
-The app accept .h5 file from function `save_network_h5`. The first argument of the function is for the object `TDAMapper` from `mapper.kmeans`; and the second, optional argument allows users to save the dataset used in the analysis. Note that the order of samples in the dataset should be the same as that used in `mapper.kmeans`, and rows represent the samples. The third argument decides the name and path of the .h5 file and should end with '.h5'.
+The app accept .h5 file from function `save_network_h5`. The first argument of the function is for the object `TDAMapper` from `mapper.sta`; and the second, optional argument allows users to save the dataset used in the analysis. Note that the order of samples in the dataset should be the same as that used in `mapper.sta`, and rows represent the samples. The third argument decides the name and path of the .h5 file and should end with '.h5'.
 
 The following example code applies the STA method to the chicken foot data and generate a .h5 file based on the result.
 ```{r eval = FALSE}
 library(STA)
 
 simu_data <- chicken_generator(seed = 1)
-simu_data_mapper <- mapper.kmeans(dat = simu_data[,2:4],
+simu_data_mapper <- mapper.sta(dat = simu_data[,2:4],
                                filter_values = simu_data$Y,
                                num_intervals = 10,
                                percent_overlap = 70)

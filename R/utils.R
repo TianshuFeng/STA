@@ -201,7 +201,7 @@ save_network_h5 <- function(obj_mapper, dataset = NULL, file = "network.h5") {
 
   if(class(obj_mapper) != "TDAmapper") {
     stop("The obj_mapper must be the result from mapper or
-         mapper.kmeans of STA package.")
+         mapper.sta of STA package.")
   } else {
     h5createFile(file)
 

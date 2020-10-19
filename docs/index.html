@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">STA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.30</span>
       </span>
     </div>
 
@@ -148,7 +148,7 @@ devtools::install_github("TianshuFeng/STA")</a></code></pre>
 <p>Then, we apply the STA method to it:</p>
 <pre><code><a href="https://tianshufeng.github.io/STA/">library(STA)
 simu_data &lt;- chicken_generator(seed = 1)
-simu_data_mapper &lt;- mapper.kmeans(dat = simu_data[,2:4],
+simu_data_mapper &lt;- mapper.sta(dat = simu_data[,2:4],
                                filter_values = simu_data$Y,
                                num_intervals = 10,
                                percent_overlap = 70)

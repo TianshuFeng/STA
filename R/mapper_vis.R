@@ -454,7 +454,7 @@ legend_node = function(stats_sum = NULL, color_code) {
 #' @examples
 #' tp_data = chicken_generator(1)
 #' ff = filter_coordinate(tp_data[,-1], 2)
-#' tp_data_mapper = mapper.kmeans(dat = tp_data[,2:4],
+#' tp_data_mapper = mapper.sta(dat = tp_data[,2:4],
 #'                                filter_values = ff,
 #'                                num_intervals = 10,
 #'                                percent_overlap = 70)
