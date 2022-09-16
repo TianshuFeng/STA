@@ -1,0 +1,13 @@
+name: STA-app
+title: STA-app
+username:
+account: tsfeng
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2190364
+bundleId: 3087036
+url: https://tsfeng.shinyapps.io/STA-app/
+when: 1588271410.44391
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: chick_foot.csv|chick_foot.rds|example_descript.csv|example_descript.xlsx|network.html|test_h5.R|test.h5

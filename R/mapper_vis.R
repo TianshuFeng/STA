@@ -20,7 +20,6 @@ auto_set_colorcode = function(groups, palette = "Set1") {
   #'
   #' @export
 
-
   require(RColorBrewer)
 
   num_groups = length(unique(groups))
@@ -168,7 +167,8 @@ color_map = function(samples_group, color_code) {
 }
 
 
-most_freq = function(vec) {
+most_freq <- function(vec) {
+
   return(names(table(vec))[as.vector(table(vec)) == max(table(vec))][1])
 }
 
@@ -205,6 +205,9 @@ most_freq = function(vec) {
 #'   and median time to death should be included.
 #' @param add_analysis_js A vector of Javascript codes summerizing customized
 #'   statistics.
+#' @param prop_dom Boolean. If True, using the group whose proportion increases
+#'   the most as the dominant group. If False, using the group with the most samples
+#'   as the dominant group.
 #' @param color_code A color code dataframe.
 #'
 #' @return A list includes the statistics and pie plots in folder
@@ -215,13 +218,15 @@ most_freq = function(vec) {
 #' @examples
 #' # See ?network_visualization
 #'
-stat_summery = function(obj_mapper,
+stat_summery <- function(obj_mapper,
                         groups_ind,
+                        color_code,
                         dat = NULL,
                         folder = "",
                         add_surv_analysis = FALSE,
                         add_analysis_js = NULL,
-                        color_code) {
+                        prop_dom = FALSE
+                        ) {
   # First get a dataframe where each column is a statistic. Then Turn them into
   # html.
   # Return: list of HTMLs
@@ -236,7 +241,7 @@ stat_summery = function(obj_mapper,
   dominant_group = c()
   stats_sum = c()
   percent = c()
-  k = 0
+
 
 
   if (add_surv_analysis) {
@@ -250,11 +255,17 @@ stat_summery = function(obj_mapper,
 
     median_diagnosis = NULL
     HR = NULL
+
     median_death = NULL
   }
 
+  if (prop_dom) {
+    dominant_group <- prop_dom_grp(obj_mapper, groups_ind)
+  }
+
+  k <- 0
   for (vtx in obj_mapper$points_in_vertex) {
-    k = k + 1
+    k <- k + 1
     temp_tb = sort(table(group_by_indi[vtx]), decreasing = T)
     temp_per = round(temp_tb / sum(temp_tb), 4) * 100
     temp_gp = names(temp_tb)
@@ -272,16 +283,22 @@ stat_summery = function(obj_mapper,
       )
     ) # Maybe display the first few
 
-    percent = c(percent, temp_per[1])
+    
 
-    savepdf(paste0("pie_", k), folder)
+    STA:::savepdf(paste0("pie_", k), folder)
     pie(temp_tb,
         labels = NA,
         col = color_map(temp_gp,
                         color_code = color_code))
     dev.off()
 
-    dominant_group = c(dominant_group, temp_gp[1])
+    if (!prop_dom) {
+      dominant_group = c(dominant_group, temp_gp[1])
+      percent <- c(percent, temp_per[1])
+    } else {
+      percent <- c(percent,
+        round(temp_tb[dominant_group[k]] / sum(temp_tb), 4) * 100)
+    }
 
     N = c(N, paste0(
       "N : <b>",
@@ -378,7 +395,7 @@ stat_summery = function(obj_mapper,
 
   stats_sum$java_desp = java_description
   return(stats_sum)
-    }
+}
 
 
 #' Add legends to the generated graph
@@ -390,7 +407,7 @@ stat_summery = function(obj_mapper,
 #'
 legend_node = function(stats_sum = NULL, color_code) {
   #  stats_sum: results from stat_summery
-  #group_list = unique(stats_sum$dominant_group)
+  # group_list = unique(stats_sum$dominant_group)
 
   legend_res = data.frame(
     label = color_code$Abbrev,
@@ -436,6 +453,9 @@ legend_node = function(stats_sum = NULL, color_code) {
 #'   \code{\link[RColorBrewer:brewer.pal]{RColorBrewer}} to automatically assign
 #'   colors to nodes.
 #' @param legend_ncol Number of columns of legends.
+#' @param prop_dom Boolean. If True, using the group whose proportion increases
+#'   the most as the dominant group. If False, using the group with the most samples
+#'   as the dominant group.
 #' @param color_code The dataframe of color codes for groups of samples. If not
 #'   provided, the function will automatically assign colors to different
 #'   groups.
@@ -482,6 +502,7 @@ network_visualization = function(obj_mapper,
                                  add_analysis_js = NULL,
                                  palette = "Set1",
                                  legend_ncol = 2,
+                                 prop_dom = FALSE,
                                  color_code = NULL,
                                  color_mix = FALSE) {
   #  obj_mapper: the mapper object from TDAMapper
@@ -504,10 +525,11 @@ network_visualization = function(obj_mapper,
 
   dir.create(file.path(folder), showWarnings = FALSE)
 
-  obj_mapper = null_remover(obj_mapper)
+  # Remove nodes without samples
+  obj_mapper = STA:::null_remover(obj_mapper)
 
-  MapperNodes <- mapperVertices(obj_mapper, 1)
-  MapperLinks <- mapperEdges(obj_mapper)
+  MapperNodes <- STA:::mapperVertices(obj_mapper, 1)
+  MapperLinks <- STA:::mapperEdges(obj_mapper)
 
   members = c()
   for (i in obj_mapper$points_in_vertex) {
@@ -521,6 +543,7 @@ network_visualization = function(obj_mapper,
     folder = folder,
     add_surv_analysis = add_surv_analysis,
     add_analysis_js = add_analysis_js,
+    prop_dom = prop_dom,
     color_code = color_code
   )
 
@@ -600,4 +623,307 @@ network_visualization = function(obj_mapper,
     warning("Cannot save file in the target folder,
             please check the working directory.")
   }
+}
+
+
+simple_dom_grp <- function(obj_mapper, groups_ind) {
+  dom_grp <- c()
+    for (i in obj_mapper$points_in_vertex) {
+      dom_grp <-
+        c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
+    }
+  return(dom_grp)
+}
+
+
+prop_dom_grp <- function(obj_mapper, groups_ind) {
+
+  population_prop_df <- data.frame(table(groups_ind), stringsAsFactors = FALSE)
+  colnames(population_prop_df)[1] <- 'Var1'
+
+  dom_group_list <- c()
+
+  i <- 0
+  for(tmp_sample_list in obj_mapper$points_in_vertex) {
+    i <- i + 1
+
+    node_freq_df <- data.frame(table(groups_ind[tmp_sample_list]),
+      stringsAsFactors = FALSE)
+
+    compare_df <- merge(node_freq_df, population_prop_df,
+      by = 'Var1', all = FALSE)
+    compare_df$Var1 <- as.character(compare_df$Var1)
+    
+    if(nrow(compare_df) == 1) {
+      dom_group <- compare_df[1,1]
+    } else {
+      n_points <- colSums(compare_df[,2:3])
+
+      prop_df <- t(t(compare_df[,2:3])/n_points)
+      diff_prop_df <- prop_df[,1] - prop_df[,2]
+      dom_group <- compare_df[which(diff_prop_df == max(diff_prop_df)), 'Var1'][1]
+    }
+
+    dom_group_list <- c(dom_group_list, dom_group)
+  }
+  return(dom_group_list)
+}
+
+
+#' Simple graphs generation
+#'
+#' \code{simple_visNet} generates graphs from the provided Mapper object without
+#' tooltips.
+#'
+#' \code{simple_visNet} generates graphs from the provided Mapper object without
+#' tooltips. The colors of nodes can be more flexibly defined than in
+#' \code{\link{network_visualization}} which is suitable for simulation and
+#' tests. The width of edges is propotional to the percentage of overlapping
+#' between connected nodes.
+#'
+#' Users can assign colors to nodes with three different approaches.
+#'
+#' * If \code{color_filter=TRUE}, the colors of nodes are determined by the
+#' average filter values of samples, and \code{color_fun} will map numeric
+#' values to hex color codes.
+#'
+#' * If \code{color_filter=FALSE} and \code{color_code=NULL}, and
+#' \code{groups_ind} is provided, the colors of nodes are determined by the
+#' dominated group of samples according to \code{groups_ind}, and colors are
+#' automatically generated by \code{color_fun}.
+#'
+#' * If \code{color_filter=FALSE} and \code{color_code!=NULL}, the colors of
+#' nodes are determined by the dominated group of samples, and colors are from
+#' \code{color_code}.
+#'
+#' Note than the color method should be specified by the users by providing the
+#' function with necessary arguments.
+#'
+#' @md
+#'
+#' @inheritParams network_visualization
+#' @param filter A vector of filter values from filter functions
+#' @param color_fun The color function that transforms numbers to hex codes.
+#' @param network_name File name of the html network file.
+#' @param color_filter  A logical object. \code{TRUE} if colors of nodes are to
+#'   be determined by the average filter values of samples.
+#' @param groups_ind A vector of group names each of the samples belongs to.
+#' @param color_code A color code dataframe.
+#' @param color_mix Boolean. If to display the color of nodes as a mixer of the
+#'   colors of samples within the nodes, where colors of samples are determined
+#'   by their associated groups
+#' @param prop_dom Boolean. If True, using the group whose proportion increases
+#'   the most as the dominant group. If False, using the group with the most samples
+#'   as the dominant group.
+#' @param save_network Boolean. If save the network file. Used for the SHiny app
+#'
+#' @return An HTML file saved under the location given in \code{folder}. The
+#'   HTML file contains the interactive graph generated based on the Mapper
+#'   object.
+#' @export
+#'
+#' @examples
+#' tp_data = chicken_generator(1)
+#' tp_data_mapper = mapper.sta(dat = tp_data[,2:4],
+#'                                filter_values = tp_data$Y,
+#'                                num_intervals = 10,
+#'                                percent_overlap = 70)
+#' simple_visNet(tp_data_mapper, filter = tp_data$Y)
+#'
+simple_visNet <-
+  function(obj_mapper,
+           filter = NULL,
+           folder = getwd(),
+           color_fun = color_map_Spectral,
+           network_name = "network.html",
+           color_filter = TRUE,
+           groups_ind = NULL,
+           color_code = NULL,
+           color_mix = FALSE,
+           prop_dom = FALSE,
+           save_network = TRUE,
+           png_output = FALSE,
+           layout_igraph = layout_with_fr) {
+    require(visNetwork)
+    require(RColorBrewer)
+    require(igraph)
+
+
+    # Remove nodes without samples
+    obj_mapper = STA:::null_remover(obj_mapper)
+
+    MapperNodes <- STA:::mapperVertices(obj_mapper, 1)
+    MapperLinks <- STA:::mapperEdges(obj_mapper)
+
+    if (color_filter) {
+      if (is.null(color_fun)) {
+        stop("color_fun not provided")
+      }
+
+      if (is.null(filter)) {
+        warning("filter not provided, repalced by 1.")
+        filter <- rep(1, max(unlist(obj_mapper$points_in_vertex)))
+      }
+
+      dir.create(file.path(folder), showWarnings = FALSE)
+
+      avg_filter <- c()
+      for (i in obj_mapper$points_in_vertex) {
+        avg_filter <- c(avg_filter, mean(filter[i], na.rm = TRUE))
+      }
+
+      # Standardize to (0, 1)
+      avg_filter <- (avg_filter - min(avg_filter))/(max(avg_filter) - min(avg_filter))
+
+      nodes <-
+        data.frame(
+          id = 1:nrow(MapperNodes),
+          value = MapperNodes$Nodesize,
+          color = color_fun(avg_filter)
+        )
+    } else if (is.null(color_code)) {
+      if (is.null(color_fun)) {
+        stop("Either color_code or color_fun not provided")
+      }
+
+      if (is.null(groups_ind)) {
+        stop("Samples' groups_ind not provided")
+      }
+
+      # Use dominant group
+      if (!color_mix) {
+        if(!prop_dom){
+          dom_grp <- simple_dom_grp(obj_mapper, groups_ind)
+        } else {
+          dom_grp <- prop_dom_grp(obj_mapper, groups_ind)
+        }
+
+        dom_grp <- as.numeric(as.factor(dom_grp)) - 1
+
+        if(max(dom_grp) == 0) {
+          dom_grp <- dom_grp + 1
+        }
+
+        nodes <-
+          data.frame(
+            id = 1:nrow(MapperNodes),
+            value = MapperNodes$Nodesize,
+            color = color_fun(dom_grp / max(dom_grp))
+          )
+
+      } else if (color_mix) {
+
+        sample_color <- as.numeric(as.factor(groups_ind)) - 1
+
+        if(max(sample_color) == 0) {
+          sample_color <- sample_color + 1
+        }
+
+        sample_color <- color_fun(sample_color/max(sample_color))
+
+        avg_color <- c()
+        for (i in obj_mapper$points_in_vertex) {
+          avg_color <- c(avg_color, color_mixer(sample_color[i], na.rm = TRUE))
+        }
+
+        nodes <-
+          data.frame(
+            id = 1:nrow(MapperNodes),
+            value = MapperNodes$Nodesize,
+            color = avg_color
+          )
+
+      }
+
+    } else if (check_color_code(color_code)) {
+
+      if (is.null(groups_ind)) {
+        stop("Samples' groups_ind not provided")
+      }
+
+      # Use provided color code
+
+      if(!color_mix) {
+        if(!prop_dom){
+          dom_grp <- simple_dom_grp(obj_mapper, groups_ind)
+        } else {
+          dom_grp <- prop_dom_grp(obj_mapper, groups_ind)
+        }
+        nodes <-
+          data.frame(
+            id = 1:nrow(MapperNodes),
+            value = MapperNodes$Nodesize,
+            group = dom_grp,
+            color = color_map(dom_grp, color_code = color_code)
+          )
+      } else if (color_mix) {
+
+        sample_color <- color_map(groups_ind, color_code = color_code)
+
+        avg_color <- c()
+        dom_grp <- c()
+        for (i in obj_mapper$points_in_vertex) {
+          avg_color <- c(avg_color, color_mixer(sample_color[i], na.rm = TRUE))
+          dom_grp <-
+            c(dom_grp, names(sort(table(groups_ind[i]), decreasing = T))[1])
+        }
+
+        nodes <-
+          data.frame(
+            id = 1:nrow(MapperNodes),
+            value = MapperNodes$Nodesize,
+            group = dom_grp,
+            color = avg_color
+          )
+
+      } else {
+        stop("Invalid color_mix. Should be Boolean.")
+      }
+
+    } else {
+      stop("Invalid color code")
+    }
+
+    edges <-
+      data.frame(from = MapperLinks$Linksource + 1,
+                 to = MapperLinks$Linktarget + 1,
+                 width = MapperLinks$Linkvalue/max(MapperLinks$Linkvalue) * 20)
+
+    if(!png_output){
+      net_file <- visNetwork(nodes, edges, width = "100%", height = "700px") %>%
+        visInteraction(tooltipDelay = 500,
+                       selectConnectedEdges = FALSE) %>%
+        visOptions(highlightNearest = list(
+          enabled = TRUE,
+          degree = 2,
+          hover = T) )
+
+      if(save_network) {
+        print(net_file)
+
+        net_file %>% visSave(file = network_name, background = "white")
+        save_logic = file.rename(from = network_name, to = file.path(folder, network_name))
+
+        if (save_logic) {
+          cat("The generated HTML file can be found in:\n",
+              file.path(folder, network_name),
+              "\n")
+        } else {
+          warning("Cannot save file in the target folder,
+              please check the working directory.")
+        }
+      } else {
+        return(net_file)
+      }
+    } else { # If we want to output a static png file
+      igraph_obj <-igraph::graph_from_adjacency_matrix(adjmatrix = as.matrix(obj_mapper$adjacency),
+                                                       mode = "undirected")
+
+      plot(igraph_obj,
+           layout = layout_igraph,
+           vertex.size = log(nodes$value/2 + 1)*4,
+           vertex.color = as.character(nodes$color),
+           vertex.label = 1:length(nodes$color),
+           label.cex = 0.7)
+    }
   }
